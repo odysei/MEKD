@@ -7,7 +7,6 @@
 #include <sstream>
 #include <complex>
 
-#include "MEKD_MG_2Model_Mixer.h"
 #include "../src/MadGraphSrc/read_slha.h"
 
 using namespace std;
@@ -20,11 +19,15 @@ public:
 	/// Flags
 	bool Boost_To_CM;	// for a boosted data
 	bool Debug_Mode;	// Enable debugging mode
+	bool Fix_Spin0_Production;	// use the SM Higgs production mechanism
+	bool Fix_Spin1_Production;	// use the a hybrid production mechanism
 // 	bool Force_g3_running;	// unused. At some point was included for alpha_QCD
 	bool Overwrite_e_and_mu_masses;	// switch for manual m_e, m_mu masses
 	bool Use_Higgs_width;	//	if false, width is fixed to =1
 	bool Use_mh_eq_m4l;	// Set mh to m4l for every event
+	bool Use_mZ4l_eq_m4l;	// Set m_Z to m4l for Z4l events
 	bool Use_PDF_w_pT0;	// Use PDFs in the pT=0 frame. If true, Boost_To_CM is ignored
+	bool Vary_resonance_width;	// Allow width to be varied with mass
 	bool Vary_signal_couplings;	// Allow couplings to change with mass
 	bool Warning_Mode;	// Print warnings
 	
@@ -37,7 +40,7 @@ public:
 	double Sqrt_s;	//Max energy, collision energy
 	
 	/// State mixing
-	MEKD_2Model_Mixer Mixing_Coefficients;
+	complex<double> *Mixing_Coefficients_Spin0, *Mixing_Coefficients_Spin1, *Mixing_Coefficients_Spin2;
 	
 	/// Physical parameters
 	double Electron_mass;	//0.0005109989, for enabled overwriting
@@ -53,7 +56,7 @@ public:
 	/// String flags and file locations
 	string Final_state;	// Final state, for the moment: 4e, 4mu, 2e2mu
 	string Resonance_decay_mode;	// default: ZZ. Alternatives: 2mu
-	string Test_Model;	// Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm, ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph, Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb
+	string Test_Model;	// Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm, ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph, Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb, qqZ4l_Signal, qqZ4l_Background
 	vector<string> Test_Models;	// same names as for the Test_Model
 	string Parameter_file;	// Location where a parameter card is stored
 	string PDF_file;	// PDF/PDT table file
@@ -64,6 +67,9 @@ public:
 	double Signal_ME;	//is filled after running RUN_XXXX(...)
 	vector<double> Signal_MEs;	//is filled if Test_Models are set after running RUN_XXXX(...)
 	double KD;	//is not filled with RUN_MEKD_MG( string )
+	
+	/// Parameter container. For experts only
+	SLHAReader Set_Of_Model_Parameters;
 	
 	/// Functions
 	void Set_Default_MEKD_MG_Parameters();
@@ -77,14 +83,14 @@ public:
 	~MEKD_MG();
 	
 private:
-	bool Parameters_Are_Loaded, buffer_bool;
+	bool Parameters_Are_Loaded, buffer_bool, Predefined_Model;
 	
 	int error_value;
 	
-	double *buffer, buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1, PDFx2, LmbdGG_calculated;
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal, *pA1_internal;
 	
-	complex<double> *buffer_complex;
+	complex<double> *buffer_complex, *Mixing_Coefficients_Spin0_internal, *Mixing_Coefficients_Spin1_internal, *Mixing_Coefficients_Spin2_internal;
 	
 	// Parameters
 	double v_expectation;	// Vacuum expectation value
@@ -110,17 +116,18 @@ private:
 	vector<double> id_set;
 	vector<double*> p_set;
 	
-	SLHAReader Set_Of_Model_Parameters;
-	
 	/// Internal functions ///
 	int Load_Parameters();
 	
 	int Arrange_Internal_pls();
 	
 	/// Sets up particular choices
-	int Run_MEKD_MG_ME_BKG();
+	int Run_MEKD_MG_ME_BKG_Z4l();
+	int Run_MEKD_MG_ME_BKG_ZZ();
 	int Run_MEKD_MG_ME_Custom();
-	int Run_MEKD_MG_ME_CPevenScalar(string initial_state);
+	int Run_MEKD_MG_ME_Spin0(string initial_state);	// A general mixed spin-0 state
+	int Run_MEKD_MG_ME_Spin1(string initial_state);	// A general mixed spin-1 state
+// 	int Run_MEKD_MG_ME_Spin2(string initial_state);	// A general mixed spin-2 state
 	int Run_MEKD_MG_ME_Spin0Pm(string initial_state);	// SM Higgs
 	int Run_MEKD_MG_ME_Spin0M(string initial_state);
 	int Run_MEKD_MG_ME_Spin0Ph(string initial_state);
@@ -130,19 +137,24 @@ private:
 	int Run_MEKD_MG_ME_Spin2Ph(string initial_state);
 	int Run_MEKD_MG_ME_Spin2Mh(string initial_state);
 	int Run_MEKD_MG_ME_Spin2Pb(string initial_state);
-	int Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state);	// A mixed state
+	int Run_MEKD_MG_ME_Spin0Pm_Spin0M(string initial_state);	// A mixed state of two contributions
 	int Run_MEKD_MG_ME_Spin0Pm_Spin0Ph(string initial_state);
 	int Run_MEKD_MG_ME_Spin0M_Spin0Ph(string initial_state);
+	int Run_MEKD_MG_ME_Z4l();
 	
 	/// Blind-calculation functions
-	int Run_MEKD_MG_MEs_BKG(string initial_state);
-	int Run_MEKD_MG_MEs_BKG_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_BKG_Z4l(string initial_state);
+	int Run_MEKD_MG_MEs_BKG_Z4l_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_BKG_ZZ(string initial_state);
+	int Run_MEKD_MG_MEs_BKG_ZZ_Sub(string initial_state, string flavor, bool photon);
 	int Run_MEKD_MG_MEs_SIG_Spin0(string initial_state);
 	int Run_MEKD_MG_MEs_SIG_Spin0_Sub(string initial_state, string flavor, bool photon);
 	int Run_MEKD_MG_MEs_SIG_Spin1(string initial_state);
 	int Run_MEKD_MG_MEs_SIG_Spin1_Sub(string initial_state, string flavor, bool photon);
 	int Run_MEKD_MG_MEs_SIG_Spin2(string initial_state);
 	int Run_MEKD_MG_MEs_SIG_Spin2_Sub(string initial_state, string flavor, bool photon);
+	int Run_MEKD_MG_MEs_SIG_Z4l(string initial_state);
+	int Run_MEKD_MG_MEs_SIG_Z4l_Sub(string initial_state, string flavor, bool photon);
 };
 
 

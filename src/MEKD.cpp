@@ -31,9 +31,9 @@ MEKD::MEKD(double collisionEnergy, string PDFName)
 	
 	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy*1000;	// translate TeV to GeV
 	
-	m_Mix_Spin0Pm_Spin0M = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0M", NULL );
-	m_Mix_Spin0Pm_Spin0Ph = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0Pm", "Spin0Ph", NULL );
-	m_Mix_Spin0M_Spin0Ph = MEKD_MG_Calc.Mixing_Coefficients.get_block_entry( "Spin0M", "Spin0Ph", NULL );
+	m_Mixing_Coefficients_Spin0 = MEKD_MG_Calc.Mixing_Coefficients_Spin0;
+	m_Mixing_Coefficients_Spin1 = MEKD_MG_Calc.Mixing_Coefficients_Spin1;
+	m_Mixing_Coefficients_Spin2 = MEKD_MG_Calc.Mixing_Coefficients_Spin2;
 	
 	ME_ZZ = 0;
 	ME_Spin0PSMH = 0;
@@ -77,11 +77,11 @@ int MEKD::setProcessName(string process)
 /// Check if process is supported, translation of namings
 	if     ( process=="ZZ" )													{m_process="ZZ"; }
 	else if( process=="DY" )													{m_process="DY"; }
+	else if( process=="qqZ4l_Background" )										{m_process="qqZ4l_Background"; }
+	else if( process=="qqZ4l_Signal" )											{m_process="qqZ4l_Signal"; }
 	else if( process=="Higgs" || process=="SMHiggs" || process=="ggSpin0Pm" )	{m_process="ggSpin0Pm"; }
 	else if( process=="CP-odd" || process=="Higgs0M" || process=="ggSpin0M" )	{m_process="ggSpin0M"; }
-	else if( process=="CP-even" || process=="Higgs0P" )							{m_process="CPevenScalar"; }
 	else if( process=="ggSpin0PH" || process=="ggSpin0Ph" )						{m_process="ggSpin0Ph"; }
-	else if( process=="ggSpin0Pm_ggSpin0M" )									{m_process="ggSpin0Pm_ggSpin0M"; }
 	else if( process=="qqSpin1P" )												{m_process="qqSpin1P"; }
 	else if( process=="qqSpin1M" )												{m_process="qqSpin1M"; }
 	else if( process=="ggSpin2PM" || process=="Graviton2PM" ||
@@ -97,13 +97,19 @@ int MEKD::setProcessName(string process)
 	else if( process=="Spin0Pm" )												{m_process="Spin0Pm"; }
 	else if( process=="Spin0M" )												{m_process="Spin0M"; }
 	else if( process=="Spin0Ph" )												{m_process="Spin0Ph";}
-	else if( process=="Spin0Pm_Spin0M" )										{m_process="Spin0Pm_Spin0M"; }
 	else if( process=="Spin1P" )												{m_process="Spin1P"; }
 	else if( process=="Spin1M" )												{m_process="Spin1M"; }
 	else if( process=="Spin2Pm" )												{m_process="Spin2Pm"; }
 	else if( process=="Spin2Ph" )												{m_process="Spin2Ph"; }
 	else if( process=="Spin2Mh" )												{m_process="Spin2Mh"; }
 	else if( process=="Spin2Pb" )												{m_process="Spin2Pb"; }
+	else if( process=="ggSpin0" )												{m_process="ggSpin0"; }
+	else if( process=="qqSpin1" )												{m_process="qqSpin1"; }
+	else if( process=="ggSpin2" )												{m_process="ggSpin2"; }
+	else if( process=="qqSpin2" )												{m_process="qqSpin2"; }
+	else if( process=="Spin0" )													{m_process="Spin0"; }
+	else if( process=="Spin1" )													{m_process="Spin1"; }
+	else if( process=="Spin2" )													{m_process="Spin2"; }
 	else if( process=="Custom" )												{m_process="Custom"; }
 	else return ERR_PROCESS;
 	
@@ -120,11 +126,11 @@ int MEKD::setProcessNames(string processA, string processB) {
 	/// check if processA is supported, translation of namings
 	if     ( processA=="ZZ")													{m_processA="ZZ"; }
 	else if( processA=="DY" )													{m_processA="DY"; }
+	else if( processA=="qqZ4l_Background" )										{m_processA="qqZ4l_Background"; }
+	else if( processA=="qqZ4l_Signal" )											{m_processA="qqZ4l_Signal"; }
 	else if( processA=="Higgs" || processA=="SMHiggs" || processA=="ggSpin0Pm" )	{m_processA="ggSpin0Pm"; }
 	else if( processA=="CP-odd" || processA=="Higgs0M" || processA=="ggSpin0M" )	{m_processA="ggSpin0M"; }
-	else if( processA=="CP-even" || processA=="Higgs0P")						{m_processA="CPevenScalar"; }
 	else if( processA=="Spin0PH" || processA=="Spin0Ph" || processA=="ggSpin0Ph" )	{m_processA="ggSpin0Ph"; }
-	else if( processA=="ggSpin0Pm_ggSpin0M" )									{m_processA="ggSpin0Pm_ggSpin0M"; }
 	else if( processA=="qqSpin1P" )												{m_processA="qqSpin1P"; }
 	else if( processA=="qqSpin1M" )												{m_processA="qqSpin1M"; }
 	else if( processA=="qqSpin2PM" || processA=="Graviton2PM" ||
@@ -140,23 +146,29 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processA=="Spin0Pm" )												{m_processA="Spin0Pm"; }
 	else if( processA=="Spin0M" )												{m_processA="Spin0M"; }
 	else if( processA=="Spin0Ph" )												{m_processA="Spin0Ph";}
-	else if( processA=="Spin0Pm_Spin0M" )										{m_processA="Spin0Pm_Spin0M"; }
 	else if( processA=="Spin1P" )												{m_processA="Spin1P"; }
 	else if( processA=="Spin1M" )												{m_processA="Spin1M"; }
 	else if( processA=="Spin2Pm" )												{m_processA="Spin2Pm"; }
 	else if( processA=="Spin2Ph" )												{m_processA="Spin2Ph"; }
 	else if( processA=="Spin2Mh" )												{m_processA="Spin2Mh"; }
 	else if( processA=="Spin2Pb" )												{m_processA="Spin2Pb"; }
+	else if( processA=="ggSpin0" )												{m_processA="ggSpin0"; }
+	else if( processA=="qqSpin1" )												{m_processA="qqSpin1"; }
+	else if( processA=="ggSpin2" )												{m_processA="ggSpin2"; }
+	else if( processA=="qqSpin2" )												{m_processA="qqSpin2"; }
+	else if( processA=="Spin0" )												{m_processA="Spin0"; }
+	else if( processA=="Spin1" )												{m_processA="Spin1"; }
+	else if( processA=="Spin2" )												{m_processA="Spin2"; }
 	else if( processA=="Custom")												{m_processA="Custom"; }
 	else return ERR_PROCESS;
 	/// check if processB is supported, translation of namings
 	if     ( processB=="ZZ")													{m_processB="ZZ"; }
 	else if( processB=="DY" )													{m_processB="DY"; }
+	else if( processB=="qqZ4l_Background" )										{m_processB="qqZ4l_Background"; }
+	else if( processB=="qqZ4l_Signal" )											{m_processB="qqZ4l_Signal"; }
 	else if( processB=="Higgs" || processB=="SMHiggs" || processB=="ggSpin0Pm" )	{m_processB="ggSpin0Pm"; }
 	else if( processB=="CP-odd" || processB=="Higgs0M" || processB=="ggSpin0M" )	{m_processB="ggSpin0M"; }
-	else if( processB=="CP-even" || processB=="Higgs0P")						{m_processB="CPevenScalar"; }
 	else if( processB=="Spin0PH" || processB=="Spin0Ph" || processB=="ggSpin0Ph" )	{m_processB="ggSpin0Ph"; }
-	else if( processB=="ggSpin0Pm_ggSpin0M" )									{m_processB="ggSpin0Pm_ggSpin0M"; }
 	else if( processB=="qqSpin1P" )												{m_processB="qqSpin1P"; }
 	else if( processB=="qqSpin1M" )												{m_processB="qqSpin1M"; }
 	else if( processB=="qqSpin2PM" || processB=="Graviton2PM" ||
@@ -172,13 +184,19 @@ int MEKD::setProcessNames(string processA, string processB) {
 	else if( processB=="Spin0Pm" )												{m_processB="Spin0Pm"; }
 	else if( processB=="Spin0M" )												{m_processB="Spin0M"; }
 	else if( processB=="Spin0Ph" )												{m_processB="Spin0Ph";}
-	else if( processB=="Spin0Pm_Spin0M" )										{m_processB="Spin0Pm_Spin0M"; }
 	else if( processB=="Spin1P" )												{m_processB="Spin1P"; }
 	else if( processB=="Spin1M" )												{m_processB="Spin1M"; }
 	else if( processB=="Spin2Pm" )												{m_processB="Spin2Pm"; }
 	else if( processB=="Spin2Ph" )												{m_processB="Spin2Ph"; }
 	else if( processB=="Spin2Mh" )												{m_processB="Spin2Mh"; }
 	else if( processB=="Spin2Pb" )												{m_processB="Spin2Pb"; }
+	else if( processB=="ggSpin0" )												{m_processB="ggSpin0"; }
+	else if( processB=="qqSpin1" )												{m_processB="qqSpin1"; }
+	else if( processB=="ggSpin2" )												{m_processB="ggSpin2"; }
+	else if( processB=="qqSpin2" )												{m_processB="qqSpin2"; }
+	else if( processB=="Spin0" )												{m_processB="Spin0"; }
+	else if( processB=="Spin1" )												{m_processB="Spin1"; }
+	else if( processB=="Spin2" )												{m_processB="Spin2"; }
 	else if( processB=="Custom")												{m_processB="Custom"; }
     else return ERR_PROCESS;
 	
@@ -457,40 +475,50 @@ int MEKD::computeMEs( vector<double*> input_Ps, vector<int> input_IDs )
 
 
 ///------------------------------------------------------------------------
-/// MEKD::Mix_Spin0Pm_Spin0M - Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0M states
+/// Mixed-state ME mixer of production like qqSpin1M, qqSpin1P, exotic, exotic pseudo, and decay like Spin1M, Spin1P states, corresponding couplings rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12, rhomu13, rhomu14.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin0Pm_Spin0M( complex<double> Spin0Pm_relamp, complex<double> Spin0M_relamp )
+int MEKD::Mix_Spin0( complex<double> Spin0Pm_relamp, complex<double> Spin0Ph_relamp, complex<double> Spin0Phexo_relamp, complex<double> Spin0M_relamp )
 {
-	m_Mix_Spin0Pm_Spin0M[0] = Spin0Pm_relamp;
-	m_Mix_Spin0Pm_Spin0M[1] = Spin0M_relamp;
+	m_Mixing_Coefficients_Spin0[0] = Spin0Pm_relamp;
+	m_Mixing_Coefficients_Spin0[1] = Spin0Ph_relamp;
+	m_Mixing_Coefficients_Spin0[2] = Spin0Phexo_relamp;
+	m_Mixing_Coefficients_Spin0[3] = Spin0M_relamp;
 	
-	if( m_Mix_Spin0Pm_Spin0M == NULL ) return ERR_OTHER;
+	if( m_Mixing_Coefficients_Spin0 == NULL ) return ERR_OTHER;
 	return 0;
 }
 
 
 ///------------------------------------------------------------------------
-/// MEKD::Mix_Spin0Pm_Spin0Ph - Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0Ph states
+/// Mixed-state ME mixer of production like qqSpin1M, qqSpin1P, exotic, exotic pseudo, and decay like Spin1M, Spin1P states, corresponding couplings rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12, rhomu13, rhomu14.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin0Pm_Spin0Ph( complex<double> Spin0Pm_relamp, complex<double> Spin0Ph_relamp )
+int MEKD::Mix_Spin1( complex<double> prod_Spin1M_relamp, complex<double> prod_Spin1P_relamp, complex<double> prod_Spin1Mexo_relamp, complex<double> prod_Spin1Pexo_relamp, complex<double> dec_Spin1M_relamp, complex<double> dec_Spin1P_relamp, complex<double> dec_Spin1_rhomu13_relamp, complex<double> dec_Spin1_rhomu14_relamp )
 {
-	m_Mix_Spin0Pm_Spin0Ph[0] = Spin0Pm_relamp;
-	m_Mix_Spin0Pm_Spin0Ph[1] = Spin0Ph_relamp;
+	m_Mixing_Coefficients_Spin1[0] = prod_Spin1M_relamp;
+	m_Mixing_Coefficients_Spin1[1] = prod_Spin1P_relamp;
+	m_Mixing_Coefficients_Spin1[2] = prod_Spin1Mexo_relamp;
+	m_Mixing_Coefficients_Spin1[3] = prod_Spin1Pexo_relamp;
+	m_Mixing_Coefficients_Spin1[4] = dec_Spin1M_relamp;
+	m_Mixing_Coefficients_Spin1[5] = dec_Spin1M_relamp;
+	m_Mixing_Coefficients_Spin1[6] = dec_Spin1_rhomu13_relamp;
+	m_Mixing_Coefficients_Spin1[7] = dec_Spin1_rhomu14_relamp;
 	
-	if( m_Mix_Spin0Pm_Spin0Ph == NULL ) return ERR_OTHER;
+	if( m_Mixing_Coefficients_Spin1 == NULL ) return ERR_OTHER;
 	return 0;
 }
 
 
 ///------------------------------------------------------------------------
-/// MEKD::Mix_Spin0M_Spin0Ph - Mixed-state ME mixer of (gg)Spin0M and (gg)Spin0Ph states
+/// Mixed-state ME mixer of Spin-2 states. Production couplings: k1g/rhoQ21, ..., k4g/rhoQ24, ..., k10g, decay couplings: k1z/rhomu21, k4z/rhomu24, ..., k10z.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin0M_Spin0Ph( complex<double> Spin0M_relamp, complex<double> Spin0Ph_relamp )
+int MEKD::Mix_Spin2( complex<double> *prod_Spin2_relamp, complex<double> *dec_Spin2_relamp )
 {
-	m_Mix_Spin0M_Spin0Ph[0] = Spin0M_relamp;
-	m_Mix_Spin0M_Spin0Ph[1] = Spin0Ph_relamp;
+	for( buffer_uint=0; buffer_uint<10; buffer_uint++)
+		m_Mixing_Coefficients_Spin2[buffer_uint] = prod_Spin2_relamp[buffer_uint];
+	for( buffer_uint=10; buffer_uint<20; buffer_uint++)
+		m_Mixing_Coefficients_Spin2[buffer_uint] = dec_Spin2_relamp[buffer_uint];
 	
-	if( m_Mix_Spin0M_Spin0Ph == NULL ) return ERR_OTHER;
+	if( m_Mixing_Coefficients_Spin2 == NULL ) return ERR_OTHER;
 	return 0;
 }
 

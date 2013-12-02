@@ -97,6 +97,7 @@ long double Higgs_width_Poly_Fit_Estm(double mass)
 	 * ~0.57% value and error phase jump at 156.5 transition point
 	 * ~2.1% value and error phase jump at 162 transition point
 	 */
+	if( mass < 90 ) return ( static_cast<long double>( 0.00215708 ) );	// a lower cut-off value of m_H = 90 GeV
 	if( mass < 156.5 ) return ( Higgs_width_Poly_Fit_Zone1_coeff0
 		+ Higgs_width_Poly_Fit_Zone1_coeff1*mass
 		+ Higgs_width_Poly_Fit_Zone1_coeff2*mass*mass

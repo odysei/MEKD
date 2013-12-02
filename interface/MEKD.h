@@ -46,8 +46,8 @@ public:
 	///
 	/// Constructor.
 	///
-	/// \param collisionEnergy							the sqrt(s) value in TeV (double, DEFAULT = 8).
-	/// \param PDFName									the name of the parton density functions to be used (string, DEFAULT = "CTEQ6L", NONE = "").
+	/// \param collisionEnergy							The sqrt(s) value in TeV (double, DEFAULT = 8).
+	/// \param PDFName									The name of the parton density functions to be used (string, DEFAULT = "CTEQ6L", NONE = "").
 	///
 	MEKD(double collisionEnergy = 8, string PDFName = "CTEQ6L");
 	
@@ -57,10 +57,10 @@ public:
 	///
 	/// Supported process names: "ZZ", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "qqSpin2Pm".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( string processA, string processB,	// names of the processes
@@ -72,14 +72,14 @@ public:
 	///
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of 4 leptons (lepton ordering does not matter).
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
-	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
-	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
+	/// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
+	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( string processA, string processB,	// names of the processes
@@ -95,14 +95,14 @@ public:
 	///
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
-	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (string, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( string processA, string processB,					// names of the processes
@@ -115,12 +115,12 @@ public:
 	///
 	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processName							name of the process for which the ME is to be computed (string, REQUIRED).
-	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
-	/// \param[out] me2process							the computed |ME|^2 for process of interest (double).
+	/// \param[in]  processName							The Name of the process for which the ME is to be computed (string, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[out] me2process							The computed |ME|^2 for process of interest (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeME( string processName,
@@ -131,8 +131,8 @@ public:
 	///
 	/// Compute all important/default MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
 	///
-	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
-	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
+	/// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
+	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeMEs( double lept1P[], int lept1Id,		// 4-momentum (E,px,py,pz) and id (PDG) of lepton 1
@@ -144,45 +144,53 @@ public:
 	///
 	/// Compute all important/default MEs first for the use with computeKD(string, string, double&, double&, double&). Option Custom is outside this scope.
 	///
-	/// \param[in]  input_Ps							the input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of arrays with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeMEs( vector<double*> input_Ps, vector<int> input_IDs );	// 4-momenta (E,px,py,pz) and IDs (PDG) of input particles
 	
 	
 	///
-	/// Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0M states
+	/// Mixed-state ME mixer of (gg)Spin0Pm, (gg)Spin0Ph, (gg)Spin0Phexotic, and (gg)Spin0M states, corresponding couplings kappa_1/rhomu01, kappa_2/rhomu02, kappa_3/rhomu03, kappa_4/rhomu04.
 	///
-	/// \param[in]	Spin0Pm_relamp						the relative complex amplitude of the Spin0Pm state
-	/// \param[in]	Spin0M_relamp						the relative complex amplitude of the Spin0M state
+	/// \param[in]	Spin0Pm_relamp						The relative complex amplitude of the Spin0Pm state
+	/// \param[in]	Spin0Ph_relamp						The relative complex amplitude of the Spin0Ph state
+	/// \param[in]	Spin0Phexo_relamp					The relative complex amplitude of the Spin0PhExotic state
+	/// \param[in]	Spin0M_relamp						The relative complex amplitude of the Spin0M state
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
-	int Mix_Spin0Pm_Spin0M( complex<double> Spin0Pm_relamp, complex<double> Spin0M_relamp );
+	int Mix_Spin0( complex<double> Spin0Pm_relamp, complex<double> Spin0Ph_relamp, complex<double> Spin0Phexo_relamp, complex<double> Spin0M_relamp );
 	
 	
 	///
-	/// Mixed-state ME mixer of (gg)Spin0Pm and (gg)Spin0Ph states
+	/// Mixed-state ME mixer of production like qqSpin1M, qqSpin1P, exotic, exotic pseudo, and decay like Spin1M, Spin1P states, corresponding couplings rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12, rhomu13, rhomu14.
 	///
-	/// \param[in]	Spin0Pm_relamp						the relative complex amplitude of the Spin0Pm state
-	/// \param[in]	Spin0Ph_relamp						the relative complex amplitude of the Spin0Ph state
+	/// \param[in]	prod_Spin1M_relamp					The relative complex amplitude for the Spin1M-like production
+	/// \param[in]	prod_Spin1P_relamp					The relative complex amplitude for the Spin1P-like production
+	/// \param[in]	prod_Spin1Mexo_relamp				The relative complex amplitude for the Spin1Mexotic-like production
+	/// \param[in]	prod_Spin1Pexo_relamp				The relative complex amplitude for the Spin1Pexotic-like production
+	/// \param[in]	dec_Spin1M_relamp					The relative complex amplitude for the Spin1M-like decay
+	/// \param[in]	dec_Spin1P_relamp					The relative complex amplitude for the Spin1P-like decay
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
-	int Mix_Spin0Pm_Spin0Ph( complex<double> Spin0Pm_relamp, complex<double> Spin0Ph_relamp );
+	int Mix_Spin1( complex<double> prod_Spin1M_relamp, complex<double> prod_Spin1P_relamp, complex<double> prod_Spin1Mexo_relamp, complex<double> prod_Spin1Pexo_relamp, complex<double> dec_Spin1M_relamp, complex<double> dec_Spin1P_relamp, complex<double> dec_Spin1_rhomu13_relamp, complex<double> dec_Spin1_rhomu14_relamp );
 	
 	
 	///
-	/// Mixed-state ME mixer of (gg)Spin0M and (gg)Spin0Ph states
+	/// Mixed-state ME mixer of Spin-2 states. Production couplings: k1g/rhoQ21, ..., k4g/rhoQ24, ..., k10g, decay couplings: k1z/rhomu21, k4z/rhomu24, ..., k10z.
 	///
-	/// \param[in]	Spin0M_relamp						the relative complex amplitude of the Spin0M state
-	/// \param[in]	Spin0Ph_relamp						the relative complex amplitude of the Spin0Ph state
+	/// \param[in]	*prod_Spin2_relamp					The relative complex amplitudes for the Spin-2 state production. An array of size 10
+	/// \param[in]	*dec_Spin2_relamp					The relative complex amplitudes for the Spin-2 state decay. An array of size 10
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
-	int Mix_Spin0M_Spin0Ph( complex<double> Spin0M_relamp, complex<double> Spin0Ph_relamp );
+	int Mix_Spin2( complex<double> *prod_Spin2_relamp, complex<double> *dec_Spin2_relamp );
 	
 	
-	/// Mixed-state ME mixer of the named two states. Variable
-	complex<double> *m_Mix_Spin0Pm_Spin0M, *m_Mix_Spin0Pm_Spin0Ph, *m_Mix_Spin0M_Spin0Ph;
+	/// Mixed-state ME mixer. Variables
+	complex<double> *m_Mixing_Coefficients_Spin0;
+	complex<double> *m_Mixing_Coefficients_Spin1;
+	complex<double> *m_Mixing_Coefficients_Spin2;
 	
 	
 	/// Madgraph-based ME calculator
@@ -222,10 +230,10 @@ public:
 	///
 	/// Supported process names: "ZZ", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "qqSpin2Pm".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( TString processA, TString processB,	// names of the processes
@@ -238,14 +246,14 @@ public:
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of 4 leptons (lepton ordering does not matter).
 	/// The overloaded method that supports input parameters of ROOT types TString and TLorentzVector.
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
-	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
-	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (TString, REQUIRED).
+	/// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
+	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( TString processA, TString processB,	// names of the processes
@@ -262,14 +270,14 @@ public:
 	/// Compute KDs and MEs for process A and process B out of the 4-momenta of the input particles (ordering does not matter).
 	/// The overloaded method that supports input parameters of ROOT types TString and TLorentzVector.
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processA, processB					names of the processes X = A, B for which the KDs and MEs are computed (Tstring, REQUIRED).
-	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (int, REQUIRED).
-	/// \param[out] kd									the computed KD value for discrimination of processes A and B (double).
-	/// \param[out] me2processA							the computed |ME|^2 for process A (double).
-	/// \param[out] me2processB							the computed |ME|^2 for process B (double).
+	/// \param[in]  processA, processB					The names of the processes X = A, B for which the KDs and MEs are computed (Tstring, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (int, REQUIRED).
+	/// \param[out] kd									The computed KD value for discrimination of processes A and B (double).
+	/// \param[out] me2processA							The computed |ME|^2 for process A (double).
+	/// \param[out] me2processB							The computed |ME|^2 for process B (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeKD( TString processA, TString processB,						// names of the processes
@@ -282,12 +290,12 @@ public:
 	///
 	/// Compute ME for a processName out of the 4-momenta of the input particles (ordering does not matter).
 	///
-	/// Supported process names: "ZZ", "DY", "Custom", "CPevenScalar", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0M", "Spin0Ph", "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb".
+	/// Supported process names: "ZZ", "DY", "Custom", "ggSpin0Pm", "ggSpin0Ph", "ggSpin0M", "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "ggSpin2Ph", "ggSpin2Mh", "ggSpin2Pb", "qqSpin2Pm", "qqSpin2Ph", "qqSpin2Mh", "qqSpin2Pb", "Spin0Pm", "Spin0Ph", "Spin0M" "Spin1P", "Spin1M", "Spin2Pm", "Spin2Ph", "Spin2Mh", "Spin2Pb", "ggSpin0", "qqSpin1", "ggSpin2", "qqSpin2", "Spin0", "Spin1", "Spin2", "qqZ4l_Background", "qqZ4l_Signal".
 	///
-	/// \param[in]  processName							name of the process for which the ME is to be computed (TString, REQUIRED).
-	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
-	/// \param[out] me2process							the computed |ME|^2 for process of interest (double).
+	/// \param[in]  processName							The name of the process for which the ME is to be computed (TString, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[out] me2process							The computed |ME|^2 for process of interest (double).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeME( TString processName,
@@ -298,8 +306,8 @@ public:
 	///
 	/// Compute all important/default MEs first for the use with computeKD(TString, TString, double&, double&, double&). Option Custom is outside this scope.
 	///
-	/// \param[in]  lept1P, lept2P, lept3P, lept4P		the input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
-	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	the input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
+	/// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector, REQUIRED).
+	/// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of leptons N=1..4 (int, REQUIRED).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeMEs( TLorentzVector lept1P, int lept1Id,		// 4-momentum and id (PDG) of lepton 1
@@ -311,8 +319,8 @@ public:
 	///
 	/// Compute all important/default MEs first for the use with computeKD(string/TString, string/TString, double&, double&, double&). Option Custom is outside this scope.
 	///
-	/// \param[in]  input_Ps							the input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
-	/// \param[in]  input_IDs							the input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+	/// \param[in]  input_Ps							The input vector of TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<TLorentzVector>, REQUIRED).
+	/// \param[in]  input_IDs							The input vector of IDs (PDG) of particles N=1..5 (vector<int>, REQUIRED).
 	/// \return											The error code of the computation: 0 = NO_ERR, 1 = ERR_SQRTS, 2 = ERR_PDFS, 3 = ERR_PROCESS, 4 = NUM_ERRORS, 5 = ERR_INPUT, 6 = ERR_OTHER
 	///
 	int computeMEs( vector<TLorentzVector> input_Ps, vector<int> input_IDs );	// 4-momenta (E,px,py,pz) and IDs (PDG) of input particles
