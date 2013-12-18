@@ -127,7 +127,7 @@ private:
 	int Run_MEKD_MG_ME_Custom();
 	int Run_MEKD_MG_ME_Spin0(string initial_state);	// A general mixed spin-0 state
 	int Run_MEKD_MG_ME_Spin1(string initial_state);	// A general mixed spin-1 state
-// 	int Run_MEKD_MG_ME_Spin2(string initial_state);	// A general mixed spin-2 state
+	int Run_MEKD_MG_ME_Spin2(string initial_state);	// A general mixed spin-2 state
 	int Run_MEKD_MG_ME_Spin0Pm(string initial_state);	// SM Higgs
 	int Run_MEKD_MG_ME_Spin0M(string initial_state);
 	int Run_MEKD_MG_ME_Spin0Ph(string initial_state);

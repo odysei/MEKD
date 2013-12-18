@@ -68,7 +68,8 @@ class qq_Spin1_DN_2lpA
     static const int nwavefuncs = 11; 
     std::complex<double> w[nwavefuncs][18]; 
     static const int namplitudes = 4; 
-    std::complex<double> amp[namplitudes]; 
+    std::complex<double> amp[namplitudes];
+	int ntry, sum_hel, ngood;	// moved here by Ghost remover v. 0.1 
     double matrix_ssx_zp_mummupa_no_hxg(); 
 
     // Store the matrix element value from sigmaKin

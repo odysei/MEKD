@@ -68,7 +68,8 @@ class gg_Spin2_OF
     static const int nwavefuncs = 10; 
     std::complex<double> w[nwavefuncs][18]; 
     static const int namplitudes = 2; 
-    std::complex<double> amp[namplitudes]; 
+    std::complex<double> amp[namplitudes];
+	int ntry, sum_hel, ngood;	// moved here by Ghost remover v. 0.1 
     double matrix_gg_xg_emepmummup_no_g(); 
 
     // Store the matrix element value from sigmaKin

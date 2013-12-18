@@ -23,7 +23,8 @@ void Spin2_SFpA::initProc(string param_card_name)
   pars = Parameters_HEF_MEKD::getInstance(); 
   SLHAReader slha(param_card_name); 
   pars->setIndependentParameters(slha); 
-  pars->setIndependentCouplings(); 
+  pars->setIndependentCouplings();
+	ntry = 0, sum_hel = 0, ngood = 0;	// moved here by Ghost remover v. 0.1 
 
 
   // Set external particle masses for this matrix element
@@ -42,7 +43,8 @@ void Spin2_SFpA::initProc(string param_card_name)
 void Spin2_SFpA::updateProc(SLHAReader slha) 
 {
   pars->setIndependentParameters(slha); 
-  pars->setIndependentCouplings(); 
+  pars->setIndependentCouplings();
+	ntry = 0, sum_hel = 0, ngood = 0;	// moved here by Ghost remover v. 0.1 
   
   // Set external particle masses for this matrix element
   mME[0]=(pars->MXG);
@@ -76,7 +78,7 @@ void Spin2_SFpA::sigmaKin()
   // Local variables and constants
   const int ncomb = 160; 
   static bool goodhel[ncomb] = {ncomb * false}; 
-  static int ntry = 0, sum_hel = 0, ngood = 0; 
+  //static int ntry = 0, sum_hel = 0, ngood = 0;	// picked out by Ghost remover v. 0.1 
   static int igood[ncomb]; 
   static int jhel; 
 //  std::complex<double> * * wfs;

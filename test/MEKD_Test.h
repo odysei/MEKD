@@ -33,10 +33,10 @@
 
 
 
-const bool Show_Description = false;
+const bool Show_Description = true;
 const bool Show_Basic_Data = true;
-const bool Show_Advanced_Data = false;
-const bool Show_Debug = false;
+const bool Show_Advanced_Data = true;
+const bool Show_Debug = true;
 
 const unsigned int correlation_points = 500;
 const unsigned int interference_gen_points = 200;	// number of fake events for averaging

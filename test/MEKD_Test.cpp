@@ -74,12 +74,12 @@ int main()
 // 		cout << " --------------------------------------------- \n";
 // 	}
 // 	
-// 	error_value = MEKD_Test_Consistency_Test1();
-// 	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
-// 	else cout << "TEST 1: FAILED\n";
+	error_value = MEKD_Test_Consistency_Test1();
+	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
+	else cout << "TEST 1: FAILED\n";
 	
 	
-// 	MEKD_Test_Gen_Test1();	//many tests at the moment
+	MEKD_Test_Gen_Test1();	//many tests at the moment
 	
 	
 // 	if( Show_Description )
