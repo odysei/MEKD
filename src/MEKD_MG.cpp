@@ -685,8 +685,17 @@ int MEKD_MG::Run_MEKD_MG()
 		if( pl4_internal == NULL ) p_set[5][i] = 0;
 		else p_set[5][i] = pl4_internal[i];
 		
+		// Adaptive photon handling
 		if( pA1_internal == NULL ) p_set[6][i] = 0;
-		else p_set[6][i] = pA1_internal[i];
+		else
+		{
+			if( Final_state == "2mA" || Final_state == "2muA" )
+			{
+				p_set[4][i] = pA1_internal[i];
+				p_set[6][i] = 0;
+			}
+			else p_set[6][i] = pA1_internal[i];
+		}
 	}
 	
 	PDFx1 = ( (p_set[2][0]+p_set[3][0]+p_set[4][0]+p_set[5][0]+p_set[6][0]) + (p_set[2][3]+p_set[3][3]+p_set[4][3]+p_set[5][3]+p_set[6][3]) )/Sqrt_s;
@@ -1174,6 +1183,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Pm(string initial_state)
 	Mixing_Coefficients_Spin0_internal[2] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin0_internal[0] = complex<double>(1, 0);
+		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
+	}
+	
 	return Run_MEKD_MG_ME_Spin0( initial_state );
 }
 
@@ -1189,7 +1204,10 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0M(string initial_state)
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(1, 0);
 	
 	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
+	}
 	
 	return Run_MEKD_MG_ME_Spin0( initial_state );
 }
@@ -1204,6 +1222,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 	Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin0_internal[2] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(0, 0);
+	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
+	}
 	
 	return Run_MEKD_MG_ME_Spin0( initial_state );
 }
@@ -1220,7 +1244,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0Ph(string initial_state)
 int MEKD_MG::Run_MEKD_MG_ME_Spin1M(string initial_state)
 {
 	Predefined_Model = true;
-	Mixing_Coefficients_Spin1_internal[0] = complex<double>(1, 0);	// Production
+	Mixing_Coefficients_Spin1_internal[0] = complex<double>(1, 0);	// Production, same for 2l
 	Mixing_Coefficients_Spin1_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin1_internal[2] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin1_internal[3] = complex<double>(0, 0);
@@ -1237,7 +1261,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin1P(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin1_internal[0] = complex<double>(0, 0);	// Production
-	Mixing_Coefficients_Spin1_internal[1] = complex<double>(1, 0);
+	Mixing_Coefficients_Spin1_internal[1] = complex<double>(1, 0);	// same for 2l
 	Mixing_Coefficients_Spin1_internal[2] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin1_internal[3] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin1_internal[4] = complex<double>(0, 0);	// Decay
@@ -1279,6 +1303,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pm(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	
@@ -1311,6 +1341,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph(string initial_state)
 	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
 	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
@@ -1346,6 +1382,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
@@ -1380,6 +1422,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Pb(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	
@@ -1413,6 +1461,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph2(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	
@@ -1445,6 +1499,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph3(string initial_state)
 	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
 	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
@@ -1480,6 +1540,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph6(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	
@@ -1512,6 +1578,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Ph7(string initial_state)
 	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
 	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
@@ -1546,6 +1618,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh9(string initial_state)
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
+	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
@@ -1579,6 +1657,12 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin2Mh10(string initial_state)
 	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(1, 0);
+	
+	if( Final_state=="2m" || Final_state=="2mu" || Final_state=="2mA" || Final_state=="2muA" )
+	{
+		Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+		Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	}
 	
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	if( initial_state=="qq" ) Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
@@ -1663,8 +1747,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Spin0(string initial_state)
 		}
 		
 		// Decay to 2l
-		Set_Of_Model_Parameters.set_block_entry( "gravity", 19, buffer_complex[0]*complex<double>(4.291210e-04, 0) );
-		Set_Of_Model_Parameters.set_block_entry( "gravity", 20, buffer_complex[1]*complex<double>(4.291210e-04, 0) );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 19, buffer_complex[0]*complex<double>(4.291210e-04, 0) );
+		Set_Of_Model_Parameters.set_block_entry( "heff", 20, buffer_complex[1]*complex<double>(4.291210e-04, 0) );
 	}
 	
 	//qq
