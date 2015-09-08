@@ -1,0 +1,54 @@
+#! /bin/bash
+
+RUN_SILENT=No
+FORMAT_UTIL=clang-format
+
+# tree -dfi *
+SRC_DIRS="interface \
+src \
+src/Extra_code \
+src/higgs_properties \
+src/MG5_aMCNLO \
+src/MG5_aMCNLO/DY \
+src/MG5_aMCNLO/Hjj \
+src/MG5_aMCNLO/RAW \
+src/MG5_aMCNLO/Spin0 \
+src/MG5_aMCNLO/Spin1 \
+src/MG5_aMCNLO/Spin2 \
+src/MG5_aMCNLO/Z4l \
+src/MG5_aMCNLO/ZZ \
+src/MG5_aMCNLO/ZZjj \
+src/PDF_tables \
+test \
+utils \
+utils/examples_4l \
+utils/examples_ttbb"
+
+
+format_code()
+{
+	for item in ${SRC_DIRS}; do
+		src_files=`ls $item | grep "\.h"`
+		src_files+=" "
+		src_files+=`ls $item | grep "\.cpp"`
+		src_files+=" "
+		src_files+=`ls $item | grep "\.c" | grep -v "\.cpp"` # will add .cc as well
+		
+		for src_file in ${src_files}; do
+			TARGET="${item}/${src_file}"
+			
+			if [ "${RUN_SILENT}" != "Yes" ]; then
+				echo "${FORMAT_UTIL} -style=file -i ${TARGET}"
+			fi
+			${FORMAT_UTIL} -style=file -i ${TARGET}
+		done
+
+	done
+}
+
+
+if [ -e scripts/fix_code_style.bsh ]; then
+	format_code
+else
+	echo "Are you in a parent MEKD dir?"
+fi
