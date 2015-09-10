@@ -3,17 +3,11 @@
 *  More info: http://mekd.ihepa.ufl.edu
 *  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
 *************************************************************************/
-#ifndef MEKD_MEKD_h
-#define MEKD_MEKD_h
+#ifndef MEKD_h
+#define MEKD_h
 
 // C++ includes
-#include <cmath>
-#include <complex>
 #include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
 
 #if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) || \
 	!defined MEKD_STANDALONE
@@ -39,6 +33,9 @@
 //////////////////////////////////////////////////////////////////////////
 
 using namespace std;
+
+namespace mekd
+{
 
 class MEKD
 {
@@ -548,6 +545,8 @@ class MEKD
 
 #endif
 };
+
+}
 
 //////////////////////////////////////////////////////////////////////////
 

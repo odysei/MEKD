@@ -20,9 +20,9 @@ int MEKD_Test_Functionality_Test1()
 	MEKD test1(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeKD( string, string, double[], int, "
+		cout << "Testing int computeKD(string, string, double[], int, "
 				"double[], int, double[], int, double[], int, double&, "
-				"double&, double& );\n";
+				"double&, double&);\n";
 
 	test1.computeKD((string) "ggSpin0Pm", (string) "ZZ", p1, id1, p2, id2, p3,
 					id3, p4, id4, KD1, ME11, ME21);
@@ -48,8 +48,8 @@ int MEKD_Test_Functionality_Test2()
 	MEKD test2(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeKD( string, string, vector<double*>, "
-				"vector<int>, double&, double&, double& );\n";
+		cout << "Testing int computeKD(string, string, vector<double*>, "
+				"vector<int>, double&, double&, double&);\n";
 
 	test2.computeKD((string) "ggSpin0Pm", (string) "ZZ", Set_Of_Arrays,
 					Set_Of_IDs, KD2, ME12, ME22);
@@ -77,9 +77,9 @@ int MEKD_Test_Functionality_Test3()
 	MEKD test3(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeKD( TString, TString, TLorentzVector, int, "
+		cout << "Testing int computeKD(TString, TString, TLorentzVector, int, "
 				"TLorentzVector, int, TLorentzVector, int, TLorentzVector, "
-				"int, double&, double&, double& );\n";
+				"int, double&, double&, double&);\n";
 
 	test3.computeKD((TString) "ggSpin0Pm", (TString) "ZZ", Lp1, id1, Lp2, id2,
 					Lp3, id3, Lp4, id4, KD3, ME13, ME23);
@@ -114,9 +114,9 @@ int MEKD_Test_Functionality_Test4()
 	Set_Of_TLorentzVectors.push_back(Lp4);
 
 	if (Show_Description)
-		cout << "Testing int computeKD( TString, TString, "
+		cout << "Testing int computeKD(TString, TString, "
 				"vector<TLorentzVector>, vector<int>, double&, double&, "
-				"double& );\n";
+				"double&);\n";
 
 	test4.computeKD((TString) "ggSpin0Pm", (TString) "ZZ",
 					Set_Of_TLorentzVectors, Set_Of_IDs, KD4, ME14, ME24);
@@ -148,8 +148,8 @@ int MEKD_Test_Functionality_Test5()
 	MEKD test1_p2(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeMEs( double[], int, double[], int, "
-				"double[], int, double[], int );\n";
+		cout << "Testing int computeMEs(double[], int, double[], int, "
+				"double[], int, double[], int);\n";
 
 	test1_p2.computeMEs(p1, id1, p2, id2, p3, id3, p4, id4);
 	test1_p2.computeKD((string) "ggSpin0Pm", (string) "ZZ", KD1_p2, ME11_p2,
@@ -178,7 +178,7 @@ int MEKD_Test_Functionality_Test6()
 	MEKD test2_p2(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeMEs( vector<double*>, vector<int> );\n";
+		cout << "Testing int computeMEs(vector<double*>, vector<int>);\n";
 
 	test2_p2.computeMEs(Set_Of_Arrays, Set_Of_IDs);
 	test2_p2.computeKD((string) "ggSpin0Pm", (string) "ZZ", KD2_p2, ME12_p2,
@@ -207,8 +207,8 @@ int MEKD_Test_Functionality_Test7()
 	MEKD test3_p2(8.0, "");
 
 	if (Show_Description)
-		cout << "Testing int computeMEs( TLorentzVector, int, TLorentzVector, "
-				"int, TLorentzVector, int, TLorentzVector, int );\n";
+		cout << "Testing int computeMEs(TLorentzVector, int, TLorentzVector, "
+				"int, TLorentzVector, int, TLorentzVector, int);\n";
 
 	test3_p2.computeMEs(Lp1, id1, Lp2, id2, Lp3, id3, Lp4, id4);
 	test3_p2.computeKD((string) "ggSpin0Pm", (string) "ZZ", KD3_p2, ME13_p2,
@@ -244,7 +244,7 @@ int MEKD_Test_Functionality_Test8()
 	Set_Of_TLorentzVectors.push_back(Lp4);
 
 	if (Show_Description)
-		cout << "Testing int computeMEs( vector<TLorentzVector>, vector<int> "
+		cout << "Testing int computeMEs(vector<TLorentzVector>, vector<int>"
 				");\n";
 
 	test4_p2.computeMEs(Set_Of_TLorentzVectors, Set_Of_IDs);

@@ -3,13 +3,16 @@
 *  More info: http://mekd.ihepa.ufl.edu
 *  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
 *************************************************************************/
-#ifndef MEKD_MEKD_cpp
-#define MEKD_MEKD_cpp
+#ifndef MEKD_cpp
+#define MEKD_cpp
 
 /// MEKD header
 #include "../interface/MEKD.h"
 
 using namespace std;
+
+namespace mekd
+{
 
 //////////////////////////////////////////////////////////////////////////
 ///  MEKD class member implementation
@@ -77,29 +80,30 @@ int MEKD::setProcessName(string process)
 	if (process == "Custom") {
 		m_process = "Custom";
 	} // Parameter-card-defined model
-
-	else if (process == "qqZZ" || process == "ZZ") {
+	/// "Backgrounds"
+	else if (process == "qqZZ" ||
+			 process == "ZZ") {
 		m_process = "qqZZ";
-	} // "Background"
-	else if (process == "qqDY") {
+	} else if (process == "qqDY") {
 		m_process = "qqDY";
-	} // "Background"
-	else if (process == "DY") {
+	} else if (process == "DY") {
 		m_process = "DY";
 	}
-
-	else if (process == "Higgs" || process == "SMHiggs" ||
+	/// Spin-0 models
+	else if (process == "Higgs" ||
+			 process == "SMHiggs" ||
 			 process == "ggSpin0Pm") {
 		m_process = "ggSpin0Pm";
-	} // Spin-0 models
-	else if (process == "Spin0Pm") {
+	} else if (process == "Spin0Pm") {
 		m_process = "Spin0Pm";
-	} else if (process == "CP-odd" || process == "Higgs0M" ||
+	} else if (process == "CP-odd" ||
+			   process == "Higgs0M" ||
 			   process == "ggSpin0M") {
 		m_process = "ggSpin0M";
 	} else if (process == "Spin0M") {
 		m_process = "Spin0M";
-	} else if (process == "ggSpin0PH" || process == "ggSpin0Ph") {
+	} else if (process == "ggSpin0PH" ||
+			   process == "ggSpin0Ph") {
 		m_process = "ggSpin0Ph";
 	} else if (process == "Spin0Ph") {
 		m_process = "Spin0Ph";
@@ -108,11 +112,10 @@ int MEKD::setProcessName(string process)
 	} else if (process == "Spin0") {
 		m_process = "Spin0";
 	}
-
+	/// Spin-1 models
 	else if (process == "qqSpin1P") {
 		m_process = "qqSpin1P";
-	} // Spin-1 models
-	else if (process == "Spin1P") {
+	} else if (process == "Spin1P") {
 		m_process = "Spin1P";
 	} else if (process == "qqSpin1M") {
 		m_process = "qqSpin1M";
@@ -123,13 +126,14 @@ int MEKD::setProcessName(string process)
 	} else if (process == "Spin1") {
 		m_process = "Spin1";
 	}
-
-	else if (process == "ggSpin2PM" || process == "Graviton2PM" ||
+	/// Spin-2 models
+	else if (process == "ggSpin2PM" ||
+			 process == "Graviton2PM" ||
 			 process == "ggSpin2Pm") {
 		m_process = "ggSpin2Pm";
-	} // Spin-2 models
-	else if (process == "qqSpin2PM" || process == "qqGraviton2PM" ||
-			 process == "qqSpin2Pm") {
+	} else if (process == "qqSpin2PM" ||
+			   process == "qqGraviton2PM" ||
+			   process == "qqSpin2Pm") {
 		m_process = "qqSpin2Pm";
 	} else if (process == "Spin2Pm") {
 		m_process = "Spin2Pm";
@@ -194,63 +198,52 @@ int MEKD::setProcessName(string process)
 	} else if (process == "Spin2") {
 		m_process = "Spin2";
 	}
-
+	/// Spin-0-to-2-leptons models
 	else if (process == "ggSpin0Pm_2f") {
 		m_process = "ggSpin0Pm_2f";
-	} // Spin-0-to-2-leptons models
-	else if (process == "Spin0Pm_2f") {
+	} else if (process == "Spin0Pm_2f") {
 		m_process = "Spin0Pm_2f";
 	} else if (process == "ggSpin0M_2f") {
 		m_process = "ggSpin0M_2f";
 	} else if (process == "Spin0M_2f") {
 		m_process = "Spin0M_2f";
-	}
-	// 	else if( process=="ggSpin0_2f" )
-	// {m_process="ggSpin0_2f";
-	// }
-	// 	else if( process==  "Spin0_2f" )											{m_process=
-	// "Spin0_2f";
-	// }
-
+	} /*else if(process == "ggSpin0_2f") {
+		m_process = "ggSpin0_2f";
+	} else if(process == "Spin0_2f") {
+		m_process = "Spin0_2f";
+	}*/
+	/// Spin-1-to-2-leptons models
 	else if (process == "qqSpin1P_2f") {
 		m_process = "qqSpin1P_2f";
-	} // Spin-1-to-2-leptons models
-	else if (process == "Spin1P_2f") {
+	} else if (process == "Spin1P_2f") {
 		m_process = "Spin1P_2f";
 	} else if (process == "qqSpin1M_2f") {
 		m_process = "qqSpin1M_2f";
 	} else if (process == "Spin1M_2f") {
 		m_process = "Spin1M_2f";
-	}
-	// 	else if( process=="qqSpin1_2f" )
-	// {m_process="qqSpin1_2f";
-	// }
-	// 	else if( process==  "Spin1_2f" )											{m_process=
-	// "Spin1_2f";
-	// }
-
+	} /*else if(process == "qqSpin1_2f") {
+		m_process = "qqSpin1_2f";
+	} else if(process == "Spin1_2f") {
+		m_process = "Spin1_2f";
+	}*/
+	// Spin-2-to-2-leptons models
 	else if (process == "ggSpin2Pm_2f") {
 		m_process = "ggSpin2Pm_2f";
-	} // Spin-2-to-2-leptons models
-	else if (process == "qqSpin2Pm_2f") {
+	} else if (process == "qqSpin2Pm_2f") {
 		m_process = "qqSpin2Pm_2f";
 	} else if (process == "Spin2Pm_2f") {
 		m_process = "Spin2Pm_2f";
-	}
-	// 	else if( process=="ggSpin2_2f" )
-	// {m_process="ggSpin2_2f";
-	// }
-	// 	else if( process=="qqSpin2_2f" )
-	// {m_process="qqSpin2_2f";
-	// }
-	// 	else if( process==  "Spin2_2f" )											{m_process=
-	// "Spin2_2f";
-	// }
-
+	} /*else if(process == "ggSpin2_2f") {
+		m_process = "ggSpin2_2f";
+	} else if(process == "qqSpin2_2f") {
+		m_process = "qqSpin2_2f";
+	} else if(process == "Spin2_2f") {
+		m_process = "Spin2_2f";
+	}*/
+	/// Z->4l models
 	else if (process == "qqZ4l_Background") {
 		m_process = "qqZ4l_Background";
-	} // Z->4l models
-	else if (process == "qqZ4l_Signal") {
+	} else if (process == "qqZ4l_Signal") {
 		m_process = "qqZ4l_Signal";
 	} else
 		return ERR_PROCESS;
@@ -1184,5 +1177,8 @@ int MEKD::computeMEs(vector<TLorentzVector> input_Ps, vector<int> input_IDs)
 //////////////////////////////////////////////////////////////////////////
 #endif // end of (defined(MEKD_STANDALONE) && defined(MEKD_with_ROOT)) ||
 	   // !(defined(MEKD_STANDALONE))
+
+/// end of namespace
+}
 
 #endif // end of MEKD_MEKD_cpp

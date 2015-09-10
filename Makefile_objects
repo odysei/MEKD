@@ -130,7 +130,10 @@ objects3=\
 $(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o \
 $(INCDIR2)/MEKD_MG_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
 
-objects4=$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD.o
+objects4=$(INCDIR1)/MEKD.o \
+$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD_MG_stuff.o \
+$(INCDIR1)/MEKD_MG_sorter.o $(INCDIR1)/MEKD_MG_RunMEs.o \
+$(INCDIR1)/MEKD_MG_debug.o $(INCDIR1)/MEKD_MG_defaults.o
 
 ## RAW ME from MG5_aMC
 # objects5=\

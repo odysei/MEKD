@@ -1,16 +1,19 @@
 #ifndef MEKD_MG_h
 #define MEKD_MG_h
 
-#include <string>
-#include <vector>
-
-#include <sstream>
-#include <complex>
-#include <fstream>	// check file location
-
-#include "../src/MG5_aMCNLO/read_slha.h"
+#include "MEKD_includes.h"
 
 using namespace std;
+
+namespace mekd
+{
+
+/// Part of pdfreader
+extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
+	pdtSac;
+
+// #define PDTFILE "PDF_tables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L.
+// You can change PDF set as you want.
 
 class MEKD_MG
 {
@@ -73,12 +76,13 @@ class MEKD_MG
 	/// Calculation results
 	double Mass_4l; // is filled after running RUN_XXXX(...). Invariant mass of
 					// the final-state system
-	double Background_ME; // may not be used if running RUN_MEKD_MG( string ) is
+	double invariant_m;
+	double Background_ME; // may not be used if running RUN_MEKD_MG(string) is
 						  // chosen
 	double Signal_ME;	 // is filled after running RUN_XXXX(...)
 	vector<double> Signal_MEs; // is filled if Test_Models are set after running
 							   // RUN_XXXX(...)
-	double KD;				   // is not filled with RUN_MEKD_MG( string )
+	double KD;				   // is not filled with RUN_MEKD_MG(string)
 
 	/// Parameter container. For experts only
 	SLHAReader_MEKD Set_Of_Model_Parameters;
@@ -86,19 +90,194 @@ class MEKD_MG
 	/// Functions
 	void Set_Default_MEKD_MG_Parameters();
 
-	int
-	Reload_Parameters(); // reloads parameter set and updates PDF file reader
+	int Reload_Parameters(); // reloads parameter set and updates PDF file
+							 // reader
+	
+	void Check_MEs();
+	
+	/// Run-related functions
 	int Run_MEKD_MG();   // main routine to evaluate matrix elements; updates
 						 // "Calculation results"
 	int Run_MEKD_MG(string Input_Model); // Calculates a ME ONLY for a chosen
 										 // model; ignores automatic background
 										 // calculation. Updates Signal_ME
+	double Get_PDF_x1(vector<double *> &p);
+	double Get_PDF_x2(vector<double *> &p);
+	
+	double Get_invariant_m(vector<double *> &p, int p_range[2]);
+	
+	void Load_p_set();
+	void Approx_neg_z_parton(double *p, double E);
+	void Approx_pos_z_parton(double *p, double E);
+	
 
 	/// Constructors, destructors
 	MEKD_MG();
 	~MEKD_MG();
 
   private:
+	
+	/// 4l final state (+photon)
+qq_Z4l_SIG_DN_OF ME_qq_Z4l_SIG_DownType_OF;
+qq_Z4l_SIG_DN_SF ME_qq_Z4l_SIG_DownType_SF;
+qq_Z4l_SIG_UP_OF ME_qq_Z4l_SIG_UpType_OF;
+qq_Z4l_SIG_UP_SF ME_qq_Z4l_SIG_UpType_SF;
+qq_Z4l_SIG_DN_OFpA ME_qq_Z4l_SIG_DownType_OFpA;
+qq_Z4l_SIG_DN_SFpA ME_qq_Z4l_SIG_DownType_SFpA;
+qq_Z4l_SIG_UP_OFpA ME_qq_Z4l_SIG_UpType_OFpA;
+qq_Z4l_SIG_UP_SFpA ME_qq_Z4l_SIG_UpType_SFpA;
+
+qq_Z4l_BKG_DN_OF ME_qq_Z4l_BKG_DownType_OF;
+qq_Z4l_BKG_DN_SF ME_qq_Z4l_BKG_DownType_SF;
+qq_Z4l_BKG_UP_OF ME_qq_Z4l_BKG_UpType_OF;
+qq_Z4l_BKG_UP_SF ME_qq_Z4l_BKG_UpType_SF;
+qq_Z4l_BKG_DN_OFpA ME_qq_Z4l_BKG_DownType_OFpA;
+qq_Z4l_BKG_DN_SFpA ME_qq_Z4l_BKG_DownType_SFpA;
+qq_Z4l_BKG_UP_OFpA ME_qq_Z4l_BKG_UpType_OFpA;
+qq_Z4l_BKG_UP_SFpA ME_qq_Z4l_BKG_UpType_SFpA;
+
+qq_ZZ_DN_OF ME_qq_ZZ_DownType_OF;
+qq_ZZ_DN_SF ME_qq_ZZ_DownType_SF;
+qq_ZZ_UP_OF ME_qq_ZZ_UpType_OF;
+qq_ZZ_UP_SF ME_qq_ZZ_UpType_SF;
+qq_ZZ_DN_OFpA ME_qq_ZZ_DownType_OFpA;
+qq_ZZ_DN_SFpA ME_qq_ZZ_DownType_SFpA;
+qq_ZZ_UP_OFpA ME_qq_ZZ_UpType_OFpA;
+qq_ZZ_UP_SFpA ME_qq_ZZ_UpType_SFpA;
+
+gg_Spin0_OF ME_Signal_gg_Spin0_OF;
+gg_Spin0_SF ME_Signal_gg_Spin0_SF;
+gg_Spin0_OFpA ME_Signal_gg_Spin0_OFpA;
+gg_Spin0_SFpA ME_Signal_gg_Spin0_SFpA;
+
+// qq_Spin0_DN_OF ME_Signal_qq_Spin0_DownType_OF;
+// qq_Spin0_DN_SF ME_Signal_qq_Spin0_DownType_SF;
+// qq_Spin0_UP_OF ME_Signal_qq_Spin0_UpType_OF;
+// qq_Spin0_UP_SF ME_Signal_qq_Spin0_UpType_SF;
+// qq_Spin0_DN_OFpA ME_Signal_qq_Spin0_DownType_OFpA;
+// qq_Spin0_DN_SFpA ME_Signal_qq_Spin0_DownType_SFpA;
+// qq_Spin0_UP_OFpA ME_Signal_qq_Spin0_UpType_OFpA;
+// qq_Spin0_UP_SFpA ME_Signal_qq_Spin0_UpType_SFpA;
+
+qq_Spin1_DN_OF ME_Signal_qq_Spin1_DownType_OF;
+qq_Spin1_DN_SF ME_Signal_qq_Spin1_DownType_SF;
+qq_Spin1_UP_OF ME_Signal_qq_Spin1_UpType_OF;
+qq_Spin1_UP_SF ME_Signal_qq_Spin1_UpType_SF;
+qq_Spin1_DN_OFpA ME_Signal_qq_Spin1_DownType_OFpA;
+qq_Spin1_DN_SFpA ME_Signal_qq_Spin1_DownType_SFpA;
+qq_Spin1_UP_OFpA ME_Signal_qq_Spin1_UpType_OFpA;
+qq_Spin1_UP_SFpA ME_Signal_qq_Spin1_UpType_SFpA;
+
+gg_Spin2_OF ME_Signal_gg_Spin2_OF;
+gg_Spin2_SF ME_Signal_gg_Spin2_SF;
+gg_Spin2_OFpA ME_Signal_gg_Spin2_OFpA;
+gg_Spin2_SFpA ME_Signal_gg_Spin2_SFpA;
+
+qq_Spin2_DN_OF ME_Signal_qq_Spin2_DownType_OF;
+qq_Spin2_DN_SF ME_Signal_qq_Spin2_DownType_SF;
+qq_Spin2_UP_OF ME_Signal_qq_Spin2_UpType_OF;
+qq_Spin2_UP_SF ME_Signal_qq_Spin2_UpType_SF;
+qq_Spin2_DN_OFpA ME_Signal_qq_Spin2_DownType_OFpA;
+qq_Spin2_DN_SFpA ME_Signal_qq_Spin2_DownType_SFpA;
+qq_Spin2_UP_OFpA ME_Signal_qq_Spin2_UpType_OFpA;
+qq_Spin2_UP_SFpA ME_Signal_qq_Spin2_UpType_SFpA;
+
+/// ZZ and two-fermion couplings. 4l final state (+photon)
+gg_Spin0_2f_OF ME_Signal_gg_Spin0_2f_OF;
+gg_Spin0_2f_SF ME_Signal_gg_Spin0_2f_SF;
+gg_Spin0_2f_OFpA ME_Signal_gg_Spin0_2f_OFpA;
+gg_Spin0_2f_SFpA ME_Signal_gg_Spin0_2f_SFpA;
+
+qq_Spin1_2f_DN_OF ME_Signal_qq_Spin1_2f_DownType_OF;
+qq_Spin1_2f_DN_SF ME_Signal_qq_Spin1_2f_DownType_SF;
+qq_Spin1_2f_UP_OF ME_Signal_qq_Spin1_2f_UpType_OF;
+qq_Spin1_2f_UP_SF ME_Signal_qq_Spin1_2f_UpType_SF;
+qq_Spin1_2f_DN_OFpA ME_Signal_qq_Spin1_2f_DownType_OFpA;
+qq_Spin1_2f_DN_SFpA ME_Signal_qq_Spin1_2f_DownType_SFpA;
+qq_Spin1_2f_UP_OFpA ME_Signal_qq_Spin1_2f_UpType_OFpA;
+qq_Spin1_2f_UP_SFpA ME_Signal_qq_Spin1_2f_UpType_SFpA;
+
+gg_Spin2_2f_OF ME_Signal_gg_Spin2_2f_OF;
+gg_Spin2_2f_SF ME_Signal_gg_Spin2_2f_SF;
+gg_Spin2_2f_OFpA ME_Signal_gg_Spin2_2f_OFpA;
+gg_Spin2_2f_SFpA ME_Signal_gg_Spin2_2f_SFpA;
+
+qq_Spin2_2f_DN_OF ME_Signal_qq_Spin2_2f_DownType_OF;
+qq_Spin2_2f_DN_SF ME_Signal_qq_Spin2_2f_DownType_SF;
+qq_Spin2_2f_UP_OF ME_Signal_qq_Spin2_2f_UpType_OF;
+qq_Spin2_2f_UP_SF ME_Signal_qq_Spin2_2f_UpType_SF;
+qq_Spin2_2f_DN_OFpA ME_Signal_qq_Spin2_2f_DownType_OFpA;
+qq_Spin2_2f_DN_SFpA ME_Signal_qq_Spin2_2f_DownType_SFpA;
+qq_Spin2_2f_UP_OFpA ME_Signal_qq_Spin2_2f_UpType_OFpA;
+qq_Spin2_2f_UP_SFpA ME_Signal_qq_Spin2_2f_UpType_SFpA;
+
+/// 1->4l final state (+photon)
+DY_2l ME_DY_2l;
+DY_2lpA ME_DY_2lpA;
+
+Spin0_2l ME_Signal_Spin0_2l;
+Spin0_OF ME_Signal_Spin0_OF;
+Spin0_SF ME_Signal_Spin0_SF;
+Spin0_2f_OF ME_Signal_Spin0_2f_OF;
+Spin0_2f_SF ME_Signal_Spin0_2f_SF;
+Spin0_2lpA ME_Signal_Spin0_2lpA;
+Spin0_OFpA ME_Signal_Spin0_OFpA;
+Spin0_SFpA ME_Signal_Spin0_SFpA;
+Spin0_2f_OFpA ME_Signal_Spin0_2f_OFpA;
+Spin0_2f_SFpA ME_Signal_Spin0_2f_SFpA;
+
+Spin1_2l ME_Signal_Spin1_2l;
+Spin1_OF ME_Signal_Spin1_OF;
+Spin1_SF ME_Signal_Spin1_SF;
+Spin1_2f_OF ME_Signal_Spin1_2f_OF;
+Spin1_2f_SF ME_Signal_Spin1_2f_SF;
+Spin1_2lpA ME_Signal_Spin1_2lpA;
+Spin1_OFpA ME_Signal_Spin1_OFpA;
+Spin1_SFpA ME_Signal_Spin1_SFpA;
+Spin1_2f_OFpA ME_Signal_Spin1_2f_OFpA;
+Spin1_2f_SFpA ME_Signal_Spin1_2f_SFpA;
+
+Spin2_2l ME_Signal_Spin2_2l;
+Spin2_OF ME_Signal_Spin2_OF;
+Spin2_SF ME_Signal_Spin2_SF;
+Spin2_2f_OF ME_Signal_Spin2_2f_OF;
+Spin2_2f_SF ME_Signal_Spin2_2f_SF;
+Spin2_2lpA ME_Signal_Spin2_2lpA;
+Spin2_OFpA ME_Signal_Spin2_OFpA;
+Spin2_SFpA ME_Signal_Spin2_SFpA;
+Spin2_2f_OFpA ME_Signal_Spin2_2f_OFpA;
+Spin2_2f_SFpA ME_Signal_Spin2_2f_SFpA;
+
+/// 2mu final state (+photon)
+qq_DY_DN_2l ME_qq_DY_DownType_2l;
+qq_DY_UP_2l ME_qq_DY_UpType_2l;
+qq_DY_DN_2lpA ME_qq_DY_DownType_2lpA;
+qq_DY_UP_2lpA ME_qq_DY_UpType_2lpA;
+
+gg_Spin0_2l ME_Signal_gg_Spin0_2l;
+gg_Spin0_2lpA ME_Signal_gg_Spin0_2lpA;
+
+// qq_Spin0_DN_2l ME_Signal_qq_Spin0_DownType_2l;
+// qq_Spin0_UP_2l ME_Signal_qq_Spin0_UpType_2l;
+// qq_Spin0_DN_2lpA ME_Signal_qq_Spin0_DownType_2lpA;
+// qq_Spin0_UP_2lpA ME_Signal_qq_Spin0_UpType_2lpA;
+
+qq_Spin1_DN_2l ME_Signal_qq_Spin1_DownType_2l;
+qq_Spin1_UP_2l ME_Signal_qq_Spin1_UpType_2l;
+qq_Spin1_DN_2lpA ME_Signal_qq_Spin1_DownType_2lpA;
+qq_Spin1_UP_2lpA ME_Signal_qq_Spin1_UpType_2lpA;
+
+gg_Spin2_2l ME_Signal_gg_Spin2_2l;
+gg_Spin2_2lpA ME_Signal_gg_Spin2_2lpA;
+
+qq_Spin2_DN_2l ME_Signal_qq_Spin2_DownType_2l;
+qq_Spin2_UP_2l ME_Signal_qq_Spin2_UpType_2l;
+qq_Spin2_DN_2lpA ME_Signal_qq_Spin2_DownType_2lpA;
+qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
+
+/// RAW MG5_aMC ME. For testing purposes only.
+// CPPProcess ME_RAW;
+	
 	bool Parameters_Are_Loaded, buffer_bool, Predefined_Model;
 
 	int error_value;
@@ -106,6 +285,7 @@ class MEKD_MG
 
 	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1,
 		PDFx2, LmbdGG_calculated;
+	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
 
@@ -141,7 +321,13 @@ class MEKD_MG
 
 	/// Internal functions ///
 	string Find_local_file(string input_f);
+	
 	int Load_Parameters();
+	void Load_Parameters_MEs();
+	void Load_Parameters_extract_params(SLHAReader_MEKD&);
+	void Load_Parameters_eval_params();
+	
+	void Print_4momenta(vector<double *>&);
 
 	int Arrange_Internal_pls();
 
@@ -205,5 +391,8 @@ class MEKD_MG
 		bool photon, Generic_MEKD_MG_ME_s &Generic_ME_s,
 		Generic_MEKD_MG_ME_c &Generic_ME_c);
 };
+
+/// end of namespace
+}
 
 #endif

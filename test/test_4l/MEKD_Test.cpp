@@ -23,103 +23,162 @@
 #endif
 
 void Initialize_tester();
+void test_block1();
+void test_block2();
+void test_block3();
+void test_block4();
+void test_block5();
+void test_block6();
 
 
 int main()
 {
 	Initialize_tester();
+	
+	test_block1();
+// 	test_block2();
+// 	test_block3();
+// 	test_block4();
+// 	test_block5();
+	test_block6();
 
-	// 	if( Show_Description )
-	// 	{
-	// 		cout << "\n ---------------------------------------- \n";
-	// 		cout << " -- Testing KD calculations on the fly -- \n";
-	// 		cout << " ---------------------------------------- \n";
-	// 	}
-	//
-	// 	error_value = MEKD_Test_Functionality_Test1();
-	// 	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
-	// 	else cout << "TEST 1: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test2();
-	// 	if( error_value == 0 ) cout << "TEST 2: PASSED\n";
-	// 	else cout << "TEST 2: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test3();
-	// 	if( error_value == 0 ) cout << "TEST 3: PASSED\n";
-	// 	else cout << "TEST 3: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test4();
-	// 	if( error_value == 0 ) cout << "TEST 4: PASSED\n";
-	// 	else cout << "TEST 4: FAILED\n";
-	//
-	//
-	// 	if( Show_Description )
-	// 	{
-	// 		cout << "\n ----------------------------------------------------
-	// \n";
-	// 		cout << " -- Testing KD calculations from \"precalculated\" MEs --
-	// \n";
-	// 		cout << " ---------------------------------------------------- \n";
-	// 	}
-	//
-	// 	error_value = MEKD_Test_Functionality_Test5();
-	// 	if( error_value == 0 ) cout << "TEST 5: PASSED\n";
-	// 	else cout << "TEST 5: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test6();
-	// 	if( error_value == 0 ) cout << "TEST 6: PASSED\n";
-	// 	else cout << "TEST 6: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test7();
-	// 	if( error_value == 0 ) cout << "TEST 7: PASSED\n";
-	// 	else cout << "TEST 7: FAILED\n";
-	// 	error_value = MEKD_Test_Functionality_Test8();
-	// 	if( error_value == 0 ) cout << "TEST 8: PASSED\n";
-	// 	else cout << "TEST 8: FAILED\n";
-	//
-	//
-	// 	if( Show_Description )
-	// 	{
-	// 		cout << "\n --------------------------------------------- \n";
-	// 		cout << " -- Testing ME calculations for consistency -- \n";
-	// 		cout << " --------------------------------------------- \n";
-	// 	}
-	//
-	// 	error_value = MEKD_Test_Consistency_Test1();
-	// 	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
-	// 	else cout << "TEST 1: FAILED\n";
-	//
-	//
-	// 	MEKD_Test_Gen_Test1();	//many tests at the moment
+	return 0;
+}
 
-	// 	if( Show_Description )
-	// 	{
-	// 		cout << "\n -------------------------------------------------- \n";
-	// 		cout << " -- Testing ME calculations for the interference -- \n";
-	// 		cout << " --------------------------------------------- \n";
-	// 	}
-	//
-	// 	error_value = MEKD_Test_Gen_Interference_Test1();
-	// 	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
-	// 	else cout << "TEST 1: FAILED\n";
-	// 	error_value = MEKD_Test_Gen_Interference_Test2();
-	// 	if( error_value == 0 ) cout << "TEST 2: PASSED\n";
-	// 	else cout << "TEST 2: FAILED\n";
+void test_block1()
+{
+	
+	if(Show_Description) {
+		cout << "\n ---------------------------------------- \n";
+		cout << " -- Testing KD calculations on the fly -- \n";
+		cout << " ---------------------------------------- \n";
+	}
 
-	/*
-		if( Show_Description )
-		{
-			cout << "\n -----------------------------------------------------
-	   \n";
-			cout << " -- Testing ME calculations for the order dependece -- \n";
-			cout << " ----------------------------------------------------- \n";
-		}
+	error_value = MEKD_Test_Functionality_Test1();
+	if (error_value == 0)
+		cout << "TEST 1: PASSED\n";
+	else
+		cout << "TEST 1: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test2();
+	if (error_value == 0)
+		cout << "TEST 2: PASSED\n";
+	else
+		cout << "TEST 2: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test3();
+	if (error_value == 0)
+		cout << "TEST 3: PASSED\n";
+	else
+		cout << "TEST 3: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test4();
+	if (error_value == 0)
+		cout << "TEST 4: PASSED\n";
+	else
+		cout << "TEST 4: FAILED\n";
+}
 
-		error_value = MEKD_Test_Debug_Ghosts_Test0();
-		if( error_value == 0 ) cout << "TEST 0: PASSED\n";
-		else cout << "TEST 0: FAILED\n";*/
-	// 	error_value = MEKD_Test_Debug_Ghosts_Test1();
-	// 	if( error_value == 0 ) cout << "TEST 1: PASSED\n";
-	// 	else cout << "TEST 1: FAILED\n";
-	// 	error_value = MEKD_Test_Debug_Ghosts_Test2();
-	// 	if( error_value == 0 ) cout << "TEST 2: PASSED\n";
-	// 	else cout << "TEST 2: FAILED\n";
+void test_block2()
+{
+	if(Show_Description) {
+		cout << "\n ----------------------------------------------------\n";
+		cout << " -- Testing KD calculations from \"precalculated\" MEs --\n";
+		cout << " ---------------------------------------------------- \n";
+	}
+	
+	error_value = MEKD_Test_Functionality_Test5();
+	if(error_value == 0)
+		cout << "TEST 5: PASSED\n";
+	else
+		cout << "TEST 5: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test6();
+	if(error_value == 0)
+		cout << "TEST 6: PASSED\n";
+	else
+		cout << "TEST 6: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test7();
+	if(error_value == 0)
+		cout << "TEST 7: PASSED\n";
+	else
+		cout << "TEST 7: FAILED\n";
+	
+	error_value = MEKD_Test_Functionality_Test8();
+	if(error_value == 0)
+		cout << "TEST 8: PASSED\n";
+	else
+		cout << "TEST 8: FAILED\n";
+}
 
+void test_block3()
+{
+	if (Show_Description) {
+		cout << "\n --------------------------------------------- \n";
+		cout << " -- Testing ME calculations for consistency -- \n";
+		cout << " --------------------------------------------- \n";
+	}
+	
+	error_value = MEKD_Test_Consistency_Test1();
+	if (error_value == 0)
+		cout << "TEST 1: PASSED\n";
+	else
+		cout << "TEST 1: FAILED\n";
+		
+	MEKD_Test_Gen_Test1();	//many tests at the moment
+}
+
+void test_block4()
+{
+	if(Show_Description) {
+		cout << "\n -------------------------------------------------- \n";
+		cout << " -- Testing ME calculations for the interference -- \n";
+		cout << " --------------------------------------------- \n";
+	}
+	
+	error_value = MEKD_Test_Gen_Interference_Test1();
+	if(error_value == 0)
+		cout << "TEST 1: PASSED\n";
+	else
+		cout << "TEST 1: FAILED\n";
+	
+	error_value = MEKD_Test_Gen_Interference_Test2();
+	if(error_value == 0)
+		cout << "TEST 2: PASSED\n";
+	else
+		cout << "TEST 2: FAILED\n";
+}
+
+void test_block5()
+{
+	if(Show_Description) {
+		cout << "\n -----------------------------------------------------\n";
+		cout << " -- Testing ME calculations for the order dependece -- \n";
+		cout << " ----------------------------------------------------- \n";
+	}
+	
+	error_value = MEKD_Test_Debug_Ghosts_Test0();
+	if(error_value == 0)
+		cout << "TEST 0: PASSED\n";
+	else
+		cout << "TEST 0: FAILED\n";
+	
+	error_value = MEKD_Test_Debug_Ghosts_Test1();
+	if(error_value == 0)
+		cout << "TEST 1: PASSED\n";
+	else
+		cout << "TEST 1: FAILED\n";
+	
+	error_value = MEKD_Test_Debug_Ghosts_Test2();
+	if(error_value == 0)
+		cout << "TEST 2: PASSED\n";
+	else
+		cout << "TEST 2: FAILED\n";
+}
+
+void test_block6()
+{
 	if (Show_Description) {
 		cout << "\n --------------------------------------------------- \n";
 		cout << " -- Testing model integration for ME calculations -- \n";
@@ -130,14 +189,13 @@ int main()
 	if (error_value == 0)
 		cout << "TEST 1: PASSED\n";
 	else
-		cout << "TEST 1: FAILED\n";
+		cout << "TEST 1: \"FAILED\"\n";
+	
 	error_value = MEKD_Test_Check_Models_Test2();
 	if (error_value == 0)
 		cout << "TEST 2: PASSED\n";
 	else
-		cout << "TEST 2: FAILED\n";
-
-	return 0;
+		cout << "TEST 2: \"FAILED\"\n";
 }
 
 void Initialize_tester()

@@ -3,10 +3,9 @@
 
 #include "MEKD_MG_Boosts.h"
 
-double Boost_trigger_gamma =
-	1e-10; // minimum value of 1-gamma to trigger a boost
+double Boost_trigger_gamma = 1e-10; // min. value of 1-gamma to trigger boost
 
-bool debug = false; // debuggin flag
+bool debug = false; // debugging flag
 
 void Boost_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1)
 {
@@ -22,8 +21,7 @@ void Boost_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1)
 	p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count];
 	}
 
@@ -64,8 +62,7 @@ void Boost_3p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p2[0] = sqrt(mass2 * mass2 + p2[1] * p2[1] + p2[2] * p2[2] + p2[3] * p2[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count];
 	}
 
@@ -115,8 +112,7 @@ void Boost_4p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p3[0] = sqrt(mass3 * mass3 + p3[1] * p3[1] + p3[2] * p3[2] + p3[3] * p3[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count] + p3[count];
 	}
 
@@ -176,8 +172,7 @@ void Boost_5p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p4[0] = sqrt(mass4 * mass4 + p4[1] * p4[1] + p4[2] * p4[2] + p4[3] * p4[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] =
 			p0[count] + p1[count] + p2[count] + p3[count] + p4[count];
 	}
@@ -238,8 +233,7 @@ void Boost_2p_and_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p3[0] = sqrt(mass3 * mass3 + p3[1] * p3[1] + p3[2] * p3[2] + p3[3] * p3[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count];
 	}
 
@@ -299,8 +293,7 @@ void Boost_3p_and_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p4[0] = sqrt(mass4 * mass4 + p4[1] * p4[1] + p4[2] * p4[2] + p4[3] * p4[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count];
 	}
 
@@ -369,8 +362,7 @@ void Boost_4p_and_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p5[0] = sqrt(mass5 * mass5 + p5[1] * p5[1] + p5[2] * p5[2] + p5[3] * p5[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count] + p3[count];
 	}
 
@@ -449,8 +441,7 @@ void Boost_5p_and_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 	p6[0] = sqrt(mass6 * mass6 + p6[1] * p6[1] + p6[2] * p6[2] + p6[3] * p6[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] =
 			p0[count] + p1[count] + p2[count] + p3[count] + p4[count];
 	}
@@ -521,8 +512,7 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1)
 	p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count];
 	}
 
@@ -589,8 +579,7 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
 	p2[0] = sqrt(mass2 * mass2 + p2[1] * p2[1] + p2[2] * p2[2] + p2[3] * p2[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count];
 	}
 
@@ -672,8 +661,7 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
 	p3[0] = sqrt(mass3 * mass3 + p3[1] * p3[1] + p3[2] * p3[2] + p3[3] * p3[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] = p0[count] + p1[count] + p2[count] + p3[count];
 	}
 
@@ -770,8 +758,7 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
 	p4[0] = sqrt(mass4 * mass4 + p4[1] * p4[1] + p4[2] * p4[2] + p4[3] * p4[3]);
 
 	long double totalp[4];
-	int count = 0;
-	for (; count < 4; count++) {
+	for (int count = 0; count < 4; ++count) {
 		totalp[count] =
 			p0[count] + p1[count] + p2[count] + p3[count] + p4[count];
 	}
@@ -836,8 +823,7 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
 void Boost(double *vector, double *boost)
 {
 	double ovec[4];
-	int count = 0;
-	for (; count < 4; count++)
+	for (int count = 0; count < 4; ++count)
 		ovec[count] = vector[count];
 
 	double beta2 =
@@ -865,8 +851,7 @@ void Boost(double *vector, double *boost)
 void Boost_long(long double *vector, long double *boost)
 {
 	long double ovec[4];
-	int count = 0;
-	for (; count < 4; count++)
+	for (int count = 0; count < 4; ++count)
 		ovec[count] = vector[count];
 
 	long double beta2 =
