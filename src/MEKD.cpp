@@ -61,7 +61,7 @@ int MEKD::processParameters()
 		return ERR_PDFS;
 	m_usePDF = (m_PDFName == "CTEQ6L");
 
-	MEKD_MG_Calc.Use_PDF_w_pT0 = m_usePDF;
+	MEKD_MG_Calc.flag.Use_PDF_w_pT0 = m_usePDF;
 
 	/// Check if sqrt(s) is 7 or 8 TeV
 	if (m_collisionEnergy != 7 && m_collisionEnergy != 8)

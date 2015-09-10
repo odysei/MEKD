@@ -7,6 +7,8 @@
 #ifndef MEKD_DEFS_h
 #define MEKD_DEFS_h
 
+#include "MEKD_MG.h"
+
 namespace mekd
 {
 

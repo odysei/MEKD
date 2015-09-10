@@ -17,8 +17,8 @@ int MEKD_Test_Consistency_Test1()
 	double ME11_p3, ME21_p3, ME31_p3;
 	MEKD test1_p3(8.0, "");
 
-	test1_p3.MEKD_MG_Calc.Use_mZ4l_eq_m4l = false; // use false
-	// 	test1_p3.MEKD_MG_Calc.Debug_Mode = true;
+	test1_p3.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = false; // use false
+	// 	test1_p3.MEKD_MG_Calc.flag.Debug_Mode = true;
 
 	if (Show_Description)
 		cout << "Testing Z4l using int computeME( string, vector<double*>, "

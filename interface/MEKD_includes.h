@@ -11,6 +11,10 @@
 #include <string>
 #include <vector>
 
+/// MEKD core definitions
+#include "MEKD_defs.h"
+#include "MEKD_inputs.h"
+
 /// MEKD tools
 #include "../src/Extra_code/MEKD_CalcHEP_Extra_functions.h"
 #include "../src/Extra_code/MEKD_MG_Boosts.h"

@@ -15,27 +15,27 @@ namespace mekd
 
 void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 {
-	Boost_To_CM = true;			  // for a boosted data
-	Debug_Mode = false;			  // Enable debugging mode
-	Fix_Spin0_Production = true;  // use the SM Higgs production mechanism
-	Fix_Spin1_Production = false; // use the a hybrid production mechanism
-	// 	Force_g3_running = false;	// unused. At some point was included for
-	// alpha_QCD
-	Overwrite_e_and_mu_masses = false; // switch for manual m_e, m_mu masses
-	Use_mh_eq_m4l = true;			   // Set mh to m4l for every event
-	Use_mZ4l_eq_m4l = true;			   // Set m_Z to m4l for Z4l events
-	Use_Higgs_width = true;			   //	if false, width is fixed to =1
-	Use_PDF_w_pT0 =
-		false; // Use PDFs in the pT=0 frame. If true, Boost_To_CM is ignored
-	Vary_resonance_width = true;  // Allow width to be varied with mass
-	Vary_signal_couplings = true; // Allow couplings to change with mass
-	Warning_Mode = true;		  // Print warnings
+	flag.Boost_To_CM = true;
+	flag.Debug_Mode = false;
+	flag.Fix_Spin0_Production = true;
+	flag.Fix_Spin1_Production = false;
+// flag.Force_g3_running = false;
+	flag.Overwrite_e_and_mu_masses = false;
+	flag.per_event_parton_coeffs = false;
+	flag.Use_mh_eq_m4l = true;
+	flag.Use_mZ4l_eq_m4l = true;
+	flag.Use_Higgs_width = true;
+	flag.Use_PDF_w_pT0 = false;
+	flag.Vary_resonance_width = true;
+	flag.Vary_signal_couplings = true;
+	flag.Warning_Mode = true;
 
 	// Values have no effect if PDF is used but variables are always used
-	ContributionCoeff_d = 0;
-	ContributionCoeff_u = 1;
-	ContributionCoeff_s = 0;
-	ContributionCoeff_c = 0;
+	// Parton multipliers.
+	parton_coeff_d = 0;
+	parton_coeff_u = 1;
+	parton_coeff_s = 0;
+	parton_coeff_c = 0;
 	// 	GG = 0;	// Assign QCD coupling, force g3 running if needed
 	Sqrt_s = 8000; // Max energy, collision energy
 
@@ -52,7 +52,7 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 	Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
 
 	Electron_mass = 0; // 0.0005109989, for enabled overwriting
-	Higgs_mass = 125.6;  // Works only if Use_mh_eq_m4l=false
+	Higgs_mass = 125.6;  // Works only if flag.Use_mh_eq_m4l=false
 	Higgs_width = 5.753088e-03; // Practically not used; for future
 	Muon_mass = 0;	// 0.10565837, for enabled overwriting
 	Proton_mass = 0.93827205; // Always used if needed

@@ -19,29 +19,15 @@ class MEKD_MG
 {
   public:
 	/// Flags
-	bool Boost_To_CM;		   // for a boosted data
-	bool Debug_Mode;		   // Enable debugging mode
-	bool Fix_Spin0_Production; // use the SM Higgs production mechanism
-	bool Fix_Spin1_Production; // use the a hybrid production mechanism
-	// 	bool Force_g3_running;	// unused. At some point was included for
-	// alpha_QCD
-	bool Overwrite_e_and_mu_masses; // switch for manual m_e, m_mu masses
-	bool Use_Higgs_width;			//	if false, width is fixed to =1
-	bool Use_mh_eq_m4l;				// Set mh to m4l for every event
-	bool Use_mZ4l_eq_m4l;			// Set m_Z to m4l for Z4l events
-	bool Use_PDF_w_pT0; // Use PDFs in the pT=0 frame. If true, Boost_To_CM is
-						// ignored
-	bool Vary_resonance_width;  // Allow width to be varied with mass
-	bool Vary_signal_couplings; // Allow couplings to change with mass
-	bool Warning_Mode;			// Print warnings
+	flags flag;
 
 	/// General parameters
-	double
-		ContributionCoeff_d;	// 42	/// the value has no effect if PDF is used
-								// but the variable is always used
-	double ContributionCoeff_u; // 217
-	double ContributionCoeff_s; // 5
-	double ContributionCoeff_c; // 3
+	// Values have no effect if PDF is used but variables are always used
+	// Parton multipliers.
+	double parton_coeff_d;
+	double parton_coeff_u;
+	double parton_coeff_s;
+	double parton_coeff_c;
 	// 	double GG;	// Assign QCD coupling, force g3 running if needed
 	double Sqrt_s; // Max energy, collision energy
 
@@ -50,11 +36,11 @@ class MEKD_MG
 		*Mixing_Coefficients_Spin2;
 
 	/// Physical parameters
-	double Electron_mass; // 0.0005109989, for enabled overwriting
-	double Higgs_mass;	// Works only if Use_mh_eq_m4l=false
-	double Higgs_width;   // Practically not used, for future implementations
-	double Muon_mass;	 // 0.10565837, for enabled overwriting
-	double Proton_mass;   // Always used if needed
+	double Electron_mass;	// 0.0005109989, for enabled overwriting
+	double Higgs_mass;		// Works only if flag.Use_mh_eq_m4l=false
+	double Higgs_width;		// Practically not used, for future implementations
+	double Muon_mass;		// 0.10565837, for enabled overwriting
+	double Proton_mass;		// Always used if needed
 
 	/// Final-state lepton/photon information
 	double *p1, *p2, *p3, *p4, *p5;
@@ -106,9 +92,11 @@ class MEKD_MG
 	
 	double Get_invariant_m(vector<double *> &p, int p_range[2]);
 	
+	void Prepare_ml_s();
 	void Load_p_set();
 	void Approx_neg_z_parton(double *p, double E);
 	void Approx_pos_z_parton(double *p, double E);
+	void Normalize_parton_coeffs();
 	
 
 	/// Constructors, destructors

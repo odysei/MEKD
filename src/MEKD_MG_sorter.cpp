@@ -428,10 +428,10 @@ int MEKD_MG::Arrange_Internal_pls()
 
 	if (id_set[0] == 10000 && id_set[1] == 10000 && id_set[2] == 10000 &&
 		id_set[3] == 10000 && id_set[4] == 10000) {
-		if (Warning_Mode)
+		if (flag.Warning_Mode)
 			cout << "Warning. Particle ids are not set. Assuming a proper "
 					"input-particle configuration.\n";
-		if (Warning_Mode)
+		if (flag.Warning_Mode)
 			cout << "Proceeding according to a specified final state ("
 				 << Final_state << ").\n";
 		pl1_internal = p1;

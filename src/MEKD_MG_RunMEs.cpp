@@ -19,7 +19,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_BKG_ZZ(string initial_state)
 /// Z4l Background processes (t channel)
 int MEKD_MG::Run_MEKD_MG_ME_Configurator_Z4l_BKG(string initial_state)
 {
-	if (Use_mZ4l_eq_m4l)
+	if (flag.Use_mZ4l_eq_m4l)
 		Set_Of_Model_Parameters.set_block_entry("mass", 23, Mass_4l);
 	return Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(initial_state);
 }
@@ -27,7 +27,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Z4l_BKG(string initial_state)
 /// Z4l Signal processes (s channel)
 int MEKD_MG::Run_MEKD_MG_ME_Configurator_Z4l_SIG(string initial_state)
 {
-	if (Use_mZ4l_eq_m4l)
+	if (flag.Use_mZ4l_eq_m4l)
 		Set_Of_Model_Parameters.set_block_entry("mass", 23, Mass_4l);
 	return Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(initial_state);
 }
@@ -608,11 +608,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
 	} else
 		buffer_complex = Mixing_Coefficients_Spin0;
 
-	if (Use_mh_eq_m4l) {
+	if (flag.Use_mh_eq_m4l) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 9000006, Mass_4l);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 9000006,
 					static_cast<double>(
@@ -627,8 +627,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
 	} else {
 		Set_Of_Model_Parameters.set_block_entry("mass", 9000006, Higgs_mass);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 9000006,
 					static_cast<double>(
@@ -642,9 +642,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
 		LmbdGG_calculated = LmbdGG(Higgs_mass);
 	}
 
-	if (Vary_signal_couplings) {
+	if (flag.Vary_signal_couplings) {
 		// gg
-		if (Fix_Spin0_Production) {
+		if (flag.Fix_Spin0_Production) {
 			Set_Of_Model_Parameters.set_block_entry("heff", 1,
 													complex<double>(0, 0));
 			Set_Of_Model_Parameters.set_block_entry(
@@ -670,7 +670,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
 		}
 
 		// Decay to ZZ
-		if (Use_mh_eq_m4l) {
+		if (flag.Use_mh_eq_m4l) {
 			Set_Of_Model_Parameters.set_block_entry(
 				"heff", 5, buffer_complex[0] *
 							   complex<double>(hZZ_coupling, 0)); // Spin0Pm
@@ -754,11 +754,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin1(string initial_state)
 	} else
 		buffer_complex = Mixing_Coefficients_Spin1;
 
-	if (Use_mh_eq_m4l) {
+	if (flag.Use_mh_eq_m4l) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 300, Mass_4l);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 300,
 					static_cast<double>(
@@ -773,8 +773,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin1(string initial_state)
 	} else {
 		Set_Of_Model_Parameters.set_block_entry("mass", 300, Higgs_mass);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 300,
 					static_cast<double>(
@@ -788,9 +788,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin1(string initial_state)
 		LmbdGG_calculated = LmbdGG(Higgs_mass);
 	}
 
-	if (Vary_signal_couplings) {
+	if (flag.Vary_signal_couplings) {
 		// qq
-		if (Fix_Spin1_Production) {
+		if (flag.Fix_Spin1_Production) {
 			params_rhod11 = complex<double>(
 				sqrt(1 / 2) * LmbdGG_calculated * v_expectation, 0);
 			params_rhos11 = complex<double>(
@@ -925,11 +925,11 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
 	} else
 		buffer_complex = Mixing_Coefficients_Spin2;
 
-	if (Use_mh_eq_m4l) {
+	if (flag.Use_mh_eq_m4l) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 9000007, Mass_4l);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 9000007,
 					static_cast<double>(
@@ -944,8 +944,8 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
 	} else {
 		Set_Of_Model_Parameters.set_block_entry("mass", 9000007, Higgs_mass);
 
-		if (Use_Higgs_width) {
-			if (Vary_resonance_width)
+		if (flag.Use_Higgs_width) {
+			if (flag.Vary_resonance_width)
 				Set_Of_Model_Parameters.set_block_entry(
 					"decay", 9000007,
 					static_cast<double>(
@@ -959,9 +959,9 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
 		LmbdGG_calculated = LmbdGG(Higgs_mass);
 	}
 
-	if (Vary_signal_couplings) {
+	if (flag.Vary_signal_couplings) {
 		// gg
-		if (Use_mh_eq_m4l) {
+		if (flag.Use_mh_eq_m4l) {
 			Set_Of_Model_Parameters.set_block_entry(
 				"gravity", 1,
 				buffer_complex[0] *
@@ -1100,7 +1100,7 @@ int MEKD_MG::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
 			buffer_complex[3] * complex<double>(LmbdGG_calculated, 0);
 
 		// Decay to ZZ
-		if (Use_mh_eq_m4l) {
+		if (flag.Use_mh_eq_m4l) {
 			Set_Of_Model_Parameters.set_block_entry(
 				"gravity", 11,
 				buffer_complex[10] *
@@ -2961,7 +2961,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
 	Generic_ME.sigmaKin();
 	buffer = const_cast<double *>(Generic_ME.getMatrixElements());
 
-	if (Use_PDF_w_pT0) {
+	if (flag.Use_PDF_w_pT0) {
 		Signal_ME = pdfreader(21, PDFx1, Mass_4l) *
 					pdfreader(21, PDFx2, Mass_4l) * buffer[0];
 	} else
@@ -2978,7 +2978,7 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 	Signal_ME = 0;
 
 	/// Down quark block. Down type (s-like)
-	if (ContributionCoeff_d != 0) {
+	if (parton_coeff_d != 0) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 3, params_m_d);
 		// 		Set_Of_Model_Parameters.set_block_entry( "heff", 15,
 		// params_rhod01
@@ -3003,19 +3003,19 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 		Generic_ME_s.sigmaKin();
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
-		if (Use_PDF_w_pT0) {
-			ContributionCoeff_d =
+		if (flag.Use_PDF_w_pT0) {
+			parton_coeff_d =
 				pdfreader(1, PDFx1, Mass_4l) * pdfreader(-1, PDFx2, Mass_4l);
-			Signal_ME = ContributionCoeff_d * buffer[0];
-			ContributionCoeff_d =
+			Signal_ME = parton_coeff_d * buffer[0];
+			parton_coeff_d =
 				pdfreader(-1, PDFx1, Mass_4l) * pdfreader(1, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_d * buffer[1];
+			Signal_ME += parton_coeff_d * buffer[1];
 		} else
-			Signal_ME = ContributionCoeff_d * (buffer[0] + buffer[1]);
+			Signal_ME = parton_coeff_d * (buffer[0] + buffer[1]);
 	}
 
 	/// Strange quark block. Down type (s-like)
-	if (ContributionCoeff_s != 0) {
+	if (parton_coeff_s != 0) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 3, params_m_s);
 		// 		Set_Of_Model_Parameters.set_block_entry( "heff", 15,
 		// params_rhos01
@@ -3040,19 +3040,19 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 		Generic_ME_s.sigmaKin();
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
-		if (Use_PDF_w_pT0) {
-			ContributionCoeff_s =
+		if (flag.Use_PDF_w_pT0) {
+			parton_coeff_s =
 				pdfreader(3, PDFx1, Mass_4l) * pdfreader(-3, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_s * buffer[0];
-			ContributionCoeff_s =
+			Signal_ME += parton_coeff_s * buffer[0];
+			parton_coeff_s =
 				pdfreader(-3, PDFx1, Mass_4l) * pdfreader(3, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_s * buffer[1];
+			Signal_ME += parton_coeff_s * buffer[1];
 		} else
-			Signal_ME += ContributionCoeff_s * (buffer[0] + buffer[1]);
+			Signal_ME += parton_coeff_s * (buffer[0] + buffer[1]);
 	}
 
 	/// Up quark block. Up type (c-like)
-	if (ContributionCoeff_u != 0) {
+	if (parton_coeff_u != 0) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 4, params_m_u);
 		// 		Set_Of_Model_Parameters.set_block_entry( "heff", 11,
 		// params_rhou01
@@ -3077,19 +3077,19 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 		Generic_ME_c.sigmaKin();
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
-		if (Use_PDF_w_pT0) {
-			ContributionCoeff_u =
+		if (flag.Use_PDF_w_pT0) {
+			parton_coeff_u =
 				pdfreader(2, PDFx1, Mass_4l) * pdfreader(-2, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_u * buffer[0];
-			ContributionCoeff_u =
+			Signal_ME += parton_coeff_u * buffer[0];
+			parton_coeff_u =
 				pdfreader(-2, PDFx1, Mass_4l) * pdfreader(2, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_u * buffer[1];
+			Signal_ME += parton_coeff_u * buffer[1];
 		} else
-			Signal_ME += ContributionCoeff_u * (buffer[0] + buffer[1]);
+			Signal_ME += parton_coeff_u * (buffer[0] + buffer[1]);
 	}
 
 	/// Charm quark block. Up type (c-like)
-	if (ContributionCoeff_c != 0) {
+	if (parton_coeff_c != 0) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 4, params_m_c);
 		// 		Set_Of_Model_Parameters.set_block_entry( "heff", 11,
 		// params_rhoc01
@@ -3114,18 +3114,18 @@ int MEKD_MG::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 		Generic_ME_c.sigmaKin();
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
-		if (Use_PDF_w_pT0) {
-			ContributionCoeff_c =
+		if (flag.Use_PDF_w_pT0) {
+			parton_coeff_c =
 				pdfreader(4, PDFx1, Mass_4l) * pdfreader(-4, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_c * buffer[0];
-			ContributionCoeff_c =
+			Signal_ME += parton_coeff_c * buffer[0];
+			parton_coeff_c =
 				pdfreader(-4, PDFx1, Mass_4l) * pdfreader(4, PDFx2, Mass_4l);
-			Signal_ME += ContributionCoeff_c * buffer[1];
+			Signal_ME += parton_coeff_c * buffer[1];
 		} else
-			Signal_ME += ContributionCoeff_c * (buffer[0] + buffer[1]);
+			Signal_ME += parton_coeff_c * (buffer[0] + buffer[1]);
 	}
 
-	if (Use_mZ4l_eq_m4l)
+	if (flag.Use_mZ4l_eq_m4l)
 		Set_Of_Model_Parameters.set_block_entry(
 			"mass", 23, params_m_Z); // return to real mass. Used in Z -> 4l
 

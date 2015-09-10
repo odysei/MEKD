@@ -38,7 +38,7 @@ void MEKD_Test_Gen_Test1()
 	double mean_ME11_p4 = 0, mean_ME21_p4 = 0, mean_ME31_p4 = 0, corr_nom1 = 0,
 		   corr_denom1_1 = 0, corr_denom2_1 = 0;
 
-	test1_p4.MEKD_MG_Calc.Use_mZ4l_eq_m4l = false;
+	test1_p4.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = false;
 
 	Set_Of_IDs[0] = 11;
 	Set_Of_IDs[1] = -11;
@@ -140,7 +140,7 @@ void MEKD_Test_Gen_Test1()
 	double mean_ME12_p4 = 0, mean_ME22_p4 = 0, mean_ME32_p4 = 0, corr_nom2 = 0,
 		   corr_denom1_2 = 0, corr_denom2_2 = 0;
 
-	test2_p4.MEKD_MG_Calc.Use_mZ4l_eq_m4l = false;
+	test2_p4.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = false;
 
 	Set_Of_IDs[0] = 11;
 	Set_Of_IDs[1] = -11;
@@ -242,7 +242,7 @@ void MEKD_Test_Gen_Test1()
 	double mean_ME13_p4 = 0, mean_ME23_p4 = 0, mean_ME33_p4 = 0, corr_nom3 = 0,
 		   corr_denom1_3 = 0, corr_denom2_3 = 0;
 
-	test3_p4.MEKD_MG_Calc.Use_mZ4l_eq_m4l = true;
+	test3_p4.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = true;
 
 	Set_Of_IDs[0] = 11;
 	Set_Of_IDs[1] = -11;
@@ -344,7 +344,7 @@ void MEKD_Test_Gen_Test1()
 	double mean_ME14_p4 = 0, mean_ME24_p4 = 0, mean_ME34_p4 = 0, corr_nom4 = 0,
 		   corr_denom1_4 = 0, corr_denom2_4 = 0;
 
-	test4_p4.MEKD_MG_Calc.Use_mZ4l_eq_m4l = true;
+	test4_p4.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = true;
 
 	Set_Of_IDs[0] = 11;
 	Set_Of_IDs[1] = -11;
@@ -445,7 +445,7 @@ void MEKD_Test_Gen_Test1()
 	MEKD test5_p4(8.0, "");
 	double mean_ME15_p4 = 0, mean_ME25_p4 = 0, mean_ME35_p4 = 0;
 
-	test5_p4.MEKD_MG_Calc.Use_mZ4l_eq_m4l = true;
+	test5_p4.MEKD_MG_Calc.flag.Use_mZ4l_eq_m4l = true;
 
 	Set_Of_IDs[0] = 11;
 	Set_Of_IDs[1] = -11;

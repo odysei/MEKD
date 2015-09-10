@@ -85,6 +85,7 @@ int MEKD_MG::Load_Parameters()
 		Load_Parameters_MEs();	// init MEs
 	Load_Parameters_extract_params(Set_Of_Model_Parameters);
 	Load_Parameters_eval_params();
+	Normalize_parton_coeffs();
 	
 	if (Parameters_Are_Loaded)
 		Unload_pdfreader();
@@ -117,65 +118,32 @@ int MEKD_MG::Run_MEKD_MG()
 	PDFx2 = 0;
 	Background_ME = 0;
 	Signal_ME = 0;
-
-	if (Overwrite_e_and_mu_masses) {
+	
+	if (flag.Overwrite_e_and_mu_masses) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 11, Electron_mass);
 		Set_Of_Model_Parameters.set_block_entry("mass", 13, Muon_mass);
 		params_m_e = Electron_mass;
 		params_m_mu = Muon_mass;
 	}
 
-	if (Final_state == "4e" || Final_state == "4eA") {
-		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 11, Electron_mass)
-				  .real();
-		ml2 = ml1;
-		ml3 = ml1;
-		ml4 = ml1;
-	}
-	if (Final_state == "4m" || Final_state == "4mu" || Final_state == "4mA" ||
-		Final_state == "4muA") {
-		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 13, Muon_mass)
-				  .real();
-		ml2 = ml1;
-		ml3 = ml1;
-		ml4 = ml1;
-	}
-	if (Final_state == "2e2m" || Final_state == "2e2mu" ||
-		Final_state == "2e2mA" || Final_state == "2e2muA") {
-		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 11, Electron_mass)
-				  .real();
-		ml2 = ml1;
-		ml3 = Set_Of_Model_Parameters.get_block_entry("mass", 13, Muon_mass)
-				  .real();
-		ml4 = ml3;
-	}
-
-	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA") {
-		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 13, Muon_mass)
-				  .real();
-		ml2 = ml1;
-		ml3 = 0;
-		ml4 = 0;
-	}
-
-	Load_p_set();
+	Load_p_set();	// load 4-momenta from plX_internal
+	Prepare_ml_s();	// fill ml values; used in boosts only
 	
 	/// Calculate values needed for the PDF in the pT=0 frame
-	if (Use_PDF_w_pT0) {
+	if (flag.Use_PDF_w_pT0) {
 		Boost_5p_2_pT0(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4,
 					   p_set[5], 0, p_set[6]);
 	}
 	
 	PDFx1 = Get_PDF_x1(p_set);
 	PDFx2 = Get_PDF_x2(p_set);
-	if (Debug_Mode) {
+	if (flag.Debug_Mode) {
 		printf("Coefficients for PDF (x1, x2): (%.10E, %.10E)\n",
 			   PDFx1, PDFx2);
 	}
 
 	/// If flag is true, boost to CM frame iff PDF is NOT included.
-	if (Boost_To_CM && !Use_PDF_w_pT0) {
+	if (flag.Boost_To_CM && !flag.Use_PDF_w_pT0) {
 		Boost2CM(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4, p_set[5], 0,
 				 p_set[6]);
 		CollisionE =
@@ -190,19 +158,11 @@ int MEKD_MG::Run_MEKD_MG()
 	int range[2] = {2, 6}; 
 	invariant_m = Get_invariant_m(p_set, range);
 	Mass_4l = invariant_m;
-
-	/// Pick quark flavors to use if PDFs are not set. Normalizing coefficients
-	/// here.
-	if (!Use_PDF_w_pT0) {
-		double buffer_ = (ContributionCoeff_d + ContributionCoeff_u +
-						  ContributionCoeff_s + ContributionCoeff_c);
-		ContributionCoeff_d = ContributionCoeff_d / buffer_;
-		ContributionCoeff_u = ContributionCoeff_u / buffer_;
-		ContributionCoeff_c = ContributionCoeff_c / buffer_;
-		ContributionCoeff_s = ContributionCoeff_s / buffer_;
-	}
 	
-	if (Debug_Mode) {
+	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
+		Normalize_parton_coeffs();
+	
+	if (flag.Debug_Mode) {
 		cout << "4-momenta entering ME(E px py px):\n";
 		Print_4momenta(p_set);
 	}
@@ -502,7 +462,7 @@ int MEKD_MG::Run_MEKD_MG()
 				 (*Test_Model_buffer) == "!CPPProcess")
 			Run_MEKD_MG_ME_Configurator_CPPProcess("NO");
 
-		if (Debug_Mode)
+		if (flag.Debug_Mode)
 			cout << "Evaluated model: " << (*Test_Model_buffer)
 				 << "; calculated ME: " << Signal_ME << endl;
 
@@ -519,7 +479,7 @@ int MEKD_MG::Run_MEKD_MG()
 		counter++;
 	}
 	
-	if (Debug_Mode) {
+	if (flag.Debug_Mode) {
 		cout << "4-momenta after ME(E px py px) calculations:\n";
 		Print_4momenta(p_set);
 	}
@@ -578,6 +538,42 @@ void MEKD_MG::Load_p_set()
 	}
 }
 
+void MEKD_MG::Prepare_ml_s()
+{
+	if (Final_state == "4e" || Final_state == "4eA") {
+		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 11,
+													  Electron_mass).real();
+		ml2 = ml1;
+		ml3 = ml1;
+		ml4 = ml1;
+	} else if (Final_state == "4m" || Final_state == "4mu" ||
+			   Final_state == "4mA" || Final_state == "4muA") {
+		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 13,
+													  Muon_mass).real();
+		ml2 = ml1;
+		ml3 = ml1;
+		ml4 = ml1;
+	} else if (Final_state == "2e2m" || Final_state == "2e2mu" ||
+			   Final_state == "2e2mA" || Final_state == "2e2muA") {
+		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 11,
+													  Electron_mass).real();
+		ml2 = ml1;
+		ml3 = Set_Of_Model_Parameters.get_block_entry("mass", 13,
+													  Muon_mass).real();
+		ml4 = ml3;
+	} else if (Final_state == "2m" || Final_state == "2mu" ||
+			   Final_state == "2mA" || Final_state == "2muA") {
+		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 13,
+													  Muon_mass).real();
+		ml2 = ml1;
+		ml3 = 0;
+		ml4 = 0;
+	} else {
+		cerr << "MAYDAY!!! Undefined behavior!\n";
+		exit(1);
+	}
+}
+
 double MEKD_MG::Get_PDF_x1(vector<double *> &p)
 {
 	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) +
@@ -609,6 +605,17 @@ double MEKD_MG::Get_invariant_m(vector<double *> &p, int p_range[2])
 				- sum_px * sum_px
 				- sum_py * sum_py
 				- sum_pz * sum_pz);
+}
+
+void MEKD_MG::Normalize_parton_coeffs()
+{
+	double buffer_ = (parton_coeff_d + parton_coeff_u +
+					  parton_coeff_s + parton_coeff_c);
+	
+	parton_coeff_d = parton_coeff_d / buffer_;
+	parton_coeff_u = parton_coeff_u / buffer_;
+	parton_coeff_c = parton_coeff_c / buffer_;
+	parton_coeff_s = parton_coeff_s / buffer_;
 }
 
 void MEKD_MG::Approx_neg_z_parton(double *p, double E)
