@@ -112,13 +112,52 @@ int MEKD_MG::Run_MEKD_MG()
 		exit(1);
 	}
 
-	double CollisionE;
-
 	PDFx1 = 0;
 	PDFx2 = 0;
 	Background_ME = 0;
 	Signal_ME = 0;
 	
+	Run_make_p();
+
+	int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(p_set, range);
+	Mass_4l = invariant_m;
+	
+	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
+		Normalize_parton_coeffs();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta entering ME(E px py px):\n";
+		Print_4momenta(p_set);
+	}
+	
+	Run_calculate();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta after ME(E px py px) calculations:\n";
+		Print_4momenta(p_set);
+	}
+
+	if (Test_Model[0] != '!')
+		KD = log(Signal_ME / Background_ME);
+
+	return 0;
+}
+
+int MEKD_MG::Run_MEKD_MG(string Input_Model)
+{
+	buffer_string = Test_Model;
+	Test_Model = "!";
+	Test_Model += Input_Model;
+
+	error_value = Run_MEKD_MG();
+
+	Test_Model = buffer_string;
+	return error_value;
+}
+
+void MEKD_MG::Run_make_p()
+{
 	if (flag.Overwrite_e_and_mu_masses) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 11, Electron_mass);
 		Set_Of_Model_Parameters.set_block_entry("mass", 13, Muon_mass);
@@ -146,27 +185,18 @@ int MEKD_MG::Run_MEKD_MG()
 	if (flag.Boost_To_CM && !flag.Use_PDF_w_pT0) {
 		Boost2CM(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4, p_set[5], 0,
 				 p_set[6]);
-		CollisionE =
-			p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0] + p_set[6][0];
-		p_set[0][0] = CollisionE / 2;
-		p_set[1][0] = CollisionE / 2;
+		double CollisionE = p_set[2][0] + p_set[3][0] + p_set[4][0] +
+							p_set[5][0] + p_set[6][0];
+		p_set[0][0] = 0.5 * CollisionE;
+		p_set[1][0] = 0.5 * CollisionE;
 	} else {
 		Approx_neg_z_parton(p_set[0], PDFx1 * Sqrt_s);
 		Approx_pos_z_parton(p_set[1], PDFx2 * Sqrt_s);
 	}
+}
 
-	int range[2] = {2, 6}; 
-	invariant_m = Get_invariant_m(p_set, range);
-	Mass_4l = invariant_m;
-	
-	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
-		Normalize_parton_coeffs();
-	
-	if (flag.Debug_Mode) {
-		cout << "4-momenta entering ME(E px py px):\n";
-		Print_4momenta(p_set);
-	}
-
+void MEKD_MG::Run_calculate()
+{
 	/// Background is interesting in any case, except for the Signal Runs or '!'
 	/// is indicated in the first model to save CPU
 	if (Test_Model[0] != '!' && Test_Models.size() == 0) {
@@ -181,15 +211,16 @@ int MEKD_MG::Run_MEKD_MG()
 
 	/// Signal ME(s) is(are) chosen here
 	if (Test_Models.size() > 0 && Test_Model[0] != '!') {
-		Signal_MEs.clear();
+		Signal_MEs.resize(Test_Models.size());
+		fill(Signal_MEs.begin(), Signal_MEs.end(), 0);
 		Test_Model_buffer = &(Test_Models[0]); // Should be NULL or undefined
 											   // before this point; works as
 											   // counter=0
 	} else
-		Test_Model_buffer =
-			&Test_Model; // Should be NULL or undefined before this point
+		Test_Model_buffer = &Test_Model;	// Should be NULL or undefined
+											// before this point
 
-	counter = 1;
+	unsigned int counter = 1;
 	while (Test_Model_buffer != NULL) {
 		// Is it a parameter card defined?
 		if ((*Test_Model_buffer) == "Custom" ||
@@ -467,7 +498,7 @@ int MEKD_MG::Run_MEKD_MG()
 				 << "; calculated ME: " << Signal_ME << endl;
 
 		if (Test_Models.size() > 0 && Test_Model[0] != '!') {
-			Signal_MEs.push_back(Signal_ME);
+			Signal_MEs[counter - 1] = Signal_ME;
 
 			if (counter < Test_Models.size())
 				Test_Model_buffer = &(Test_Models[counter]);
@@ -476,30 +507,8 @@ int MEKD_MG::Run_MEKD_MG()
 		} else
 			Test_Model_buffer = NULL;
 
-		counter++;
+		++counter;
 	}
-	
-	if (flag.Debug_Mode) {
-		cout << "4-momenta after ME(E px py px) calculations:\n";
-		Print_4momenta(p_set);
-	}
-
-	if (Test_Model[0] != '!')
-		KD = log(Signal_ME / Background_ME);
-
-	return 0;
-}
-
-int MEKD_MG::Run_MEKD_MG(string Input_Model)
-{
-	buffer_string = Test_Model;
-	Test_Model = "!";
-	Test_Model += Input_Model;
-
-	error_value = Run_MEKD_MG();
-
-	Test_Model = buffer_string;
-	return error_value;
 }
 
 void MEKD_MG::Load_p_set()

@@ -87,6 +87,8 @@ class MEKD_MG
 	int Run_MEKD_MG(string Input_Model); // Calculates a ME ONLY for a chosen
 										 // model; ignores automatic background
 										 // calculation. Updates Signal_ME
+	void Run_make_p();
+	void Run_calculate();
 	double Get_PDF_x1(vector<double *> &p);
 	double Get_PDF_x2(vector<double *> &p);
 	
@@ -269,7 +271,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	bool Parameters_Are_Loaded, buffer_bool, Predefined_Model;
 
 	int error_value;
-	unsigned int counter;
 
 	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1,
 		PDFx2, LmbdGG_calculated;
