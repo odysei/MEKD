@@ -64,8 +64,9 @@ endif
 ###################
 
 test=MEKD_Test
+test2=MEKD_Test_v3
 
-all: $(test)
+all: $(test) $(test2)
 
 
 
@@ -83,9 +84,13 @@ $(test):
 else
 
 $(test):
-	$(CXX) $(CXXFLAGS) $(test).cpp -o $(BIN_DIRL)/$(test) -L. $(LIBFLAGS) \
--l MEKD
+	echo '${test} does not compile without ROOT.'
 endif
+
+
+$(test2):
+	$(CXX) $(CXXFLAGS) $(test2).cpp -o $(BIN_DIRL)/$(test2) -L. $(LIBFLAGS) \
+-l MEKD
 
 
 

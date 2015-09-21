@@ -103,6 +103,30 @@ int MEKD_MG::Reload_Parameters()
 	return Load_Parameters();
 }
 
+double MEKD_MG::eval_ME(input &in)
+{
+	cerr << "FIX ME!\n";
+	string Input_Model = "ggSpin0Pm";
+	buffer_string = Test_Model;
+	Test_Model = "!";
+	Test_Model += Input_Model;
+	
+	p1 = (*in.p)[0];
+	p2 = (*in.p)[1];
+	p3 = (*in.p)[2];
+	p4 = (*in.p)[3];
+	
+	id1 = (*in.id)[0];
+	id2 = (*in.id)[1];
+	id3 = (*in.id)[2];
+	id4 = (*in.id)[3];
+
+	error_value = Run_MEKD_MG();
+
+	Test_Model = buffer_string;
+	return Signal_ME;
+}
+
 int MEKD_MG::Run_MEKD_MG()
 {
 	if (!Parameters_Are_Loaded)

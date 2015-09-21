@@ -18,6 +18,8 @@ extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
 class MEKD_MG
 {
   public:
+	double eval_ME(input &in);
+	
 	/// Flags
 	flags flag;
 

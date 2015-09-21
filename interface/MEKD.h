@@ -40,6 +40,16 @@ namespace mekd
 class MEKD
 {
   public:
+	double eval_ME(input &in)
+	{
+		return MEKD_MG_Calc.eval_ME(in);
+	};
+	
+	/*
+	 * 
+	 * Legacy section (version <3) goes below:
+	 * 
+	 */
 	///
 	/// Constructor.
 	///

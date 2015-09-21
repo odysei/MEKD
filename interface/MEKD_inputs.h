@@ -9,6 +9,7 @@
 
 #include "MEKD_defs.h"
 #include "MEKD_MG.h"
+#include "MEKD_includes.h"
 
 namespace mekd
 {
@@ -47,7 +48,8 @@ struct process_desciption
 // standardized input to calculator
 struct input: process_desciption
 {
-	
+	vector<double *> *p;
+	vector<int> *id;
 };
 
 /// end of namespace
