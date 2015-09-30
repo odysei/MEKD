@@ -36,7 +36,7 @@ struct flags
 };
 
 // see definitions for descriptions
-struct process_desciption
+struct process_description
 {
 	process_types process;
 	resonance_types resonance;
@@ -46,7 +46,7 @@ struct process_desciption
 };
 
 // standardized input to calculator
-struct input: process_desciption
+struct input
 {
 	vector<double *> *p;
 	vector<int> *id;

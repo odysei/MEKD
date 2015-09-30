@@ -118,8 +118,6 @@ input Initialize_tester(input &in)
 	in.p->push_back(new double[4] {144.24476946999999, 21.225695010999999,
 								   25.779897736999999, 140.32608132999999});
 	
-	in.final_state = final_4l;
-	
 	return in;
 }
 

@@ -40,10 +40,15 @@ namespace mekd
 class MEKD
 {
   public:
-	double eval_ME(input &in)
+	void eval_MEs(input &in, vector<double> &ME2)
 	{
-		return MEKD_MG_Calc.eval_ME(in);
-	};
+		MEKD_MG_Calc.MEKD_MG::eval_MEs(in, ME2);
+	}
+	
+	MEKD(vector<process_description> &desc)
+	{
+		 MEKD_MG_Calc.Load_ME_runners(desc);
+	}
 	
 	/*
 	 * 

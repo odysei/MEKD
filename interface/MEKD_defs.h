@@ -18,6 +18,8 @@ enum process_types {
 
 enum resonance_types {
 	bkg_Z,
+	bkg_Zs,			// Z -> 4l via s ch.
+	bkg_Zt,			// Z -> 4l via t ch.
 	reson_Spin0,	// generic spin 0 resonance, many couplings
 	reson_Spin0Pm,	// 0^+_m, Higgs
 	reson_Spin0Ph,	// 0^+_h
@@ -35,7 +37,8 @@ enum resonance_types {
 	reson_Spin2Ph7,	// 2^+_h7
 	reson_Spin2Mh8,	// 2^-_h8 also 2^-_h
 	reson_Spin2Mh9,	// 2^-_h9
-	reson_Spin2Mh10	// 2^-_h10
+	reson_Spin2Mh10,// 2^-_h10
+	reson_Custom	// an experimental setting
 };
 
 enum production_types {

@@ -15,10 +15,33 @@ extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
 // #define PDTFILE "PDF_tables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L.
 // You can change PDF set as you want.
 
+class MEKD_MG;
+
+class ME_runner
+{
+public:
+	virtual double evaluate(MEKD_MG &in_MEKD, const input &in)
+	{
+		return -1;
+	}
+	
+	virtual bool is_my_type(const process_description &in)
+	{
+		return false;
+	}
+};
+
 class MEKD_MG
 {
   public:
-	double eval_ME(input &in);
+	void eval_MEs(const input &, vector<double> &);
+	
+	vector<ME_runner *> ME_runners;
+	
+	void Load_ME_runners(vector<process_description> &);
+	ME_runner* Load_ME_runners_try(ME_runner *,
+								   vector<ME_runner *> &,
+								   const process_description &);
 	
 	/// Flags
 	flags flag;
@@ -107,8 +130,7 @@ class MEKD_MG
 	MEKD_MG();
 	~MEKD_MG();
 
-  private:
-	
+//   private:
 	/// 4l final state (+photon)
 qq_Z4l_SIG_DN_OF ME_qq_Z4l_SIG_DownType_OF;
 qq_Z4l_SIG_DN_SF ME_qq_Z4l_SIG_DownType_SF;

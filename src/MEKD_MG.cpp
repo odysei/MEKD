@@ -74,6 +74,10 @@ MEKD_MG::~MEKD_MG()
 
 	p_set.clear();
 	id_set.clear();
+	
+	for (auto runner: ME_runners)
+		delete runner;
+	ME_runners.clear();
 }
 
 int MEKD_MG::Load_Parameters()
@@ -103,14 +107,12 @@ int MEKD_MG::Reload_Parameters()
 	return Load_Parameters();
 }
 
-double MEKD_MG::eval_ME(input &in)
+void MEKD_MG::eval_MEs(const input &in, vector<double> &ME2)
 {
+	if (ME2.size() != ME_runners.size())
+		ME2.resize(ME_runners.size(), 0);
 	cerr << "FIX ME!\n";
-	string Input_Model = "ggSpin0Pm";
-	buffer_string = Test_Model;
-	Test_Model = "!";
-	Test_Model += Input_Model;
-	
+	/* Added block */
 	p1 = (*in.p)[0];
 	p2 = (*in.p)[1];
 	p3 = (*in.p)[2];
@@ -120,11 +122,43 @@ double MEKD_MG::eval_ME(input &in)
 	id2 = (*in.id)[1];
 	id3 = (*in.id)[2];
 	id4 = (*in.id)[3];
+	/* End of added block */
+	
+	if (!Parameters_Are_Loaded)
+		Load_Parameters();
+	if (Arrange_Internal_pls() == 1) {	// loads&arranges plX_internal
+		cerr << "Particle id error. Exiting.\n";
+		exit(1);
+	}
+	
+	PDFx1 = 0;
+	PDFx2 = 0;
+	Background_ME = 0;
+	Signal_ME = 0;
+	
+	Run_make_p();
 
-	error_value = Run_MEKD_MG();
-
-	Test_Model = buffer_string;
-	return Signal_ME;
+	int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(p_set, range);
+	Mass_4l = invariant_m;
+	
+	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
+		Normalize_parton_coeffs();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta entering ME(E px py px):\n";
+		Print_4momenta(p_set);
+	}
+	
+	for (unsigned int i = 0; i < ME_runners.size(); ++i) {
+		Signal_ME = ME_runners[i]->evaluate(*this, in);
+		ME2[i] = Signal_ME;
+	}
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta after ME(E px py px) calculations:\n";
+		Print_4momenta(p_set);
+	}
 }
 
 int MEKD_MG::Run_MEKD_MG()
