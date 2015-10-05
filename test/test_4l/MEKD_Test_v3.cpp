@@ -12,10 +12,11 @@
 
 #include "MEKD_Test_v3.h"
 #include "MEKD_Test_Functionality_v3.cpp"
+#include "MEKD_Test_Check_Models_v3.cpp"
 
 input Initialize_tester(input &);
 void test_block1(input &);
-// void test_block6();
+void test_block6(input &);
 
 
 int main()
@@ -26,8 +27,8 @@ int main()
 	
 	Initialize_tester(test);
 	
-	test_block1(test);
-// 	test_block6();
+// 	test_block1(test);
+	test_block6(test);
 
 	return 0;
 }
@@ -41,50 +42,32 @@ void test_block1(input &in)
 		cout << " ---------------------------------------- \n";
 	}
 
-	error_value = MEKD_Test_Functionality_Test1(in);
+	int error_value = MEKD_Test_Functionality_Test1(in);
 	if (error_value == 0)
 		cout << "TEST 1: PASSED\n";
 	else
 		cout << "TEST 1: FAILED\n";
-// 	
-// 	error_value = MEKD_Test_Functionality_Test2();
-// 	if (error_value == 0)
-// 		cout << "TEST 2: PASSED\n";
-// 	else
-// 		cout << "TEST 2: FAILED\n";
-// 	
-// 	error_value = MEKD_Test_Functionality_Test3();
-// 	if (error_value == 0)
-// 		cout << "TEST 3: PASSED\n";
-// 	else
-// 		cout << "TEST 3: FAILED\n";
-// 	
-// 	error_value = MEKD_Test_Functionality_Test4();
-// 	if (error_value == 0)
-// 		cout << "TEST 4: PASSED\n";
-// 	else
-// 		cout << "TEST 4: FAILED\n";
-// }
-// 
-// void test_block6()
-// {
-// 	if (Show_Description) {
-// 		cout << "\n --------------------------------------------------- \n";
-// 		cout << " -- Testing model integration for ME calculations -- \n";
-// 		cout << " --------------------------------------------------- \n";
-// 	}
-// 
+}
+
+void test_block6(input &in)
+{
+	if (Show_Description) {
+		cout << "\n --------------------------------------------------- \n";
+		cout << " -- Testing model integration for ME calculations -- \n";
+		cout << " --------------------------------------------------- \n";
+	}
+
 // 	error_value = MEKD_Test_Check_Models_Test1();
 // 	if (error_value == 0)
 // 		cout << "TEST 1: PASSED\n";
 // 	else
 // 		cout << "TEST 1: \"FAILED\"\n";
 // 	
-// 	error_value = MEKD_Test_Check_Models_Test2();
-// 	if (error_value == 0)
-// 		cout << "TEST 2: PASSED\n";
-// 	else
-// 		cout << "TEST 2: \"FAILED\"\n";
+	int error_value = MEKD_Test_Check_Models_Test2(in);
+	if (error_value == 0)
+		cout << "TEST 2: PASSED\n";
+	else
+		cout << "TEST 2: \"FAILED\"\n";
 }
 
 input Initialize_tester(input &in)

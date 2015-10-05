@@ -13,7 +13,8 @@ namespace mekd
 {
 
 enum process_types {
-	proc_simple		// typically production couples to X
+	proc_simple,	// typically production couples to X
+	proc_RAW		// an experimental setting
 };
 
 enum resonance_types {

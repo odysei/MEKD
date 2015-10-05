@@ -39,9 +39,29 @@ class MEKD_MG
 	vector<ME_runner *> ME_runners;
 	
 	void Load_ME_runners(vector<process_description> &);
-	ME_runner* Load_ME_runners_try(ME_runner *,
-								   vector<ME_runner *> &,
-								   const process_description &);
+	bool Load_ME_runners_try(const process_description &,
+							 ME_runner *,
+							 vector<ME_runner *> &);
+	bool Load_ME_runners_try_Misc_4l(const process_description &,
+									 vector<ME_runner *> &);
+	bool Load_ME_runners_try_Misc_4lA(const process_description &,
+									  vector<ME_runner *> &);
+	bool Load_ME_runners_try_Z_4l(const process_description &,
+								  vector<ME_runner *> &);
+	bool Load_ME_runners_try_Z_4lA(const process_description &,
+								   vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin0_4l(const process_description &,
+									  vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin0_4lA(const process_description &,
+									   vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin1_4l(const process_description &,
+									  vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin1_4lA(const process_description &,
+									   vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin2_4l(const process_description &,
+									  vector<ME_runner *> &);
+	bool Load_ME_runners_try_Spin2_4lA(const process_description &,
+									   vector<ME_runner *> &);
 	
 	/// Flags
 	flags flag;

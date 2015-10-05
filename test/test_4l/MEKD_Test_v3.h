@@ -38,11 +38,4 @@ const double Match_between_ZZ_Full_and_Z4l_rel =
 const double m_e = 0.0005109989;
 const double m_mu = 0.10565837;
 
-int error_value, id1, id2, id3, id4;
-
-double p1[4], p2[4], p3[4], p4[4];
-
-vector<double *> Set_Of_Arrays;
-vector<int> Set_Of_IDs;
-
 #endif

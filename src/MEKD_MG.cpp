@@ -122,6 +122,10 @@ void MEKD_MG::eval_MEs(const input &in, vector<double> &ME2)
 	id2 = (*in.id)[1];
 	id3 = (*in.id)[2];
 	id4 = (*in.id)[3];
+	if ((*in.p).size() > 4) {
+		p5 = (*in.p)[4];
+		id5 = (*in.id)[4];
+	}
 	/* End of added block */
 	
 	if (!Parameters_Are_Loaded)
@@ -151,8 +155,11 @@ void MEKD_MG::eval_MEs(const input &in, vector<double> &ME2)
 	}
 	
 	for (unsigned int i = 0; i < ME_runners.size(); ++i) {
-		Signal_ME = ME_runners[i]->evaluate(*this, in);
-		ME2[i] = Signal_ME;
+		if (ME_runners[i] != NULL) {
+			Signal_ME = ME_runners[i]->evaluate(*this, in);
+			ME2[i] = Signal_ME;
+		} else
+			ME2[i] = 0;
 	}
 	
 	if (flag.Debug_Mode) {
