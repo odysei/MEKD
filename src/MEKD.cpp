@@ -13,14 +13,19 @@ using namespace std;
 
 namespace mekd
 {
+	
+/* 
+ * 
+ * MEKD class member implementation
+ * 
+ * Provides an interface to MadGraph_aMC@NLO-derived MEs and MEKD models behind
+ * them.
+ * 
+ */
 
-//////////////////////////////////////////////////////////////////////////
-///  MEKD class member implementation
-///
-///  Provides necessary interface to the MadGraph-based ME calculator
-///  and computes MEs and KDs for the process specified by the user.
-///
-//////////////////////////////////////////////////////////////////////////
+/*
+ * Version 2 and earlier methods: left for backwards compatibility.
+ */
 
 ///------------------------------------------------------------------------
 /// MEKD::MEKD - a default constructor
@@ -58,7 +63,7 @@ int MEKD::processParameters()
 {
 	/// Check if the PDF name is supported and set PDF flag
 	if (m_PDFName != "CTEQ6L" && m_PDFName != "" && m_PDFName != "no PDFs")
-		return ERR_PDFS;
+		return EXIT_ERROR_PDFS;
 	m_usePDF = (m_PDFName == "CTEQ6L");
 
 	MEKD_MG_Calc.flag.Use_PDF_w_pT0 = m_usePDF;
@@ -68,7 +73,7 @@ int MEKD::processParameters()
 		cerr << "WARNING! You have set energy to be " << m_collisionEnergy
 			 << " TeV\n";
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -246,9 +251,9 @@ int MEKD::setProcessName(string process)
 	} else if (process == "qqZ4l_Signal") {
 		m_process = "qqZ4l_Signal";
 	} else
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -258,7 +263,7 @@ int MEKD::setProcessNames(string processA, string processB)
 {
 	/// processes A and B should be different
 	if (processA == processB)
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 	/// check if processA is supported, translation of namings
 	if (processA == "Custom") {
 		m_processA = "Custom";
@@ -439,7 +444,7 @@ int MEKD::setProcessNames(string processA, string processB)
 	else if (processA == "qqZ4l_Signal") {
 		m_processA = "qqZ4l_Signal";
 	} else
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 
 	/// check if processB is supported, translation of namings
 	if (processB == "Custom") {
@@ -621,9 +626,9 @@ int MEKD::setProcessNames(string processA, string processB)
 	else if (processB == "qqZ4l_Signal") {
 		m_processB = "qqZ4l_Signal";
 	} else
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -633,14 +638,15 @@ int MEKD::setProcessNames(string processA, string processB)
 int MEKD::computeKD(string processA, string processB, double &kd,
 					double &me2processA, double &me2processB)
 {
+	int return_code;
 	/// Sanity check for input process names
-	if ((buffer_int = setProcessNames(processA, processB)) != 0)
-		return buffer_int;
+	if ((return_code = setProcessNames(processA, processB)) != 0)
+		return return_code;
 
 	/// Looking for the precalculated MEs
 	if (ME_ZZ == 0) {
 		cerr << "ERROR! The requested process has not been precalculated.\n";
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 	} else if (m_processA == "ZZ")
 		me2processA = ME_ZZ;
 	else if (m_processA == "ggSpin0Pm")
@@ -659,13 +665,13 @@ int MEKD::computeKD(string processA, string processB, double &kd,
 		me2processA = ME_qqSpin2Pm;
 	else {
 		cerr << "ERROR! The requested process has not been precalculated.\n";
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 	}
 
 	/// Looking for the precalculated MEs
 	if (ME_ZZ == 0) {
 		cerr << "ERROR! The requested process has not been precalculated.\n";
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 	} else if (m_processB == "ZZ")
 		me2processB = ME_ZZ;
 	else if (m_processB == "ggSpin0Pm")
@@ -684,13 +690,13 @@ int MEKD::computeKD(string processA, string processB, double &kd,
 		me2processB = ME_qqSpin2Pm;
 	else {
 		cerr << "ERROR! The requested process has not been precalculated.\n";
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 	}
 
 	/// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
 	kd = log(me2processA / me2processB);
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -723,11 +729,12 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 					vector<int> input_IDs, double &kd, double &me2processA,
 					double &me2processB)
 {
+	int return_code;
 	/// Checks input for compatibility
 	if (input_Ps.size() != input_IDs.size())
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
@@ -736,10 +743,10 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
-	if ((buffer_int = setProcessNames(processA, processB)) != 0)
-		return buffer_int;
-	if ((buffer_int = processParameters()) != 0)
-		return buffer_int;
+	if ((return_code = setProcessNames(processA, processB)) != 0)
+		return return_code;
+	if ((return_code = processParameters()) != 0)
+		return return_code;
 
 	/// Set input-particle kinematics
 	MEKD_MG_Calc.p1 = input_Ps[0];
@@ -763,18 +770,18 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 		MEKD_MG_Calc.id5 = 0;
 
 	/// Compute ME for process A only (e.g. signal 1)
-	buffer_int = MEKD_MG_Calc.Run_MEKD_MG(m_processA);
+	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_processA);
 	/// Get ME for process A
 	me2processA = MEKD_MG_Calc.Signal_ME;
 
 	/// Compute ME for process B only (e.g. signal 2 or background)
-	buffer_int = MEKD_MG_Calc.Run_MEKD_MG(m_processB);
+	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_processB);
 	/// Get ME for process B
 	me2processB = MEKD_MG_Calc.Signal_ME;
 	/// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
 	kd = log(me2processA / me2processB);
 
-	return buffer_int;
+	return return_code;
 }
 
 ///------------------------------------------------------------------------
@@ -783,11 +790,12 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 int MEKD::computeME(string processName, vector<double *> input_Ps,
 					vector<int> input_IDs, double &me2process)
 {
+	int return_code;
 	/// Checks input for compatibility
 	if (input_Ps.size() != input_IDs.size())
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
@@ -796,10 +804,10 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
-	if ((buffer_int = setProcessName(processName)) != 0)
-		return buffer_int;
-	if ((buffer_int = processParameters()) != 0)
-		return buffer_int;
+	if ((return_code = setProcessName(processName)) != 0)
+		return return_code;
+	if ((return_code = processParameters()) != 0)
+		return return_code;
 
 	/// Set input-particle kinematics
 	MEKD_MG_Calc.p1 = input_Ps[0];
@@ -823,11 +831,11 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 		MEKD_MG_Calc.id5 = 0;
 
 	/// Compute ME for the process (e.g. signal 1)
-	buffer_int = MEKD_MG_Calc.Run_MEKD_MG(m_process);
+	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_process);
 	/// Get ME for the process
 	me2process = MEKD_MG_Calc.Signal_ME;
 
-	return buffer_int;
+	return return_code;
 }
 
 ///------------------------------------------------------------------------
@@ -855,11 +863,12 @@ int MEKD::computeMEs(double lept1P[], int lept1Id, double lept2P[], int lept2Id,
 ///------------------------------------------------------------------------
 int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 {
+	int return_code;
 	/// Checks input for compatibility
 	if (input_Ps.size() != input_IDs.size())
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
-		return ERR_INPUT;
+		return EXIT_ERROR_INPUT;
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
@@ -868,8 +877,8 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for internal parameters
-	if ((buffer_int = processParameters()) != 0)
-		return buffer_int;
+	if ((return_code = processParameters()) != 0)
+		return return_code;
 
 	/// Parameterize MEKD_MG_Calc
 	if (MEKD_MG_Calc.Test_Models.size() ==
@@ -884,7 +893,7 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 		MEKD_MG_Calc.Test_Models.push_back("ggSpin2Pm");
 		MEKD_MG_Calc.Test_Models.push_back("qqSpin2Pm");
 	} else if (MEKD_MG_Calc.Test_Models.size() != 4)
-		return ERR_PROCESS;
+		return EXIT_ERROR_PROCESS;
 
 	/// Set input-particle kinematics
 	MEKD_MG_Calc.p1 = input_Ps[0];
@@ -908,7 +917,7 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 		MEKD_MG_Calc.id5 = 0;
 
 	/// Compute MEs
-	buffer_int = MEKD_MG_Calc.Run_MEKD_MG();
+	return_code = MEKD_MG_Calc.Run_MEKD_MG();
 
 	/// ME value readouts
 	ME_ZZ = MEKD_MG_Calc.Signal_MEs[0];
@@ -920,7 +929,7 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 	ME_ggSpin2Pm = MEKD_MG_Calc.Signal_MEs[6];
 	ME_qqSpin2Pm = MEKD_MG_Calc.Signal_MEs[7];
 
-	return buffer_int;
+	return return_code;
 }
 
 ///------------------------------------------------------------------------
@@ -939,8 +948,8 @@ int MEKD::Mix_Spin0(complex<double> Spin0Pm_relamp,
 	m_Mixing_Coefficients_Spin0[3] = Spin0M_relamp;
 
 	if (m_Mixing_Coefficients_Spin0 == NULL)
-		return ERR_OTHER;
-	return 0;
+		return EXIT_FAILURE;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -967,8 +976,8 @@ int MEKD::Mix_Spin1(complex<double> prod_Spin1M_relamp,
 	m_Mixing_Coefficients_Spin1[7] = dec_Spin1_rhomu14_relamp;
 
 	if (m_Mixing_Coefficients_Spin1 == NULL)
-		return ERR_OTHER;
-	return 0;
+		return EXIT_FAILURE;
+	return EXIT_SUCCESS;
 }
 
 ///------------------------------------------------------------------------
@@ -979,16 +988,14 @@ int MEKD::Mix_Spin1(complex<double> prod_Spin1M_relamp,
 int MEKD::Mix_Spin2(complex<double> *prod_Spin2_relamp,
 					complex<double> *dec_Spin2_relamp)
 {
-	for (buffer_uint = 0; buffer_uint < 10; buffer_uint++)
-		m_Mixing_Coefficients_Spin2[buffer_uint] =
-			prod_Spin2_relamp[buffer_uint];
-	for (buffer_uint = 10; buffer_uint < 20; buffer_uint++)
-		m_Mixing_Coefficients_Spin2[buffer_uint] =
-			dec_Spin2_relamp[buffer_uint];
+	for (unsigned int i = 0; i < 10; ++i)
+		m_Mixing_Coefficients_Spin2[i] = prod_Spin2_relamp[i];
+	for (unsigned int i = 10; i < 20; ++i)
+		m_Mixing_Coefficients_Spin2[i] = dec_Spin2_relamp[i];
 
 	if (m_Mixing_Coefficients_Spin2 == NULL)
-		return ERR_OTHER;
-	return 0;
+		return EXIT_FAILURE;
+	return EXIT_SUCCESS;
 }
 
 #if (defined(MEKD_STANDALONE) && defined(MEKD_with_ROOT)) ||                   \
@@ -1052,22 +1059,22 @@ int MEKD::computeKD(TString processA, TString processB,
 {
 	/// Resize internal vector<double*> if needed
 	if (input_Ps_i.size() != input_Ps.size()) {
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			delete input_Ps_i[buffer_uint];
-			input_Ps_i[buffer_uint] = NULL;
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			delete input_Ps_i[i];
+			input_Ps_i[i] = NULL;
 		}
 		input_Ps_i.resize(input_Ps.size(), NULL);
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			input_Ps_i[buffer_uint] = new double[4];
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			input_Ps_i[i] = new double[4];
 		}
 	}
 
 	/// Put vector<TLorentzVector> into internal containers
-	for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
-		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
-		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
-		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
+	for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+		input_Ps_i[i][0] = input_Ps[i].E();
+		input_Ps_i[i][1] = input_Ps[i].Px();
+		input_Ps_i[i][2] = input_Ps[i].Py();
+		input_Ps_i[i][3] = input_Ps[i].Pz();
 	}
 
 	return computeKD((string)processA.Data(), (string)processB.Data(),
@@ -1082,22 +1089,22 @@ int MEKD::computeME(TString processName, vector<TLorentzVector> input_Ps,
 {
 	/// Resize internal vector<double*> if needed
 	if (input_Ps_i.size() != input_Ps.size()) {
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			delete input_Ps_i[buffer_uint];
-			input_Ps_i[buffer_uint] = NULL;
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			delete input_Ps_i[i];
+			input_Ps_i[i] = NULL;
 		}
 		input_Ps_i.resize(input_Ps.size(), NULL);
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			input_Ps_i[buffer_uint] = new double[4];
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			input_Ps_i[i] = new double[4];
 		}
 	}
 
 	/// Put vector<TLorentzVector> into internal containers
-	for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
-		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
-		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
-		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
+	for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+		input_Ps_i[i][0] = input_Ps[i].E();
+		input_Ps_i[i][1] = input_Ps[i].Px();
+		input_Ps_i[i][2] = input_Ps[i].Py();
+		input_Ps_i[i][3] = input_Ps[i].Pz();
 	}
 
 	return computeME((string)processName.Data(), input_Ps_i, input_IDs,
@@ -1153,22 +1160,22 @@ int MEKD::computeMEs(vector<TLorentzVector> input_Ps, vector<int> input_IDs)
 {
 	/// Resize internal vector<double*> if needed
 	if (input_Ps_i.size() != input_Ps.size()) {
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			delete input_Ps_i[buffer_uint];
-			input_Ps_i[buffer_uint] = NULL;
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			delete input_Ps_i[i];
+			input_Ps_i[i] = NULL;
 		}
 		input_Ps_i.resize(input_Ps.size(), NULL);
-		for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-			input_Ps_i[buffer_uint] = new double[4];
+		for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+			input_Ps_i[i] = new double[4];
 		}
 	}
 
 	/// Put vector<TLorentzVector> into internal containers
-	for (buffer_uint = 0; buffer_uint < input_Ps_i.size(); buffer_uint++) {
-		input_Ps_i[buffer_uint][0] = input_Ps[buffer_uint].E();
-		input_Ps_i[buffer_uint][1] = input_Ps[buffer_uint].Px();
-		input_Ps_i[buffer_uint][2] = input_Ps[buffer_uint].Py();
-		input_Ps_i[buffer_uint][3] = input_Ps[buffer_uint].Pz();
+	for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
+		input_Ps_i[i][0] = input_Ps[i].E();
+		input_Ps_i[i][1] = input_Ps[i].Px();
+		input_Ps_i[i][2] = input_Ps[i].Py();
+		input_Ps_i[i][3] = input_Ps[i].Pz();
 	}
 
 	return computeMEs(input_Ps_i, input_IDs);

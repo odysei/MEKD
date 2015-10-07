@@ -61,6 +61,15 @@ enum final_state_types {
 	final_2lA	// 2l plus photon
 };
 
+enum exit_codes {
+	EXIT_SUCCESS_,	// already present
+	EXIT_FAILURE_,	// already present
+	EXIT_ERROR_SQRT,
+	EXIT_ERROR_PDFS,
+	EXIT_ERROR_PROCESS,
+	EXIT_ERROR_INPUT
+};
+
 }
 
 #endif
