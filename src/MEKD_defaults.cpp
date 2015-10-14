@@ -13,7 +13,7 @@ namespace mekd
 /// 6 4-momenta printout
 
 
-void MEKD::Set_Default_MEKD_MG_Parameters()
+void MEKD::Set_default_params()
 {
 	flag.Boost_To_CM = true;
 	flag.Debug_Mode = false;

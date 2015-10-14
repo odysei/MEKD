@@ -30,9 +30,8 @@ namespace mekd
 ///------------------------------------------------------------------------
 /// MEKD::MEKD - a default constructor
 ///------------------------------------------------------------------------
-MEKD::MEKD(double collisionEnergy, string PDFName)
+MEKD::MEKD(double collisionEnergy, string PDFName): MEKD()
 {
-	MEKD();
 	m_collisionEnergy = collisionEnergy;
 	m_PDFName = PDFName;
 
@@ -771,12 +770,12 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 		id5 = 0;
 
 	/// Compute ME for process A only (e.g. signal 1)
-	return_code = Run_MEKD_MG(m_processA);
+	return_code = Run(m_processA);
 	/// Get ME for process A
 	me2processA = Signal_ME;
 
 	/// Compute ME for process B only (e.g. signal 2 or background)
-	return_code = Run_MEKD_MG(m_processB);
+	return_code = Run(m_processB);
 	/// Get ME for process B
 	me2processB = Signal_ME;
 	/// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
@@ -832,7 +831,7 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 		id5 = 0;
 
 	/// Compute ME for the process (e.g. signal 1)
-	return_code = Run_MEKD_MG(m_process);
+	return_code = Run(m_process);
 	/// Get ME for the process
 	me2process = Signal_ME;
 
@@ -918,7 +917,7 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 		id5 = 0;
 
 	/// Compute MEs
-	return_code = Run_MEKD_MG();
+	return_code = Run();
 
 	/// ME value readouts
 	ME_ZZ = Signal_MEs[0];

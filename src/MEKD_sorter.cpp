@@ -2,8 +2,8 @@
 /// Part responsible for        ///
 /// momenta rearrangement       ///
 ///////////////////////////////////
-#ifndef MEKD_MG_sorter_cpp
-#define MEKD_MG_sorter_cpp
+#ifndef MEKD_sorter_cpp
+#define MEKD_sorter_cpp
 
 #include "../interface/MEKD.h"
 
@@ -451,6 +451,6 @@ int MEKD::Arrange_Internal_pls()
 
 #endif
 
-///////////////////////////////////
-/// END OF MEKD_MG_Sorter.cpp   ///
-///////////////////////////////////
+////////////////////////////////
+/// END OF MEKD_sorter.cpp   ///
+////////////////////////////////

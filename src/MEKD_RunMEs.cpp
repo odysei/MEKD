@@ -11,48 +11,48 @@ namespace mekd
 {
 
 /// ZZ and DY processes
-int MEKD::Run_MEKD_MG_ME_Configurator_BKG_ZZ(string initial_state)
+int MEKD::Run_ME_Configurator_BKG_ZZ(string initial_state)
 {
-	return Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(initial_state);
+	return Run_ME_Dispatcher_BKG_ZZ(initial_state);
 }
 
 /// Z4l Background processes (t channel)
-int MEKD::Run_MEKD_MG_ME_Configurator_Z4l_BKG(string initial_state)
+int MEKD::Run_ME_Configurator_Z4l_BKG(string initial_state)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		Set_Of_Model_Parameters.set_block_entry("mass", 23, Mass_4l);
-	return Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(initial_state);
+	return Run_ME_Dispatcher_Z4l_BKG(initial_state);
 }
 
 /// Z4l Signal processes (s channel)
-int MEKD::Run_MEKD_MG_ME_Configurator_Z4l_SIG(string initial_state)
+int MEKD::Run_ME_Configurator_Z4l_SIG(string initial_state)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		Set_Of_Model_Parameters.set_block_entry("mass", 23, Mass_4l);
-	return Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(initial_state);
+	return Run_ME_Dispatcher_Z4l_SIG(initial_state);
 }
 
-int MEKD::Run_MEKD_MG_ME_Configurator_Custom()
+int MEKD::Run_ME_Configurator_Custom()
 {
-	if ((error_value = Run_MEKD_MG_ME_Dispatcher_SIG_Spin0("gg")) != 0)
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin0("gg")) != 0)
 		return error_value;
 	buffer_Custom = Signal_ME;
-	if ((error_value = Run_MEKD_MG_ME_Dispatcher_SIG_Spin1("qq")) != 0)
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin1("qq")) != 0)
 		return error_value;
 	buffer_Custom += Signal_ME;
-	if ((error_value = Run_MEKD_MG_ME_Dispatcher_SIG_Spin2("gg")) != 0)
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin2("gg")) != 0)
 		return error_value;
 	buffer_Custom += Signal_ME;
-	if ((error_value = Run_MEKD_MG_ME_Dispatcher_SIG_Spin2("qq")) != 0)
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin2("qq")) != 0)
 		return error_value;
 	Signal_ME += buffer_Custom;
 
 	return 0;
 }
 
-int MEKD::Run_MEKD_MG_ME_Configurator_CPPProcess(string initial_state)
+int MEKD::Run_ME_Configurator_CPPProcess(string initial_state)
 {
-	return Run_MEKD_MG_ME_Dispatcher_CPPProcess(initial_state);
+	return Run_ME_Dispatcher_CPPProcess(initial_state);
 }
 
 ////////////////////////////////////
@@ -60,7 +60,7 @@ int MEKD::Run_MEKD_MG_ME_Configurator_CPPProcess(string initial_state)
 ////////////////////////////////////
 
 /// A SM Higgs
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin0Pm(string initial_state)
+int MEKD::Run_ME_Configurator_Spin0Pm(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] =
@@ -76,11 +76,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin0Pm(string initial_state)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_MEKD_MG_ME_Configurator_Spin0(initial_state);
+	return Run_ME_Configurator_Spin0(initial_state);
 }
 
 /// A pseudoscalar
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin0M(string initial_state)
+int MEKD::Run_ME_Configurator_Spin0M(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -94,11 +94,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin0M(string initial_state)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
 	}
 
-	return Run_MEKD_MG_ME_Configurator_Spin0(initial_state);
+	return Run_ME_Configurator_Spin0(initial_state);
 }
 
 /// A scalar with higher-order couplings
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin0Ph(string initial_state)
+int MEKD::Run_ME_Configurator_Spin0Ph(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -112,7 +112,7 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin0Ph(string initial_state)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_MEKD_MG_ME_Configurator_Spin0(initial_state);
+	return Run_ME_Configurator_Spin0(initial_state);
 }
 
 ////////////////////////////////////
@@ -120,7 +120,7 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin0Ph(string initial_state)
 ////////////////////////////////////
 
 /// A vector default configuration
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin1M(string initial_state)
+int MEKD::Run_ME_Configurator_Spin1M(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin1_internal[0] =
@@ -137,11 +137,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin1M(string initial_state)
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_MEKD_MG_ME_Configurator_Spin1(initial_state);
+	return Run_ME_Configurator_Spin1(initial_state);
 }
 
 /// A vector default configuration
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin1P(string initial_state)
+int MEKD::Run_ME_Configurator_Spin1P(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin1_internal[0] = complex<double>(0, 0); // Production
@@ -158,7 +158,7 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin1P(string initial_state)
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_MEKD_MG_ME_Configurator_Spin1(initial_state);
+	return Run_ME_Configurator_Spin1(initial_state);
 }
 
 ////////////////////////////////////
@@ -166,7 +166,7 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin1P(string initial_state)
 ////////////////////////////////////
 
 /// A minimal-coupling KK graviton
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Pm(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Pm(string initial_state)
 {
 	Predefined_Model = true;
 	if (initial_state == "gg")
@@ -205,11 +205,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Pm(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Ph(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -249,11 +249,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Mh(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -293,11 +293,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Pb(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Pb(string initial_state)
 {
 	Predefined_Model = true;
 	if (initial_state == "gg")
@@ -336,11 +336,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Pb(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph2(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Ph2(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -378,11 +378,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph2(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph3(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Ph3(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -422,11 +422,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph3(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph6(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Ph6(string initial_state)
 {
 	Predefined_Model = true;
 	if (initial_state == "gg")
@@ -465,11 +465,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph6(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph7(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Ph7(string initial_state)
 {
 	Predefined_Model = true;
 	if (initial_state == "gg")
@@ -508,11 +508,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Ph7(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh9(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Mh9(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -552,11 +552,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh9(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 ///
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh10(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2Mh10(string initial_state)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0); // Production
@@ -596,11 +596,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2Mh10(string initial_state)
 	if (initial_state == "qq")
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_MEKD_MG_ME_Configurator_Spin2(initial_state);
+	return Run_ME_Configurator_Spin2(initial_state);
 }
 
 /// A generic spin-0 resonance handler
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
+int MEKD::Run_ME_Configurator_Spin0(string initial_state)
 {
 	if (Predefined_Model) {
 		buffer_complex = Mixing_Coefficients_Spin0_internal;
@@ -742,11 +742,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin0(string initial_state)
 
 	buffer_complex = NULL;
 
-	return Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(initial_state);
+	return Run_ME_Dispatcher_SIG_Spin0(initial_state);
 }
 
 /// A generic spin-1 resonance handler
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin1(string initial_state)
+int MEKD::Run_ME_Configurator_Spin1(string initial_state)
 {
 	if (Predefined_Model) {
 		buffer_complex = Mixing_Coefficients_Spin1_internal;
@@ -913,11 +913,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin1(string initial_state)
 
 	buffer_complex = NULL;
 
-	return Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(initial_state);
+	return Run_ME_Dispatcher_SIG_Spin1(initial_state);
 }
 
 /// A generic spin-2 resonance handler
-int MEKD::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
+int MEKD::Run_ME_Configurator_Spin2(string initial_state)
 {
 	if (Predefined_Model) {
 		buffer_complex = Mixing_Coefficients_Spin2_internal;
@@ -1248,11 +1248,11 @@ int MEKD::Run_MEKD_MG_ME_Configurator_Spin2(string initial_state)
 
 	buffer_complex = NULL;
 
-	return Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(initial_state);
+	return Run_ME_Dispatcher_SIG_Spin2(initial_state);
 }
 
 /// ME_RAW (RAW MG5_aMC ME) dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
+int MEKD::Run_ME_Dispatcher_CPPProcess(string initial_state)
 {
 	// 	if( Resonance_decay_mode=="ZZ" )
 	// 	{
@@ -1264,32 +1264,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	// );
 	//
 	// 			if( initial_state=="NO" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1308,37 +1308,37 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	//
 	// 			if( initial_state=="NO" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1354,42 +1354,42 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	// 			if( initial_state=="NO" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1405,32 +1405,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	// );
 	//
 	// 			if( initial_state=="NO" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && Final_state=="4e" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && Final_state=="4eA" )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1449,37 +1449,37 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	//
 	// 			if( initial_state=="NO" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="2e2m" ||
 	// Final_state=="2e2mu") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="2e2mA" ||
 	// Final_state=="2e2muA") )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1495,42 +1495,42 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	// 			if( initial_state=="NO" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="NO" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 				return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="gg" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 				return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_RAW
 	// );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="4m" ||
 	// Final_state=="4mu")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 			if( initial_state=="qq" && (Final_state=="4mA" ||
 	// Final_state=="4muA")
 	// )
-	// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 				return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 		}
@@ -1545,36 +1545,36 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false, ME_RAW
+	// 			return Run_MEs_Evaluator_Initial_State_NO( false, ME_RAW
 	// );
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true, ME_RAW
+	// 			return Run_MEs_Evaluator_Initial_State_NO( true, ME_RAW
 	// );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false, ME_RAW
+	// 			return Run_MEs_Evaluator_Initial_State_gg( false, ME_RAW
 	// );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true, ME_RAW
+	// 			return Run_MEs_Evaluator_Initial_State_gg( true, ME_RAW
 	// );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_RAW,
 	// ME_RAW );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_RAW,
 	// ME_RAW );
 	// 	}
@@ -1583,7 +1583,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_CPPProcess(string initial_state)
 }
 
 /// ZZ and DY ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
+int MEKD::Run_ME_Dispatcher_BKG_ZZ(string initial_state)
 {
 	if (initial_state == "NO" &&
 		!(Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
@@ -1601,28 +1601,28 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
 		Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 		// 		if( initial_state=="NO" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_ZZ_SF
 		// );
 		//
 		// 		if( initial_state=="NO" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_ZZ_SFpA );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_ZZ_SF );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_ZZ_SFpA );
 
 		if (initial_state == "qq" && Final_state == "4e")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
 		if (initial_state == "qq" && Final_state == "4eA")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
 	}
 
@@ -1634,33 +1634,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_ZZ_OF
 		// );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_ZZ_OFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_ZZ_OF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_ZZ_OFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_OF, ME_qq_ZZ_UpType_OF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_OFpA, ME_qq_ZZ_UpType_OFpA);
 	}
 
@@ -1671,33 +1671,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_ZZ_SF
 		// );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_ZZ_SFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_ZZ_SF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_ZZ_SFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "4m" || Final_state == "4mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "4mA" || Final_state == "4muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
 	}
 
@@ -1708,30 +1708,30 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
 
 		if (initial_state == "NO" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(false, ME_DY_2l);
+			return Run_MEs_Evaluator_Initial_State_NO(false, ME_DY_2l);
 
 		if (initial_state == "NO" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(true, ME_DY_2lpA);
+			return Run_MEs_Evaluator_Initial_State_NO(true, ME_DY_2lpA);
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2m" ||
 		// Final_state=="2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_DY_2l );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2mA" ||
 		// Final_state=="2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_DY_2lpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_DY_DownType_2l, ME_qq_DY_UpType_2l);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_DY_DownType_2lpA, ME_qq_DY_UpType_2lpA);
 	}
 
@@ -1739,7 +1739,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_BKG_ZZ(string initial_state)
 }
 
 /// Z4l Background ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
+int MEKD::Run_ME_Dispatcher_Z4l_BKG(string initial_state)
 {
 	if (initial_state == "NO") {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
@@ -1761,27 +1761,27 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
 		Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 		// 		if( initial_state=="NO" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_BKG_SF );
 		//
 		// 		if( initial_state=="NO" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_BKG_SFpA );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_BKG_SF );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_BKG_SFpA );
 
 		if (initial_state == "qq" && Final_state == "4e")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
 
 		if (initial_state == "qq" && Final_state == "4eA")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
 	}
 
@@ -1793,32 +1793,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_BKG_OF );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_BKG_OFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_BKG_OF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_BKG_OFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_OF, ME_qq_Z4l_BKG_UpType_OF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_OFpA, ME_qq_Z4l_BKG_UpType_OFpA);
 	}
 
@@ -1829,32 +1829,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_BKG_SF );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_BKG_SFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_BKG_SF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_BKG_SFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "4m" || Final_state == "4mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "4mA" || Final_state == "4muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
 	}
 
@@ -1866,35 +1866,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_Z4l_BKG_2l );
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_Z4l_BKG_2lpA );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_gg_Z4l_BKG__2l );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_gg_Z4l_BKG__2lpA );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_qq_Z4l_BKG_DownType_2l, ME_qq_Z4l_BKG_UpType_2l );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_qq_Z4l_BKG_DownType_2lpA, ME_qq_Z4l_BKG_UpType_2lpA );
 	// 	}
 
@@ -1902,7 +1902,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_BKG(string initial_state)
 }
 
 /// Z4l Signal ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
+int MEKD::Run_ME_Dispatcher_Z4l_SIG(string initial_state)
 {
 	if (initial_state == "NO") {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
@@ -1924,27 +1924,27 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
 		Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 		// 		if( initial_state=="NO" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_SIG_SF );
 		//
 		// 		if( initial_state=="NO" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_SIG_SFpA );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4e" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_SIG_SF );
 		//
 		// 		if( initial_state=="gg" && Final_state=="4eA" )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_SIG_SFpA );
 
 		if (initial_state == "qq" && Final_state == "4e")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
 
 		if (initial_state == "qq" && Final_state == "4eA")
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
 	}
 
@@ -1956,32 +1956,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_SIG_OF );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_SIG_OFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2m" ||
 		// Final_state=="2e2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_SIG_OF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2e2mA" ||
 		// Final_state=="2e2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_SIG_OFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_OF, ME_qq_Z4l_SIG_UpType_OF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_OFpA, ME_qq_Z4l_SIG_UpType_OFpA);
 	}
 
@@ -1992,32 +1992,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
 
 		// 		if( initial_state=="NO" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 		// ME_Z4l_SIG_SF );
 		//
 		// 		if( initial_state=="NO" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+		// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 		// ME_Z4l_SIG_SFpA );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4m" ||
 		// Final_state=="4mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_gg_Z4l_SIG_SF );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="4mA" ||
 		// Final_state=="4muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_gg_Z4l_SIG_SFpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "4m" || Final_state == "4mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
 
 		if (initial_state == "qq" &&
 			(Final_state == "4mA" || Final_state == "4muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
 	}
 
@@ -2029,35 +2029,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( false,
+	// 			return Run_MEs_Evaluator_Initial_State_NO( false,
 	// ME_Z4l_SIG_2l );
 	//
 	// 		if( initial_state=="NO" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO( true,
+	// 			return Run_MEs_Evaluator_Initial_State_NO( true,
 	// ME_Z4l_SIG_2lpA );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+	// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 	// ME_gg_Z4l_SIG__2l );
 	//
 	// 		if( initial_state=="gg" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+	// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 	// ME_gg_Z4l_SIG__2lpA );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2m" || Final_state=="2mu")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( false,
 	// ME_qq_Z4l_SIG_DownType_2l, ME_qq_Z4l_SIG_UpType_2l );
 	//
 	// 		if( initial_state=="qq" && (Final_state=="2mA" ||
 	// Final_state=="2muA")
 	// )
-	// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+	// 			return Run_MEs_Evaluator_Initial_State_qqbar( true,
 	// ME_qq_Z4l_SIG_DownType_2lpA, ME_qq_Z4l_SIG_UpType_2lpA );
 	// 	}
 
@@ -2065,7 +2065,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_Z4l_SIG(string initial_state)
 }
 
 /// Spin-0 ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
+int MEKD::Run_ME_Dispatcher_SIG_Spin0(string initial_state)
 {
 	if (initial_state == "qq") {
 		cerr << "Spin-0 qqbar initial state is redundant, thus not provided.\n";
@@ -2078,28 +2078,28 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_SFpA);
 
 			if (initial_state == "gg" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_SF);
 
 			if (initial_state == "gg" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_SFpA);
 
 			// 			if( initial_state=="qq" && Final_state=="4e" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_SF, ME_Signal_qq_Spin0_UpType_SF );
 			//
 			// 			if( initial_state=="qq" && Final_state=="4eA" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_DownType_SFpA, ME_Signal_qq_Spin0_UpType_SFpA
 			// );
@@ -2113,33 +2113,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_OFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_OF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_OFpA);
 
 			// 			if( initial_state=="qq" && (Final_state=="2e2m" ||
 			// Final_state=="2e2mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_OF, ME_Signal_qq_Spin0_UpType_OF );
 			//
 			// 			if( initial_state=="qq" && (Final_state=="2e2mA" ||
 			// Final_state=="2e2muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_DownType_OFpA, ME_Signal_qq_Spin0_UpType_OFpA
 			// );
@@ -2152,33 +2152,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_SFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_SF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_SFpA);
 
 			// 			if( initial_state=="qq" && (Final_state=="4m" ||
 			// Final_state=="4mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_SF, ME_Signal_qq_Spin0_UpType_SF );
 			//
 			// 			if( initial_state=="qq" && (Final_state=="4mA" ||
 			// Final_state=="4muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_DownType_SFpA, ME_Signal_qq_Spin0_UpType_SFpA
 			// );
@@ -2191,29 +2191,29 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_SFpA);
 
 			if (initial_state == "gg" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_SF);
 
 			if (initial_state == "gg" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_SFpA);
 
 			// 			if( initial_state=="qq" && Final_state=="4e" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF );
 			//
 			// 			if( initial_state=="qq" && Final_state=="4eA" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_2f_DownType_SFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_SFpA );
@@ -2227,34 +2227,34 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_OFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_OF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_OFpA);
 
 			// 			if( initial_state=="qq" && (Final_state=="2e2m" ||
 			// Final_state=="2e2mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_OF,
 			// ME_Signal_qq_Spin0_2f_UpType_OF );
 			//
 			// 			if( initial_state=="qq" && (Final_state=="2e2mA" ||
 			// Final_state=="2e2muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_2f_DownType_OFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_OFpA );
@@ -2267,34 +2267,34 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_SFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_SF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_SFpA);
 
 			// 			if( initial_state=="qq" && (Final_state=="4m" ||
 			// Final_state=="4mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF );
 			//
 			// 			if( initial_state=="qq" && (Final_state=="4mA" ||
 			// Final_state=="4muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_2f_DownType_SFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_SFpA );
@@ -2308,32 +2308,32 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 
 		if (initial_state == "NO" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin0_2l);
 
 		if (initial_state == "NO" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin0_2lpA);
 
 		if (initial_state == "gg" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			return Run_MEs_Evaluator_Initial_State_gg(
 				false, ME_Signal_gg_Spin0_2l);
 
 		if (initial_state == "gg" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			return Run_MEs_Evaluator_Initial_State_gg(
 				true, ME_Signal_gg_Spin0_2lpA);
 
 		// 		if( initial_state=="qq" && (Final_state=="2m" ||
 		// Final_state=="2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( false,
+		// 			return Run_MEs_Evaluator_Initial_State_qqbar( false,
 		// ME_Signal_qq_Spin0_DownType_2l, ME_Signal_qq_Spin0_UpType_2l );
 
 		// 		if( initial_state=="qq" && (Final_state=="2mA" ||
 		// Final_state=="2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar( true,
+		// 			return Run_MEs_Evaluator_Initial_State_qqbar( true,
 		// ME_Signal_qq_Spin0_DownType_2lpA, ME_Signal_qq_Spin0_UpType_2lpA );
 	}
 
@@ -2341,7 +2341,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin0(string initial_state)
 }
 
 /// Spin-1 ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
+int MEKD::Run_ME_Dispatcher_SIG_Spin1(string initial_state)
 {
 	if (initial_state == "gg") {
 		cerr << "Spin-1 gg initial state is not possible, thus not provided.\n";
@@ -2354,30 +2354,30 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_SFpA);
 
 			// 			if( initial_state=="gg" && Final_state=="4e" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_SF );
 			//
 			// 			if( initial_state=="gg" && Final_state=="4eA" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_SFpA );
 
 			if (initial_state == "qq" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
 			if (initial_state == "qq" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_SFpA,
 					ME_Signal_qq_Spin1_UpType_SFpA);
 		}
@@ -2390,35 +2390,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_OFpA);
 
 			//	 		if( initial_state=="gg" && (Final_state=="2e2m" ||
 			// Final_state=="2e2mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_OF );
 			//
 			// 			if( initial_state=="gg" && (Final_state=="2e2mA" ||
 			// Final_state=="2e2muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_OFpA );
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_OF,
 					ME_Signal_qq_Spin1_UpType_OF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_OFpA,
 					ME_Signal_qq_Spin1_UpType_OFpA);
 		}
@@ -2430,35 +2430,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_SFpA);
 
 			// 			if( initial_state=="gg" && (Final_state=="4m" ||
 			// Final_state=="4mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_SF );
 			//
 			// 			if( initial_state=="gg" && (Final_state=="4mA" ||
 			// Final_state=="4muA") )
-			//	 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			//	 			return Run_MEs_Evaluator_Initial_State_gg(
 			//true,
 			// ME_Signal_gg_Spin1_SFpA );
 
 			if (initial_state == "qq" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_SFpA,
 					ME_Signal_qq_Spin1_UpType_SFpA);
 		}
@@ -2470,30 +2470,30 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_SFpA);
 
 			// 			if( initial_state=="gg" && Final_state=="4e" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_SF );
 			//
 			// 			if( initial_state=="gg" && Final_state=="4eA" )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_2f_SFpA );
 
 			if (initial_state == "qq" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
 			if (initial_state == "qq" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
 					ME_Signal_qq_Spin1_2f_UpType_SFpA);
 		}
@@ -2506,35 +2506,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_OFpA);
 
 			//	 		if( initial_state=="gg" && (Final_state=="2e2m" ||
 			// Final_state=="2e2mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_OF );
 			//
 			// 			if( initial_state=="gg" && (Final_state=="2e2mA" ||
 			// Final_state=="2e2muA") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_2f_OFpA );
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_OF,
 					ME_Signal_qq_Spin1_2f_UpType_OF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_OFpA,
 					ME_Signal_qq_Spin1_2f_UpType_OFpA);
 		}
@@ -2546,35 +2546,35 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_SFpA);
 
 			// 			if( initial_state=="gg" && (Final_state=="4m" ||
 			// Final_state=="4mu") )
-			// 				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_SF );
 			//
 			// 			if( initial_state=="gg" && (Final_state=="4mA" ||
 			// Final_state=="4muA") )
-			//	 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			//	 			return Run_MEs_Evaluator_Initial_State_gg(
 			//true,
 			// ME_Signal_gg_Spin1_2f_SFpA );
 
 			if (initial_state == "qq" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
 					ME_Signal_qq_Spin1_2f_UpType_SFpA);
 		}
@@ -2587,33 +2587,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 
 		if (initial_state == "NO" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin1_2l);
 
 		if (initial_state == "NO" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin1_2lpA);
 
 		// 		if( initial_state=="gg" && (Final_state=="2m" ||
 		// Final_state=="2mu") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( false,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( false,
 		// ME_Signal_gg_Spin1_2l );
 		//
 		// 		if( initial_state=="gg" && (Final_state=="2mA" ||
 		// Final_state=="2muA") )
-		// 			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg( true,
+		// 			return Run_MEs_Evaluator_Initial_State_gg( true,
 		// ME_Signal_gg_Spin1_2lpA );
 
 		if (initial_state == "qq" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_Signal_qq_Spin1_DownType_2l,
 				ME_Signal_qq_Spin1_UpType_2l);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_Signal_qq_Spin1_DownType_2lpA,
 				ME_Signal_qq_Spin1_UpType_2lpA);
 	}
@@ -2622,7 +2622,7 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin1(string initial_state)
 }
 
 /// Spin-2 ME dispatcher
-int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
+int MEKD::Run_ME_Dispatcher_SIG_Spin2(string initial_state)
 {
 	if (Resonance_decay_mode == "ZZ") {
 		if (Final_state == "4e" || Final_state == "4eA") {
@@ -2630,28 +2630,28 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_SFpA);
 
 			if (initial_state == "gg" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_SF);
 
 			if (initial_state == "gg" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_SFpA);
 
 			if (initial_state == "qq" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
 			if (initial_state == "qq" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_SFpA,
 					ME_Signal_qq_Spin2_UpType_SFpA);
 		}
@@ -2664,33 +2664,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_OFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_OF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_OFpA);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_OF,
 					ME_Signal_qq_Spin2_UpType_OF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_OFpA,
 					ME_Signal_qq_Spin2_UpType_OFpA);
 		}
@@ -2702,33 +2702,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_SFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_SF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_SFpA);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_SFpA,
 					ME_Signal_qq_Spin2_UpType_SFpA);
 		}
@@ -2740,28 +2740,28 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 			Set_Of_Model_Parameters.set_block_entry("mass", 13, params_m_e);
 
 			if (initial_state == "NO" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_SF);
 
 			if (initial_state == "NO" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_SFpA);
 
 			if (initial_state == "gg" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_SF);
 
 			if (initial_state == "gg" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_SFpA);
 
 			if (initial_state == "qq" && Final_state == "4e")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
 			if (initial_state == "qq" && Final_state == "4eA")
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
 					ME_Signal_qq_Spin2_2f_UpType_SFpA);
 		}
@@ -2774,33 +2774,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_OF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_OFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_OF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_OFpA);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_OF,
 					ME_Signal_qq_Spin2_2f_UpType_OF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_OFpA,
 					ME_Signal_qq_Spin2_2f_UpType_OFpA);
 		}
@@ -2812,33 +2812,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 
 			if (initial_state == "NO" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_SF);
 
 			if (initial_state == "NO" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_SFpA);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_SF);
 
 			if (initial_state == "gg" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_SFpA);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4m" || Final_state == "4mu"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
 			if (initial_state == "qq" &&
 				(Final_state == "4mA" || Final_state == "4muA"))
-				return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
 					ME_Signal_qq_Spin2_2f_UpType_SFpA);
 		}
@@ -2851,33 +2851,33 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 
 		if (initial_state == "NO" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin2_2l);
 
 		if (initial_state == "NO" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
+			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin2_2lpA);
 
 		if (initial_state == "gg" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			return Run_MEs_Evaluator_Initial_State_gg(
 				false, ME_Signal_gg_Spin2_2l);
 
 		if (initial_state == "gg" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
+			return Run_MEs_Evaluator_Initial_State_gg(
 				true, ME_Signal_gg_Spin2_2lpA);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2m" || Final_state == "2mu"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_Signal_qq_Spin2_DownType_2l,
 				ME_Signal_qq_Spin2_UpType_2l);
 
 		if (initial_state == "qq" &&
 			(Final_state == "2mA" || Final_state == "2muA"))
-			return Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
+			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_Signal_qq_Spin2_DownType_2lpA,
 				ME_Signal_qq_Spin2_UpType_2lpA);
 	}
@@ -2885,9 +2885,9 @@ int MEKD::Run_MEKD_MG_ME_Dispatcher_SIG_Spin2(string initial_state)
 	return 1;
 }
 
-template <class Generic_MEKD_MG_ME>
-int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
-	bool photon, Generic_MEKD_MG_ME &Generic_ME)
+template <class Generic_MEKD_ME>
+int MEKD::Run_MEs_Evaluator_Initial_State_NO(bool photon,
+											 Generic_MEKD_ME &Generic_ME)
 {
 	Signal_ME = 0;
 
@@ -2946,9 +2946,9 @@ int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_NO(
 	return 0;
 }
 
-template <class Generic_MEKD_MG_ME>
-int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
-	bool photon, Generic_MEKD_MG_ME &Generic_ME)
+template <class Generic_MEKD_ME>
+int MEKD::Run_MEs_Evaluator_Initial_State_gg(bool photon,
+											 Generic_MEKD_ME &Generic_ME)
 {
 	Signal_ME = 0;
 
@@ -2970,10 +2970,10 @@ int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_gg(
 	return 0;
 }
 
-template <class Generic_MEKD_MG_ME_s, class Generic_MEKD_MG_ME_c>
-int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
-	bool photon, Generic_MEKD_MG_ME_s &Generic_ME_s,
-	Generic_MEKD_MG_ME_c &Generic_ME_c)
+template <class Generic_MEKD_ME_s, class Generic_MEKD_ME_c>
+int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
+												Generic_MEKD_ME_s &Generic_ME_s,
+												Generic_MEKD_ME_c &Generic_ME_c)
 {
 	Signal_ME = 0;
 
@@ -3136,6 +3136,6 @@ int MEKD::Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 }
 
 #endif
-///////////////////////////////////
-/// END OF MEKD_MG_RunMEs.cpp   ///
-///////////////////////////////////
+////////////////////////////////
+/// END OF MEKD_RunMEs.cpp   ///
+////////////////////////////////

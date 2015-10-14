@@ -191,7 +191,7 @@ int MEKD_Test_Debug_Ghosts_Test2()
 
 	if (Show_Description)
 		cout << "Testing ME ordering using int "
-				"MEKD.Run_MEKD_MG();\n";
+				"MEKD.Run();\n";
 
 	test2.p1 = p1;
 	test2.p2 = p2;
@@ -206,8 +206,8 @@ int MEKD_Test_Debug_Ghosts_Test2()
 	for (unsigned int count = 0; count < Nr_of_models; count++)
 		test2.Test_Models.push_back(model[count]);
 
-	if ((error_value = test2.Run_MEKD_MG()) != 0)
-		cout << "ERROR CODE in MEKD.Run_MEKD_MG(); Err: "
+	if ((error_value = test2.Run()) != 0)
+		cout << "ERROR CODE in MEKD.Run(); Err: "
 			 << error_value << endl;
 
 	for (unsigned int count = 0; count < Nr_of_models; count++)
@@ -249,8 +249,8 @@ int MEKD_Test_Debug_Ghosts_Test2()
 		for (unsigned int count = 0; count < Nr_of_models; count++)
 			test2_perm->Test_Models.push_back(model[order[count]]);
 
-		if ((error_value = test2_perm->Run_MEKD_MG()) != 0)
-			cout << "ERROR CODE in MEKD.Run_MEKD_MG(); Err: "
+		if ((error_value = test2_perm->Run()) != 0)
+			cout << "ERROR CODE in MEKD.Run(); Err: "
 				 << error_value << endl;
 
 		for (unsigned int count = 0; count < Nr_of_models; count++)

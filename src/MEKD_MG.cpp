@@ -18,7 +18,7 @@ MEKD::MEKD()
 	Mixing_Coefficients_Spin2 = new complex<double>[20];
 	Mixing_Coefficients_Spin2_internal = new complex<double>[20];
 
-	Set_Default_MEKD_MG_Parameters();
+	Set_default_params();
 
 	Check_MEs();
 
@@ -99,7 +99,7 @@ int MEKD::Load_Parameters()
 	return 0;
 }
 
-int MEKD::Reload_Parameters()
+int MEKD::Reload_params()
 {
 	if (!Parameters_Are_Loaded)
 		return 1;
@@ -168,7 +168,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	}
 }
 
-int MEKD::Run_MEKD_MG()
+int MEKD::Run()
 {
 	if (!Parameters_Are_Loaded)
 		Load_Parameters();
@@ -209,13 +209,13 @@ int MEKD::Run_MEKD_MG()
 	return 0;
 }
 
-int MEKD::Run_MEKD_MG(string Input_Model)
+int MEKD::Run(string Input_Model)
 {
 	buffer_string = Test_Model;
 	Test_Model = "!";
 	Test_Model += Input_Model;
 
-	error_value = Run_MEKD_MG();
+	error_value = Run();
 
 	Test_Model = buffer_string;
 	return error_value;
@@ -265,11 +265,11 @@ void MEKD::Run_calculate()
 	/// Background is interesting in any case, except for the Signal Runs or '!'
 	/// is indicated in the first model to save CPU
 	if (Test_Model[0] != '!' && Test_Models.size() == 0) {
-		Run_MEKD_MG_ME_Configurator_BKG_ZZ("qq");
+		Run_ME_Configurator_BKG_ZZ("qq");
 		Background_ME = Signal_ME;
 	} else if (Test_Models.size() > 0) {
 		if (Test_Models[0][0] != '!') {
-			Run_MEKD_MG_ME_Configurator_BKG_ZZ("qq");
+			Run_ME_Configurator_BKG_ZZ("qq");
 			Background_ME = Signal_ME;
 		}
 	}
@@ -290,28 +290,28 @@ void MEKD::Run_calculate()
 		// Is it a parameter card defined?
 		if ((*Test_Model_buffer) == "Custom" ||
 			(*Test_Model_buffer) == "!Custom")
-			Run_MEKD_MG_ME_Configurator_Custom();
+			Run_ME_Configurator_Custom();
 
 		// Is it a "background"?
 		else if ((*Test_Model_buffer) == "qqZZ" ||
 				 (*Test_Model_buffer) == "!qqZZ")
-			Run_MEKD_MG_ME_Configurator_BKG_ZZ("qq");
+			Run_ME_Configurator_BKG_ZZ("qq");
 		else if ((*Test_Model_buffer) == "ZZ" || (*Test_Model_buffer) == "!ZZ")
-			Run_MEKD_MG_ME_Configurator_BKG_ZZ("qq");
+			Run_ME_Configurator_BKG_ZZ("qq");
 
 		else if ((*Test_Model_buffer) == "qqDY" ||
 				 (*Test_Model_buffer) == "!qqDY")
-			Run_MEKD_MG_ME_Configurator_BKG_ZZ("qq");
+			Run_ME_Configurator_BKG_ZZ("qq");
 		else if ((*Test_Model_buffer) == "DY" || (*Test_Model_buffer) == "!DY")
-			Run_MEKD_MG_ME_Configurator_BKG_ZZ("NO");
+			Run_ME_Configurator_BKG_ZZ("NO");
 
 		// Is it a Z boson resonance?
 		else if ((*Test_Model_buffer) == "qqZ4l_Background" ||
 				 (*Test_Model_buffer) == "!qqZ4l_Background")
-			Run_MEKD_MG_ME_Configurator_Z4l_BKG("qq");
+			Run_ME_Configurator_Z4l_BKG("qq");
 		else if ((*Test_Model_buffer) == "qqZ4l_Signal" ||
 				 (*Test_Model_buffer) == "!qqZ4l_Signal")
-			Run_MEKD_MG_ME_Configurator_Z4l_SIG("qq");
+			Run_ME_Configurator_Z4l_SIG("qq");
 
 		/// Resonance to ZZ decay modes (with exceptions for 2l, 2l+A states).
 		/// Final states: 4 leptons (+photon) also 2 muons (+photon)
@@ -320,164 +320,164 @@ void MEKD::Run_calculate()
 		// Is it a spin-0 resonance?
 		if ((*Test_Model_buffer) == "ggSpin0Pm" ||
 			(*Test_Model_buffer) == "!ggSpin0Pm") // SM Higgs
-			Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
+			Run_ME_Configurator_Spin0Pm("gg");
 		else if ((*Test_Model_buffer) == "Spin0Pm" ||
 				 (*Test_Model_buffer) == "!Spin0Pm")
-			Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
+			Run_ME_Configurator_Spin0Pm("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin0M" ||
 				 (*Test_Model_buffer) == "!ggSpin0M")
-			Run_MEKD_MG_ME_Configurator_Spin0M("gg");
+			Run_ME_Configurator_Spin0M("gg");
 		else if ((*Test_Model_buffer) == "Spin0M" ||
 				 (*Test_Model_buffer) == "!Spin0M")
-			Run_MEKD_MG_ME_Configurator_Spin0M("NO");
+			Run_ME_Configurator_Spin0M("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin0Ph" ||
 				 (*Test_Model_buffer) == "!ggSpin0Ph")
-			Run_MEKD_MG_ME_Configurator_Spin0Ph("gg");
+			Run_ME_Configurator_Spin0Ph("gg");
 		else if ((*Test_Model_buffer) == "Spin0Ph" ||
 				 (*Test_Model_buffer) == "!Spin0Ph")
-			Run_MEKD_MG_ME_Configurator_Spin0Ph("NO");
+			Run_ME_Configurator_Spin0Ph("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin0" ||
 				 (*Test_Model_buffer) == "!ggSpin0")
-			Run_MEKD_MG_ME_Configurator_Spin0("gg");
+			Run_ME_Configurator_Spin0("gg");
 		else if ((*Test_Model_buffer) == "Spin0" ||
 				 (*Test_Model_buffer) == "!Spin0")
-			Run_MEKD_MG_ME_Configurator_Spin0("NO");
+			Run_ME_Configurator_Spin0("NO");
 
 		// Is it a spin-1 resonance?
 		else if ((*Test_Model_buffer) == "qqSpin1M" ||
 				 (*Test_Model_buffer) == "!qqSpin1M")
-			Run_MEKD_MG_ME_Configurator_Spin1M("qq");
+			Run_ME_Configurator_Spin1M("qq");
 		else if ((*Test_Model_buffer) == "Spin1M" ||
 				 (*Test_Model_buffer) == "!Spin1M")
-			Run_MEKD_MG_ME_Configurator_Spin1M("NO");
+			Run_ME_Configurator_Spin1M("NO");
 
 		else if ((*Test_Model_buffer) == "qqSpin1P" ||
 				 (*Test_Model_buffer) == "!qqSpin1P")
-			Run_MEKD_MG_ME_Configurator_Spin1P("qq");
+			Run_ME_Configurator_Spin1P("qq");
 		else if ((*Test_Model_buffer) == "Spin1P" ||
 				 (*Test_Model_buffer) == "!Spin1P")
-			Run_MEKD_MG_ME_Configurator_Spin1P("NO");
+			Run_ME_Configurator_Spin1P("NO");
 
 		else if ((*Test_Model_buffer) == "qqSpin1" ||
 				 (*Test_Model_buffer) == "!qqSpin1")
-			Run_MEKD_MG_ME_Configurator_Spin1("qq");
+			Run_ME_Configurator_Spin1("qq");
 		else if ((*Test_Model_buffer) == "Spin1" ||
 				 (*Test_Model_buffer) == "!Spin1")
-			Run_MEKD_MG_ME_Configurator_Spin1("NO");
+			Run_ME_Configurator_Spin1("NO");
 
 		// Is it a spin-2 resonance?
 		else if ((*Test_Model_buffer) == "ggSpin2Pm" ||
 				 (*Test_Model_buffer) == "!ggSpin2Pm")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("gg");
+			Run_ME_Configurator_Spin2Pm("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Pm" ||
 				 (*Test_Model_buffer) == "!qqSpin2Pm")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("qq");
+			Run_ME_Configurator_Spin2Pm("qq");
 		else if ((*Test_Model_buffer) == "Spin2Pm" ||
 				 (*Test_Model_buffer) == "!Spin2Pm")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("NO");
+			Run_ME_Configurator_Spin2Pm("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Ph" ||
 				 (*Test_Model_buffer) == "!ggSpin2Ph")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph("gg");
+			Run_ME_Configurator_Spin2Ph("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Ph" ||
 				 (*Test_Model_buffer) == "!qqSpin2Ph")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph("qq");
+			Run_ME_Configurator_Spin2Ph("qq");
 		else if ((*Test_Model_buffer) == "Spin2Ph" ||
 				 (*Test_Model_buffer) == "!Spin2Ph")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph("NO");
+			Run_ME_Configurator_Spin2Ph("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Mh" ||
 				 (*Test_Model_buffer) == "!ggSpin2Mh")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh("gg");
+			Run_ME_Configurator_Spin2Mh("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Mh" ||
 				 (*Test_Model_buffer) == "!qqSpin2Mh")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh("qq");
+			Run_ME_Configurator_Spin2Mh("qq");
 		else if ((*Test_Model_buffer) == "Spin2Mh" ||
 				 (*Test_Model_buffer) == "!Spin2Mh")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh("NO");
+			Run_ME_Configurator_Spin2Mh("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Pb" ||
 				 (*Test_Model_buffer) == "!ggSpin2Pb")
-			Run_MEKD_MG_ME_Configurator_Spin2Pb("gg");
+			Run_ME_Configurator_Spin2Pb("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Pb" ||
 				 (*Test_Model_buffer) == "!qqSpin2Pb")
-			Run_MEKD_MG_ME_Configurator_Spin2Pb("qq");
+			Run_ME_Configurator_Spin2Pb("qq");
 		else if ((*Test_Model_buffer) == "Spin2Pb" ||
 				 (*Test_Model_buffer) == "!Spin2Pb")
-			Run_MEKD_MG_ME_Configurator_Spin2Pb("NO");
+			Run_ME_Configurator_Spin2Pb("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Ph2" ||
 				 (*Test_Model_buffer) == "!ggSpin2Ph2")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph2("gg");
+			Run_ME_Configurator_Spin2Ph2("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Ph2" ||
 				 (*Test_Model_buffer) == "!qqSpin2Ph2")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph2("qq");
+			Run_ME_Configurator_Spin2Ph2("qq");
 		else if ((*Test_Model_buffer) == "Spin2Ph2" ||
 				 (*Test_Model_buffer) == "!Spin2Ph2")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph2("NO");
+			Run_ME_Configurator_Spin2Ph2("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Ph3" ||
 				 (*Test_Model_buffer) == "!ggSpin2Ph3")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph3("gg");
+			Run_ME_Configurator_Spin2Ph3("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Ph3" ||
 				 (*Test_Model_buffer) == "!qqSpin2Ph3")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph3("qq");
+			Run_ME_Configurator_Spin2Ph3("qq");
 		else if ((*Test_Model_buffer) == "Spin2Ph3" ||
 				 (*Test_Model_buffer) == "!Spin2Ph3")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph3("NO");
+			Run_ME_Configurator_Spin2Ph3("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Ph6" ||
 				 (*Test_Model_buffer) == "!ggSpin2Ph6")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph6("gg");
+			Run_ME_Configurator_Spin2Ph6("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Ph6" ||
 				 (*Test_Model_buffer) == "!qqSpin2Ph6")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph6("qq");
+			Run_ME_Configurator_Spin2Ph6("qq");
 		else if ((*Test_Model_buffer) == "Spin2Ph6" ||
 				 (*Test_Model_buffer) == "!Spin2Ph6")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph6("NO");
+			Run_ME_Configurator_Spin2Ph6("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Ph7" ||
 				 (*Test_Model_buffer) == "!ggSpin2Ph7")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph7("gg");
+			Run_ME_Configurator_Spin2Ph7("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Ph7" ||
 				 (*Test_Model_buffer) == "!qqSpin2Ph7")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph7("qq");
+			Run_ME_Configurator_Spin2Ph7("qq");
 		else if ((*Test_Model_buffer) == "Spin2Ph7" ||
 				 (*Test_Model_buffer) == "!Spin2Ph7")
-			Run_MEKD_MG_ME_Configurator_Spin2Ph7("NO");
+			Run_ME_Configurator_Spin2Ph7("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Mh9" ||
 				 (*Test_Model_buffer) == "!ggSpin2Mh9")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh9("gg");
+			Run_ME_Configurator_Spin2Mh9("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Mh9" ||
 				 (*Test_Model_buffer) == "!qqSpin2Mh9")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh9("qq");
+			Run_ME_Configurator_Spin2Mh9("qq");
 		else if ((*Test_Model_buffer) == "Spin2Mh9" ||
 				 (*Test_Model_buffer) == "!Spin2Mh9")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh9("NO");
+			Run_ME_Configurator_Spin2Mh9("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2Mh10" ||
 				 (*Test_Model_buffer) == "!ggSpin2Mh10")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh10("gg");
+			Run_ME_Configurator_Spin2Mh10("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Mh10" ||
 				 (*Test_Model_buffer) == "!qqSpin2Mh10")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh10("qq");
+			Run_ME_Configurator_Spin2Mh10("qq");
 		else if ((*Test_Model_buffer) == "Spin2Mh10" ||
 				 (*Test_Model_buffer) == "!Spin2Mh10")
-			Run_MEKD_MG_ME_Configurator_Spin2Mh10("NO");
+			Run_ME_Configurator_Spin2Mh10("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2" ||
 				 (*Test_Model_buffer) == "!ggSpin2")
-			Run_MEKD_MG_ME_Configurator_Spin2("gg");
+			Run_ME_Configurator_Spin2("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2" ||
 				 (*Test_Model_buffer) == "!qqSpin2")
-			Run_MEKD_MG_ME_Configurator_Spin2("qq");
+			Run_ME_Configurator_Spin2("qq");
 		else if ((*Test_Model_buffer) == "Spin2" ||
 				 (*Test_Model_buffer) == "!Spin2")
-			Run_MEKD_MG_ME_Configurator_Spin2("NO");
+			Run_ME_Configurator_Spin2("NO");
 
 		/// Resonance to 2l decay modes. Final states: 4 leptons (+photon)
 		Resonance_decay_mode = "2l";
@@ -485,78 +485,78 @@ void MEKD::Run_calculate()
 		// Is it a spin-0 resonance?
 		if ((*Test_Model_buffer) == "ggSpin0Pm_2f" ||
 			(*Test_Model_buffer) == "!ggSpin0Pm_2f") // SM Higgs
-			Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
+			Run_ME_Configurator_Spin0Pm("gg");
 		else if ((*Test_Model_buffer) == "Spin0Pm_2f" ||
 				 (*Test_Model_buffer) == "!Spin0Pm_2f")
-			Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
+			Run_ME_Configurator_Spin0Pm("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin0M_2f" ||
 				 (*Test_Model_buffer) == "!ggSpin0M_2f")
-			Run_MEKD_MG_ME_Configurator_Spin0M("gg");
+			Run_ME_Configurator_Spin0M("gg");
 		else if ((*Test_Model_buffer) == "Spin0M_2f" ||
 				 (*Test_Model_buffer) == "!Spin0M_2f")
-			Run_MEKD_MG_ME_Configurator_Spin0M("NO");
+			Run_ME_Configurator_Spin0M("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin0_2f" ||
 				 (*Test_Model_buffer) == "!ggSpin0_2f")
-			Run_MEKD_MG_ME_Configurator_Spin0("gg");
+			Run_ME_Configurator_Spin0("gg");
 		else if ((*Test_Model_buffer) == "Spin0_2f" ||
 				 (*Test_Model_buffer) == "!Spin0_2f")
-			Run_MEKD_MG_ME_Configurator_Spin0("NO");
+			Run_ME_Configurator_Spin0("NO");
 
 		// Is it a spin-1 resonance?
 		else if ((*Test_Model_buffer) == "qqSpin1M_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin1M_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1M("qq");
+			Run_ME_Configurator_Spin1M("qq");
 		else if ((*Test_Model_buffer) == "Spin1M" ||
 				 (*Test_Model_buffer) == "!Spin1M_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1M("NO");
+			Run_ME_Configurator_Spin1M("NO");
 
 		else if ((*Test_Model_buffer) == "qqSpin1P_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin1P_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1P("qq");
+			Run_ME_Configurator_Spin1P("qq");
 		else if ((*Test_Model_buffer) == "Spin1P_2f" ||
 				 (*Test_Model_buffer) == "!Spin1P_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1P("NO");
+			Run_ME_Configurator_Spin1P("NO");
 
 		else if ((*Test_Model_buffer) == "qqSpin1_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin1_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1("qq");
+			Run_ME_Configurator_Spin1("qq");
 		else if ((*Test_Model_buffer) == "Spin1_2f" ||
 				 (*Test_Model_buffer) == "!Spin1_2f")
-			Run_MEKD_MG_ME_Configurator_Spin1("NO");
+			Run_ME_Configurator_Spin1("NO");
 
 		// Is it a spin-2 resonance?
 		else if ((*Test_Model_buffer) == "ggSpin2Pm_2f" ||
 				 (*Test_Model_buffer) == "!ggSpin2Pm_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("gg");
+			Run_ME_Configurator_Spin2Pm("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2Pm_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin2Pm_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("qq");
+			Run_ME_Configurator_Spin2Pm("qq");
 		else if ((*Test_Model_buffer) == "Spin2Pm_2f" ||
 				 (*Test_Model_buffer) == "!Spin2Pm_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("NO");
+			Run_ME_Configurator_Spin2Pm("NO");
 
 		else if ((*Test_Model_buffer) == "ggSpin2_2f" ||
 				 (*Test_Model_buffer) == "!ggSpin2_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("gg");
+			Run_ME_Configurator_Spin2Pm("gg");
 		else if ((*Test_Model_buffer) == "qqSpin2_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin2_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("qq");
+			Run_ME_Configurator_Spin2Pm("qq");
 		else if ((*Test_Model_buffer) == "Spin2_2f" ||
 				 (*Test_Model_buffer) == "!Spin2_2f")
-			Run_MEKD_MG_ME_Configurator_Spin2Pm("NO");
+			Run_ME_Configurator_Spin2Pm("NO");
 
 		// Is it a RAW MG5_aMC ME?
 		if ((*Test_Model_buffer) == "ggCPPProcess" ||
 			(*Test_Model_buffer) == "!ggCPPProcess") // ME_RAW
-			Run_MEKD_MG_ME_Configurator_CPPProcess("gg");
+			Run_ME_Configurator_CPPProcess("gg");
 		else if ((*Test_Model_buffer) == "qqCPPProcess" ||
 				 (*Test_Model_buffer) == "!qqCPPProcess")
-			Run_MEKD_MG_ME_Configurator_CPPProcess("qq");
+			Run_ME_Configurator_CPPProcess("qq");
 		else if ((*Test_Model_buffer) == "CPPProcess" ||
 				 (*Test_Model_buffer) == "!CPPProcess")
-			Run_MEKD_MG_ME_Configurator_CPPProcess("NO");
+			Run_ME_Configurator_CPPProcess("NO");
 
 		if (flag.Debug_Mode)
 			cout << "Evaluated model: " << (*Test_Model_buffer)
@@ -709,19 +709,6 @@ void MEKD::Approx_pos_z_parton(double *p, double E)
 	p[2] = 0;
 	p[3] = -0.5 * E; // to be recalculated
 }
-
-///#include "MEKD_MG_2Model_Mixer.cpp"
-/////////////////////////////////////////
-/// INCLUDED MEKD_MG_2Model_Mixer.cpp ///
-/// code follows below                ///
-///                                   ///
-/// Part responsible for              ///
-/// holding mixed couplings           ///
-/////////////////////////////////////////
-
-///////////////////////////////////////
-/// END OF MEKD_MG_2Model_Mixer.cpp ///
-///////////////////////////////////////
 
 /// end of namespace
 }
