@@ -2,8 +2,8 @@
 ///  Helper functions useful for///
 ///  debugging                  ///
 ///////////////////////////////////
-#ifndef MEKD_MG_DEBUG_cpp
-#define MEKD_MG_DEBUG_cpp
+#ifndef MEKD_debug_cpp
+#define MEKD_debug_cpp
 
 #include "../interface/MEKD.h"
 
@@ -11,7 +11,7 @@ namespace mekd
 {
 
 /// 6 4-momenta printout
-void MEKD_MG::Print_4momenta(vector<double *> &p_set)
+void MEKD::Print_4momenta(vector<double *> &p_set)
 {
 	printf("Initial state:\n");
 	printf("%.10E %.10E %.10E %.10E\n", p_set[0][0], p_set[0][1],

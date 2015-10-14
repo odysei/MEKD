@@ -191,27 +191,27 @@ int MEKD_Test_Debug_Ghosts_Test2()
 
 	if (Show_Description)
 		cout << "Testing ME ordering using int "
-				"MEKD.MEKD_MG_Calc.Run_MEKD_MG();\n";
+				"MEKD.Run_MEKD_MG();\n";
 
-	test2.MEKD_MG_Calc.p1 = p1;
-	test2.MEKD_MG_Calc.p2 = p2;
-	test2.MEKD_MG_Calc.p3 = p3;
-	test2.MEKD_MG_Calc.p4 = p4;
+	test2.p1 = p1;
+	test2.p2 = p2;
+	test2.p3 = p3;
+	test2.p4 = p4;
 
-	test2.MEKD_MG_Calc.id1 = id1;
-	test2.MEKD_MG_Calc.id2 = id2;
-	test2.MEKD_MG_Calc.id3 = id3;
-	test2.MEKD_MG_Calc.id4 = id4;
+	test2.id1 = id1;
+	test2.id2 = id2;
+	test2.id3 = id3;
+	test2.id4 = id4;
 
 	for (unsigned int count = 0; count < Nr_of_models; count++)
-		test2.MEKD_MG_Calc.Test_Models.push_back(model[count]);
+		test2.Test_Models.push_back(model[count]);
 
-	if ((error_value = test2.MEKD_MG_Calc.Run_MEKD_MG()) != 0)
-		cout << "ERROR CODE in MEKD.MEKD_MG_Calc.Run_MEKD_MG(); Err: "
+	if ((error_value = test2.Run_MEKD_MG()) != 0)
+		cout << "ERROR CODE in MEKD.Run_MEKD_MG(); Err: "
 			 << error_value << endl;
 
 	for (unsigned int count = 0; count < Nr_of_models; count++)
-		ME[count] = test2.MEKD_MG_Calc.Signal_MEs[count];
+		ME[count] = test2.Signal_MEs[count];
 
 	if (Show_Basic_Data) {
 		if (Show_Description)
@@ -234,28 +234,28 @@ int MEKD_Test_Debug_Ghosts_Test2()
 	for (unsigned int perm = 0; perm < shuffles_for_ghosts; perm++) {
 		test2_perm = new MEKD(8.0, "");
 
-		test2_perm->MEKD_MG_Calc.p1 = p1;
-		test2_perm->MEKD_MG_Calc.p2 = p2;
-		test2_perm->MEKD_MG_Calc.p3 = p3;
-		test2_perm->MEKD_MG_Calc.p4 = p4;
+		test2_perm->p1 = p1;
+		test2_perm->p2 = p2;
+		test2_perm->p3 = p3;
+		test2_perm->p4 = p4;
 
-		test2_perm->MEKD_MG_Calc.id1 = id1;
-		test2_perm->MEKD_MG_Calc.id2 = id2;
-		test2_perm->MEKD_MG_Calc.id3 = id3;
-		test2_perm->MEKD_MG_Calc.id4 = id4;
+		test2_perm->id1 = id1;
+		test2_perm->id2 = id2;
+		test2_perm->id3 = id3;
+		test2_perm->id4 = id4;
 
 		std::random_shuffle(order, order + Nr_of_models);
 
 		for (unsigned int count = 0; count < Nr_of_models; count++)
-			test2_perm->MEKD_MG_Calc.Test_Models.push_back(model[order[count]]);
+			test2_perm->Test_Models.push_back(model[order[count]]);
 
-		if ((error_value = test2_perm->MEKD_MG_Calc.Run_MEKD_MG()) != 0)
-			cout << "ERROR CODE in MEKD.MEKD_MG_Calc.Run_MEKD_MG(); Err: "
+		if ((error_value = test2_perm->Run_MEKD_MG()) != 0)
+			cout << "ERROR CODE in MEKD.Run_MEKD_MG(); Err: "
 				 << error_value << endl;
 
 		for (unsigned int count = 0; count < Nr_of_models; count++)
 			ME_shuffled[order[count]] =
-				test2_perm->MEKD_MG_Calc.Signal_MEs[count];
+				test2_perm->Signal_MEs[count];
 
 		for (unsigned int count = 0; count < Nr_of_models; count++) {
 			if ((ME[order[count]] - ME_shuffled[order[count]]) != 0) {

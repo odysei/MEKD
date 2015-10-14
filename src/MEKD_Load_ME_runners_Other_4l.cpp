@@ -13,7 +13,7 @@
 namespace mekd
 {
 	
-bool MEKD_MG::Load_ME_runners_try_Misc_4l(const process_description &d,
+bool MEKD::Load_ME_runners_try_Misc_4l(const process_description &d,
 										  vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_gg_Custom_ZZ_4l(),
@@ -26,7 +26,7 @@ bool MEKD_MG::Load_ME_runners_try_Misc_4l(const process_description &d,
 	return false;
 }
 
-bool MEKD_MG::Load_ME_runners_try_Misc_4lA(const process_description &d,
+bool MEKD::Load_ME_runners_try_Misc_4lA(const process_description &d,
 										   vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_gg_Custom_ZZ_4lA(),
@@ -36,7 +36,7 @@ bool MEKD_MG::Load_ME_runners_try_Misc_4lA(const process_description &d,
 	return false;
 }
 
-bool MEKD_MG::Load_ME_runners_try_Z_4l(const process_description &d,
+bool MEKD::Load_ME_runners_try_Z_4l(const process_description &d,
 									   vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_qq_bkg_Z_ZZ_4l(),
@@ -55,7 +55,7 @@ bool MEKD_MG::Load_ME_runners_try_Z_4l(const process_description &d,
 	return false;
 }
 
-bool MEKD_MG::Load_ME_runners_try_Z_4lA(const process_description &d,
+bool MEKD::Load_ME_runners_try_Z_4lA(const process_description &d,
 									    vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_qq_bkg_Z_ZZ_4lA(),

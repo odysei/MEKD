@@ -12,7 +12,7 @@
 namespace mekd
 {
 
-void MEKD_MG::Load_ME_runners(vector<process_description> &desc)
+void MEKD::Load_ME_runners(vector<process_description> &desc)
 {
 	ME_runners.reserve(desc.size());	// speed up
 	for (auto d: desc) {			// loop not very optimal but transparent
@@ -47,7 +47,7 @@ void MEKD_MG::Load_ME_runners(vector<process_description> &desc)
 	}
 }
 
-bool MEKD_MG::Load_ME_runners_try(const process_description &desc,
+bool MEKD::Load_ME_runners_try(const process_description &desc,
 								  ME_runner *runner,
 								  vector<ME_runner *> &v)
 {

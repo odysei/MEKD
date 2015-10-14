@@ -1,7 +1,7 @@
-#ifndef MEKD_MG_Boosts_CPP
-#define MEKD_MG_Boosts_CPP
+#ifndef MEKD_Boosts_CPP
+#define MEKD_Boosts_CPP
 
-#include "MEKD_MG_Boosts.h"
+#include "MEKD_Boosts.h"
 
 double Boost_trigger_gamma = 1e-10; // min. value of 1-gamma to trigger boost
 

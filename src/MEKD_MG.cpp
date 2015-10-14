@@ -9,7 +9,7 @@ namespace mekd
 {
 
 // p_set(7, new double[4]), => some problems ???
-MEKD_MG::MEKD_MG()
+MEKD::MEKD()
 {
 	Mixing_Coefficients_Spin0 = new complex<double>[4];
 	Mixing_Coefficients_Spin0_internal = new complex<double>[4];
@@ -60,7 +60,7 @@ MEKD_MG::MEKD_MG()
 	Predefined_Model = false;
 }
 
-MEKD_MG::~MEKD_MG()
+MEKD::~MEKD()
 {
 	delete Mixing_Coefficients_Spin0;
 	delete Mixing_Coefficients_Spin0_internal;
@@ -80,7 +80,7 @@ MEKD_MG::~MEKD_MG()
 	ME_runners.clear();
 }
 
-int MEKD_MG::Load_Parameters()
+int MEKD::Load_Parameters()
 {
 	Set_Of_Model_Parameters.read_slha_file(static_cast<string>(Parameter_file));
 	
@@ -99,7 +99,7 @@ int MEKD_MG::Load_Parameters()
 	return 0;
 }
 
-int MEKD_MG::Reload_Parameters()
+int MEKD::Reload_Parameters()
 {
 	if (!Parameters_Are_Loaded)
 		return 1;
@@ -107,7 +107,7 @@ int MEKD_MG::Reload_Parameters()
 	return Load_Parameters();
 }
 
-void MEKD_MG::eval_MEs(const input &in, vector<double> &ME2)
+void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 {
 	if (ME2.size() != ME_runners.size())
 		ME2.resize(ME_runners.size(), 0);
@@ -168,7 +168,7 @@ void MEKD_MG::eval_MEs(const input &in, vector<double> &ME2)
 	}
 }
 
-int MEKD_MG::Run_MEKD_MG()
+int MEKD::Run_MEKD_MG()
 {
 	if (!Parameters_Are_Loaded)
 		Load_Parameters();
@@ -209,7 +209,7 @@ int MEKD_MG::Run_MEKD_MG()
 	return 0;
 }
 
-int MEKD_MG::Run_MEKD_MG(string Input_Model)
+int MEKD::Run_MEKD_MG(string Input_Model)
 {
 	buffer_string = Test_Model;
 	Test_Model = "!";
@@ -221,7 +221,7 @@ int MEKD_MG::Run_MEKD_MG(string Input_Model)
 	return error_value;
 }
 
-void MEKD_MG::Run_make_p()
+void MEKD::Run_make_p()
 {
 	if (flag.Overwrite_e_and_mu_masses) {
 		Set_Of_Model_Parameters.set_block_entry("mass", 11, Electron_mass);
@@ -260,7 +260,7 @@ void MEKD_MG::Run_make_p()
 	}
 }
 
-void MEKD_MG::Run_calculate()
+void MEKD::Run_calculate()
 {
 	/// Background is interesting in any case, except for the Signal Runs or '!'
 	/// is indicated in the first model to save CPU
@@ -576,7 +576,7 @@ void MEKD_MG::Run_calculate()
 	}
 }
 
-void MEKD_MG::Load_p_set()
+void MEKD::Load_p_set()
 {
 	for (int i = 0; i < 4; ++i) {
 		p_set[0][i] = 0;
@@ -612,7 +612,7 @@ void MEKD_MG::Load_p_set()
 	}
 }
 
-void MEKD_MG::Prepare_ml_s()
+void MEKD::Prepare_ml_s()
 {
 	if (Final_state == "4e" || Final_state == "4eA") {
 		ml1 = Set_Of_Model_Parameters.get_block_entry("mass", 11,
@@ -648,19 +648,19 @@ void MEKD_MG::Prepare_ml_s()
 	}
 }
 
-double MEKD_MG::Get_PDF_x1(vector<double *> &p)
+double MEKD::Get_PDF_x1(vector<double *> &p)
 {
 	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) +
 			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / Sqrt_s;
 }
 
-double MEKD_MG::Get_PDF_x2(vector<double *> &p)
+double MEKD::Get_PDF_x2(vector<double *> &p)
 {
 	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) -
 			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / Sqrt_s;
 }
 
-double MEKD_MG::Get_invariant_m(vector<double *> &p, int p_range[2])
+double MEKD::Get_invariant_m(vector<double *> &p, int p_range[2])
 {
 	double sum_E = 0;
 	double sum_px = 0;
@@ -681,7 +681,7 @@ double MEKD_MG::Get_invariant_m(vector<double *> &p, int p_range[2])
 				- sum_pz * sum_pz);
 }
 
-void MEKD_MG::Normalize_parton_coeffs()
+void MEKD::Normalize_parton_coeffs()
 {
 	double buffer_ = (parton_coeff_d + parton_coeff_u +
 					  parton_coeff_s + parton_coeff_c);
@@ -692,7 +692,7 @@ void MEKD_MG::Normalize_parton_coeffs()
 	parton_coeff_s = parton_coeff_s / buffer_;
 }
 
-void MEKD_MG::Approx_neg_z_parton(double *p, double E)
+void MEKD::Approx_neg_z_parton(double *p, double E)
 {
 	// 0-mass approximation
 	p[0] = 0.5 * E;
@@ -701,7 +701,7 @@ void MEKD_MG::Approx_neg_z_parton(double *p, double E)
 	p[3] = 0.5 * E; // to be recalculated
 }
 
-void MEKD_MG::Approx_pos_z_parton(double *p, double E)
+void MEKD::Approx_pos_z_parton(double *p, double E)
 {
 	// 0-mass approximation
 	p[0] = 0.5 * E;

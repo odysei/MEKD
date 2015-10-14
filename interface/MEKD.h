@@ -45,12 +45,12 @@ extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
 // #define PDTFILE "PDF_tables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L.
 // You can change PDF set as you want.
 
-class MEKD_MG;
+class MEKD;
 
 class ME_runner
 {
 public:
-	virtual double evaluate(MEKD_MG &in_MEKD, const input &in)
+	virtual double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		return -1;
 	}
@@ -61,7 +61,7 @@ public:
 	}
 };
 
-class MEKD_MG
+class MEKD
 {
   public:
 	void eval_MEs(const input &, vector<double> &);
@@ -177,8 +177,8 @@ class MEKD_MG
 	
 
 	/// Constructors, destructors
-	MEKD_MG();
-	~MEKD_MG();
+	MEKD();
+	~MEKD();
 
 //   private:
 	/// 4l final state (+photon)
@@ -453,19 +453,12 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int Run_MEKD_MG_MEs_Evaluator_Initial_State_qqbar(
 		bool photon, Generic_MEKD_MG_ME_s &Generic_ME_s,
 		Generic_MEKD_MG_ME_c &Generic_ME_c);
-};
 
-class MEKD
-{
   public:
-	void eval_MEs(input &in, vector<double> &ME2)
-	{
-		MEKD_MG_Calc.MEKD_MG::eval_MEs(in, ME2);
-	}
 	
-	MEKD(vector<process_description> &desc)
+	MEKD(vector<process_description> &desc): MEKD()
 	{
-		 MEKD_MG_Calc.Load_ME_runners(desc);
+		Load_ME_runners(desc);
 	}
 	
 	/*
@@ -486,12 +479,11 @@ class MEKD
 	///
 	/// Constructor.
 	///
-	/// \param collisionEnergy							The sqrt(s) value in
-	/// TeV (double, DEFAULT = 8).
-	/// \param PDFName									The name of the parton
-	/// density functions to be used (string, DEFAULT = "CTEQ6L", NONE = "").
+	/// \param collisionEnergy					The sqrt(s) value in TeV.
+	/// \param PDFName							The name of the parton density
+	/// function. Default is none.
 	///
-	MEKD(double collisionEnergy = 8, string PDFName = "CTEQ6L");
+	MEKD(double collisionEnergy, string PDFName);
 
 	///
 	/// Compute and extract individual KD and MEs. Works after running int
@@ -675,9 +667,6 @@ class MEKD
 	complex<double> *m_Mixing_Coefficients_Spin0;
 	complex<double> *m_Mixing_Coefficients_Spin1;
 	complex<double> *m_Mixing_Coefficients_Spin2;
-
-	/// Madgraph-based ME calculator
-	MEKD_MG MEKD_MG_Calc;
 
   private:
 	/// Properties. Variables.

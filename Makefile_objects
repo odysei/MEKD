@@ -128,7 +128,7 @@ $(INCDIR4)/Spin2/Spin2_2f_OFpA.o $(INCDIR4)/Spin2/Spin2_2f_SFpA.o
 
 objects3=\
 $(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o \
-$(INCDIR2)/MEKD_MG_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
+$(INCDIR2)/MEKD_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
 
 objects4=\
 $(INCDIR1)/MEKD.o $(INCDIR1)/MEKD_Load_ME_runners.o \
@@ -136,9 +136,9 @@ $(INCDIR1)/MEKD_Load_ME_runners_Other_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin0_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin1_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin2_4l.o \
-$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD_MG_stuff.o \
-$(INCDIR1)/MEKD_MG_sorter.o $(INCDIR1)/MEKD_MG_RunMEs.o \
-$(INCDIR1)/MEKD_MG_debug.o $(INCDIR1)/MEKD_MG_defaults.o
+$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD_stuff.o \
+$(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
+$(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o
 
 ## RAW ME from MG5_aMC
 # objects5=\

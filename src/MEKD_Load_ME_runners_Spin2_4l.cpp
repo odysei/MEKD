@@ -13,7 +13,7 @@
 namespace mekd
 {
 
-bool MEKD_MG::Load_ME_runners_try_Spin2_4l(const process_description &d,
+bool MEKD::Load_ME_runners_try_Spin2_4l(const process_description &d,
 										   vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_gg_Spin2Pm_ZZ_4l(),
@@ -138,7 +138,7 @@ bool MEKD_MG::Load_ME_runners_try_Spin2_4l(const process_description &d,
 	return false;
 }
 
-bool MEKD_MG::Load_ME_runners_try_Spin2_4lA(const process_description &d,
+bool MEKD::Load_ME_runners_try_Spin2_4lA(const process_description &d,
 											vector<ME_runner *> &v)
 {
 	if (Load_ME_runners_try(d, new ME_runner_gg_Spin2Pm_ZZ_4lA(),

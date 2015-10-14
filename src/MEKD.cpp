@@ -32,14 +32,15 @@ namespace mekd
 ///------------------------------------------------------------------------
 MEKD::MEKD(double collisionEnergy, string PDFName)
 {
+	MEKD();
 	m_collisionEnergy = collisionEnergy;
 	m_PDFName = PDFName;
 
-	MEKD_MG_Calc.Sqrt_s = m_collisionEnergy * 1000; // translate TeV to GeV
+	Sqrt_s = m_collisionEnergy * 1000; // translate TeV to GeV
 
-	m_Mixing_Coefficients_Spin0 = MEKD_MG_Calc.Mixing_Coefficients_Spin0;
-	m_Mixing_Coefficients_Spin1 = MEKD_MG_Calc.Mixing_Coefficients_Spin1;
-	m_Mixing_Coefficients_Spin2 = MEKD_MG_Calc.Mixing_Coefficients_Spin2;
+	m_Mixing_Coefficients_Spin0 = Mixing_Coefficients_Spin0;
+	m_Mixing_Coefficients_Spin1 = Mixing_Coefficients_Spin1;
+	m_Mixing_Coefficients_Spin2 = Mixing_Coefficients_Spin2;
 
 	ME_ZZ = 0;
 	ME_Spin0PSMH = 0;
@@ -66,7 +67,7 @@ int MEKD::processParameters()
 		return EXIT_ERROR_PDFS;
 	m_usePDF = (m_PDFName == "CTEQ6L");
 
-	MEKD_MG_Calc.flag.Use_PDF_w_pT0 = m_usePDF;
+	flag.Use_PDF_w_pT0 = m_usePDF;
 
 	/// Check if sqrt(s) is 7 or 8 TeV
 	if (m_collisionEnergy != 7 && m_collisionEnergy != 8)
@@ -738,9 +739,9 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		MEKD_MG_Calc.Resonance_decay_mode = "2mu";
+		Resonance_decay_mode = "2mu";
 	else
-		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
+		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessNames(processA, processB)) != 0)
@@ -749,35 +750,35 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 		return return_code;
 
 	/// Set input-particle kinematics
-	MEKD_MG_Calc.p1 = input_Ps[0];
-	MEKD_MG_Calc.id1 = input_IDs[0];
-	MEKD_MG_Calc.p2 = input_Ps[1];
-	MEKD_MG_Calc.id2 = input_IDs[1];
+	p1 = input_Ps[0];
+	id1 = input_IDs[0];
+	p2 = input_Ps[1];
+	id2 = input_IDs[1];
 	if (input_IDs.size() >= 3) {
-		MEKD_MG_Calc.p3 = input_Ps[2];
-		MEKD_MG_Calc.id3 = input_IDs[2];
+		p3 = input_Ps[2];
+		id3 = input_IDs[2];
 	} else
-		MEKD_MG_Calc.id3 = 0;
+		id3 = 0;
 	if (input_IDs.size() >= 4) {
-		MEKD_MG_Calc.p4 = input_Ps[3];
-		MEKD_MG_Calc.id4 = input_IDs[3];
+		p4 = input_Ps[3];
+		id4 = input_IDs[3];
 	} else
-		MEKD_MG_Calc.id4 = 0;
+		id4 = 0;
 	if (input_IDs.size() >= 5) {
-		MEKD_MG_Calc.p5 = input_Ps[4];
-		MEKD_MG_Calc.id5 = input_IDs[4];
+		p5 = input_Ps[4];
+		id5 = input_IDs[4];
 	} else
-		MEKD_MG_Calc.id5 = 0;
+		id5 = 0;
 
 	/// Compute ME for process A only (e.g. signal 1)
-	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_processA);
+	return_code = Run_MEKD_MG(m_processA);
 	/// Get ME for process A
-	me2processA = MEKD_MG_Calc.Signal_ME;
+	me2processA = Signal_ME;
 
 	/// Compute ME for process B only (e.g. signal 2 or background)
-	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_processB);
+	return_code = Run_MEKD_MG(m_processB);
 	/// Get ME for process B
-	me2processB = MEKD_MG_Calc.Signal_ME;
+	me2processB = Signal_ME;
 	/// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
 	kd = log(me2processA / me2processB);
 
@@ -799,9 +800,9 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		MEKD_MG_Calc.Resonance_decay_mode = "2mu";
+		Resonance_decay_mode = "2mu";
 	else
-		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
+		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessName(processName)) != 0)
@@ -810,30 +811,30 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 		return return_code;
 
 	/// Set input-particle kinematics
-	MEKD_MG_Calc.p1 = input_Ps[0];
-	MEKD_MG_Calc.id1 = input_IDs[0];
-	MEKD_MG_Calc.p2 = input_Ps[1];
-	MEKD_MG_Calc.id2 = input_IDs[1];
+	p1 = input_Ps[0];
+	id1 = input_IDs[0];
+	p2 = input_Ps[1];
+	id2 = input_IDs[1];
 	if (input_IDs.size() >= 3) {
-		MEKD_MG_Calc.p3 = input_Ps[2];
-		MEKD_MG_Calc.id3 = input_IDs[2];
+		p3 = input_Ps[2];
+		id3 = input_IDs[2];
 	} else
-		MEKD_MG_Calc.id3 = 0;
+		id3 = 0;
 	if (input_IDs.size() >= 4) {
-		MEKD_MG_Calc.p4 = input_Ps[3];
-		MEKD_MG_Calc.id4 = input_IDs[3];
+		p4 = input_Ps[3];
+		id4 = input_IDs[3];
 	} else
-		MEKD_MG_Calc.id4 = 0;
+		id4 = 0;
 	if (input_IDs.size() >= 5) {
-		MEKD_MG_Calc.p5 = input_Ps[4];
-		MEKD_MG_Calc.id5 = input_IDs[4];
+		p5 = input_Ps[4];
+		id5 = input_IDs[4];
 	} else
-		MEKD_MG_Calc.id5 = 0;
+		id5 = 0;
 
 	/// Compute ME for the process (e.g. signal 1)
-	return_code = MEKD_MG_Calc.Run_MEKD_MG(m_process);
+	return_code = Run_MEKD_MG(m_process);
 	/// Get ME for the process
-	me2process = MEKD_MG_Calc.Signal_ME;
+	me2process = Signal_ME;
 
 	return return_code;
 }
@@ -872,62 +873,62 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 
 	/// Set an expected resonance decay mode
 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		MEKD_MG_Calc.Resonance_decay_mode = "2mu";
+		Resonance_decay_mode = "2mu";
 	else
-		MEKD_MG_Calc.Resonance_decay_mode = "ZZ";
+		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for internal parameters
 	if ((return_code = processParameters()) != 0)
 		return return_code;
 
-	/// Parameterize MEKD_MG_Calc
-	if (MEKD_MG_Calc.Test_Models.size() ==
-		0) // Fills in intersting models to compute only once
+	/// Parameterize MEKD
+	// Fills in "interesting" models to compute only once
+	if (Test_Models.size() == 0)
 	{
-		MEKD_MG_Calc.Test_Models.push_back("ZZ");
-		MEKD_MG_Calc.Test_Models.push_back("ggSpin0Pm");
-		MEKD_MG_Calc.Test_Models.push_back("ggSpin0M");
-		MEKD_MG_Calc.Test_Models.push_back("ggSpin0Ph");
-		MEKD_MG_Calc.Test_Models.push_back("qqSpin1P");
-		MEKD_MG_Calc.Test_Models.push_back("qqSpin1M");
-		MEKD_MG_Calc.Test_Models.push_back("ggSpin2Pm");
-		MEKD_MG_Calc.Test_Models.push_back("qqSpin2Pm");
-	} else if (MEKD_MG_Calc.Test_Models.size() != 4)
+		Test_Models.push_back("ZZ");
+		Test_Models.push_back("ggSpin0Pm");
+		Test_Models.push_back("ggSpin0M");
+		Test_Models.push_back("ggSpin0Ph");
+		Test_Models.push_back("qqSpin1P");
+		Test_Models.push_back("qqSpin1M");
+		Test_Models.push_back("ggSpin2Pm");
+		Test_Models.push_back("qqSpin2Pm");
+	} else if (Test_Models.size() != 4)
 		return EXIT_ERROR_PROCESS;
 
 	/// Set input-particle kinematics
-	MEKD_MG_Calc.p1 = input_Ps[0];
-	MEKD_MG_Calc.id1 = input_IDs[0];
-	MEKD_MG_Calc.p2 = input_Ps[1];
-	MEKD_MG_Calc.id2 = input_IDs[1];
+	p1 = input_Ps[0];
+	id1 = input_IDs[0];
+	p2 = input_Ps[1];
+	id2 = input_IDs[1];
 	if (input_IDs.size() >= 3) {
-		MEKD_MG_Calc.p3 = input_Ps[2];
-		MEKD_MG_Calc.id3 = input_IDs[2];
+		p3 = input_Ps[2];
+		id3 = input_IDs[2];
 	} else
-		MEKD_MG_Calc.id3 = 0;
+		id3 = 0;
 	if (input_IDs.size() >= 4) {
-		MEKD_MG_Calc.p4 = input_Ps[3];
-		MEKD_MG_Calc.id4 = input_IDs[3];
+		p4 = input_Ps[3];
+		id4 = input_IDs[3];
 	} else
-		MEKD_MG_Calc.id4 = 0;
+		id4 = 0;
 	if (input_IDs.size() >= 5) {
-		MEKD_MG_Calc.p5 = input_Ps[4];
-		MEKD_MG_Calc.id5 = input_IDs[4];
+		p5 = input_Ps[4];
+		id5 = input_IDs[4];
 	} else
-		MEKD_MG_Calc.id5 = 0;
+		id5 = 0;
 
 	/// Compute MEs
-	return_code = MEKD_MG_Calc.Run_MEKD_MG();
+	return_code = Run_MEKD_MG();
 
 	/// ME value readouts
-	ME_ZZ = MEKD_MG_Calc.Signal_MEs[0];
-	ME_Spin0PSMH = MEKD_MG_Calc.Signal_MEs[1];
-	ME_Spin0M = MEKD_MG_Calc.Signal_MEs[2];
-	ME_Spin0Ph = MEKD_MG_Calc.Signal_MEs[3];
-	ME_Spin1P = MEKD_MG_Calc.Signal_MEs[4];
-	ME_Spin1M = MEKD_MG_Calc.Signal_MEs[5];
-	ME_ggSpin2Pm = MEKD_MG_Calc.Signal_MEs[6];
-	ME_qqSpin2Pm = MEKD_MG_Calc.Signal_MEs[7];
+	ME_ZZ = Signal_MEs[0];
+	ME_Spin0PSMH = Signal_MEs[1];
+	ME_Spin0M = Signal_MEs[2];
+	ME_Spin0Ph = Signal_MEs[3];
+	ME_Spin1P = Signal_MEs[4];
+	ME_Spin1M = Signal_MEs[5];
+	ME_ggSpin2Pm = Signal_MEs[6];
+	ME_qqSpin2Pm = Signal_MEs[7];
 
 	return return_code;
 }

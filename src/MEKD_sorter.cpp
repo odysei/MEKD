@@ -10,7 +10,7 @@
 namespace mekd
 {
 
-int MEKD_MG::Arrange_Internal_pls()
+int MEKD::Arrange_Internal_pls()
 {
 	id_set[0] = id1;
 	id_set[1] = id2;

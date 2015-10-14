@@ -2,8 +2,8 @@
 ///  Helper functions useful for///
 ///  debugging                  ///
 ///////////////////////////////////
-#ifndef MEKD_MG_DEFAULTS_cpp
-#define MEKD_MG_DEFAULTS_cpp
+#ifndef MEKD_defaults_cpp
+#define MEKD_defaults_cpp
 
 #include "../interface/MEKD.h"
 
@@ -13,7 +13,7 @@ namespace mekd
 /// 6 4-momenta printout
 
 
-void MEKD_MG::Set_Default_MEKD_MG_Parameters()
+void MEKD::Set_Default_MEKD_MG_Parameters()
 {
 	flag.Boost_To_CM = true;
 	flag.Debug_Mode = false;
@@ -84,7 +84,7 @@ void MEKD_MG::Set_Default_MEKD_MG_Parameters()
 #endif
 }
 
-string MEKD_MG::Find_local_file(string input_f)
+string MEKD::Find_local_file(string input_f)
 {
 	vector<string> lookup;
 	lookup.reserve(9);
@@ -107,13 +107,13 @@ string MEKD_MG::Find_local_file(string input_f)
 		}
 	}
 	
-	return "MEKD_MG::Find_local_file__file_not_found";
+	return "MEKD::Find_local_file__file_not_found";
 }
 
 /// end of namespace
 }
 
 #endif
-//////////////////////////////////
-/// END OF MEKD_MG_debug.cpp   ///
-//////////////////////////////////
+///////////////////////////////
+/// END OF MEKD_debug.cpp   ///
+///////////////////////////////

@@ -1,5 +1,5 @@
-#ifndef MEKD_MG_Boosts_h
-#define MEKD_MG_Boosts_h
+#ifndef MEKD_Boosts_h
+#define MEKD_Boosts_h
 
 #include <cmath>
 #include <cstdio>

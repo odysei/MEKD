@@ -26,7 +26,7 @@ namespace mekd
 class ME_runner_gg_Spin0Pm_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
@@ -46,7 +46,7 @@ public:
 class ME_runner_no_Spin0Pm_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
@@ -66,7 +66,7 @@ public:
 class ME_runner_gg_Spin0Ph_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Ph("gg");
@@ -86,7 +86,7 @@ public:
 class ME_runner_no_Spin0Ph_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Ph("NO");
@@ -106,7 +106,7 @@ public:
 class ME_runner_gg_Spin0M_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("gg");
@@ -126,7 +126,7 @@ public:
 class ME_runner_no_Spin0M_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("NO");
@@ -146,7 +146,7 @@ public:
 class ME_runner_gg_Spin0_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("gg");
@@ -166,7 +166,7 @@ public:
 class ME_runner_no_Spin0_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("NO");
@@ -190,7 +190,7 @@ public:
 class ME_runner_gg_Spin0Pm_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
@@ -210,7 +210,7 @@ public:
 class ME_runner_no_Spin0Pm_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
@@ -230,7 +230,7 @@ public:
 class ME_runner_gg_Spin0Ph_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Ph("gg");
@@ -250,7 +250,7 @@ public:
 class ME_runner_no_Spin0Ph_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Ph("NO");
@@ -270,7 +270,7 @@ public:
 class ME_runner_gg_Spin0M_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("gg");
@@ -290,7 +290,7 @@ public:
 class ME_runner_no_Spin0M_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("NO");
@@ -310,7 +310,7 @@ public:
 class ME_runner_gg_Spin0_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("gg");
@@ -330,7 +330,7 @@ public:
 class ME_runner_no_Spin0_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("NO");
@@ -360,7 +360,7 @@ public:
 class ME_runner_gg_Spin0Pm_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
@@ -380,7 +380,7 @@ public:
 class ME_runner_no_Spin0Pm_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
@@ -400,7 +400,7 @@ public:
 class ME_runner_gg_Spin0M_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("gg");
@@ -420,7 +420,7 @@ public:
 class ME_runner_no_Spin0M_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("NO");
@@ -440,7 +440,7 @@ public:
 class ME_runner_gg_Spin0_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("gg");
@@ -460,7 +460,7 @@ public:
 class ME_runner_no_Spin0_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("NO");
@@ -484,7 +484,7 @@ public:
 class ME_runner_gg_Spin0Pm_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("gg");
@@ -504,7 +504,7 @@ public:
 class ME_runner_no_Spin0Pm_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0Pm("NO");
@@ -524,7 +524,7 @@ public:
 class ME_runner_gg_Spin0M_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("gg");
@@ -544,7 +544,7 @@ public:
 class ME_runner_no_Spin0M_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0M("NO");
@@ -564,7 +564,7 @@ public:
 class ME_runner_gg_Spin0_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("gg");
@@ -584,7 +584,7 @@ public:
 class ME_runner_no_Spin0_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD_MG &in_MEKD, const input &in)
+	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
 		in_MEKD.Run_MEKD_MG_ME_Configurator_Spin0("NO");

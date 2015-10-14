@@ -1,5 +1,5 @@
-#ifndef MEKD_MG_cpp
-#define MEKD_MG_cpp
+#ifndef MEKD_stuff_cpp
+#define MEKD_stuff_cpp
 
 #include "../interface/MEKD.h"
 
@@ -8,7 +8,7 @@ using namespace std;
 namespace mekd
 {
 
-void MEKD_MG::Check_MEs()
+void MEKD::Check_MEs()
 {
 	/// Cross-cheking MEs for consistency. ZZ
 	if (ME_qq_ZZ_DownType_SF.nprocesses != 2) {
@@ -525,7 +525,7 @@ void MEKD_MG::Check_MEs()
 	}
 }
 
-void MEKD_MG::Load_Parameters_MEs()
+void MEKD::Load_Parameters_MEs()
 {
 	// ZZ
 	ME_qq_ZZ_UpType_SF.initProc(Parameter_file);
@@ -689,7 +689,7 @@ void MEKD_MG::Load_Parameters_MEs()
 	//ME_RAW.initProc( "../src/MG5_aMCNLO/RAW/param_card.dat" );
 }
 
-void MEKD_MG::Load_Parameters_extract_params(SLHAReader_MEKD &params)
+void MEKD::Load_Parameters_extract_params(SLHAReader_MEKD &params)
 {
 	params_m_d = params.get_block_entry("mass", 1, 0).real();
 	params_m_u = params.get_block_entry("mass", 2, 0).real();
@@ -753,7 +753,7 @@ void MEKD_MG::Load_Parameters_extract_params(SLHAReader_MEKD &params)
 	params_rhob24 = params.get_block_entry("gravity", 40, 0);
 }
 
-void MEKD_MG::Load_Parameters_eval_params()
+void MEKD::Load_Parameters_eval_params()
 {
 	v_expectation =
 		1.0 /
