@@ -5,7 +5,7 @@
 #ifndef MEKD_MG_sorter_cpp
 #define MEKD_MG_sorter_cpp
 
-#include "../interface/MEKD_MG.h"
+#include "../interface/MEKD.h"
 
 namespace mekd
 {

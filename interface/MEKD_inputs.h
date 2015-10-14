@@ -8,7 +8,7 @@
 #define MEKD_INPUTS_h
 
 #include "MEKD_defs.h"
-#include "MEKD_MG.h"
+#include "MEKD.h"
 #include "MEKD_includes.h"
 
 namespace mekd

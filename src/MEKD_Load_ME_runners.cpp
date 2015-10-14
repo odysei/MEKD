@@ -7,7 +7,7 @@
 #ifndef MEKD_Load_ME_runners_cpp
 #define MEKD_Load_ME_runners_cpp
 
-#include "../interface/MEKD_MG.h"
+#include "../interface/MEKD.h"
 
 namespace mekd
 {

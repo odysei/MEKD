@@ -5,7 +5,7 @@
 #ifndef MEKD_MG_DEFAULTS_cpp
 #define MEKD_MG_DEFAULTS_cpp
 
-#include "../interface/MEKD_MG.h"
+#include "../interface/MEKD.h"
 
 namespace mekd
 {

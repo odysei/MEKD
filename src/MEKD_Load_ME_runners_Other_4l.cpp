@@ -7,7 +7,7 @@
 #ifndef MEKD_Load_ME_runners_Other_4l_cpp
 #define MEKD_Load_ME_runners_Other_4l_cpp
 
-#include "../interface/MEKD_MG.h"
+#include "../interface/MEKD.h"
 #include "../interface/MEKD_Supported_MEs_Other_4l.h"
 
 namespace mekd
