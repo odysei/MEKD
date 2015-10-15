@@ -29,7 +29,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -49,7 +49,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -69,7 +69,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -89,7 +89,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -109,7 +109,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -129,7 +129,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -149,7 +149,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -169,7 +169,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -189,7 +189,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -209,7 +209,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -229,7 +229,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -249,7 +249,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -269,7 +269,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -289,7 +289,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -309,7 +309,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -329,7 +329,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -349,7 +349,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -369,7 +369,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -389,7 +389,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -409,7 +409,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -429,7 +429,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -449,7 +449,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -469,7 +469,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -489,7 +489,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -509,7 +509,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -529,7 +529,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -549,7 +549,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -569,7 +569,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -589,7 +589,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -609,7 +609,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -629,7 +629,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -649,7 +649,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_qq, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -669,7 +669,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -693,7 +693,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -713,7 +713,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -733,7 +733,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -753,7 +753,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -773,7 +773,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -793,7 +793,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph2(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -813,7 +813,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -833,7 +833,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -853,7 +853,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph3("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph3(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -873,7 +873,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -893,7 +893,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -913,7 +913,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -933,7 +933,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -953,7 +953,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -973,7 +973,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Pb("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pb(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -993,7 +993,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1013,7 +1013,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1033,7 +1033,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph6("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph6(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1053,7 +1053,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1073,7 +1073,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1093,7 +1093,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Ph7("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Ph7(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1113,7 +1113,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1133,7 +1133,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1153,7 +1153,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1173,7 +1173,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1193,7 +1193,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1213,7 +1213,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh9("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh9(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1233,7 +1233,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1253,7 +1253,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1273,7 +1273,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2Mh10("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Mh10(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1293,7 +1293,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1313,7 +1313,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_qq, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1333,7 +1333,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1363,7 +1363,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1383,7 +1383,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1403,7 +1403,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1423,7 +1423,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1443,7 +1443,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_qq, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1463,7 +1463,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1487,7 +1487,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("gg");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_gg);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1507,7 +1507,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("qq");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1527,7 +1527,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2Pm("NO");
+		in_MEKD.Run_ME_Configurator_Spin2Pm(prod_no);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1547,7 +1547,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("gg");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1567,7 +1567,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("qq");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_qq, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -1587,7 +1587,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin2("NO");
+		in_MEKD.Run_ME_Configurator_Spin2(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	

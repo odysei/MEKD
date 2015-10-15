@@ -35,6 +35,27 @@ struct flags
 	bool Warning_Mode;			// Print warnings
 };
 
+/// Parameters that are used in calculations, some are updated per run
+struct parameters
+{
+	/// General parameters
+	// Values have no effect if PDF is used but variables are always used
+	// Parton multipliers.
+	double parton_coeff_d;
+	double parton_coeff_u;
+	double parton_coeff_s;
+	double parton_coeff_c;
+	// 	double GG;	// Assign QCD coupling, force g3 running if needed
+	double sqrt_s; // Max energy, collision energy
+	
+	/// Physical parameters
+	double Electron_mass;	// 0.0005109989, for enabled overwriting
+	double Higgs_mass;		// Works only if flag.Use_mh_eq_m4l=false
+	double Higgs_width;		// Practically not used, for future implementations
+	double Muon_mass;		// 0.10565837, for enabled overwriting
+	double Proton_mass;		// Always used if needed
+};
+
 // see definitions for descriptions
 struct process_description
 {

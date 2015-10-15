@@ -39,7 +39,7 @@ public:
 // public:
 // 	double evaluate(MEKD &in_MEKD, const input &in)
 // 	{
-// 		in_MEKD.Run_ME_Configurator_CPPProcess("gg");
+// 		in_MEKD.Run_ME_Configurator_CPPProcess(prod_gg);
 // 		return in_MEKD.Signal_ME;
 // 	}
 // 	
@@ -84,7 +84,7 @@ class ME_runner_qq_bkg_Z_ZZ_4l: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ("qq");
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -103,7 +103,7 @@ class ME_runner_qq_bkg_Z_2f_4l: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ("qq");
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -122,7 +122,7 @@ class ME_runner_qq_bkg_Zs_2f_4l: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_SIG("qq");
+		in_MEKD.Run_ME_Configurator_Z4l_SIG(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -141,7 +141,7 @@ class ME_runner_qq_bkg_Zt_2f_4l: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_BKG("qq");
+		in_MEKD.Run_ME_Configurator_Z4l_BKG(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -164,7 +164,7 @@ class ME_runner_qq_bkg_Z_ZZ_4lA: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ("qq");
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -183,7 +183,7 @@ class ME_runner_qq_bkg_Z_2f_4lA: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ("qq");
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -202,7 +202,7 @@ class ME_runner_qq_bkg_Zs_2f_4lA: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_SIG("qq");
+		in_MEKD.Run_ME_Configurator_Z4l_SIG(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -221,7 +221,7 @@ class ME_runner_qq_bkg_Zt_2f_4lA: public ME_runner
 public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_BKG("qq");
+		in_MEKD.Run_ME_Configurator_Z4l_BKG(prod_qq);
 		return in_MEKD.Signal_ME;
 	}
 	

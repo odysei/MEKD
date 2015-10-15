@@ -32,12 +32,18 @@ void MEKD::Set_default_params()
 
 	// Values have no effect if PDF is used but variables are always used
 	// Parton multipliers.
-	parton_coeff_d = 0;
-	parton_coeff_u = 1;
-	parton_coeff_s = 0;
-	parton_coeff_c = 0;
-	// 	GG = 0;	// Assign QCD coupling, force g3 running if needed
-	Sqrt_s = 8000; // Max energy, collision energy
+	param.parton_coeff_d = 0;
+	param.parton_coeff_u = 1;
+	param.parton_coeff_s = 0;
+	param.parton_coeff_c = 0;
+	// 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed
+	param.sqrt_s = 8000;	// Max energy, collision energy
+	
+	param.Electron_mass = 0;		// 0.0005109989, for enabled overwriting
+	param.Higgs_mass = 125.6;		// Works only if flag.Use_mh_eq_m4l=false
+	param.Higgs_width = 5.753088e-03; // Practically not used; for future
+	param.Muon_mass = 0;			// 0.10565837, for enabled overwriting
+	param.Proton_mass = 0.93827205;	// Always used if needed
 
 	Mixing_Coefficients_Spin0[0] = complex<double>(1 / sqrt(4), 0);
 	Mixing_Coefficients_Spin0[1] = complex<double>(1 / sqrt(4), 0);
@@ -50,12 +56,6 @@ void MEKD::Set_default_params()
 	Mixing_Coefficients_Spin1[3] = complex<double>(1 / sqrt(4), 0);
 	Mixing_Coefficients_Spin1[4] = complex<double>(1 / sqrt(2), 0);
 	Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
-
-	Electron_mass = 0; // 0.0005109989, for enabled overwriting
-	Higgs_mass = 125.6;  // Works only if flag.Use_mh_eq_m4l=false
-	Higgs_width = 5.753088e-03; // Practically not used; for future
-	Muon_mass = 0;	// 0.10565837, for enabled overwriting
-	Proton_mass = 0.93827205; // Always used if needed
 
 	Final_state = "2e2m";		 // Final state, for the moment: 4e, 4mu, 2e2mu
 	Resonance_decay_mode = "ZZ"; // default: ZZ. Alternatives: 2l, 2l_s

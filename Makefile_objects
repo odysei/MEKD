@@ -136,9 +136,9 @@ $(INCDIR1)/MEKD_Load_ME_runners_Other_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin0_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin1_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin2_4l.o \
-$(INCDIR1)/MEKD_MG.o $(INCDIR1)/MEKD_stuff.o \
 $(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
-$(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o
+$(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o \
+$(INCDIR1)/MEKD_stuff.o
 
 ## RAW ME from MG5_aMC
 # objects5=\

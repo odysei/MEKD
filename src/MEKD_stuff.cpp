@@ -755,11 +755,8 @@ void MEKD::Load_Parameters_extract_params(SLHAReader_MEKD &params)
 
 void MEKD::Load_Parameters_eval_params()
 {
-	v_expectation =
-		1.0 /
-		sqrt(sqrt(2) *
-			 Set_Of_Model_Parameters.get_block_entry("sminputs", 2,
-													 1.166370e-05).real());
+	v_expectation = 1.0 / sqrt(sqrt(2) *
+			 params_MG.get_block_entry("sminputs", 2, 1.166370e-05).real());
 	hZZ_coupling = 2.0 * params_m_Z * params_m_Z / v_expectation;
 }
 

@@ -23,19 +23,65 @@ namespace mekd
  * 
  */
 
-/*
- * Version 2 and earlier methods: left for backwards compatibility.
- */
-
-///------------------------------------------------------------------------
-/// MEKD::MEKD - a default constructor
-///------------------------------------------------------------------------
-MEKD::MEKD(double collisionEnergy, string PDFName): MEKD()
+// p_set(7, new double[4]), => some problems ???
+MEKD::MEKD()
 {
-	m_collisionEnergy = collisionEnergy;
-	m_PDFName = PDFName;
+	Mixing_Coefficients_Spin0 = new complex<double>[4];
+	Mixing_Coefficients_Spin0_internal = new complex<double>[4];
+	Mixing_Coefficients_Spin1 = new complex<double>[8];
+	Mixing_Coefficients_Spin1_internal = new complex<double>[8];
+	Mixing_Coefficients_Spin2 = new complex<double>[20];
+	Mixing_Coefficients_Spin2_internal = new complex<double>[20];
 
-	Sqrt_s = m_collisionEnergy * 1000; // translate TeV to GeV
+	Set_default_params();
+
+	Check_MEs();
+
+	p_set.reserve(7);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]);
+	p_set.push_back(new double[4]); // a photon comes here, otherwise, unused
+
+	p1 = new double[4];
+	p2 = new double[4];
+	p3 = new double[4];
+	p4 = new double[4];
+	p5 = new double[4];
+
+	id1 = 10000;
+	id2 = 10000;
+	id3 = 10000;
+	id4 = 10000;
+	id5 = 10000;
+
+	id_set.reserve(5);
+	id_set.push_back(id1);
+	id_set.push_back(id2);
+	id_set.push_back(id3);
+	id_set.push_back(id4);
+	id_set.push_back(id5);
+
+	pl1_internal = NULL;
+	pl2_internal = NULL;
+	pl3_internal = NULL;
+	pl4_internal = NULL;
+	pA1_internal = NULL;
+
+	Parameters_Are_Loaded = false;
+	Predefined_Model = false;
+}
+
+/*
+ * MEKD::MEKD - Version 2 or earlier constructor
+ */
+MEKD::MEKD(const double &collision_energy, const string &PDF_name): MEKD()
+{
+	param.sqrt_s = collision_energy * 1000;	// translate TeV to GeV
+	m_PDFName = PDF_name;
 
 	m_Mixing_Coefficients_Spin0 = Mixing_Coefficients_Spin0;
 	m_Mixing_Coefficients_Spin1 = Mixing_Coefficients_Spin1;
@@ -54,6 +100,655 @@ MEKD::MEKD(double collisionEnergy, string PDFName): MEKD()
 	four_particle_Ps_i.resize(4, NULL);
 }
 
+MEKD::~MEKD()
+{
+	delete Mixing_Coefficients_Spin0;
+	delete Mixing_Coefficients_Spin0_internal;
+	delete Mixing_Coefficients_Spin1;
+	delete Mixing_Coefficients_Spin1_internal;
+	delete Mixing_Coefficients_Spin2;
+	delete Mixing_Coefficients_Spin2_internal;
+
+	if (Parameters_Are_Loaded)
+		Unload_pdfreader();
+
+	p_set.clear();
+	id_set.clear();
+	
+	for (auto runner: ME_runners)
+		delete runner;
+	ME_runners.clear();
+}
+
+int MEKD::Load_Parameters()
+{
+	params_MG.read_slha_file(static_cast<string>(Parameter_file));
+	
+	/// Initializing parameters
+	if (!Parameters_Are_Loaded)
+		Load_Parameters_MEs();	// init MEs
+	Load_Parameters_extract_params(params_MG);
+	Load_Parameters_eval_params();
+	Normalize_parton_coeffs();
+	
+	if (Parameters_Are_Loaded)
+		Unload_pdfreader();
+	Load_pdfreader(const_cast<char *>(PDF_file.c_str()));
+
+	Parameters_Are_Loaded = true;
+	return 0;
+}
+
+int MEKD::Reload_params()
+{
+	if (!Parameters_Are_Loaded)
+		return 1;
+
+	return Load_Parameters();
+}
+
+void MEKD::eval_MEs(const input &in, vector<double> &ME2)
+{
+	if (ME2.size() != ME_runners.size())
+		ME2.resize(ME_runners.size(), 0);
+	cerr << "FIX ME!\n";
+	/* Added block */
+	p1 = (*in.p)[0];
+	p2 = (*in.p)[1];
+	p3 = (*in.p)[2];
+	p4 = (*in.p)[3];
+	
+	id1 = (*in.id)[0];
+	id2 = (*in.id)[1];
+	id3 = (*in.id)[2];
+	id4 = (*in.id)[3];
+	if ((*in.p).size() > 4) {
+		p5 = (*in.p)[4];
+		id5 = (*in.id)[4];
+	}
+	/* End of added block */
+	
+	if (!Parameters_Are_Loaded)
+		Load_Parameters();
+	if (Arrange_Internal_pls() == 1) {	// loads&arranges plX_internal
+		cerr << "Particle id error. Exiting.\n";
+		exit(1);
+	}
+	
+	PDFx1 = 0;
+	PDFx2 = 0;
+	Background_ME = 0;
+	Signal_ME = 0;
+	
+	Run_make_p();
+
+	int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(p_set, range);
+	Mass_4l = invariant_m;
+	
+	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
+		Normalize_parton_coeffs();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta entering ME(E px py px):\n";
+		Print_4momenta(p_set);
+	}
+	
+	for (unsigned int i = 0; i < ME_runners.size(); ++i) {
+		if (ME_runners[i] != NULL) {
+			Signal_ME = ME_runners[i]->evaluate(*this, in);
+			ME2[i] = Signal_ME;
+		} else
+			ME2[i] = 0;
+	}
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta after ME(E px py px) calculations:\n";
+		Print_4momenta(p_set);
+	}
+}
+
+int MEKD::Run()
+{
+	if (!Parameters_Are_Loaded)
+		Load_Parameters();
+	if (Arrange_Internal_pls() == 1) {	// loads&arranges plX_internal
+		cerr << "Particle id error. Exiting.\n";
+		exit(1);
+	}
+
+	PDFx1 = 0;
+	PDFx2 = 0;
+	Background_ME = 0;
+	Signal_ME = 0;
+	
+	Run_make_p();
+
+	int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(p_set, range);
+	Mass_4l = invariant_m;
+	
+	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
+		Normalize_parton_coeffs();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta entering ME(E px py px):\n";
+		Print_4momenta(p_set);
+	}
+	
+	Run_calculate();
+	
+	if (flag.Debug_Mode) {
+		cout << "4-momenta after ME(E px py px) calculations:\n";
+		Print_4momenta(p_set);
+	}
+
+	if (Test_Model[0] != '!')
+		KD = log(Signal_ME / Background_ME);
+
+	return 0;
+}
+
+int MEKD::Run(string Input_Model)
+{
+	buffer_string = Test_Model;
+	Test_Model = "!";
+	Test_Model += Input_Model;
+
+	error_value = Run();
+
+	Test_Model = buffer_string;
+	return error_value;
+}
+
+void MEKD::Run_make_p()
+{
+	if (flag.Overwrite_e_and_mu_masses) {
+		params_MG.set_block_entry("mass", 11, param.Electron_mass);
+		params_MG.set_block_entry("mass", 13, param.Muon_mass);
+		params_m_e = param.Electron_mass;
+		params_m_mu = param.Muon_mass;
+	}
+
+	Load_p_set();	// load 4-momenta from plX_internal
+	Prepare_ml_s();	// fill ml values; used in boosts only
+	
+	/// Calculate values needed for the PDF in the pT=0 frame
+	if (flag.Use_PDF_w_pT0) {
+		Boost_5p_2_pT0(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4,
+					   p_set[5], 0, p_set[6]);
+	}
+	
+	PDFx1 = Get_PDF_x1(p_set);
+	PDFx2 = Get_PDF_x2(p_set);
+	if (flag.Debug_Mode) {
+		printf("Coefficients for PDF (x1, x2): (%.10E, %.10E)\n",
+			   PDFx1, PDFx2);
+	}
+
+	/// If flag is true, boost to CM frame iff PDF is NOT included.
+	if (flag.Boost_To_CM && !flag.Use_PDF_w_pT0) {
+		Boost2CM(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4, p_set[5], 0,
+				 p_set[6]);
+		double CollisionE = p_set[2][0] + p_set[3][0] + p_set[4][0] +
+							p_set[5][0] + p_set[6][0];
+		p_set[0][0] = 0.5 * CollisionE;
+		p_set[1][0] = 0.5 * CollisionE;
+	} else {
+		Approx_neg_z_parton(p_set[0], PDFx1 * param.sqrt_s);
+		Approx_pos_z_parton(p_set[1], PDFx2 * param.sqrt_s);
+	}
+}
+
+void MEKD::Run_calculate()
+{
+	/// Background is interesting in any case, except for the Signal Runs or '!'
+	/// is indicated in the first model to save CPU
+	if (Test_Model[0] != '!' && Test_Models.size() == 0) {
+		Run_ME_Configurator_BKG_ZZ(prod_qq);
+		Background_ME = Signal_ME;
+	} else if (Test_Models.size() > 0) {
+		if (Test_Models[0][0] != '!') {
+			Run_ME_Configurator_BKG_ZZ(prod_qq);
+			Background_ME = Signal_ME;
+		}
+	}
+
+	/// Signal ME(s) is(are) chosen here
+	if (Test_Models.size() > 0 && Test_Model[0] != '!') {
+		Signal_MEs.resize(Test_Models.size());
+		fill(Signal_MEs.begin(), Signal_MEs.end(), 0);
+		Test_Model_buffer = &(Test_Models[0]); // Should be NULL or undefined
+											   // before this point; works as
+											   // counter=0
+	} else
+		Test_Model_buffer = &Test_Model;	// Should be NULL or undefined
+											// before this point
+
+	unsigned int counter = 1;
+	while (Test_Model_buffer != NULL) {
+		// Is it a parameter card defined?
+		if ((*Test_Model_buffer) == "Custom" ||
+			(*Test_Model_buffer) == "!Custom")
+			Run_ME_Configurator_Custom();
+
+		// Is it a "background"?
+		else if ((*Test_Model_buffer) == "qqZZ" ||
+				 (*Test_Model_buffer) == "!qqZZ")
+			Run_ME_Configurator_BKG_ZZ(prod_qq);
+		else if ((*Test_Model_buffer) == "ZZ" || (*Test_Model_buffer) == "!ZZ")
+			Run_ME_Configurator_BKG_ZZ(prod_qq);
+
+		else if ((*Test_Model_buffer) == "qqDY" ||
+				 (*Test_Model_buffer) == "!qqDY")
+			Run_ME_Configurator_BKG_ZZ(prod_qq);
+		else if ((*Test_Model_buffer) == "DY" || (*Test_Model_buffer) == "!DY")
+			Run_ME_Configurator_BKG_ZZ(prod_no);
+
+		// Is it a Z boson resonance?
+		else if ((*Test_Model_buffer) == "qqZ4l_Background" ||
+				 (*Test_Model_buffer) == "!qqZ4l_Background")
+			Run_ME_Configurator_Z4l_BKG(prod_qq);
+		else if ((*Test_Model_buffer) == "qqZ4l_Signal" ||
+				 (*Test_Model_buffer) == "!qqZ4l_Signal")
+			Run_ME_Configurator_Z4l_SIG(prod_qq);
+
+		/// Resonance to ZZ decay modes (with exceptions for 2l, 2l+A states).
+		/// Final states: 4 leptons (+photon) also 2 muons (+photon)
+		Resonance_decay_mode = "ZZ";
+
+		// Is it a spin-0 resonance?
+		if ((*Test_Model_buffer) == "ggSpin0Pm" ||
+			(*Test_Model_buffer) == "!ggSpin0Pm") // SM Higgs
+			Run_ME_Configurator_Spin0Pm(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0Pm" ||
+				 (*Test_Model_buffer) == "!Spin0Pm")
+			Run_ME_Configurator_Spin0Pm(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin0M" ||
+				 (*Test_Model_buffer) == "!ggSpin0M")
+			Run_ME_Configurator_Spin0M(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0M" ||
+				 (*Test_Model_buffer) == "!Spin0M")
+			Run_ME_Configurator_Spin0M(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin0Ph" ||
+				 (*Test_Model_buffer) == "!ggSpin0Ph")
+			Run_ME_Configurator_Spin0Ph(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0Ph" ||
+				 (*Test_Model_buffer) == "!Spin0Ph")
+			Run_ME_Configurator_Spin0Ph(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin0" ||
+				 (*Test_Model_buffer) == "!ggSpin0")
+			Run_ME_Configurator_Spin0(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0" ||
+				 (*Test_Model_buffer) == "!Spin0")
+			Run_ME_Configurator_Spin0(prod_no);
+
+		// Is it a spin-1 resonance?
+		else if ((*Test_Model_buffer) == "qqSpin1M" ||
+				 (*Test_Model_buffer) == "!qqSpin1M")
+			Run_ME_Configurator_Spin1M(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1M" ||
+				 (*Test_Model_buffer) == "!Spin1M")
+			Run_ME_Configurator_Spin1M(prod_no);
+
+		else if ((*Test_Model_buffer) == "qqSpin1P" ||
+				 (*Test_Model_buffer) == "!qqSpin1P")
+			Run_ME_Configurator_Spin1P(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1P" ||
+				 (*Test_Model_buffer) == "!Spin1P")
+			Run_ME_Configurator_Spin1P(prod_no);
+
+		else if ((*Test_Model_buffer) == "qqSpin1" ||
+				 (*Test_Model_buffer) == "!qqSpin1")
+			Run_ME_Configurator_Spin1(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1" ||
+				 (*Test_Model_buffer) == "!Spin1")
+			Run_ME_Configurator_Spin1(prod_no);
+
+		// Is it a spin-2 resonance?
+		else if ((*Test_Model_buffer) == "ggSpin2Pm" ||
+				 (*Test_Model_buffer) == "!ggSpin2Pm")
+			Run_ME_Configurator_Spin2Pm(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Pm" ||
+				 (*Test_Model_buffer) == "!qqSpin2Pm")
+			Run_ME_Configurator_Spin2Pm(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Pm" ||
+				 (*Test_Model_buffer) == "!Spin2Pm")
+			Run_ME_Configurator_Spin2Pm(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Ph" ||
+				 (*Test_Model_buffer) == "!ggSpin2Ph")
+			Run_ME_Configurator_Spin2Ph(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Ph" ||
+				 (*Test_Model_buffer) == "!qqSpin2Ph")
+			Run_ME_Configurator_Spin2Ph(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Ph" ||
+				 (*Test_Model_buffer) == "!Spin2Ph")
+			Run_ME_Configurator_Spin2Ph(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Mh" ||
+				 (*Test_Model_buffer) == "!ggSpin2Mh")
+			Run_ME_Configurator_Spin2Mh(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Mh" ||
+				 (*Test_Model_buffer) == "!qqSpin2Mh")
+			Run_ME_Configurator_Spin2Mh(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Mh" ||
+				 (*Test_Model_buffer) == "!Spin2Mh")
+			Run_ME_Configurator_Spin2Mh(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Pb" ||
+				 (*Test_Model_buffer) == "!ggSpin2Pb")
+			Run_ME_Configurator_Spin2Pb(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Pb" ||
+				 (*Test_Model_buffer) == "!qqSpin2Pb")
+			Run_ME_Configurator_Spin2Pb(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Pb" ||
+				 (*Test_Model_buffer) == "!Spin2Pb")
+			Run_ME_Configurator_Spin2Pb(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Ph2" ||
+				 (*Test_Model_buffer) == "!ggSpin2Ph2")
+			Run_ME_Configurator_Spin2Ph2(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Ph2" ||
+				 (*Test_Model_buffer) == "!qqSpin2Ph2")
+			Run_ME_Configurator_Spin2Ph2(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Ph2" ||
+				 (*Test_Model_buffer) == "!Spin2Ph2")
+			Run_ME_Configurator_Spin2Ph2(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Ph3" ||
+				 (*Test_Model_buffer) == "!ggSpin2Ph3")
+			Run_ME_Configurator_Spin2Ph3(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Ph3" ||
+				 (*Test_Model_buffer) == "!qqSpin2Ph3")
+			Run_ME_Configurator_Spin2Ph3(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Ph3" ||
+				 (*Test_Model_buffer) == "!Spin2Ph3")
+			Run_ME_Configurator_Spin2Ph3(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Ph6" ||
+				 (*Test_Model_buffer) == "!ggSpin2Ph6")
+			Run_ME_Configurator_Spin2Ph6(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Ph6" ||
+				 (*Test_Model_buffer) == "!qqSpin2Ph6")
+			Run_ME_Configurator_Spin2Ph6(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Ph6" ||
+				 (*Test_Model_buffer) == "!Spin2Ph6")
+			Run_ME_Configurator_Spin2Ph6(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Ph7" ||
+				 (*Test_Model_buffer) == "!ggSpin2Ph7")
+			Run_ME_Configurator_Spin2Ph7(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Ph7" ||
+				 (*Test_Model_buffer) == "!qqSpin2Ph7")
+			Run_ME_Configurator_Spin2Ph7(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Ph7" ||
+				 (*Test_Model_buffer) == "!Spin2Ph7")
+			Run_ME_Configurator_Spin2Ph7(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Mh9" ||
+				 (*Test_Model_buffer) == "!ggSpin2Mh9")
+			Run_ME_Configurator_Spin2Mh9(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Mh9" ||
+				 (*Test_Model_buffer) == "!qqSpin2Mh9")
+			Run_ME_Configurator_Spin2Mh9(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Mh9" ||
+				 (*Test_Model_buffer) == "!Spin2Mh9")
+			Run_ME_Configurator_Spin2Mh9(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2Mh10" ||
+				 (*Test_Model_buffer) == "!ggSpin2Mh10")
+			Run_ME_Configurator_Spin2Mh10(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Mh10" ||
+				 (*Test_Model_buffer) == "!qqSpin2Mh10")
+			Run_ME_Configurator_Spin2Mh10(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Mh10" ||
+				 (*Test_Model_buffer) == "!Spin2Mh10")
+			Run_ME_Configurator_Spin2Mh10(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2" ||
+				 (*Test_Model_buffer) == "!ggSpin2")
+			Run_ME_Configurator_Spin2(prod_gg, params_MG);
+		else if ((*Test_Model_buffer) == "qqSpin2" ||
+				 (*Test_Model_buffer) == "!qqSpin2")
+			Run_ME_Configurator_Spin2(prod_qq, params_MG);
+		else if ((*Test_Model_buffer) == "Spin2" ||
+				 (*Test_Model_buffer) == "!Spin2")
+			Run_ME_Configurator_Spin2(prod_no, params_MG);
+
+		/// Resonance to 2l decay modes. Final states: 4 leptons (+photon)
+		Resonance_decay_mode = "2l";
+
+		// Is it a spin-0 resonance?
+		if ((*Test_Model_buffer) == "ggSpin0Pm_2f" ||
+			(*Test_Model_buffer) == "!ggSpin0Pm_2f") // SM Higgs
+			Run_ME_Configurator_Spin0Pm(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0Pm_2f" ||
+				 (*Test_Model_buffer) == "!Spin0Pm_2f")
+			Run_ME_Configurator_Spin0Pm(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin0M_2f" ||
+				 (*Test_Model_buffer) == "!ggSpin0M_2f")
+			Run_ME_Configurator_Spin0M(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0M_2f" ||
+				 (*Test_Model_buffer) == "!Spin0M_2f")
+			Run_ME_Configurator_Spin0M(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin0_2f" ||
+				 (*Test_Model_buffer) == "!ggSpin0_2f")
+			Run_ME_Configurator_Spin0(prod_gg);
+		else if ((*Test_Model_buffer) == "Spin0_2f" ||
+				 (*Test_Model_buffer) == "!Spin0_2f")
+			Run_ME_Configurator_Spin0(prod_no);
+
+		// Is it a spin-1 resonance?
+		else if ((*Test_Model_buffer) == "qqSpin1M_2f" ||
+				 (*Test_Model_buffer) == "!qqSpin1M_2f")
+			Run_ME_Configurator_Spin1M(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1M" ||
+				 (*Test_Model_buffer) == "!Spin1M_2f")
+			Run_ME_Configurator_Spin1M(prod_no);
+
+		else if ((*Test_Model_buffer) == "qqSpin1P_2f" ||
+				 (*Test_Model_buffer) == "!qqSpin1P_2f")
+			Run_ME_Configurator_Spin1P(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1P_2f" ||
+				 (*Test_Model_buffer) == "!Spin1P_2f")
+			Run_ME_Configurator_Spin1P(prod_no);
+
+		else if ((*Test_Model_buffer) == "qqSpin1_2f" ||
+				 (*Test_Model_buffer) == "!qqSpin1_2f")
+			Run_ME_Configurator_Spin1(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin1_2f" ||
+				 (*Test_Model_buffer) == "!Spin1_2f")
+			Run_ME_Configurator_Spin1(prod_no);
+
+		// Is it a spin-2 resonance?
+		else if ((*Test_Model_buffer) == "ggSpin2Pm_2f" ||
+				 (*Test_Model_buffer) == "!ggSpin2Pm_2f")
+			Run_ME_Configurator_Spin2Pm(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2Pm_2f" ||
+				 (*Test_Model_buffer) == "!qqSpin2Pm_2f")
+			Run_ME_Configurator_Spin2Pm(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2Pm_2f" ||
+				 (*Test_Model_buffer) == "!Spin2Pm_2f")
+			Run_ME_Configurator_Spin2Pm(prod_no);
+
+		else if ((*Test_Model_buffer) == "ggSpin2_2f" ||
+				 (*Test_Model_buffer) == "!ggSpin2_2f")
+			Run_ME_Configurator_Spin2Pm(prod_gg);
+		else if ((*Test_Model_buffer) == "qqSpin2_2f" ||
+				 (*Test_Model_buffer) == "!qqSpin2_2f")
+			Run_ME_Configurator_Spin2Pm(prod_qq);
+		else if ((*Test_Model_buffer) == "Spin2_2f" ||
+				 (*Test_Model_buffer) == "!Spin2_2f")
+			Run_ME_Configurator_Spin2Pm(prod_no);
+
+		// Is it a RAW MG5_aMC ME?
+		if ((*Test_Model_buffer) == "ggCPPProcess" ||
+			(*Test_Model_buffer) == "!ggCPPProcess") // ME_RAW
+			Run_ME_Configurator_CPPProcess(prod_gg);
+		else if ((*Test_Model_buffer) == "qqCPPProcess" ||
+				 (*Test_Model_buffer) == "!qqCPPProcess")
+			Run_ME_Configurator_CPPProcess(prod_qq);
+		else if ((*Test_Model_buffer) == "CPPProcess" ||
+				 (*Test_Model_buffer) == "!CPPProcess")
+			Run_ME_Configurator_CPPProcess(prod_no);
+
+		if (flag.Debug_Mode)
+			cout << "Evaluated model: " << (*Test_Model_buffer)
+				 << "; calculated ME: " << Signal_ME << endl;
+
+		if (Test_Models.size() > 0 && Test_Model[0] != '!') {
+			Signal_MEs[counter - 1] = Signal_ME;
+
+			if (counter < Test_Models.size())
+				Test_Model_buffer = &(Test_Models[counter]);
+			else
+				Test_Model_buffer = NULL;
+		} else
+			Test_Model_buffer = NULL;
+
+		++counter;
+	}
+}
+
+void MEKD::Load_p_set()
+{
+	for (int i = 0; i < 4; ++i) {
+		p_set[0][i] = 0;
+		p_set[1][i] = 0;
+
+		if (pl1_internal == NULL)
+			p_set[2][i] = 0;
+		else
+			p_set[2][i] = pl1_internal[i];
+		if (pl2_internal == NULL)
+			p_set[3][i] = 0;
+		else
+			p_set[3][i] = pl2_internal[i];
+		if (pl3_internal == NULL)
+			p_set[4][i] = 0;
+		else
+			p_set[4][i] = pl3_internal[i];
+		if (pl4_internal == NULL)
+			p_set[5][i] = 0;
+		else
+			p_set[5][i] = pl4_internal[i];
+
+		// Adaptive photon handling
+		if (pA1_internal == NULL)
+			p_set[6][i] = 0;
+		else {
+			if (Final_state == "2mA" || Final_state == "2muA") {
+				p_set[4][i] = pA1_internal[i];
+				p_set[6][i] = 0;
+			} else
+				p_set[6][i] = pA1_internal[i];
+		}
+	}
+}
+
+void MEKD::Prepare_ml_s()
+{
+	if (Final_state == "4e" || Final_state == "4eA") {
+		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
+		ml2 = ml1;
+		ml3 = ml1;
+		ml4 = ml1;
+	} else if (Final_state == "4m" || Final_state == "4mu" ||
+			   Final_state == "4mA" || Final_state == "4muA") {
+		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+		ml2 = ml1;
+		ml3 = ml1;
+		ml4 = ml1;
+	} else if (Final_state == "2e2m" || Final_state == "2e2mu" ||
+			   Final_state == "2e2mA" || Final_state == "2e2muA") {
+		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
+		ml2 = ml1;
+		ml3 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+		ml4 = ml3;
+	} else if (Final_state == "2m" || Final_state == "2mu" ||
+			   Final_state == "2mA" || Final_state == "2muA") {
+		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+		ml2 = ml1;
+		ml3 = 0;
+		ml4 = 0;
+	} else {
+		cerr << "MAYDAY!!! Undefined behavior!\n";
+		exit(1);
+	}
+}
+
+double MEKD::Get_PDF_x1(vector<double *> &p)
+{
+	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) +
+			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / param.sqrt_s;
+}
+
+double MEKD::Get_PDF_x2(vector<double *> &p)
+{
+	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) -
+			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / param.sqrt_s;
+}
+
+double MEKD::Get_invariant_m(vector<double *> &p, int p_range[2])
+{
+	double sum_E = 0;
+	double sum_px = 0;
+	double sum_py = 0;
+	double sum_pz = 0;
+	
+	for (vector<double *>::const_iterator it = p.begin() + p_range[0];
+		it != p.begin() + p_range[1] + 1; ++it) {
+		sum_E += (*it)[0];
+		sum_px += (*it)[1];
+		sum_py += (*it)[2];
+		sum_pz += (*it)[3];
+	}
+	
+	return sqrt(sum_E * sum_E
+				- sum_px * sum_px
+				- sum_py * sum_py
+				- sum_pz * sum_pz);
+}
+
+void MEKD::Normalize_parton_coeffs()
+{
+	double buffer_ = (param.parton_coeff_d + param.parton_coeff_u +
+					  param.parton_coeff_s + param.parton_coeff_c);
+	
+	param.parton_coeff_d = param.parton_coeff_d / buffer_;
+	param.parton_coeff_u = param.parton_coeff_u / buffer_;
+	param.parton_coeff_c = param.parton_coeff_c / buffer_;
+	param.parton_coeff_s = param.parton_coeff_s / buffer_;
+}
+
+void MEKD::Approx_neg_z_parton(double *p, double E)
+{
+	// 0-mass approximation
+	p[0] = 0.5 * E;
+	p[1] = 0;
+	p[2] = 0;
+	p[3] = 0.5 * E; // to be recalculated
+}
+
+void MEKD::Approx_pos_z_parton(double *p, double E)
+{
+	// 0-mass approximation
+	p[0] = 0.5 * E;
+	p[1] = 0;
+	p[2] = 0;
+	p[3] = -0.5 * E; // to be recalculated
+}
+
+/*
+ * Version 2 and earlier methods: left for backwards compatibility.
+ */
+
 ///------------------------------------------------------------------------
 /// MEKD::processParameters - sanity check for internal parameters
 ///------------------------------------------------------------------------
@@ -69,8 +764,8 @@ int MEKD::processParameters()
 	flag.Use_PDF_w_pT0 = m_usePDF;
 
 	/// Check if sqrt(s) is 7 or 8 TeV
-	if (m_collisionEnergy != 7 && m_collisionEnergy != 8)
-		cerr << "WARNING! You have set energy to be " << m_collisionEnergy
+	if (param.sqrt_s != 7000 && param.sqrt_s != 8000)
+		cerr << "WARNING! You have set energy to be " << param.sqrt_s/1000
 			 << " TeV\n";
 
 	return EXIT_SUCCESS;

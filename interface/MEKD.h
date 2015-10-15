@@ -95,27 +95,13 @@ class MEKD
 	
 	/// Flags
 	flags flag;
-
-	/// General parameters
-	// Values have no effect if PDF is used but variables are always used
-	// Parton multipliers.
-	double parton_coeff_d;
-	double parton_coeff_u;
-	double parton_coeff_s;
-	double parton_coeff_c;
-	// 	double GG;	// Assign QCD coupling, force g3 running if needed
-	double Sqrt_s; // Max energy, collision energy
+	
+	/// Parameters
+	parameters param;
 
 	/// State mixing
 	complex<double> *Mixing_Coefficients_Spin0, *Mixing_Coefficients_Spin1,
 		*Mixing_Coefficients_Spin2;
-
-	/// Physical parameters
-	double Electron_mass;	// 0.0005109989, for enabled overwriting
-	double Higgs_mass;		// Works only if flag.Use_mh_eq_m4l=false
-	double Higgs_width;		// Practically not used, for future implementations
-	double Muon_mass;		// 0.10565837, for enabled overwriting
-	double Proton_mass;		// Always used if needed
 
 	/// Final-state lepton/photon information
 	double *p1, *p2, *p3, *p4, *p5;
@@ -145,7 +131,7 @@ class MEKD
 	double KD;				   // is not filled with RUN(string)
 
 	/// Parameter container. For experts only
-	SLHAReader_MEKD Set_Of_Model_Parameters;
+	SLHAReader_MEKD params_MG;
 
 	/// Functions
 	void Set_default_params();
@@ -345,12 +331,12 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int error_value;
 
 	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1,
-		PDFx2, LmbdGG_calculated;
+		PDFx2;
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
 
-	complex<double> *buffer_complex, *Mixing_Coefficients_Spin0_internal,
+	complex<double> *Mixing_Coefficients_Spin0_internal,
 		*Mixing_Coefficients_Spin1_internal,
 		*Mixing_Coefficients_Spin2_internal;
 
@@ -393,46 +379,57 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int Arrange_Internal_pls();
 
 	/// Sets up particular choices. Tier 3
-	int Run_ME_Configurator_BKG_ZZ(string initial_state);
+	int Run_ME_Configurator_BKG_ZZ(const production_types);
 	int Run_ME_Configurator_Custom();
 	// RAW MG5_aMC ME
-	int Run_ME_Configurator_CPPProcess(string initial_state);
+	int Run_ME_Configurator_CPPProcess(const production_types);
 	// Generic mixed spin-0 state
-	int Run_ME_Configurator_Spin0(string initial_state);
+	int Run_ME_Configurator_Spin0(const production_types);
 	// Generic mixed spin-1 state
-	int Run_ME_Configurator_Spin1(string initial_state);
+	int Run_ME_Configurator_Spin1(const production_types);
 	// Generic mixed spin-2 state
-	int Run_ME_Configurator_Spin2(string initial_state);
-	int Run_ME_Configurator_Spin0Pm(string initial_state); // SM Higgs
-	int Run_ME_Configurator_Spin0M(string initial_state);
-	int Run_ME_Configurator_Spin0Ph(string initial_state);
-	int Run_ME_Configurator_Spin1P(string initial_state);
-	int Run_ME_Configurator_Spin1M(string initial_state);
-	int Run_ME_Configurator_Spin2Pm(string initial_state);
-	int Run_ME_Configurator_Spin2Ph(string initial_state);
-	int Run_ME_Configurator_Spin2Mh(string initial_state);
-	int Run_ME_Configurator_Spin2Pb(string initial_state);
-	int Run_ME_Configurator_Spin2Ph2(string initial_state);
-	int Run_ME_Configurator_Spin2Ph3(string initial_state);
-	int Run_ME_Configurator_Spin2Ph6(string initial_state);
-	int Run_ME_Configurator_Spin2Ph7(string initial_state);
-	int Run_ME_Configurator_Spin2Mh9(string initial_state);
-	int Run_ME_Configurator_Spin2Mh10(string initial_state);
-	int Run_ME_Configurator_Spin0Pm_Spin0M(string initial_state); // A mixed state of two contributions
-	int Run_ME_Configurator_Spin0Pm_Spin0Ph(string initial_state);
-	int Run_ME_Configurator_Spin0M_Spin0Ph(string initial_state);
-	int Run_ME_Configurator_Z4l_BKG(string initial_state);
-	int Run_ME_Configurator_Z4l_SIG(string initial_state);
+	int Run_ME_Configurator_Spin2(const production_types,
+								  SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
+										   const complex<double> *c,
+										   const double &Mi,
+										   const double &lgg);
+	void Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
+										 const complex<double> *c,
+										 const double &mZ, const double &Mi,
+										 const double &hZZ);
+	// SM Higgs
+	int Run_ME_Configurator_Spin0Pm(const production_types);
+	int Run_ME_Configurator_Spin0M(const production_types);
+	int Run_ME_Configurator_Spin0Ph(const production_types);
+	int Run_ME_Configurator_Spin1P(const production_types);
+	int Run_ME_Configurator_Spin1M(const production_types);
+	int Run_ME_Configurator_Spin2Pm(const production_types);
+	int Run_ME_Configurator_Spin2Ph(const production_types);
+	int Run_ME_Configurator_Spin2Mh(const production_types);
+	int Run_ME_Configurator_Spin2Pb(const production_types);
+	int Run_ME_Configurator_Spin2Ph2(const production_types);
+	int Run_ME_Configurator_Spin2Ph3(const production_types);
+	int Run_ME_Configurator_Spin2Ph6(const production_types);
+	int Run_ME_Configurator_Spin2Ph7(const production_types);
+	int Run_ME_Configurator_Spin2Mh9(const production_types);
+	int Run_ME_Configurator_Spin2Mh10(const production_types);
+	// A mixed state of two contributions
+	int Run_ME_Configurator_Spin0Pm_Spin0M(const production_types);
+	int Run_ME_Configurator_Spin0Pm_Spin0Ph(const production_types);
+	int Run_ME_Configurator_Spin0M_Spin0Ph(const production_types);
+	int Run_ME_Configurator_Z4l_BKG(const production_types);
+	int Run_ME_Configurator_Z4l_SIG(const production_types);
 
 	/// Dispatches MEs that have correct parameters. Tier 2
-	int Run_ME_Dispatcher_CPPProcess(
-		string initial_state); // RAW MG5_aMC ME
-	int Run_ME_Dispatcher_BKG_ZZ(string initial_state);
-	int Run_ME_Dispatcher_Z4l_BKG(string initial_state);
-	int Run_ME_Dispatcher_Z4l_SIG(string initial_state);
-	int Run_ME_Dispatcher_SIG_Spin0(string initial_state);
-	int Run_ME_Dispatcher_SIG_Spin1(string initial_state);
-	int Run_ME_Dispatcher_SIG_Spin2(string initial_state);
+	// RAW MG5_aMC ME
+	int Run_ME_Dispatcher_CPPProcess(const production_types);
+	int Run_ME_Dispatcher_BKG_ZZ(const production_types);
+	int Run_ME_Dispatcher_Z4l_BKG(const production_types);
+	int Run_ME_Dispatcher_Z4l_SIG(const production_types);
+	int Run_ME_Dispatcher_SIG_Spin0(const production_types);
+	int Run_ME_Dispatcher_SIG_Spin1(const production_types);
+	int Run_ME_Dispatcher_SIG_Spin2(const production_types);
 
 	/// Evaluators. Blind-calculation functions. Handles MEs from Dispatchers.
 	/// Tier 1
@@ -474,11 +471,11 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	///
 	/// Constructor.
 	///
-	/// \param collisionEnergy					The sqrt(s) value in TeV.
+	/// \param collision_energy					The sqrt(s) value in TeV.
 	/// \param PDFName							The name of the parton density
 	/// function. Default is none.
 	///
-	MEKD(double collisionEnergy, string PDFName);
+	MEKD(const double &collision_energy, const string &PDF_name);
 
 	///
 	/// Compute and extract individual KD and MEs. Works after running int
