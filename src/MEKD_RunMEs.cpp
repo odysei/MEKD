@@ -74,7 +74,7 @@ int MEKD::Run_ME_Configurator_Spin0Pm(const production_types IS)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS);
+	return Run_ME_Configurator_Spin0(IS, params_MG);
 }
 
 /// A pseudoscalar
@@ -92,7 +92,7 @@ int MEKD::Run_ME_Configurator_Spin0M(const production_types IS)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS);
+	return Run_ME_Configurator_Spin0(IS, params_MG);
 }
 
 /// A scalar with higher-order couplings
@@ -110,7 +110,7 @@ int MEKD::Run_ME_Configurator_Spin0Ph(const production_types IS)
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS);
+	return Run_ME_Configurator_Spin0(IS, params_MG);
 }
 
 ////////////////////////////////////
@@ -136,7 +136,7 @@ int MEKD::Run_ME_Configurator_Spin1M(const production_types IS)
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin1(IS);
+	return Run_ME_Configurator_Spin1(IS, params_MG);
 }
 
 /// A vector default configuration
@@ -158,7 +158,7 @@ int MEKD::Run_ME_Configurator_Spin1P(const production_types IS)
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin1(IS);
+	return Run_ME_Configurator_Spin1(IS, params_MG);
 }
 
 ////////////////////////////////////
@@ -616,13 +616,15 @@ int MEKD::Run_ME_Configurator_Spin2Mh10(const production_types IS)
 }
 
 /// A generic spin-0 resonance handler
-int MEKD::Run_ME_Configurator_Spin0(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin0(const production_types IS,
+									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
-	double mH = param.Higgs_mass;
-	double mZ = params_m_Z;
-	double M = Mass_4l;	// system's invariant mass
-	double hZZ = hZZ_coupling;
+	const double mH = param.Higgs_mass;
+	const double mZ = params_m_Z;
+	const double M = Mass_4l;	// system's invariant mass
+	double wH;
+	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
@@ -633,67 +635,59 @@ int MEKD::Run_ME_Configurator_Spin0(const production_types IS)
 		c = Mixing_Coefficients_Spin0;
 
 	if (flag.Use_mh_eq_m4l) {
-		params_MG.set_block_entry("mass", 9000006, M);
+		par_MG.set_block_entry("mass", 9000006, M);
 
-		if (flag.Use_Higgs_width) {
-			if (flag.Vary_resonance_width)
-				params_MG.set_block_entry("decay", 9000006, static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M)));
-			else
-				params_MG.set_block_entry("decay", 9000006, param.Higgs_width);
-		} else
-			params_MG.set_block_entry("decay", 9000006, 1);
+		if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+			wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M));
 
 		lgg = LmbdGG(M);
 	} else {
-		params_MG.set_block_entry("mass", 9000006, mH);
+		par_MG.set_block_entry("mass", 9000006, mH);
 
-		if (flag.Use_Higgs_width) {
-			if (flag.Vary_resonance_width)
-				params_MG.set_block_entry("decay", 9000006, static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M)));
-			else
-				params_MG.set_block_entry("decay", 9000006, param.Higgs_width);
-		} else
-			params_MG.set_block_entry("decay", 9000006, 1);
+		if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+			wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(mH));
 
 		lgg = LmbdGG(mH);
 	}
+	
+	if (flag.Use_Higgs_width) {
+		if (!flag.Vary_resonance_width)
+			wH = param.Higgs_width;
+	} else
+		wH = 1;
+	par_MG.set_block_entry("decay", 9000006, wH);
 
 	if (flag.Vary_signal_couplings) {
-		// gg
-		if (flag.Fix_Spin0_Production) {
-			params_MG.set_block_entry("heff", 1, complex<double>(0, 0));
-			params_MG.set_block_entry("heff", 2, complex<double>(4 * lgg, 0)); // Spin0Pm
-			params_MG.set_block_entry("heff", 3, complex<double>(0, 0));
-			params_MG.set_block_entry("heff", 4, complex<double>(0, 0)); // Spin0M
-		} else {
-			params_MG.set_block_entry("heff", 1, complex<double>(0, 0));
-			params_MG.set_block_entry("heff", 2, (c[0] + c[1] + c[2]) * complex<double>(4 * lgg, 0)); // Spin0P
-			params_MG.set_block_entry("heff", 3, complex<double>(0, 0));
-			params_MG.set_block_entry("heff", 4, c[3] * complex<double>(4 * lgg, 0)); // Spin0M
-		}
+		Run_ME_Configurator_Spin0_produ(par_MG, c, lgg);
 
-		// Decay to ZZ
-		if (flag.Use_mh_eq_m4l) {
-			params_MG.set_block_entry("heff", 5, c[0] * complex<double>(hZZ, 0)); // Spin0Pm
-			params_MG.set_block_entry("heff", 6, c[1] * complex<double>(hZZ / mZ / mZ, 0)); // Spin0Ph
-			params_MG.set_block_entry("heff", 7, c[2] * complex<double>(hZZ / mZ / mZ / M / M, 0)); // Spin0Ph+
-			params_MG.set_block_entry("heff", 8, c[3] * complex<double>(hZZ / mZ / mZ, 0)); // Spin0M
-		} else {
-			params_MG.set_block_entry("heff", 5, c[0] * complex<double>(hZZ, 0)); // Spin0Pm
-			params_MG.set_block_entry("heff", 6, c[1] * complex<double>(hZZ / mZ / mZ, 0)); // Spin0Ph
-			params_MG.set_block_entry("heff", 7, c[2] * complex<double>(hZZ / mZ / mZ / mH / mH, 0)); // Spin0Ph+
-			params_MG.set_block_entry("heff", 8, c[3] * complex<double>(hZZ / mZ / mZ, 0)); // Spin0M
-		}
-
-		// Decay to 2l (or 2mu in 2f)
-		params_MG.set_block_entry("heff", 19, c[0] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("heff", 20, c[1] * complex<double>(4.291210e-04, 0));
-
-		// Decay to 2e (2f)
-		params_MG.set_block_entry("heff", 21, c[0] * complex<double>(4.291210e-04, 0)); // for Hee should be 2.075371e-06
-		params_MG.set_block_entry("heff", 22, c[1] * complex<double>(4.291210e-04, 0));
+		if (flag.Use_mh_eq_m4l)
+			Run_ME_Configurator_Spin0_decay(par_MG, c, mZ, M, hZZ);
+		else
+			Run_ME_Configurator_Spin0_decay(par_MG, c, mZ, mH, hZZ);
 	}
 
+	return Run_ME_Dispatcher_SIG_Spin0(IS);
+}
+
+void MEKD::Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
+										   const complex<double> *c,
+										   const double lgg)
+{
+	// gg
+	const complex<double> common_coupl = complex<double>(4 * lgg, 0);
+	if (flag.Fix_Spin0_Production) {
+		par_MG.set_block_entry("heff", 1, complex<double>(0, 0));
+		par_MG.set_block_entry("heff", 2, common_coupl); 			// Spin0Pm
+		par_MG.set_block_entry("heff", 3, complex<double>(0, 0));
+		par_MG.set_block_entry("heff", 4, complex<double>(0, 0));	// Spin0M
+	} else {
+		par_MG.set_block_entry("heff", 1, complex<double>(0, 0));
+		// Spin0Pm
+		par_MG.set_block_entry("heff", 2, (c[0] + c[1] + c[2]) * common_coupl);
+		par_MG.set_block_entry("heff", 3, complex<double>(0, 0));
+		par_MG.set_block_entry("heff", 4, c[3] * common_coupl);		// Spin0M
+	}
+	
 	// qq
 	params_rhou01 = complex<double>(0, 0);
 	params_rhou02 = complex<double>(0, 0);
@@ -705,18 +699,43 @@ int MEKD::Run_ME_Configurator_Spin0(const production_types IS)
 	params_rhos02 = complex<double>(0, 0);
 	params_rhob01 = complex<double>(0, 0);
 	params_rhob02 = complex<double>(0, 0);
+}
 
-	return Run_ME_Dispatcher_SIG_Spin0(IS);
+void MEKD::Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
+										   const complex<double> *c,
+										   const double mZ, const double Mi,
+										   const double hZZ)
+{
+	// Decay to ZZ
+	const complex<double> chZZ = complex<double>(hZZ, 0);
+	const complex<double> chZZ_o2 = complex<double>(hZZ / mZ / mZ, 0);
+	const complex<double> chZZ_o4k = chZZ_o2 / Mi / Mi;
+	par_MG.set_block_entry("heff", 5, c[0] * chZZ);		// Spin0Pm
+	par_MG.set_block_entry("heff", 6, c[1] * chZZ_o2);	// Spin0Ph
+	par_MG.set_block_entry("heff", 7, c[2] * chZZ_o4k);	// Spin0Ph+
+	par_MG.set_block_entry("heff", 8, c[3] * chZZ_o2);	// Spin0M
+
+	// Decay to 2l (or 2mu in 2f)
+	const complex<double> hmumu = complex<double>(4.291210e-04, 0);
+	par_MG.set_block_entry("heff", 19, c[0] * hmumu);
+	par_MG.set_block_entry("heff", 20, c[1] * hmumu);
+
+	// Decay to 2e (2f)
+	// for Hee should be 2.075371e-06
+	par_MG.set_block_entry("heff", 21, c[0] * hmumu);
+	par_MG.set_block_entry("heff", 22, c[1] * hmumu);
 }
 
 /// A generic spin-1 resonance handler
-int MEKD::Run_ME_Configurator_Spin1(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin1(const production_types IS,
+									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
-	double mH = param.Higgs_mass;
-	double mZ = params_m_Z;
-	double M = Mass_4l;	// system's invariant mass
-	double hZZ = hZZ_coupling;
+	const double mH = param.Higgs_mass;
+	const double mZ = params_m_Z;
+	const double M = Mass_4l;	// system's invariant mass
+	double wH;
+	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
@@ -727,95 +746,114 @@ int MEKD::Run_ME_Configurator_Spin1(const production_types IS)
 		c = Mixing_Coefficients_Spin1;
 
 	if (flag.Use_mh_eq_m4l) {
-		params_MG.set_block_entry("mass", 300, M);
+		par_MG.set_block_entry("mass", 300, M);
 
-		if (flag.Use_Higgs_width) {
-			if (flag.Vary_resonance_width)
-				params_MG.set_block_entry("decay", 300, static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M)));
-			else
-				params_MG.set_block_entry("decay", 300, param.Higgs_width);
-		} else
-			params_MG.set_block_entry("decay", 300, 1);
+		if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+			wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M));
 
 		lgg = LmbdGG(M);
 	} else {
-		params_MG.set_block_entry("mass", 300, mH);
+		par_MG.set_block_entry("mass", 300, mH);
 
-		if (flag.Use_Higgs_width) {
-			if (flag.Vary_resonance_width)
-				params_MG.set_block_entry("decay", 300, static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M)));
-			else
-				params_MG.set_block_entry("decay", 300, param.Higgs_width);
-		} else
-			params_MG.set_block_entry("decay", 300, 1);
+		if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+			wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(mH));
 
 		lgg = LmbdGG(mH);
 	}
+	
+	if (flag.Use_Higgs_width) {
+		if (!flag.Vary_resonance_width)
+			wH = param.Higgs_width;
+	} else
+		wH = 1;
+	par_MG.set_block_entry("decay", 300, wH);
 
 	if (flag.Vary_signal_couplings) {
-		// qq
-		if (flag.Fix_Spin1_Production) {
-			params_rhod11 = complex<double>(sqrt(1 / 2) * lgg * v_expectation, 0);
-			params_rhos11 = complex<double>(sqrt(1 / 2) * lgg * v_expectation, 0);
-			params_rhob11 = complex<double>(sqrt(1 / 2) * lgg * v_expectation, 0);
-			params_rhou11 = complex<double>(sqrt(1 / 2) * lgg * v_expectation, 0);
-			params_rhoc11 = complex<double>(sqrt(1 / 2) * lgg * v_expectation, 0);
-			params_rhod12 = complex<double>(0, 0);
-			params_rhos12 = complex<double>(0, 0);
-			params_rhob12 = complex<double>(0, 0);
-			params_rhou12 = complex<double>(0, 0);
-			params_rhoc12 = complex<double>(0, 0);
-			params_rhod13 = complex<double>(0, 0);
-			params_rhos13 = complex<double>(0, 0);
-			params_rhob13 = complex<double>(0, 0);
-			params_rhou13 = complex<double>(0, 0);
-			params_rhoc13 = complex<double>(0, 0);
-			params_rhod14 = complex<double>(0, 0);
-			params_rhos14 = complex<double>(0, 0);
-			params_rhob14 = complex<double>(0, 0);
-			params_rhou14 = complex<double>(0, 0);
-			params_rhoc14 = complex<double>(0, 0);
-		} else {
-			params_rhod11 = c[0] * complex<double>(lgg * v_expectation, 0);
-			params_rhos11 = c[0] * complex<double>(lgg * v_expectation, 0);
-			params_rhob11 = c[0] * complex<double>(lgg * v_expectation, 0);
-			params_rhou11 = c[0] * complex<double>(lgg * v_expectation, 0);
-			params_rhoc11 = c[0] * complex<double>(lgg * v_expectation, 0);
-			params_rhod12 = c[1] * complex<double>(lgg * v_expectation, 0);
-			params_rhos12 = c[1] * complex<double>(lgg * v_expectation, 0);
-			params_rhob12 = c[1] * complex<double>(lgg * v_expectation, 0);
-			params_rhou12 = c[1] * complex<double>(lgg * v_expectation, 0);
-			params_rhoc12 = c[1] * complex<double>(lgg * v_expectation, 0);
-			params_rhod13 = c[2] * complex<double>(lgg * v_expectation, 0);
-			params_rhos13 = c[2] * complex<double>(lgg * v_expectation, 0);
-			params_rhob13 = c[2] * complex<double>(lgg * v_expectation, 0);
-			params_rhou13 = c[2] * complex<double>(lgg * v_expectation, 0);
-			params_rhoc13 = c[2] * complex<double>(lgg * v_expectation, 0);
-			params_rhod14 = c[3] * complex<double>(lgg * v_expectation, 0);
-			params_rhos14 = c[3] * complex<double>(lgg * v_expectation, 0);
-			params_rhob14 = c[3] * complex<double>(lgg * v_expectation, 0);
-			params_rhou14 = c[3] * complex<double>(lgg * v_expectation, 0);
-			params_rhoc14 = c[3] * complex<double>(lgg * v_expectation, 0);
-		}
-
-		// Decay to ZZ
-		params_MG.set_block_entry("vec", 1, c[4] * complex<double>(hZZ / 2 / mZ, 0));
-		params_MG.set_block_entry("vec", 2, c[5] * complex<double>(hZZ / 4 / mZ, 0));
-
-		// Decay to 2l (or 2mu in 2f)
-		params_MG.set_block_entry("vec", 23, c[4] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("vec", 24, c[5] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("vec", 25, c[6] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("vec", 26, c[7] * complex<double>(4.291210e-04, 0));
-
-		// Decay to 2e (2f)
-		params_MG.set_block_entry("vec", 27, c[4] * complex<double>(4.291210e-04, 0)); // for Hee should be 2.075371e-06
-		params_MG.set_block_entry("vec", 28, c[5] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("vec", 29, c[6] * complex<double>(4.291210e-04, 0));
-		params_MG.set_block_entry("vec", 30, c[7] * complex<double>(4.291210e-04, 0));
+		Run_ME_Configurator_Spin1_produ(par_MG, c, lgg, v_expectation);
+		Run_ME_Configurator_Spin1_decay(par_MG, c, mZ, hZZ);
 	}
 
 	return Run_ME_Dispatcher_SIG_Spin1(IS);
+}
+
+void MEKD::Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
+										   const complex<double> *c,
+										   const double lgg,
+										   const double vev)
+{
+	// qq
+	if (flag.Fix_Spin1_Production) {
+		const complex<double> common_coupl =
+			complex<double>(sqrt(1 / 2) * lgg * vev, 0);
+		params_rhod11 = common_coupl;
+		params_rhos11 = common_coupl;
+		params_rhob11 = common_coupl;
+		params_rhou11 = common_coupl;
+		params_rhoc11 = common_coupl;
+		params_rhod12 = complex<double>(0, 0);
+		params_rhos12 = complex<double>(0, 0);
+		params_rhob12 = complex<double>(0, 0);
+		params_rhou12 = complex<double>(0, 0);
+		params_rhoc12 = complex<double>(0, 0);
+		params_rhod13 = complex<double>(0, 0);
+		params_rhos13 = complex<double>(0, 0);
+		params_rhob13 = complex<double>(0, 0);
+		params_rhou13 = complex<double>(0, 0);
+		params_rhoc13 = complex<double>(0, 0);
+		params_rhod14 = complex<double>(0, 0);
+		params_rhos14 = complex<double>(0, 0);
+		params_rhob14 = complex<double>(0, 0);
+		params_rhou14 = complex<double>(0, 0);
+		params_rhoc14 = complex<double>(0, 0);
+	} else {
+		const complex<double> common_coupl = 
+			complex<double>(lgg * vev, 0);
+		params_rhod11 = c[0] * common_coupl;
+		params_rhos11 = c[0] * common_coupl;
+		params_rhob11 = c[0] * common_coupl;
+		params_rhou11 = c[0] * common_coupl;
+		params_rhoc11 = c[0] * common_coupl;
+		params_rhod12 = c[1] * common_coupl;
+		params_rhos12 = c[1] * common_coupl;
+		params_rhob12 = c[1] * common_coupl;
+		params_rhou12 = c[1] * common_coupl;
+		params_rhoc12 = c[1] * common_coupl;
+		params_rhod13 = c[2] * common_coupl;
+		params_rhos13 = c[2] * common_coupl;
+		params_rhob13 = c[2] * common_coupl;
+		params_rhou13 = c[2] * common_coupl;
+		params_rhoc13 = c[2] * common_coupl;
+		params_rhod14 = c[3] * common_coupl;
+		params_rhos14 = c[3] * common_coupl;
+		params_rhob14 = c[3] * common_coupl;
+		params_rhou14 = c[3] * common_coupl;
+		params_rhoc14 = c[3] * common_coupl;
+	}
+}
+
+void MEKD::Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
+										   const complex<double> *c,
+										   const double mZ,
+										   const double hZZ)
+{
+	// Decay to ZZ
+	const complex<double> c1 = complex<double>(hZZ / 2 / mZ, 0);
+	par_MG.set_block_entry("vec", 1, c[4] * c1);
+	par_MG.set_block_entry("vec", 2, c[5] * c1 * 0.5);
+
+	// Decay to 2l (or 2mu in 2f)
+	const complex<double> hmumu = complex<double>(4.291210e-04, 0);
+	par_MG.set_block_entry("vec", 23, c[4] * hmumu);
+	par_MG.set_block_entry("vec", 24, c[5] * hmumu);
+	par_MG.set_block_entry("vec", 25, c[6] * hmumu);
+	par_MG.set_block_entry("vec", 26, c[7] * hmumu);
+
+	// Decay to 2e (2f)
+	// for Hee should be 2.075371e-06
+	par_MG.set_block_entry("vec", 27, c[4] * hmumu);
+	par_MG.set_block_entry("vec", 28, c[5] * hmumu);
+	par_MG.set_block_entry("vec", 29, c[6] * hmumu);
+	par_MG.set_block_entry("vec", 30, c[7] * hmumu);
 }
 
 /// A generic spin-2 resonance handler
@@ -823,11 +861,11 @@ int MEKD::Run_ME_Configurator_Spin2(const production_types IS,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
-	double mH = param.Higgs_mass;
-	double mZ = params_m_Z;
-	double M = Mass_4l;	// system's invariant mass
+	const double mH = param.Higgs_mass;
+	const double mZ = params_m_Z;
+	const double M = Mass_4l;	// system's invariant mass
 	double wH;
-	double hZZ = hZZ_coupling;
+	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
@@ -875,8 +913,8 @@ int MEKD::Run_ME_Configurator_Spin2(const production_types IS,
 
 void MEKD::Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
 										   const complex<double> *c,
-										   const double &Mi,
-										   const double &lgg)
+										   const double Mi,
+										   const double lgg)
 {
 	// gg
 	par_MG.set_block_entry("gravity", 1, c[0] * complex<double>(8.0 * lgg, 0)); // 8 flavors
@@ -915,8 +953,8 @@ void MEKD::Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
 
 void MEKD::Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
 										   const complex<double> *c,
-										   const double &mZ, const double &Mi,
-										   const double &hZZ)
+										   const double mZ, const double Mi,
+										   const double hZZ)
 {
 	// Decay to ZZ
 	par_MG.set_block_entry("gravity", 11, c[10] * complex<double>(hZZ / 2 / mZ / mZ / sqrt(2), 0));
@@ -931,23 +969,25 @@ void MEKD::Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
 	par_MG.set_block_entry("gravity", 20, c[19] * complex<double>(hZZ / 2 / mZ / mZ / Mi / Mi, 0));
 
 	// Decay to 2l (or 2mu in 2f)
-	par_MG.set_block_entry("gravity", 41, c[10] * complex<double>(4.291210e-04, 0));
-	par_MG.set_block_entry("gravity", 42, c[11] * complex<double>(4.291210e-04, 0));
-	par_MG.set_block_entry("gravity", 43, c[12] * complex<double>(4.291210e-04, 0));
-	par_MG.set_block_entry("gravity", 44, c[13] * complex<double>(4.291210e-04, 0));
+	const complex<double> hmumu = complex<double>(4.291210e-04, 0);
+	par_MG.set_block_entry("gravity", 41, c[10] * hmumu);
+	par_MG.set_block_entry("gravity", 42, c[11] * hmumu);
+	par_MG.set_block_entry("gravity", 43, c[12] * hmumu);
+	par_MG.set_block_entry("gravity", 44, c[13] * hmumu);
 
 	// Decay to 2e (2f)
-	par_MG.set_block_entry("gravity", 45, c[10] * complex<double>(4.291210e-04, 0)); // for Hee should be 2.075371e-06
-	par_MG.set_block_entry("gravity", 46, c[11] * complex<double>(4.291210e-04, 0));
-	par_MG.set_block_entry("gravity", 47, c[12] * complex<double>(4.291210e-04, 0));
-	par_MG.set_block_entry("gravity", 48, c[13] * complex<double>(4.291210e-04, 0));
+	// for Hee should be 2.075371e-06
+	par_MG.set_block_entry("gravity", 45, c[10] * hmumu);
+	par_MG.set_block_entry("gravity", 46, c[11] * hmumu);
+	par_MG.set_block_entry("gravity", 47, c[12] * hmumu);
+	par_MG.set_block_entry("gravity", 48, c[13] * hmumu);
 }
 
 /// ME_RAW (RAW MG5_aMC ME) dispatcher
 int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 {
 	/*
-	if( Resonance_decay_mode == "ZZ") {
+	if (Resonance_decay_mode == "ZZ") {
 		if(Final_state == "4e" || Final_state == "4eA") {
 	// 		/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
@@ -1039,7 +1079,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 		}
 	}
 	
-	if( Resonance_decay_mode == "2l") {
+	if (Resonance_decay_mode == "2l") {
 		if( Final_state == "4e" || Final_state == "4eA") {
 	// 			/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
@@ -2563,12 +2603,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 	/// Down quark block. Down type (s-like)
 	if (param.parton_coeff_d != 0) {
 		params_MG.set_block_entry("mass", 3, params_m_d);
-		// 		params_MG.set_block_entry("heff", 15,
-		// params_rhod01
-		//);
-		// 		params_MG.set_block_entry("heff", 16,
-		// params_rhod02
-		//);
+// 		params_MG.set_block_entry("heff", 15, params_rhod01);
+// 		params_MG.set_block_entry("heff", 16, params_rhod02);
 		params_MG.set_block_entry("vec", 15, params_rhod11);
 		params_MG.set_block_entry("vec", 16, params_rhod12);
 		params_MG.set_block_entry("vec", 17, params_rhod13);
@@ -2577,9 +2613,10 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		params_MG.set_block_entry("gravity", 34, params_rhod22);
 		params_MG.set_block_entry("gravity", 35, params_rhod23);
 		params_MG.set_block_entry("gravity", 36, params_rhod24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] - params_m_d * params_m_d);
-		p_set[1][3] =
-			-sqrt(p_set[1][0] * p_set[1][0] - params_m_d * params_m_d);
+		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+						   params_m_d * params_m_d);
+		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+						    params_m_d * params_m_d);
 
 		Generic_ME_s.updateProc(params_MG);
 		Generic_ME_s.setMomenta(p_set);
@@ -2587,11 +2624,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_d =
-				pdfreader(1, PDFx1, Mass_4l) * pdfreader(-1, PDFx2, Mass_4l);
+			param.parton_coeff_d = pdfreader(1, PDFx1, Mass_4l) *
+								   pdfreader(-1, PDFx2, Mass_4l);
 			Signal_ME = param.parton_coeff_d * buffer[0];
-			param.parton_coeff_d =
-				pdfreader(-1, PDFx1, Mass_4l) * pdfreader(1, PDFx2, Mass_4l);
+			param.parton_coeff_d = pdfreader(-1, PDFx1, Mass_4l) *
+								   pdfreader(1, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_d * buffer[1];
 		} else
 			Signal_ME = param.parton_coeff_d * (buffer[0] + buffer[1]);
@@ -2600,12 +2637,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 	/// Strange quark block. Down type (s-like)
 	if (param.parton_coeff_s != 0) {
 		params_MG.set_block_entry("mass", 3, params_m_s);
-		// 		params_MG.set_block_entry("heff", 15,
-		// params_rhos01
-		//);
-		// 		params_MG.set_block_entry("heff", 16,
-		// params_rhos02
-		//);
+// 		params_MG.set_block_entry("heff", 15, params_rhos01);
+// 		params_MG.set_block_entry("heff", 16, params_rhos02);
 		params_MG.set_block_entry("vec", 15, params_rhos11);
 		params_MG.set_block_entry("vec", 16, params_rhos12);
 		params_MG.set_block_entry("vec", 17, params_rhos13);
@@ -2614,9 +2647,10 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		params_MG.set_block_entry("gravity", 34, params_rhos22);
 		params_MG.set_block_entry("gravity", 35, params_rhos23);
 		params_MG.set_block_entry("gravity", 36, params_rhos24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] - params_m_s * params_m_s);
-		p_set[1][3] =
-			-sqrt(p_set[1][0] * p_set[1][0] - params_m_s * params_m_s);
+		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+						   params_m_s * params_m_s);
+		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+							params_m_s * params_m_s);
 
 		Generic_ME_s.updateProc(params_MG);
 		Generic_ME_s.setMomenta(p_set);
@@ -2624,11 +2658,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_s =
-				pdfreader(3, PDFx1, Mass_4l) * pdfreader(-3, PDFx2, Mass_4l);
+			param.parton_coeff_s = pdfreader(3, PDFx1, Mass_4l) *
+								   pdfreader(-3, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_s * buffer[0];
-			param.parton_coeff_s =
-				pdfreader(-3, PDFx1, Mass_4l) * pdfreader(3, PDFx2, Mass_4l);
+			param.parton_coeff_s = pdfreader(-3, PDFx1, Mass_4l) *
+								   pdfreader(3, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_s * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_s * (buffer[0] + buffer[1]);
@@ -2637,12 +2671,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 	/// Up quark block. Up type (c-like)
 	if (param.parton_coeff_u != 0) {
 		params_MG.set_block_entry("mass", 4, params_m_u);
-		// 		params_MG.set_block_entry("heff", 11,
-		// params_rhou01
-		//);
-		// 		params_MG.set_block_entry("heff", 12,
-		// params_rhou02
-		//);
+// 		params_MG.set_block_entry("heff", 11, params_rhou01);
+// 		params_MG.set_block_entry("heff", 12, params_rhou02);
 		params_MG.set_block_entry("vec", 7, params_rhou11);
 		params_MG.set_block_entry("vec", 8, params_rhou12);
 		params_MG.set_block_entry("vec", 9, params_rhou13);
@@ -2651,9 +2681,10 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		params_MG.set_block_entry("gravity", 26, params_rhou22);
 		params_MG.set_block_entry("gravity", 27, params_rhou23);
 		params_MG.set_block_entry("gravity", 28, params_rhou24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] - params_m_u * params_m_u);
-		p_set[1][3] =
-			-sqrt(p_set[1][0] * p_set[1][0] - params_m_u * params_m_u);
+		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+						   params_m_u * params_m_u);
+		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+							params_m_u * params_m_u);
 
 		Generic_ME_c.updateProc(params_MG);
 		Generic_ME_c.setMomenta(p_set);
@@ -2661,11 +2692,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_u =
-				pdfreader(2, PDFx1, Mass_4l) * pdfreader(-2, PDFx2, Mass_4l);
+			param.parton_coeff_u = pdfreader(2, PDFx1, Mass_4l) *
+								   pdfreader(-2, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_u * buffer[0];
-			param.parton_coeff_u =
-				pdfreader(-2, PDFx1, Mass_4l) * pdfreader(2, PDFx2, Mass_4l);
+			param.parton_coeff_u = pdfreader(-2, PDFx1, Mass_4l) *
+								   pdfreader(2, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_u * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_u * (buffer[0] + buffer[1]);
@@ -2674,12 +2705,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 	/// Charm quark block. Up type (c-like)
 	if (param.parton_coeff_c != 0) {
 		params_MG.set_block_entry("mass", 4, params_m_c);
-		// 		params_MG.set_block_entry("heff", 11,
-		// params_rhoc01
-		//);
-		// 		params_MG.set_block_entry("heff", 12,
-		// params_rhoc02
-		//);
+// 		params_MG.set_block_entry("heff", 11, params_rhoc01);
+// 		params_MG.set_block_entry("heff", 12, params_rhoc02);
 		params_MG.set_block_entry("vec", 7, params_rhoc11);
 		params_MG.set_block_entry("vec", 8, params_rhoc12);
 		params_MG.set_block_entry("vec", 9, params_rhoc13);
@@ -2688,9 +2715,10 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		params_MG.set_block_entry("gravity", 26, params_rhoc22);
 		params_MG.set_block_entry("gravity", 27, params_rhoc23);
 		params_MG.set_block_entry("gravity", 28, params_rhoc24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] - params_m_c * params_m_c);
-		p_set[1][3] =
-			-sqrt(p_set[1][0] * p_set[1][0] - params_m_c * params_m_c);
+		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+						   params_m_c * params_m_c);
+		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+							params_m_c * params_m_c);
 
 		Generic_ME_c.updateProc(params_MG);
 		Generic_ME_c.setMomenta(p_set);
@@ -2698,19 +2726,19 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_c =
-				pdfreader(4, PDFx1, Mass_4l) * pdfreader(-4, PDFx2, Mass_4l);
+			param.parton_coeff_c = pdfreader(4, PDFx1, Mass_4l) *
+								   pdfreader(-4, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_c * buffer[0];
-			param.parton_coeff_c =
-				pdfreader(-4, PDFx1, Mass_4l) * pdfreader(4, PDFx2, Mass_4l);
+			param.parton_coeff_c = pdfreader(-4, PDFx1, Mass_4l) *
+								   pdfreader(4, PDFx2, Mass_4l);
 			Signal_ME += param.parton_coeff_c * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_c * (buffer[0] + buffer[1]);
 	}
 
+	// return to real mass. Used in Z -> 4l
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry(
-			"mass", 23, params_m_Z); // return to real mass. Used in Z -> 4l
+		params_MG.set_block_entry("mass", 23, params_m_Z);
 
 	return 0;
 }

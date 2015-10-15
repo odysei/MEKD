@@ -149,7 +149,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_gg);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -169,7 +169,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_no);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -313,7 +313,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_gg);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -333,7 +333,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_no);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -443,7 +443,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_gg);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -463,7 +463,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_no);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -567,7 +567,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_gg);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_gg, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	
@@ -587,7 +587,7 @@ public:
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin0(prod_no);
+		in_MEKD.Run_ME_Configurator_Spin0(prod_no, in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 	

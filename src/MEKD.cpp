@@ -381,10 +381,10 @@ void MEKD::Run_calculate()
 
 		else if ((*Test_Model_buffer) == "ggSpin0" ||
 				 (*Test_Model_buffer) == "!ggSpin0")
-			Run_ME_Configurator_Spin0(prod_gg);
+			Run_ME_Configurator_Spin0(prod_gg, params_MG);
 		else if ((*Test_Model_buffer) == "Spin0" ||
 				 (*Test_Model_buffer) == "!Spin0")
-			Run_ME_Configurator_Spin0(prod_no);
+			Run_ME_Configurator_Spin0(prod_no, params_MG);
 
 		// Is it a spin-1 resonance?
 		else if ((*Test_Model_buffer) == "qqSpin1M" ||
@@ -403,10 +403,10 @@ void MEKD::Run_calculate()
 
 		else if ((*Test_Model_buffer) == "qqSpin1" ||
 				 (*Test_Model_buffer) == "!qqSpin1")
-			Run_ME_Configurator_Spin1(prod_qq);
+			Run_ME_Configurator_Spin1(prod_qq, params_MG);
 		else if ((*Test_Model_buffer) == "Spin1" ||
 				 (*Test_Model_buffer) == "!Spin1")
-			Run_ME_Configurator_Spin1(prod_no);
+			Run_ME_Configurator_Spin1(prod_no, params_MG);
 
 		// Is it a spin-2 resonance?
 		else if ((*Test_Model_buffer) == "ggSpin2Pm" ||
@@ -539,10 +539,10 @@ void MEKD::Run_calculate()
 
 		else if ((*Test_Model_buffer) == "ggSpin0_2f" ||
 				 (*Test_Model_buffer) == "!ggSpin0_2f")
-			Run_ME_Configurator_Spin0(prod_gg);
+			Run_ME_Configurator_Spin0(prod_gg, params_MG);
 		else if ((*Test_Model_buffer) == "Spin0_2f" ||
 				 (*Test_Model_buffer) == "!Spin0_2f")
-			Run_ME_Configurator_Spin0(prod_no);
+			Run_ME_Configurator_Spin0(prod_no, params_MG);
 
 		// Is it a spin-1 resonance?
 		else if ((*Test_Model_buffer) == "qqSpin1M_2f" ||
@@ -561,10 +561,10 @@ void MEKD::Run_calculate()
 
 		else if ((*Test_Model_buffer) == "qqSpin1_2f" ||
 				 (*Test_Model_buffer) == "!qqSpin1_2f")
-			Run_ME_Configurator_Spin1(prod_qq);
+			Run_ME_Configurator_Spin1(prod_qq, params_MG);
 		else if ((*Test_Model_buffer) == "Spin1_2f" ||
 				 (*Test_Model_buffer) == "!Spin1_2f")
-			Run_ME_Configurator_Spin1(prod_no);
+			Run_ME_Configurator_Spin1(prod_no, params_MG);
 
 		// Is it a spin-2 resonance?
 		else if ((*Test_Model_buffer) == "ggSpin2Pm_2f" ||
@@ -1431,11 +1431,11 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
 
-	/// Set an expected resonance decay mode
-	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		Resonance_decay_mode = "2mu";
-	else
-		Resonance_decay_mode = "ZZ";
+// 	/// Set an expected resonance decay mode
+// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
+// 		Resonance_decay_mode = "2mu";
+// 	else
+// 		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessNames(processA, processB)) != 0)
@@ -1492,11 +1492,11 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
 
-	/// Set an expected resonance decay mode
-	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		Resonance_decay_mode = "2mu";
-	else
-		Resonance_decay_mode = "ZZ";
+// 	/// Set an expected resonance decay mode
+// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
+// 		Resonance_decay_mode = "2mu";
+// 	else
+// 		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessName(processName)) != 0)
@@ -1565,11 +1565,11 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
 
-	/// Set an expected resonance decay mode
-	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-		Resonance_decay_mode = "2mu";
-	else
-		Resonance_decay_mode = "ZZ";
+// 	/// Set an expected resonance decay mode
+// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
+// 		Resonance_decay_mode = "2mu";
+// 	else
+// 		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for internal parameters
 	if ((return_code = processParameters()) != 0)

@@ -384,22 +384,40 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	// RAW MG5_aMC ME
 	int Run_ME_Configurator_CPPProcess(const production_types);
 	// Generic mixed spin-0 state
-	int Run_ME_Configurator_Spin0(const production_types);
+	int Run_ME_Configurator_Spin0(const production_types,
+								  SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
+										 const complex<double> *c,
+										 const double lgg);
+	void Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
+										 const complex<double> *c,
+										 const double mZ, const double Mi,
+										 const double hZZ);
 	// Generic mixed spin-1 state
-	int Run_ME_Configurator_Spin1(const production_types);
+	int Run_ME_Configurator_Spin1(const production_types,
+								  SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
+										 const complex<double> *c,
+										 const double lgg,
+										 const double vev);
+	void Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
+										 const complex<double> *c,
+										 const double mZ,
+										 const double hZZ);
 	// Generic mixed spin-2 state
 	int Run_ME_Configurator_Spin2(const production_types,
 								  SLHAReader_MEKD &par_MG);
 	void Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
-										   const double &Mi,
-										   const double &lgg);
+										 const complex<double> *c,
+										 const double Mi,
+										 const double lgg);
 	void Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
 										 const complex<double> *c,
-										 const double &mZ, const double &Mi,
-										 const double &hZZ);
+										 const double mZ, const double Mi,
+										 const double hZZ);
 	// SM Higgs
 	int Run_ME_Configurator_Spin0Pm(const production_types);
+	// Exotic models
 	int Run_ME_Configurator_Spin0M(const production_types);
 	int Run_ME_Configurator_Spin0Ph(const production_types);
 	int Run_ME_Configurator_Spin1P(const production_types);
