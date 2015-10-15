@@ -26,120 +26,144 @@ namespace mekd
 class ME_runner_qq_Spin1M_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1M_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1P_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1P_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_qq, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1_ZZ_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_no, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
@@ -150,120 +174,144 @@ public:
 class ME_runner_qq_Spin1M_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1M_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1P_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1P_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_qq, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_qq,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_qq &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1_ZZ_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "ZZ";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_no, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_no,		// production
+		decay_ZZ,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_no &&
-				in.decay == decay_ZZ &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
@@ -280,120 +328,144 @@ public:
 class ME_runner_qq_Spin1M_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1M_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1P_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1P_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_qq, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1_2f_4l: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_no, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4l		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4l);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
@@ -404,120 +476,144 @@ public:
 class ME_runner_qq_Spin1M_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1M_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1M(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1M,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1M &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1M(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1P_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_qq);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1P_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1P(prod_no);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1P,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1P &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1P(me);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_qq_Spin1_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_qq, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_qq,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_qq &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 
 class ME_runner_no_Spin1_2f_4lA: public ME_runner
 {
 public:
-	double evaluate(MEKD &in_MEKD, const input &in)
+	const process_description me =
 	{
-		in_MEKD.Resonance_decay_mode = "2l";
-		in_MEKD.Run_ME_Configurator_Spin1(prod_no, in_MEKD.params_MG);
-		return in_MEKD.Signal_ME;
-	}
+		proc_simple,	// process
+		reson_Spin1,	// resonance
+		prod_no,		// production
+		decay_2f,		// decay
+		final_4lA		// final_state
+	};
 	
 	bool is_my_type(const process_description &in)
 	{
-		return (in.process == proc_simple &&
-				in.resonance == reson_Spin1 &&
-				in.production == prod_no &&
-				in.decay == decay_2f &&
-				in.final_state == final_4lA);
+		return compare_types(in, me);
+	}
+	
+	double evaluate(MEKD &in_MEKD, const input &in)
+	{
+		in_MEKD.Run_ME_Configurator_Spin1(me, in_MEKD.params_MG);
+		return in_MEKD.Signal_ME;
 	}
 };
 

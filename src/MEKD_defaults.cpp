@@ -58,7 +58,7 @@ void MEKD::Set_default_params()
 	Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
 
 	Final_state = "2e2m";		 // Final state, for the moment: 4e, 4mu, 2e2mu
-	Resonance_decay_mode = "ZZ"; // default: ZZ. Alternatives: 2l, 2l_s
+// 	Resonance_decay_mode = "ZZ"; // default: ZZ. Alternatives: 2l, 2l_s
 	Test_Model = "ggSpin0Pm";	// Models: ZZ, DY, Custom, ggSpin0Pm, ggSpin0M,
 								 // ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
 								 // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm,

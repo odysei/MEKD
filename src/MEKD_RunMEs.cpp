@@ -11,48 +11,58 @@ namespace mekd
 {
 
 /// ZZ and DY processes
-int MEKD::Run_ME_Configurator_BKG_ZZ(const production_types IS)
+int MEKD::Run_ME_Configurator_BKG_ZZ(const process_description &d)
 {
-	return Run_ME_Dispatcher_BKG_ZZ(IS);
+	return Run_ME_Dispatcher_BKG_ZZ(d);
 }
 
 /// Z4l Background processes (t channel)
-int MEKD::Run_ME_Configurator_Z4l_BKG(const production_types IS)
+int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		params_MG.set_block_entry("mass", 23, Mass_4l);
-	return Run_ME_Dispatcher_Z4l_BKG(IS);
+	return Run_ME_Dispatcher_Z4l_BKG(d);
 }
 
 /// Z4l Signal processes (s channel)
-int MEKD::Run_ME_Configurator_Z4l_SIG(const production_types IS)
+int MEKD::Run_ME_Configurator_Z4l_SIG(const process_description &d)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		params_MG.set_block_entry("mass", 23, Mass_4l);
-	return Run_ME_Dispatcher_Z4l_SIG(IS);
+	return Run_ME_Dispatcher_Z4l_SIG(d);
 }
 
 int MEKD::Run_ME_Configurator_Custom()
 {
-	if ((error_value = Run_ME_Dispatcher_SIG_Spin0(prod_gg)) != 0)
+	cerr << "FIX ME!\n";
+	process_description d;
+	
+	d.production = prod_gg;
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin0(d)) != 0)
 		return error_value;
 	buffer_Custom = Signal_ME;
-	if ((error_value = Run_ME_Dispatcher_SIG_Spin1(prod_qq)) != 0)
+	
+	d.production = prod_qq;
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin1(d)) != 0)
 		return error_value;
 	buffer_Custom += Signal_ME;
-	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(prod_gg)) != 0)
+	
+	d.production = prod_gg;
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(d)) != 0)
 		return error_value;
 	buffer_Custom += Signal_ME;
-	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(prod_qq)) != 0)
+	
+	d.production = prod_qq;
+	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(d)) != 0)
 		return error_value;
 	Signal_ME += buffer_Custom;
 
 	return 0;
 }
 
-int MEKD::Run_ME_Configurator_CPPProcess(const production_types IS)
+int MEKD::Run_ME_Configurator_CPPProcess(const process_description &d)
 {
-	return Run_ME_Dispatcher_CPPProcess(IS);
+	return Run_ME_Dispatcher_CPPProcess(d);
 }
 
 ////////////////////////////////////
@@ -60,7 +70,7 @@ int MEKD::Run_ME_Configurator_CPPProcess(const production_types IS)
 ////////////////////////////////////
 
 /// A SM Higgs
-int MEKD::Run_ME_Configurator_Spin0Pm(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin0Pm(const process_description &d)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(1, 0); // same 2l
@@ -69,16 +79,16 @@ int MEKD::Run_ME_Configurator_Spin0Pm(const production_types IS)
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin0_internal[0] = complex<double>(1, 0);
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS, params_MG);
+	return Run_ME_Configurator_Spin0(d, params_MG);
 }
 
 /// A pseudoscalar
-int MEKD::Run_ME_Configurator_Spin0M(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin0M(const process_description &d)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -87,16 +97,16 @@ int MEKD::Run_ME_Configurator_Spin0M(const production_types IS)
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(1, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS, params_MG);
+	return Run_ME_Configurator_Spin0(d, params_MG);
 }
 
 /// A scalar with higher-order couplings
-int MEKD::Run_ME_Configurator_Spin0Ph(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin0Ph(const process_description &d)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -105,12 +115,12 @@ int MEKD::Run_ME_Configurator_Spin0Ph(const production_types IS)
 	Mixing_Coefficients_Spin0_internal[3] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin0(IS, params_MG);
+	return Run_ME_Configurator_Spin0(d, params_MG);
 }
 
 ////////////////////////////////////
@@ -118,7 +128,7 @@ int MEKD::Run_ME_Configurator_Spin0Ph(const production_types IS)
 ////////////////////////////////////
 
 /// A vector default configuration
-int MEKD::Run_ME_Configurator_Spin1M(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin1M(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
@@ -131,16 +141,16 @@ int MEKD::Run_ME_Configurator_Spin1M(const production_types IS)
 	Mixing_Coefficients_Spin1_internal[5] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin1_internal[6] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin1(IS, params_MG);
+	return Run_ME_Configurator_Spin1(d, params_MG);
 }
 
 /// A vector default configuration
-int MEKD::Run_ME_Configurator_Spin1P(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin1P(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
@@ -153,12 +163,12 @@ int MEKD::Run_ME_Configurator_Spin1P(const production_types IS)
 	Mixing_Coefficients_Spin1_internal[5] = complex<double>(1, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin1_internal[6] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin1_internal[7] = complex<double>(0, 0);
 	}
 
-	return Run_ME_Configurator_Spin1(IS, params_MG);
+	return Run_ME_Configurator_Spin1(d, params_MG);
 }
 
 ////////////////////////////////////
@@ -166,11 +176,11 @@ int MEKD::Run_ME_Configurator_Spin1P(const production_types IS)
 ////////////////////////////////////
 
 /// A minimal-coupling KK graviton
-int MEKD::Run_ME_Configurator_Spin2Pm(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Pm(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
@@ -194,30 +204,30 @@ int MEKD::Run_ME_Configurator_Spin2Pm(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(1, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Ph(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Ph(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[3] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
@@ -238,25 +248,25 @@ int MEKD::Run_ME_Configurator_Spin2Ph(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Mh(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Mh(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
@@ -267,7 +277,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
@@ -284,29 +294,29 @@ int MEKD::Run_ME_Configurator_Spin2Mh(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Pb(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Pb(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
@@ -330,28 +340,28 @@ int MEKD::Run_ME_Configurator_Spin2Pb(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Ph2(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Ph2(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
@@ -374,29 +384,29 @@ int MEKD::Run_ME_Configurator_Spin2Ph2(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Ph3(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Ph3(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
 	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[2] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
@@ -418,29 +428,29 @@ int MEKD::Run_ME_Configurator_Spin2Ph3(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Ph6(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Ph6(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
@@ -464,27 +474,27 @@ int MEKD::Run_ME_Configurator_Spin2Ph6(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Ph7(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Ph7(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
@@ -508,23 +518,23 @@ int MEKD::Run_ME_Configurator_Spin2Ph7(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Mh9(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Mh9(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
@@ -535,7 +545,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh9(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
@@ -552,25 +562,25 @@ int MEKD::Run_ME_Configurator_Spin2Mh9(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 ///
-int MEKD::Run_ME_Configurator_Spin2Mh10(const production_types IS)
+int MEKD::Run_ME_Configurator_Spin2Mh10(const process_description &d)
 {
 	Predefined_Model = true;
 	// Production
@@ -581,7 +591,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh10(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	if (IS == prod_gg)
+	if (d.production == prod_gg)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
@@ -598,25 +608,25 @@ int MEKD::Run_ME_Configurator_Spin2Mh10(const production_types IS)
 	Mixing_Coefficients_Spin2_internal[19] = complex<double>(1, 0);
 
 	if (Final_state == "2m" || Final_state == "2mu" || Final_state == "2mA" ||
-		Final_state == "2muA" || Resonance_decay_mode == "2l") {
+		Final_state == "2muA" || d.decay == decay_2f) {
 		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
 		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
 	}
 
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	if (IS == prod_qq)
+	if (d.production == prod_qq)
 		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
 
-	return Run_ME_Configurator_Spin2(IS, params_MG);
+	return Run_ME_Configurator_Spin2(d, params_MG);
 }
 
 /// A generic spin-0 resonance handler
-int MEKD::Run_ME_Configurator_Spin0(const production_types IS,
+int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -666,7 +676,7 @@ int MEKD::Run_ME_Configurator_Spin0(const production_types IS,
 			Run_ME_Configurator_Spin0_decay(par_MG, c, mZ, mH, hZZ);
 	}
 
-	return Run_ME_Dispatcher_SIG_Spin0(IS);
+	return Run_ME_Dispatcher_SIG_Spin0(d);
 }
 
 void MEKD::Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
@@ -727,7 +737,7 @@ void MEKD::Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
 }
 
 /// A generic spin-1 resonance handler
-int MEKD::Run_ME_Configurator_Spin1(const production_types IS,
+int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -773,7 +783,7 @@ int MEKD::Run_ME_Configurator_Spin1(const production_types IS,
 		Run_ME_Configurator_Spin1_decay(par_MG, c, mZ, hZZ);
 	}
 
-	return Run_ME_Dispatcher_SIG_Spin1(IS);
+	return Run_ME_Dispatcher_SIG_Spin1(d);
 }
 
 void MEKD::Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
@@ -857,7 +867,7 @@ void MEKD::Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
 }
 
 /// A generic spin-2 resonance handler
-int MEKD::Run_ME_Configurator_Spin2(const production_types IS,
+int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -908,7 +918,7 @@ int MEKD::Run_ME_Configurator_Spin2(const production_types IS,
 		}
 	}
 
-	return Run_ME_Dispatcher_SIG_Spin2(IS);
+	return Run_ME_Dispatcher_SIG_Spin2(d);
 }
 
 void MEKD::Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
@@ -984,31 +994,31 @@ void MEKD::Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
 }
 
 /// ME_RAW (RAW MG5_aMC ME) dispatcher
-int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
+int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d)
 {
 	/*
-	if (Resonance_decay_mode == "ZZ") {
+	if (d.decay == decay_ZZ) {
 		if(Final_state == "4e" || Final_state == "4eA") {
 	// 		/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
 	
-			if(IS==prod_no && Final_state == "4e")
+			if(d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
 		}
@@ -1019,28 +1029,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 	// 			params_MG.set_block_entry("mass", 11, params_m_e);
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
@@ -1051,56 +1061,56 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 	// 			/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
 		}
 	}
 	
-	if (Resonance_decay_mode == "2l") {
+	if (d.decay == decay_2f) {
 		if( Final_state == "4e" || Final_state == "4eA") {
 	// 			/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
 	
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
 		}
@@ -1111,28 +1121,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 	// 			params_MG.set_block_entry("mass", 11, params_m_e);
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
@@ -1143,28 +1153,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 	// 			/// Common mass for the same-flavor leptons
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 															 ME_RAW);
@@ -1176,28 +1186,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 	// 		/// Mass for the muons
 	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
 	
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2m" || Final_state == "2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
 	
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
 	
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2m" || Final_state == "2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
 	
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
 	
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2m" || Final_state == "2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
 															 ME_RAW);
 	
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
 														 ME_RAW);
@@ -1208,15 +1218,15 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const production_types IS)
 }
 
 /// ZZ and DY ME dispatcher
-int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
+int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d)
 {
-	if (IS == prod_no &&
+	if (d.production == prod_no &&
 		!(Final_state == "2m" || Final_state == "2mu" ||
 		Final_state == "2mA" || Final_state == "2muA")) {
 		cerr << "ZZ gg initial state is not supported.\n";
 		return 1;
 	}
-	if (IS == prod_gg) {
+	if (d.production == prod_gg) {
 		cerr << "ZZ productionless state is not supported.\n";
 		return 1;
 	}
@@ -1225,26 +1235,26 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_e);
 		/*
-		if (IS == prod_no && Final_state == "4e")
+		if (d.production == prod_no && Final_state == "4e")
 			return Run_MEs_Evaluator_Initial_State_NO(false, ME_ZZ_SF);
 		
-		if (IS == prod_no && Final_state == "4eA")
+		if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(true, ME_ZZ_SFpA);
 		
-		if (IS == prod_gg && Final_state == "4e")
+		if (d.production == prod_gg && Final_state == "4e")
 					return Run_MEs_Evaluator_Initial_State_gg(false,
 															  ME_gg_ZZ_SF);
 		
-		if (IS == prod_gg && Final_state == "4eA")
+		if (d.production == prod_gg && Final_state == "4eA")
 					return Run_MEs_Evaluator_Initial_State_gg(true,
 															  ME_gg_ZZ_SFpA);
 		*/
 
-		if (IS == prod_qq && Final_state == "4e")
+		if (d.production == prod_qq && Final_state == "4e")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
-		if (IS == prod_qq && Final_state == "4eA")
+		if (d.production == prod_qq && Final_state == "4eA")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
 	}
@@ -1255,33 +1265,33 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_ZZ_OF
 		//);
 		//
-		// 		if (IS == prod_no && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_ZZ_OFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_ZZ_OF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_ZZ_OFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_OF, ME_qq_ZZ_UpType_OF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_OFpA, ME_qq_ZZ_UpType_OFpA);
@@ -1292,33 +1302,33 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "4m" ||
+		// 		if (d.production == prod_no && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_ZZ_SF
 		//);
 		//
-		// 		if (IS == prod_no && (Final_state == "4mA" ||
+		// 		if (d.production == prod_no && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_ZZ_SFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4m" ||
+		// 		if (d.production == prod_gg && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_ZZ_SF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_ZZ_SFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4m" || Final_state == "4mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4mA" || Final_state == "4muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
@@ -1329,30 +1339,30 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
 		/// Mass for the muons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_NO(false, ME_DY_2l);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_NO(true, ME_DY_2lpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2m" ||
+		// 		if (d.production == prod_gg && (Final_state == "2m" ||
 		// Final_state == "2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_DY_2l);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "2mA" ||
 		// Final_state == "2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_DY_2lpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_DY_DownType_2l, ME_qq_DY_UpType_2l);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_DY_DownType_2lpA, ME_qq_DY_UpType_2lpA);
@@ -1362,13 +1372,13 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const production_types IS)
 }
 
 /// Z4l Background ME dispatcher
-int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
+int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d)
 {
-	if (IS == prod_no) {
+	if (d.production == prod_no) {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
 		return 1;
 	}
-	if (IS == prod_gg) {
+	if (d.production == prod_gg) {
 		cerr << "Z -> 4l productionless state is not supported.\n";
 		return 1;
 	}
@@ -1383,27 +1393,27 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_e);
 
-		// 		if (IS == prod_no && Final_state == "4e")
+		// 		if (d.production == prod_no && Final_state == "4e")
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_BKG_SF);
 		//
-		// 		if (IS == prod_no && Final_state == "4eA")
+		// 		if (d.production == prod_no && Final_state == "4eA")
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_BKG_SFpA);
 		//
-		// 		if (IS == prod_gg && Final_state == "4e")
+		// 		if (d.production == prod_gg && Final_state == "4e")
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_BKG_SF);
 		//
-		// 		if (IS == prod_gg && Final_state == "4eA")
+		// 		if (d.production == prod_gg && Final_state == "4eA")
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_BKG_SFpA);
 
-		if (IS == prod_qq && Final_state == "4e")
+		if (d.production == prod_qq && Final_state == "4e")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
 
-		if (IS == prod_qq && Final_state == "4eA")
+		if (d.production == prod_qq && Final_state == "4eA")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
 	}
@@ -1414,32 +1424,32 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_BKG_OF);
 		//
-		// 		if (IS == prod_no && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_BKG_OFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_BKG_OF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_BKG_OFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_OF, ME_qq_Z4l_BKG_UpType_OF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_OFpA, ME_qq_Z4l_BKG_UpType_OFpA);
@@ -1450,32 +1460,32 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "4m" ||
+		// 		if (d.production == prod_no && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_BKG_SF);
 		//
-		// 		if (IS == prod_no && (Final_state == "4mA" ||
+		// 		if (d.production == prod_no && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_BKG_SFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4m" ||
+		// 		if (d.production == prod_gg && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_BKG_SF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_BKG_SFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4m" || Final_state == "4mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4mA" || Final_state == "4muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
@@ -1487,34 +1497,34 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
 	// 		/// Mass for the muons
 	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
 	//
-	// 		if (IS == prod_no && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_no && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 	// ME_Z4l_BKG_2l);
 	//
-	// 		if (IS == prod_no && (Final_state == "2mA" ||
+	// 		if (d.production == prod_no && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 	// ME_Z4l_BKG_2lpA);
 	//
-	// 		if (IS == prod_gg && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_gg && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 	// ME_gg_Z4l_BKG__2l);
 	//
-	// 		if (IS == prod_gg && (Final_state == "2mA" ||
+	// 		if (d.production == prod_gg && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 	// ME_gg_Z4l_BKG__2lpA);
 	//
-	// 		if (IS == prod_qq && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_qq && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
 	// ME_qq_Z4l_BKG_DownType_2l, ME_qq_Z4l_BKG_UpType_2l);
 	//
-	// 		if (IS == prod_qq && (Final_state == "2mA" ||
+	// 		if (d.production == prod_qq && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
@@ -1525,13 +1535,13 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const production_types IS)
 }
 
 /// Z4l Signal ME dispatcher
-int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
+int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d)
 {
-	if (IS == prod_no) {
+	if (d.production == prod_no) {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
 		return 1;
 	}
-	if (IS == prod_gg) {
+	if (d.production == prod_gg) {
 		cerr << "Z -> 4l productionless state is not supported.\n";
 		return 1;
 	}
@@ -1546,27 +1556,27 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_e);
 
-		// 		if (IS == prod_no && Final_state == "4e")
+		// 		if (d.production == prod_no && Final_state == "4e")
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_SIG_SF);
 		//
-		// 		if (IS == prod_no && Final_state == "4eA")
+		// 		if (d.production == prod_no && Final_state == "4eA")
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_SIG_SFpA);
 		//
-		// 		if (IS == prod_gg && Final_state == "4e")
+		// 		if (d.production == prod_gg && Final_state == "4e")
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_SIG_SF);
 		//
-		// 		if (IS == prod_gg && Final_state == "4eA")
+		// 		if (d.production == prod_gg && Final_state == "4eA")
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_SIG_SFpA);
 
-		if (IS == prod_qq && Final_state == "4e")
+		if (d.production == prod_qq && Final_state == "4e")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
 
-		if (IS == prod_qq && Final_state == "4eA")
+		if (d.production == prod_qq && Final_state == "4eA")
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
 	}
@@ -1577,32 +1587,32 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_SIG_OF);
 		//
-		// 		if (IS == prod_no && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_no && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_SIG_OFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2m" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2m" ||
 		// Final_state == "2e2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_SIG_OF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2e2mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "2e2mA" ||
 		// Final_state == "2e2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_SIG_OFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2m" || Final_state == "2e2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_OF, ME_qq_Z4l_SIG_UpType_OF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2e2mA" || Final_state == "2e2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_OFpA, ME_qq_Z4l_SIG_UpType_OFpA);
@@ -1613,32 +1623,32 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (IS == prod_no && (Final_state == "4m" ||
+		// 		if (d.production == prod_no && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 		// ME_Z4l_SIG_SF);
 		//
-		// 		if (IS == prod_no && (Final_state == "4mA" ||
+		// 		if (d.production == prod_no && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 		// ME_Z4l_SIG_SFpA);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4m" ||
+		// 		if (d.production == prod_gg && (Final_state == "4m" ||
 		// Final_state == "4mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_gg_Z4l_SIG_SF);
 		//
-		// 		if (IS == prod_gg && (Final_state == "4mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "4mA" ||
 		// Final_state == "4muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_gg_Z4l_SIG_SFpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4m" || Final_state == "4mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "4mA" || Final_state == "4muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
@@ -1650,34 +1660,34 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
 	// 		/// Mass for the muons
 	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
 	//
-	// 		if (IS == prod_no && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_no && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_NO(false,
 	// ME_Z4l_SIG_2l);
 	//
-	// 		if (IS == prod_no && (Final_state == "2mA" ||
+	// 		if (d.production == prod_no && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_NO(true,
 	// ME_Z4l_SIG_2lpA);
 	//
-	// 		if (IS == prod_gg && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_gg && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 	// ME_gg_Z4l_SIG__2l);
 	//
-	// 		if (IS == prod_gg && (Final_state == "2mA" ||
+	// 		if (d.production == prod_gg && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 	// ME_gg_Z4l_SIG__2lpA);
 	//
-	// 		if (IS == prod_qq && (Final_state == "2m" || Final_state == "2mu")
+	// 		if (d.production == prod_qq && (Final_state == "2m" || Final_state == "2mu")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
 	// ME_qq_Z4l_SIG_DownType_2l, ME_qq_Z4l_SIG_UpType_2l);
 	//
-	// 		if (IS == prod_qq && (Final_state == "2mA" ||
+	// 		if (d.production == prod_qq && (Final_state == "2mA" ||
 	// Final_state == "2muA")
 	// )
 	// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
@@ -1688,40 +1698,40 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const production_types IS)
 }
 
 /// Spin-0 ME dispatcher
-int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
+int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d)
 {
-	if (IS == prod_qq) {
+	if (d.production == prod_qq) {
 		cerr << "Spin-0 qqbar initial state is redundant, thus not provided.\n";
 		return 1;
 	}
 
-	if (Resonance_decay_mode == "ZZ") {
+	if (d.decay == decay_ZZ) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_SFpA);
 
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_SF);
 
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_SFpA);
 
-			// 			if (IS == prod_qq && Final_state == "4e")
+			// 			if (d.production == prod_qq && Final_state == "4e")
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_SF, ME_Signal_qq_Spin0_UpType_SF);
 			//
-			// 			if (IS == prod_qq && Final_state == "4eA")
+			// 			if (d.production == prod_qq && Final_state == "4eA")
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_DownType_SFpA, ME_Signal_qq_Spin0_UpType_SFpA
@@ -1734,33 +1744,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_OFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_OF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_OFpA);
 
-			// 			if (IS == prod_qq && (Final_state == "2e2m" ||
+			// 			if (d.production == prod_qq && (Final_state == "2e2m" ||
 			// Final_state == "2e2mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_OF, ME_Signal_qq_Spin0_UpType_OF);
 			//
-			// 			if (IS == prod_qq && (Final_state == "2e2mA" ||
+			// 			if (d.production == prod_qq && (Final_state == "2e2mA" ||
 			// Final_state == "2e2muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
@@ -1773,33 +1783,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_SFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_SF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_SFpA);
 
-			// 			if (IS == prod_qq && (Final_state == "4m" ||
+			// 			if (d.production == prod_qq && (Final_state == "4m" ||
 			// Final_state == "4mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_DownType_SF, ME_Signal_qq_Spin0_UpType_SF);
 			//
-			// 			if (IS == prod_qq && (Final_state == "4mA" ||
+			// 			if (d.production == prod_qq && (Final_state == "4mA" ||
 			// Final_state == "4muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
@@ -1808,34 +1818,34 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 		}
 	}
 
-	if (Resonance_decay_mode == "2l") {
+	if (d.decay == decay_2f) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_SFpA);
 
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_SF);
 
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_SFpA);
 
-			// 			if (IS == prod_qq && Final_state == "4e")
+			// 			if (d.production == prod_qq && Final_state == "4e")
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF);
 			//
-			// 			if (IS == prod_qq && Final_state == "4eA")
+			// 			if (d.production == prod_qq && Final_state == "4eA")
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
 			// ME_Signal_qq_Spin0_2f_DownType_SFpA,
@@ -1848,34 +1858,34 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_OFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_OF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_OFpA);
 
-			// 			if (IS == prod_qq && (Final_state == "2e2m" ||
+			// 			if (d.production == prod_qq && (Final_state == "2e2m" ||
 			// Final_state == "2e2mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_OF,
 			// ME_Signal_qq_Spin0_2f_UpType_OF);
 			//
-			// 			if (IS == prod_qq && (Final_state == "2e2mA" ||
+			// 			if (d.production == prod_qq && (Final_state == "2e2mA" ||
 			// Final_state == "2e2muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
@@ -1888,34 +1898,34 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin0_2f_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin0_2f_SFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin0_2f_SF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin0_2f_SFpA);
 
-			// 			if (IS == prod_qq && (Final_state == "4m" ||
+			// 			if (d.production == prod_qq && (Final_state == "4m" ||
 			// Final_state == "4mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF);
 			//
-			// 			if (IS == prod_qq && (Final_state == "4mA" ||
+			// 			if (d.production == prod_qq && (Final_state == "4mA" ||
 			// Final_state == "4muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
 			// true,
@@ -1929,32 +1939,32 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 		/// Mass for the muons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin0_2l);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin0_2lpA);
 
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_gg(
 				false, ME_Signal_gg_Spin0_2l);
 
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_gg(
 				true, ME_Signal_gg_Spin0_2lpA);
 
-		// 		if (IS == prod_qq && (Final_state == "2m" ||
+		// 		if (d.production == prod_qq && (Final_state == "2m" ||
 		// Final_state == "2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
 		// ME_Signal_qq_Spin0_DownType_2l, ME_Signal_qq_Spin0_UpType_2l);
 
-		// 		if (IS == prod_qq && (Final_state == "2mA" ||
+		// 		if (d.production == prod_qq && (Final_state == "2mA" ||
 		// Final_state == "2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
 		// ME_Signal_qq_Spin0_DownType_2lpA, ME_Signal_qq_Spin0_UpType_2lpA);
@@ -1964,42 +1974,42 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const production_types IS)
 }
 
 /// Spin-1 ME dispatcher
-int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
+int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d)
 {
-	if (IS == prod_gg) {
+	if (d.production == prod_gg) {
 		cerr << "Spin-1 gg initial state is not possible, thus not provided.\n";
 		return 1;
 	}
 
-	if (Resonance_decay_mode == "ZZ") {
+	if (d.decay == decay_ZZ) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_SFpA);
 
-			// 			if (IS == prod_gg && Final_state == "4e")
+			// 			if (d.production == prod_gg && Final_state == "4e")
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_SF);
 			//
-			// 			if (IS == prod_gg && Final_state == "4eA")
+			// 			if (d.production == prod_gg && Final_state == "4eA")
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_SFpA);
 
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_SFpA,
 					ME_Signal_qq_Spin1_UpType_SFpA);
@@ -2011,35 +2021,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_OFpA);
 
-			//	 		if (IS == prod_gg && (Final_state == "2e2m" ||
+			//	 		if (d.production == prod_gg && (Final_state == "2e2m" ||
 			// Final_state == "2e2mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_OF);
 			//
-			// 			if (IS == prod_gg && (Final_state == "2e2mA" ||
+			// 			if (d.production == prod_gg && (Final_state == "2e2mA" ||
 			// Final_state == "2e2muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_OFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_OF,
 					ME_Signal_qq_Spin1_UpType_OF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_OFpA,
@@ -2051,35 +2061,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_SFpA);
 
-			// 			if (IS == prod_gg && (Final_state == "4m" ||
+			// 			if (d.production == prod_gg && (Final_state == "4m" ||
 			// Final_state == "4mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_SF);
 			//
-			// 			if (IS == prod_gg && (Final_state == "4mA" ||
+			// 			if (d.production == prod_gg && (Final_state == "4mA" ||
 			// Final_state == "4muA"))
 			//	 			return Run_MEs_Evaluator_Initial_State_gg(
 			//true,
 			// ME_Signal_gg_Spin1_SFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_DownType_SFpA,
@@ -2087,35 +2097,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 		}
 	}
 
-	if (Resonance_decay_mode == "2l") {
+	if (d.decay == decay_2f) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_SFpA);
 
-			// 			if (IS == prod_gg && Final_state == "4e")
+			// 			if (d.production == prod_gg && Final_state == "4e")
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_SF);
 			//
-			// 			if (IS == prod_gg && Final_state == "4eA")
+			// 			if (d.production == prod_gg && Final_state == "4eA")
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_2f_SFpA);
 
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
 					ME_Signal_qq_Spin1_2f_UpType_SFpA);
@@ -2127,35 +2137,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_OFpA);
 
-			//	 		if (IS == prod_gg && (Final_state == "2e2m" ||
+			//	 		if (d.production == prod_gg && (Final_state == "2e2m" ||
 			// Final_state == "2e2mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_OF);
 			//
-			// 			if (IS == prod_gg && (Final_state == "2e2mA" ||
+			// 			if (d.production == prod_gg && (Final_state == "2e2mA" ||
 			// Final_state == "2e2muA"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// true,
 			// ME_Signal_gg_Spin1_2f_OFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_OF,
 					ME_Signal_qq_Spin1_2f_UpType_OF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_OFpA,
@@ -2167,35 +2177,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin1_2f_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin1_2f_SFpA);
 
-			// 			if (IS == prod_gg && (Final_state == "4m" ||
+			// 			if (d.production == prod_gg && (Final_state == "4m" ||
 			// Final_state == "4mu"))
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
 			// false,
 			// ME_Signal_gg_Spin1_2f_SF);
 			//
-			// 			if (IS == prod_gg && (Final_state == "4mA" ||
+			// 			if (d.production == prod_gg && (Final_state == "4mA" ||
 			// Final_state == "4muA"))
 			//	 			return Run_MEs_Evaluator_Initial_State_gg(
 			//true,
 			// ME_Signal_gg_Spin1_2f_SFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
@@ -2208,33 +2218,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 		/// Mass for the muons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin1_2l);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin1_2lpA);
 
-		// 		if (IS == prod_gg && (Final_state == "2m" ||
+		// 		if (d.production == prod_gg && (Final_state == "2m" ||
 		// Final_state == "2mu"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
 		// ME_Signal_gg_Spin1_2l);
 		//
-		// 		if (IS == prod_gg && (Final_state == "2mA" ||
+		// 		if (d.production == prod_gg && (Final_state == "2mA" ||
 		// Final_state == "2muA"))
 		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
 		// ME_Signal_gg_Spin1_2lpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_Signal_qq_Spin1_DownType_2l,
 				ME_Signal_qq_Spin1_UpType_2l);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_Signal_qq_Spin1_DownType_2lpA,
@@ -2245,35 +2255,35 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const production_types IS)
 }
 
 /// Spin-2 ME dispatcher
-int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
+int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d)
 {
-	if (Resonance_decay_mode == "ZZ") {
+	if (d.decay == decay_ZZ) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_SFpA);
 
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_SF);
 
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_SFpA);
 
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_SFpA,
 					ME_Signal_qq_Spin2_UpType_SFpA);
@@ -2285,33 +2295,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_OFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_OF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_OFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_OF,
 					ME_Signal_qq_Spin2_UpType_OF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_OFpA,
@@ -2323,33 +2333,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_SFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_SF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_SFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_DownType_SFpA,
@@ -2357,33 +2367,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 		}
 	}
 
-	if (Resonance_decay_mode == "2l") {
+	if (d.decay == decay_2f) {
 		if (Final_state == "4e" || Final_state == "4eA") {
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_e);
 
-			if (IS == prod_no && Final_state == "4e")
+			if (d.production == prod_no && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_SF);
 
-			if (IS == prod_no && Final_state == "4eA")
+			if (d.production == prod_no && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_SFpA);
 
-			if (IS == prod_gg && Final_state == "4e")
+			if (d.production == prod_gg && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_SF);
 
-			if (IS == prod_gg && Final_state == "4eA")
+			if (d.production == prod_gg && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_SFpA);
 
-			if (IS == prod_qq && Final_state == "4e")
+			if (d.production == prod_qq && Final_state == "4e")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
-			if (IS == prod_qq && Final_state == "4eA")
+			if (d.production == prod_qq && Final_state == "4eA")
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
 					ME_Signal_qq_Spin2_2f_UpType_SFpA);
@@ -2395,33 +2405,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 			params_MG.set_block_entry("mass", 11, params_m_e);
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_OF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_OFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_OF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_OFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2m" || Final_state == "2e2mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_OF,
 					ME_Signal_qq_Spin2_2f_UpType_OF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "2e2mA" || Final_state == "2e2muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_OFpA,
@@ -2433,33 +2443,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 			/// Common mass for the same-flavor leptons
 			params_MG.set_block_entry("mass", 13, params_m_mu);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					false, ME_Signal_Spin2_2f_SF);
 
-			if (IS == prod_no &&
+			if (d.production == prod_no &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_NO(
 					true, ME_Signal_Spin2_2f_SFpA);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					false, ME_Signal_gg_Spin2_2f_SF);
 
-			if (IS == prod_gg &&
+			if (d.production == prod_gg &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_gg(
 					true, ME_Signal_gg_Spin2_2f_SFpA);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4m" || Final_state == "4mu"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
-			if (IS == prod_qq &&
+			if (d.production == prod_qq &&
 				(Final_state == "4mA" || Final_state == "4muA"))
 				return Run_MEs_Evaluator_Initial_State_qqbar(
 					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
@@ -2472,33 +2482,33 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const production_types IS)
 		/// Mass for the muons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				false, ME_Signal_Spin2_2l);
 
-		if (IS == prod_no &&
+		if (d.production == prod_no &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_NO(
 				true, ME_Signal_Spin2_2lpA);
 
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_gg(
 				false, ME_Signal_gg_Spin2_2l);
 
-		if (IS == prod_gg &&
+		if (d.production == prod_gg &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_gg(
 				true, ME_Signal_gg_Spin2_2lpA);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2m" || Final_state == "2mu"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				false, ME_Signal_qq_Spin2_DownType_2l,
 				ME_Signal_qq_Spin2_UpType_2l);
 
-		if (IS == prod_qq &&
+		if (d.production == prod_qq &&
 			(Final_state == "2mA" || Final_state == "2muA"))
 			return Run_MEs_Evaluator_Initial_State_qqbar(
 				true, ME_Signal_qq_Spin2_DownType_2lpA,
