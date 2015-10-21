@@ -184,7 +184,6 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 
 	int range[2] = {2, 6}; 
 	invariant_m = Get_invariant_m(p_set, range);
-	Mass_4l = invariant_m;
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
 		Normalize_parton_coeffs();
@@ -226,7 +225,6 @@ int MEKD::Run()
 
 	int range[2] = {2, 6}; 
 	invariant_m = Get_invariant_m(p_set, range);
-	Mass_4l = invariant_m;
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
 		Normalize_parton_coeffs();
@@ -251,13 +249,13 @@ int MEKD::Run()
 
 int MEKD::Run(string Input_Model)
 {
-	buffer_string = Test_Model;
+	const string buff = Test_Model;
 	Test_Model = "!";
 	Test_Model += Input_Model;
 
 	error_value = Run();
 
-	Test_Model = buffer_string;
+	Test_Model = buff;
 	return error_value;
 }
 
@@ -317,53 +315,54 @@ void MEKD::Run_calculate()
 		}
 	}
 
+	string *model = NULL;
 	/// Signal ME(s) is(are) chosen here
 	if (Test_Models.size() > 0 && Test_Model[0] != '!') {
 		Signal_MEs.resize(Test_Models.size());
 		fill(Signal_MEs.begin(), Signal_MEs.end(), 0);
-		Test_Model_buffer = &(Test_Models[0]); // Should be NULL or undefined
+		model = &(Test_Models[0]); // Should be NULL or undefined
 											   // before this point; works as
 											   // counter=0
 	} else
-		Test_Model_buffer = &Test_Model;	// Should be NULL or undefined
+		model = &Test_Model;	// Should be NULL or undefined
 											// before this point
 
 	unsigned int counter = 1;
-	while (Test_Model_buffer != NULL) {
+	while (model != NULL) {
 		// Is it a parameter card defined?
-		if ((*Test_Model_buffer) == "Custom" ||
-			(*Test_Model_buffer) == "!Custom")
+		if ((*model) == "Custom" ||
+			(*model) == "!Custom")
 			Run_ME_Configurator_Custom();
 
 		// Is it a "background"?
-		else if ((*Test_Model_buffer) == "qqZZ" ||
-				 (*Test_Model_buffer) == "!qqZZ") {
+		else if ((*model) == "qqZZ" ||
+				 (*model) == "!qqZZ") {
 			d.production = prod_qq;
 			Run_ME_Configurator_BKG_ZZ(d);
-		} else if ((*Test_Model_buffer) == "ZZ" ||
-			(*Test_Model_buffer) == "!ZZ") {
+		} else if ((*model) == "ZZ" ||
+			(*model) == "!ZZ") {
 			d.production = prod_qq;
 			Run_ME_Configurator_BKG_ZZ(d);
 		}
 
-		else if ((*Test_Model_buffer) == "qqDY" ||
-				 (*Test_Model_buffer) == "!qqDY") {
+		else if ((*model) == "qqDY" ||
+				 (*model) == "!qqDY") {
 			d.production = prod_qq;
 			Run_ME_Configurator_BKG_ZZ(d);
 		}
-		else if ((*Test_Model_buffer) == "DY" ||
-			(*Test_Model_buffer) == "!DY") {
+		else if ((*model) == "DY" ||
+			(*model) == "!DY") {
 			d.production = prod_no;
 			Run_ME_Configurator_BKG_ZZ(d);
 		}
 
 		// Is it a Z boson resonance?
-		else if ((*Test_Model_buffer) == "qqZ4l_Background" ||
-				 (*Test_Model_buffer) == "!qqZ4l_Background") {
+		else if ((*model) == "qqZ4l_Background" ||
+				 (*model) == "!qqZ4l_Background") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Z4l_BKG(d);
-		} else if ((*Test_Model_buffer) == "qqZ4l_Signal" ||
-				 (*Test_Model_buffer) == "!qqZ4l_Signal") {
+		} else if ((*model) == "qqZ4l_Signal" ||
+				 (*model) == "!qqZ4l_Signal") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Z4l_SIG(d);
 		}
@@ -373,228 +372,228 @@ void MEKD::Run_calculate()
 		d.decay = decay_ZZ;
 
 		// Is it a spin-0 resonance?
-		if ((*Test_Model_buffer) == "ggSpin0Pm" ||
-			(*Test_Model_buffer) == "!ggSpin0Pm") { // SM Higgs
+		if ((*model) == "ggSpin0Pm" ||
+			(*model) == "!ggSpin0Pm") { // SM Higgs
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0Pm(d);
-		} else if ((*Test_Model_buffer) == "Spin0Pm" ||
-				 (*Test_Model_buffer) == "!Spin0Pm") {
+		} else if ((*model) == "Spin0Pm" ||
+				 (*model) == "!Spin0Pm") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0Pm(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin0M" ||
-				 (*Test_Model_buffer) == "!ggSpin0M") {
+		else if ((*model) == "ggSpin0M" ||
+				 (*model) == "!ggSpin0M") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0M(d);
-		} else if ((*Test_Model_buffer) == "Spin0M" ||
-				 (*Test_Model_buffer) == "!Spin0M") {
+		} else if ((*model) == "Spin0M" ||
+				 (*model) == "!Spin0M") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0M(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin0Ph" ||
-				 (*Test_Model_buffer) == "!ggSpin0Ph") {
+		else if ((*model) == "ggSpin0Ph" ||
+				 (*model) == "!ggSpin0Ph") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0Ph(d);
-		} else if ((*Test_Model_buffer) == "Spin0Ph" ||
-				 (*Test_Model_buffer) == "!Spin0Ph") {
+		} else if ((*model) == "Spin0Ph" ||
+				 (*model) == "!Spin0Ph") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0Ph(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin0" ||
-				 (*Test_Model_buffer) == "!ggSpin0") {
+		else if ((*model) == "ggSpin0" ||
+				 (*model) == "!ggSpin0") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0(d, params_MG);
-		} else if ((*Test_Model_buffer) == "Spin0" ||
-				 (*Test_Model_buffer) == "!Spin0") {
+		} else if ((*model) == "Spin0" ||
+				 (*model) == "!Spin0") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0(d, params_MG);
 		}
 
 		// Is it a spin-1 resonance?
-		else if ((*Test_Model_buffer) == "qqSpin1M" ||
-				 (*Test_Model_buffer) == "!qqSpin1M") {
+		else if ((*model) == "qqSpin1M" ||
+				 (*model) == "!qqSpin1M") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1M(d);
-		} else if ((*Test_Model_buffer) == "Spin1M" ||
-				 (*Test_Model_buffer) == "!Spin1M"){
+		} else if ((*model) == "Spin1M" ||
+				 (*model) == "!Spin1M"){
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1M(d);
 		}
 
-		else if ((*Test_Model_buffer) == "qqSpin1P" ||
-				 (*Test_Model_buffer) == "!qqSpin1P") {
+		else if ((*model) == "qqSpin1P" ||
+				 (*model) == "!qqSpin1P") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1P(d);
-		} else if ((*Test_Model_buffer) == "Spin1P" ||
-				 (*Test_Model_buffer) == "!Spin1P") {
+		} else if ((*model) == "Spin1P" ||
+				 (*model) == "!Spin1P") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1P(d);
 		}
 
-		else if ((*Test_Model_buffer) == "qqSpin1" ||
-				 (*Test_Model_buffer) == "!qqSpin1") {
+		else if ((*model) == "qqSpin1" ||
+				 (*model) == "!qqSpin1") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1(d, params_MG);
-		} else if ((*Test_Model_buffer) == "Spin1" ||
-				 (*Test_Model_buffer) == "!Spin1") {
+		} else if ((*model) == "Spin1" ||
+				 (*model) == "!Spin1") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1(d, params_MG);
 		}
 
 		// Is it a spin-2 resonance?
-		else if ((*Test_Model_buffer) == "ggSpin2Pm" ||
-				 (*Test_Model_buffer) == "!ggSpin2Pm") {
+		else if ((*model) == "ggSpin2Pm" ||
+				 (*model) == "!ggSpin2Pm") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Pm" ||
-				 (*Test_Model_buffer) == "!qqSpin2Pm") {
+		} else if ((*model) == "qqSpin2Pm" ||
+				 (*model) == "!qqSpin2Pm") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "Spin2Pm" ||
-				 (*Test_Model_buffer) == "!Spin2Pm") {
+		} else if ((*model) == "Spin2Pm" ||
+				 (*model) == "!Spin2Pm") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Pm(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Ph" ||
-				 (*Test_Model_buffer) == "!ggSpin2Ph") {
+		else if ((*model) == "ggSpin2Ph" ||
+				 (*model) == "!ggSpin2Ph") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Ph(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Ph" ||
-				 (*Test_Model_buffer) == "!qqSpin2Ph") {
+		} else if ((*model) == "qqSpin2Ph" ||
+				 (*model) == "!qqSpin2Ph") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Ph(d);
-		} else if ((*Test_Model_buffer) == "Spin2Ph" ||
-				 (*Test_Model_buffer) == "!Spin2Ph") {
+		} else if ((*model) == "Spin2Ph" ||
+				 (*model) == "!Spin2Ph") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Ph(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Mh" ||
-				 (*Test_Model_buffer) == "!ggSpin2Mh") {
+		else if ((*model) == "ggSpin2Mh" ||
+				 (*model) == "!ggSpin2Mh") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Mh(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Mh" ||
-				 (*Test_Model_buffer) == "!qqSpin2Mh") {
+		} else if ((*model) == "qqSpin2Mh" ||
+				 (*model) == "!qqSpin2Mh") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Mh(d);
-		} else if ((*Test_Model_buffer) == "Spin2Mh" ||
-				 (*Test_Model_buffer) == "!Spin2Mh") {
+		} else if ((*model) == "Spin2Mh" ||
+				 (*model) == "!Spin2Mh") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Mh(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Pb" ||
-				 (*Test_Model_buffer) == "!ggSpin2Pb") {
+		else if ((*model) == "ggSpin2Pb" ||
+				 (*model) == "!ggSpin2Pb") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Pb(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Pb" ||
-				 (*Test_Model_buffer) == "!qqSpin2Pb") {
+		} else if ((*model) == "qqSpin2Pb" ||
+				 (*model) == "!qqSpin2Pb") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Pb(d);
-		} else if ((*Test_Model_buffer) == "Spin2Pb" ||
-				 (*Test_Model_buffer) == "!Spin2Pb") {
+		} else if ((*model) == "Spin2Pb" ||
+				 (*model) == "!Spin2Pb") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Pb(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Ph2" ||
-				 (*Test_Model_buffer) == "!ggSpin2Ph2") {
+		else if ((*model) == "ggSpin2Ph2" ||
+				 (*model) == "!ggSpin2Ph2") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Ph2(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Ph2" ||
-				 (*Test_Model_buffer) == "!qqSpin2Ph2") {
+		} else if ((*model) == "qqSpin2Ph2" ||
+				 (*model) == "!qqSpin2Ph2") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Ph2(d);
-		} else if ((*Test_Model_buffer) == "Spin2Ph2" ||
-				 (*Test_Model_buffer) == "!Spin2Ph2") {
+		} else if ((*model) == "Spin2Ph2" ||
+				 (*model) == "!Spin2Ph2") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Ph2(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Ph3" ||
-				 (*Test_Model_buffer) == "!ggSpin2Ph3") {
+		else if ((*model) == "ggSpin2Ph3" ||
+				 (*model) == "!ggSpin2Ph3") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Ph3(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Ph3" ||
-				 (*Test_Model_buffer) == "!qqSpin2Ph3") {
+		} else if ((*model) == "qqSpin2Ph3" ||
+				 (*model) == "!qqSpin2Ph3") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Ph3(d);
-		} else if ((*Test_Model_buffer) == "Spin2Ph3" ||
-				 (*Test_Model_buffer) == "!Spin2Ph3") {
+		} else if ((*model) == "Spin2Ph3" ||
+				 (*model) == "!Spin2Ph3") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Ph3(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Ph6" ||
-				 (*Test_Model_buffer) == "!ggSpin2Ph6") {
+		else if ((*model) == "ggSpin2Ph6" ||
+				 (*model) == "!ggSpin2Ph6") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Ph6(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Ph6" ||
-				 (*Test_Model_buffer) == "!qqSpin2Ph6") {
+		} else if ((*model) == "qqSpin2Ph6" ||
+				 (*model) == "!qqSpin2Ph6") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Ph6(d);
-		} else if ((*Test_Model_buffer) == "Spin2Ph6" ||
-				 (*Test_Model_buffer) == "!Spin2Ph6") {
+		} else if ((*model) == "Spin2Ph6" ||
+				 (*model) == "!Spin2Ph6") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Ph6(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Ph7" ||
-				 (*Test_Model_buffer) == "!ggSpin2Ph7") {
+		else if ((*model) == "ggSpin2Ph7" ||
+				 (*model) == "!ggSpin2Ph7") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Ph7(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Ph7" ||
-				 (*Test_Model_buffer) == "!qqSpin2Ph7") {
+		} else if ((*model) == "qqSpin2Ph7" ||
+				 (*model) == "!qqSpin2Ph7") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Ph7(d);
-		} else if ((*Test_Model_buffer) == "Spin2Ph7" ||
-				 (*Test_Model_buffer) == "!Spin2Ph7") {
+		} else if ((*model) == "Spin2Ph7" ||
+				 (*model) == "!Spin2Ph7") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Ph7(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Mh9" ||
-				 (*Test_Model_buffer) == "!ggSpin2Mh9") {
+		else if ((*model) == "ggSpin2Mh9" ||
+				 (*model) == "!ggSpin2Mh9") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Mh9(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Mh9" ||
-				 (*Test_Model_buffer) == "!qqSpin2Mh9") {
+		} else if ((*model) == "qqSpin2Mh9" ||
+				 (*model) == "!qqSpin2Mh9") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Mh9(d);
-		} else if ((*Test_Model_buffer) == "Spin2Mh9" ||
-				 (*Test_Model_buffer) == "!Spin2Mh9") {
+		} else if ((*model) == "Spin2Mh9" ||
+				 (*model) == "!Spin2Mh9") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Mh9(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2Mh10" ||
-				 (*Test_Model_buffer) == "!ggSpin2Mh10") {
+		else if ((*model) == "ggSpin2Mh10" ||
+				 (*model) == "!ggSpin2Mh10") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Mh10(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Mh10" ||
-				 (*Test_Model_buffer) == "!qqSpin2Mh10") {
+		} else if ((*model) == "qqSpin2Mh10" ||
+				 (*model) == "!qqSpin2Mh10") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Mh10(d);
-		} else if ((*Test_Model_buffer) == "Spin2Mh10" ||
-				 (*Test_Model_buffer) == "!Spin2Mh10") {
+		} else if ((*model) == "Spin2Mh10" ||
+				 (*model) == "!Spin2Mh10") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Mh10(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2" ||
-				 (*Test_Model_buffer) == "!ggSpin2") {
+		else if ((*model) == "ggSpin2" ||
+				 (*model) == "!ggSpin2") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2(d, params_MG);
-		} else if ((*Test_Model_buffer) == "qqSpin2" ||
-				 (*Test_Model_buffer) == "!qqSpin2") {
+		} else if ((*model) == "qqSpin2" ||
+				 (*model) == "!qqSpin2") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2(d, params_MG);
-		} else if ((*Test_Model_buffer) == "Spin2" ||
-				 (*Test_Model_buffer) == "!Spin2") {
+		} else if ((*model) == "Spin2" ||
+				 (*model) == "!Spin2") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2(d, params_MG);
 		}
@@ -603,124 +602,124 @@ void MEKD::Run_calculate()
 		d.decay = decay_2f;
 
 		// Is it a spin-0 resonance?
-		if ((*Test_Model_buffer) == "ggSpin0Pm_2f" ||
-			(*Test_Model_buffer) == "!ggSpin0Pm_2f") { // SM Higgs
+		if ((*model) == "ggSpin0Pm_2f" ||
+			(*model) == "!ggSpin0Pm_2f") { // SM Higgs
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0Pm(d);
-		} else if ((*Test_Model_buffer) == "Spin0Pm_2f" ||
-				 (*Test_Model_buffer) == "!Spin0Pm_2f") {
+		} else if ((*model) == "Spin0Pm_2f" ||
+				 (*model) == "!Spin0Pm_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0Pm(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin0M_2f" ||
-				 (*Test_Model_buffer) == "!ggSpin0M_2f") {
+		else if ((*model) == "ggSpin0M_2f" ||
+				 (*model) == "!ggSpin0M_2f") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0M(d);
-		} else if ((*Test_Model_buffer) == "Spin0M_2f" ||
-				 (*Test_Model_buffer) == "!Spin0M_2f") {
+		} else if ((*model) == "Spin0M_2f" ||
+				 (*model) == "!Spin0M_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0M(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin0_2f" ||
-				 (*Test_Model_buffer) == "!ggSpin0_2f") {
+		else if ((*model) == "ggSpin0_2f" ||
+				 (*model) == "!ggSpin0_2f") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin0(d, params_MG);
-		} else if ((*Test_Model_buffer) == "Spin0_2f" ||
-				 (*Test_Model_buffer) == "!Spin0_2f") {
+		} else if ((*model) == "Spin0_2f" ||
+				 (*model) == "!Spin0_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin0(d, params_MG);
 		}
 
 		// Is it a spin-1 resonance?
-		else if ((*Test_Model_buffer) == "qqSpin1M_2f" ||
-				 (*Test_Model_buffer) == "!qqSpin1M_2f") {
+		else if ((*model) == "qqSpin1M_2f" ||
+				 (*model) == "!qqSpin1M_2f") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1M(d);
-		} else if ((*Test_Model_buffer) == "Spin1M" ||
-				 (*Test_Model_buffer) == "!Spin1M_2f") {
+		} else if ((*model) == "Spin1M" ||
+				 (*model) == "!Spin1M_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1M(d);
 		}
 
-		else if ((*Test_Model_buffer) == "qqSpin1P_2f" ||
-				 (*Test_Model_buffer) == "!qqSpin1P_2f") {
+		else if ((*model) == "qqSpin1P_2f" ||
+				 (*model) == "!qqSpin1P_2f") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1P(d);
-		} else if ((*Test_Model_buffer) == "Spin1P_2f" ||
-				 (*Test_Model_buffer) == "!Spin1P_2f") {
+		} else if ((*model) == "Spin1P_2f" ||
+				 (*model) == "!Spin1P_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1P(d);
 		}
 
-		else if ((*Test_Model_buffer) == "qqSpin1_2f" ||
-				 (*Test_Model_buffer) == "!qqSpin1_2f") {
+		else if ((*model) == "qqSpin1_2f" ||
+				 (*model) == "!qqSpin1_2f") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin1(d, params_MG);
-		} else if ((*Test_Model_buffer) == "Spin1_2f" ||
-				 (*Test_Model_buffer) == "!Spin1_2f") {
+		} else if ((*model) == "Spin1_2f" ||
+				 (*model) == "!Spin1_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin1(d, params_MG);
 		}
 
 		// Is it a spin-2 resonance?
-		else if ((*Test_Model_buffer) == "ggSpin2Pm_2f" ||
-				 (*Test_Model_buffer) == "!ggSpin2Pm_2f") {
+		else if ((*model) == "ggSpin2Pm_2f" ||
+				 (*model) == "!ggSpin2Pm_2f") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2Pm_2f" ||
-				 (*Test_Model_buffer) == "!qqSpin2Pm_2f") {
+		} else if ((*model) == "qqSpin2Pm_2f" ||
+				 (*model) == "!qqSpin2Pm_2f") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "Spin2Pm_2f" ||
-				 (*Test_Model_buffer) == "!Spin2Pm_2f") {
+		} else if ((*model) == "Spin2Pm_2f" ||
+				 (*model) == "!Spin2Pm_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Pm(d);
 		}
 
-		else if ((*Test_Model_buffer) == "ggSpin2_2f" ||
-				 (*Test_Model_buffer) == "!ggSpin2_2f") {
+		else if ((*model) == "ggSpin2_2f" ||
+				 (*model) == "!ggSpin2_2f") {
 			d.production = prod_gg;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "qqSpin2_2f" ||
-				 (*Test_Model_buffer) == "!qqSpin2_2f") {
+		} else if ((*model) == "qqSpin2_2f" ||
+				 (*model) == "!qqSpin2_2f") {
 			d.production = prod_qq;
 			Run_ME_Configurator_Spin2Pm(d);
-		} else if ((*Test_Model_buffer) == "Spin2_2f" ||
-				 (*Test_Model_buffer) == "!Spin2_2f") {
+		} else if ((*model) == "Spin2_2f" ||
+				 (*model) == "!Spin2_2f") {
 			d.production = prod_no;
 			Run_ME_Configurator_Spin2Pm(d);
 		}
 
 		// Is it a RAW MG5_aMC ME?
-		if ((*Test_Model_buffer) == "ggCPPProcess" ||
-			(*Test_Model_buffer) == "!ggCPPProcess") { // ME_RAW
+		if ((*model) == "ggCPPProcess" ||
+			(*model) == "!ggCPPProcess") { // ME_RAW
 			d.production = prod_gg;
 			Run_ME_Configurator_CPPProcess(d);
-		} else if ((*Test_Model_buffer) == "qqCPPProcess" ||
-				 (*Test_Model_buffer) == "!qqCPPProcess") {
+		} else if ((*model) == "qqCPPProcess" ||
+				 (*model) == "!qqCPPProcess") {
 			d.production = prod_qq;
 			Run_ME_Configurator_CPPProcess(d);
-		} else if ((*Test_Model_buffer) == "CPPProcess" ||
-				 (*Test_Model_buffer) == "!CPPProcess") {
+		} else if ((*model) == "CPPProcess" ||
+				 (*model) == "!CPPProcess") {
 			d.production = prod_no;
 			Run_ME_Configurator_CPPProcess(d);
 		}
 
 		if (flag.Debug_Mode)
-			cout << "Evaluated model: " << (*Test_Model_buffer)
+			cout << "Evaluated model: " << (*model)
 				 << "; calculated ME: " << Signal_ME << endl;
 
 		if (Test_Models.size() > 0 && Test_Model[0] != '!') {
 			Signal_MEs[counter - 1] = Signal_ME;
 
 			if (counter < Test_Models.size())
-				Test_Model_buffer = &(Test_Models[counter]);
+				model = &(Test_Models[counter]);
 			else
-				Test_Model_buffer = NULL;
+				model = NULL;
 		} else
-			Test_Model_buffer = NULL;
+			model = NULL;
 
 		++counter;
 	}

@@ -131,9 +131,8 @@ class MEKD
 	string PDF_file;			// PDF/PDT table file
 
 	/// Calculation results
-	double Mass_4l; // is filled after running RUN_XXXX(...). Invariant mass of
-					// the final-state system
-	double invariant_m;
+	double invariant_m;	// filled after running RUN_XXXX(...). Invariant mass
+						// of the final-state system
 	double Background_ME; // may not be used if running RUN(string) is chosen
 	double Signal_ME;	 // is filled after running RUN_XXXX(...)
 	vector<double> Signal_MEs; // is filled if Test_Models are set after running
@@ -340,8 +339,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
 	int error_value;
 
-	double *buffer, buffer_p[4], buffer_Custom, ml1, ml2, ml3, ml4, PDFx1,
-		PDFx2;
+	double *buffer, buffer_p[4], ml1, ml2, ml3, ml4, PDFx1, PDFx2;
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
@@ -349,8 +347,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	complex<double> *Mixing_Coefficients_Spin0_internal,
 		*Mixing_Coefficients_Spin1_internal,
 		*Mixing_Coefficients_Spin2_internal;
-
-	string *Test_Model_buffer;
 
 	// Parameters
 	double v_expectation; // Vacuum expectation value
@@ -371,8 +367,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 		params_rhos21, params_rhos22, params_rhos23, params_rhos24,
 		params_rhob21, params_rhob22, params_rhob23, params_rhob24;
 
-	string buffer_string;
-
 	vector<double> id_set;
 	vector<double *> p_set;
 
@@ -386,7 +380,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	
 	void Print_4momenta(vector<double *>&);
 
-	int Arrange_Internal_pls();
+	//int Arrange_Internal_pls(process_description &);	// updates description
+	int Arrange_Internal_pls();	// temp
 
 	/// Sets up particular choices. Tier 3
 	int Run_ME_Configurator_BKG_ZZ(const process_description &);

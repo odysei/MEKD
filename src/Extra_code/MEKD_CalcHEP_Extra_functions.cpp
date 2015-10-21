@@ -40,23 +40,25 @@ long double wH_poly_z12_c3 = 1.493275723660056E-04;
 
 void Flip_1_and_2_Six_Fourmomenta(double *input)
 {
-	double buffer;
-
-	buffer = input[0];
-	input[0] = input[4];
-	input[4] = buffer;
-
-	buffer = input[1];
-	input[1] = input[5];
-	input[5] = buffer;
-
-	buffer = input[2];
-	input[2] = input[6];
-	input[6] = buffer;
-
-	buffer = input[3];
-	input[3] = input[7];
-	input[7] = buffer;
+	const double in0 = input[0];
+	const double in1 = input[1];
+	const double in2 = input[2];
+	const double in3 = input[3];
+	
+	const double in4 = input[4];
+	const double in5 = input[5];
+	const double in6 = input[6];
+	const double in7 = input[7];
+	
+	input[0] = in4;
+	input[1] = in5;
+	input[2] = in6;
+	input[3] = in7;
+	
+	input[4] = in0;
+	input[5] = in1;
+	input[6] = in2;
+	input[7] = in3;
 }
 
 void Reorder_for_4e_4m(double *input)

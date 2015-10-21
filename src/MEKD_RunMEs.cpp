@@ -20,7 +20,7 @@ int MEKD::Run_ME_Configurator_BKG_ZZ(const process_description &d)
 int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, Mass_4l);
+		params_MG.set_block_entry("mass", 23, invariant_m);
 	return Run_ME_Dispatcher_Z4l_BKG(d);
 }
 
@@ -28,7 +28,7 @@ int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d)
 int MEKD::Run_ME_Configurator_Z4l_SIG(const process_description &d)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, Mass_4l);
+		params_MG.set_block_entry("mass", 23, invariant_m);
 	return Run_ME_Dispatcher_Z4l_SIG(d);
 }
 
@@ -40,22 +40,22 @@ int MEKD::Run_ME_Configurator_Custom()
 	d.production = prod_gg;
 	if ((error_value = Run_ME_Dispatcher_SIG_Spin0(d)) != 0)
 		return error_value;
-	buffer_Custom = Signal_ME;
+	double custom_run_result = Signal_ME;
 	
 	d.production = prod_qq;
 	if ((error_value = Run_ME_Dispatcher_SIG_Spin1(d)) != 0)
 		return error_value;
-	buffer_Custom += Signal_ME;
+	custom_run_result += Signal_ME;
 	
 	d.production = prod_gg;
 	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(d)) != 0)
 		return error_value;
-	buffer_Custom += Signal_ME;
+	custom_run_result += Signal_ME;
 	
 	d.production = prod_qq;
 	if ((error_value = Run_ME_Dispatcher_SIG_Spin2(d)) != 0)
 		return error_value;
-	Signal_ME += buffer_Custom;
+	Signal_ME += custom_run_result;
 
 	return 0;
 }
@@ -632,7 +632,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = Mass_4l;	// system's invariant mass
+	const double M = invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
@@ -743,7 +743,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = Mass_4l;	// system's invariant mass
+	const double M = invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
@@ -873,7 +873,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = Mass_4l;	// system's invariant mass
+	const double M = invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = hZZ_coupling;
 	double lgg;	// lambda hgg
@@ -2595,8 +2595,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_gg(bool photon,
 	buffer = const_cast<double *>(Generic_ME.getMatrixElements());
 
 	if (flag.Use_PDF_w_pT0) {
-		Signal_ME = pdfreader(21, PDFx1, Mass_4l) *
-					pdfreader(21, PDFx2, Mass_4l) * buffer[0];
+		Signal_ME = pdfreader(21, PDFx1, invariant_m) *
+					pdfreader(21, PDFx2, invariant_m) * buffer[0];
 	} else
 		Signal_ME = buffer[0];
 
@@ -2634,11 +2634,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_d = pdfreader(1, PDFx1, Mass_4l) *
-								   pdfreader(-1, PDFx2, Mass_4l);
+			param.parton_coeff_d = pdfreader(1, PDFx1, invariant_m) *
+								   pdfreader(-1, PDFx2, invariant_m);
 			Signal_ME = param.parton_coeff_d * buffer[0];
-			param.parton_coeff_d = pdfreader(-1, PDFx1, Mass_4l) *
-								   pdfreader(1, PDFx2, Mass_4l);
+			param.parton_coeff_d = pdfreader(-1, PDFx1, invariant_m) *
+								   pdfreader(1, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_d * buffer[1];
 		} else
 			Signal_ME = param.parton_coeff_d * (buffer[0] + buffer[1]);
@@ -2668,11 +2668,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_s = pdfreader(3, PDFx1, Mass_4l) *
-								   pdfreader(-3, PDFx2, Mass_4l);
+			param.parton_coeff_s = pdfreader(3, PDFx1, invariant_m) *
+								   pdfreader(-3, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_s * buffer[0];
-			param.parton_coeff_s = pdfreader(-3, PDFx1, Mass_4l) *
-								   pdfreader(3, PDFx2, Mass_4l);
+			param.parton_coeff_s = pdfreader(-3, PDFx1, invariant_m) *
+								   pdfreader(3, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_s * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_s * (buffer[0] + buffer[1]);
@@ -2702,11 +2702,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_u = pdfreader(2, PDFx1, Mass_4l) *
-								   pdfreader(-2, PDFx2, Mass_4l);
+			param.parton_coeff_u = pdfreader(2, PDFx1, invariant_m) *
+								   pdfreader(-2, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_u * buffer[0];
-			param.parton_coeff_u = pdfreader(-2, PDFx1, Mass_4l) *
-								   pdfreader(2, PDFx2, Mass_4l);
+			param.parton_coeff_u = pdfreader(-2, PDFx1, invariant_m) *
+								   pdfreader(2, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_u * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_u * (buffer[0] + buffer[1]);
@@ -2736,11 +2736,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
 		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_c = pdfreader(4, PDFx1, Mass_4l) *
-								   pdfreader(-4, PDFx2, Mass_4l);
+			param.parton_coeff_c = pdfreader(4, PDFx1, invariant_m) *
+								   pdfreader(-4, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_c * buffer[0];
-			param.parton_coeff_c = pdfreader(-4, PDFx1, Mass_4l) *
-								   pdfreader(4, PDFx2, Mass_4l);
+			param.parton_coeff_c = pdfreader(-4, PDFx1, invariant_m) *
+								   pdfreader(4, PDFx2, invariant_m);
 			Signal_ME += param.parton_coeff_c * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_c * (buffer[0] + buffer[1]);
