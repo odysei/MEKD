@@ -61,6 +61,20 @@ enum final_state_types {
 	final_2lA	// 2l plus photon
 };
 
+/// explicit final state types. Internal use.
+enum final_state_types_ {
+	final_4e,
+	final_2e2mu,
+	final_4mu,
+	final_4eA,	// 4l plus photon
+	final_2e2muA,
+	final_4muA,
+	final_2e,
+	final_2mu,
+	final_2eA,	// 2l plus photon
+	final_2muA
+};
+
 enum exit_codes {
 	EXIT_SUCCESS_,	// already present
 	EXIT_FAILURE_,	// already present

@@ -752,7 +752,7 @@ void MEKD::Load_p_set()
 		if (pA1_internal == NULL)
 			p_set[6][i] = 0;
 		else {
-			if (Final_state == "2mA" || Final_state == "2muA") {
+			if (final_state_ == final_2muA) {
 				p_set[4][i] = pA1_internal[i];
 				p_set[6][i] = 0;
 			} else
@@ -763,25 +763,22 @@ void MEKD::Load_p_set()
 
 void MEKD::Prepare_ml_s()
 {
-	if (Final_state == "4e" || Final_state == "4eA") {
+	if (final_state_ == final_4e || final_state_ == final_4eA) {
 		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
 		ml2 = ml1;
 		ml3 = ml1;
 		ml4 = ml1;
-	} else if (Final_state == "4m" || Final_state == "4mu" ||
-			   Final_state == "4mA" || Final_state == "4muA") {
+	} else if (final_state_ == final_4mu || final_state_ == final_4muA) {
 		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
 		ml2 = ml1;
 		ml3 = ml1;
 		ml4 = ml1;
-	} else if (Final_state == "2e2m" || Final_state == "2e2mu" ||
-			   Final_state == "2e2mA" || Final_state == "2e2muA") {
+	} else if (final_state_ == final_2e2mu || final_state_ == final_2e2muA) {
 		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
 		ml2 = ml1;
 		ml3 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
 		ml4 = ml3;
-	} else if (Final_state == "2m" || Final_state == "2mu" ||
-			   Final_state == "2mA" || Final_state == "2muA") {
+	} else if (final_state_ == final_2mu || final_state_ == final_2muA) {
 		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
 		ml2 = ml1;
 		ml3 = 0;
@@ -1540,12 +1537,6 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
 
-// 	/// Set an expected resonance decay mode
-// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-// 		Resonance_decay_mode = "2mu";
-// 	else
-// 		Resonance_decay_mode = "ZZ";
-
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessNames(processA, processB)) != 0)
 		return return_code;
@@ -1600,12 +1591,6 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 		return EXIT_ERROR_INPUT;
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
-
-// 	/// Set an expected resonance decay mode
-// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-// 		Resonance_decay_mode = "2mu";
-// 	else
-// 		Resonance_decay_mode = "ZZ";
 
 	/// Sanity check for input process names and internal parameters
 	if ((return_code = setProcessName(processName)) != 0)
@@ -1673,13 +1658,7 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 		return EXIT_ERROR_INPUT;
 	if (input_Ps.size() < 2 || input_Ps.size() > 5)
 		return EXIT_ERROR_INPUT;
-
-// 	/// Set an expected resonance decay mode
-// 	if (input_Ps.size() == 2 || input_Ps.size() == 3)
-// 		Resonance_decay_mode = "2mu";
-// 	else
-// 		Resonance_decay_mode = "ZZ";
-
+	
 	/// Sanity check for internal parameters
 	if ((return_code = processParameters()) != 0)
 		return return_code;

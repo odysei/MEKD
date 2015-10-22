@@ -48,7 +48,7 @@ int MEKD::Arrange_Internal_pls()
 			pl2_internal = p2;
 
 		pA1_internal = NULL;
-		Final_state = "2m";
+		final_state_ = final_2mu;
 
 		return 0;
 	}
@@ -76,7 +76,7 @@ int MEKD::Arrange_Internal_pls()
 			pA1_internal = p2;
 		if (id3 == 22)
 			pA1_internal = p3;
-		Final_state = "2mA";
+		final_state_ = final_2muA;
 
 		return 0;
 	}
@@ -125,7 +125,7 @@ int MEKD::Arrange_Internal_pls()
 			pl4_internal = p4;
 
 		pA1_internal = NULL;
-		Final_state = "2e2m";
+		final_state_ = final_2e2mu;
 
 		return 0;
 	}
@@ -173,7 +173,7 @@ int MEKD::Arrange_Internal_pls()
 			pl4_internal = p4;
 
 		pA1_internal = NULL;
-		Final_state = "4mu";
+		final_state_ = final_4mu;
 
 		return 0;
 	}
@@ -221,7 +221,7 @@ int MEKD::Arrange_Internal_pls()
 			pl4_internal = p4;
 
 		pA1_internal = NULL;
-		Final_state = "4e";
+		final_state_ = final_4e;
 
 		return 0;
 	}
@@ -283,7 +283,7 @@ int MEKD::Arrange_Internal_pls()
 			pA1_internal = p4;
 		if (id5 == 22)
 			pA1_internal = p5;
-		Final_state = "2e2mA";
+		final_state_ = final_2e2muA;
 
 		return 0;
 	}
@@ -352,7 +352,7 @@ int MEKD::Arrange_Internal_pls()
 			pA1_internal = p4;
 		if (id5 == 22)
 			pA1_internal = p5;
-		Final_state = "4muA";
+		final_state_ = final_4muA;
 
 		return 0;
 	}
@@ -421,7 +421,7 @@ int MEKD::Arrange_Internal_pls()
 			pA1_internal = p4;
 		if (id5 == 22)
 			pA1_internal = p5;
-		Final_state = "4eA";
+		final_state_ = final_4eA;
 
 		return 0;
 	}
@@ -433,7 +433,7 @@ int MEKD::Arrange_Internal_pls()
 					"input-particle configuration.\n";
 		if (flag.Warning_Mode)
 			cout << "Proceeding according to a specified final state ("
-				 << Final_state << ").\n";
+				 << final_state_ << ").\n";
 		pl1_internal = p1;
 		pl2_internal = p2;
 		pl3_internal = p3;

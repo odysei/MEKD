@@ -76,6 +76,7 @@ class MEKD
   public:
 	void eval_MEs(const input &, vector<double> &);
 	
+	// new&internal. Will go to private:
 	vector<ME_runner *> ME_runners;
 	
 	void Load_ME_runners(vector<process_description> &);
@@ -102,6 +103,7 @@ class MEKD
 									  vector<ME_runner *> &);
 	bool Load_ME_runners_try_Spin2_4lA(const process_description &,
 									   vector<ME_runner *> &);
+	// end
 	
 	/// Flags
 	flags flag;
@@ -118,8 +120,7 @@ class MEKD
 	double id1, id2, id3, id4, id5;
 
 	/// String flags and file locations
-	string Final_state;			 // Final state, for the moment: 4e, 4mu, 2e2mu
-// 	string Resonance_decay_mode; // default: ZZ. Alternatives: 2l, 2l_s
+	final_state_types_ final_state_;
 	string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
 					   // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
 					   // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
