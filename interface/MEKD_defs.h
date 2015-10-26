@@ -84,6 +84,10 @@ enum exit_codes {
 	EXIT_ERROR_INPUT
 };
 
+struct data {
+    final_state_types_ fs;  //final_state_types_ final_state_;
+};
+
 }
 
 #endif

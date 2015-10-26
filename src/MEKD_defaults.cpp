@@ -57,7 +57,7 @@ void MEKD::Set_default_params()
 	Mixing_Coefficients_Spin1[4] = complex<double>(1 / sqrt(2), 0);
 	Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
 
-	final_state_ = final_2e2mu;
+	idata.fs = final_2e2mu;
 	Test_Model = "ggSpin0Pm";	// Models: ZZ, DY, Custom, ggSpin0Pm, ggSpin0M,
 								 // ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
 								 // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm,

@@ -110,6 +110,9 @@ class MEKD
 	
 	/// Parameters
 	parameters param;
+    
+    /// Internal data
+    data idata;
 
 	/// State mixing
 	complex<double> *Mixing_Coefficients_Spin0, *Mixing_Coefficients_Spin1,
@@ -120,7 +123,6 @@ class MEKD
 	double id1, id2, id3, id4, id5;
 
 	/// String flags and file locations
-	final_state_types_ final_state_;
 	string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
 					   // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
 					   // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
@@ -156,15 +158,15 @@ class MEKD
 	int Run(string Input_Model);	// Calculates a ME ONLY for a chosen model;
 									// ignores automatic background
 									// calculation. Updates Signal_ME
-	void Run_make_p();
-	void Run_calculate();
+	void Run_make_p(const data &);
+	void Run_calculate(const data &);
 	double Get_PDF_x1(vector<double *> &p);
 	double Get_PDF_x2(vector<double *> &p);
 	
 	double Get_invariant_m(vector<double *> &p, int p_range[2]);
 	
-	void Prepare_ml_s();
-	void Load_p_set();
+	void Prepare_ml_s(const data &);
+	void Load_p_set(const data &);
 	void Approx_neg_z_parton(double *p, double E);
 	void Approx_pos_z_parton(double *p, double E);
 	void Normalize_parton_coeffs();
@@ -382,15 +384,18 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	void Print_4momenta(vector<double *>&);
 
 	//int Arrange_Internal_pls(process_description &);	// updates description
-	int Arrange_Internal_pls();	// temp
+	int Arrange_Internal_pls(data &d);	// temp
 
 	/// Sets up particular choices. Tier 3
-	int Run_ME_Configurator_BKG_ZZ(const process_description &);
-	int Run_ME_Configurator_Custom();
+	int Run_ME_Configurator_BKG_ZZ(const process_description &,
+                                   const data &);
+	int Run_ME_Configurator_Custom(const data &);
 	// RAW MG5_aMC ME
-	int Run_ME_Configurator_CPPProcess(const process_description &);
+	int Run_ME_Configurator_CPPProcess(const process_description &,
+                                       const data &);
 	// Generic mixed spin-0 state
 	int Run_ME_Configurator_Spin0(const process_description &,
+                                  const data &,
 								  SLHAReader_MEKD &par_MG);
 	void Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
 										 const complex<double> *c,
@@ -401,6 +406,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 										 const double hZZ);
 	// Generic mixed spin-1 state
 	int Run_ME_Configurator_Spin1(const process_description &,
+                                  const data &,
 								  SLHAReader_MEKD &par_MG);
 	void Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
 										 const complex<double> *c,
@@ -412,6 +418,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 										 const double hZZ);
 	// Generic mixed spin-2 state
 	int Run_ME_Configurator_Spin2(const process_description &,
+                                  const data &,
 								  SLHAReader_MEKD &par_MG);
 	void Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
 										 const complex<double> *c,
@@ -422,38 +429,65 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 										 const double mZ, const double Mi,
 										 const double hZZ);
 	// SM Higgs
-	int Run_ME_Configurator_Spin0Pm(const process_description &);
+	int Run_ME_Configurator_Spin0Pm(const process_description &,
+                                    const data &);
 	// Exotic models
-	int Run_ME_Configurator_Spin0M(const process_description &);
-	int Run_ME_Configurator_Spin0Ph(const process_description &);
-	int Run_ME_Configurator_Spin1P(const process_description &);
-	int Run_ME_Configurator_Spin1M(const process_description &);
-	int Run_ME_Configurator_Spin2Pm(const process_description &);
-	int Run_ME_Configurator_Spin2Ph(const process_description &);
-	int Run_ME_Configurator_Spin2Mh(const process_description &);
-	int Run_ME_Configurator_Spin2Pb(const process_description &);
-	int Run_ME_Configurator_Spin2Ph2(const process_description &);
-	int Run_ME_Configurator_Spin2Ph3(const process_description &);
-	int Run_ME_Configurator_Spin2Ph6(const process_description &);
-	int Run_ME_Configurator_Spin2Ph7(const process_description &);
-	int Run_ME_Configurator_Spin2Mh9(const process_description &);
-	int Run_ME_Configurator_Spin2Mh10(const process_description &);
+	int Run_ME_Configurator_Spin0M(const process_description &,
+                                   const data &);
+	int Run_ME_Configurator_Spin0Ph(const process_description &,
+                                    const data &);
+	int Run_ME_Configurator_Spin1P(const process_description &,
+                                   const data &);
+	int Run_ME_Configurator_Spin1M(const process_description &,
+                                   const data &);
+	int Run_ME_Configurator_Spin2Pm(const process_description &,
+                                    const data &);
+	int Run_ME_Configurator_Spin2Ph(const process_description &,
+                                    const data &);
+	int Run_ME_Configurator_Spin2Mh(const process_description &,
+                                    const data &);
+	int Run_ME_Configurator_Spin2Pb(const process_description &,
+                                    const data &);
+	int Run_ME_Configurator_Spin2Ph2(const process_description &,
+                                     const data &);
+	int Run_ME_Configurator_Spin2Ph3(const process_description &,
+                                     const data &);
+	int Run_ME_Configurator_Spin2Ph6(const process_description &,
+                                     const data &);
+	int Run_ME_Configurator_Spin2Ph7(const process_description &,
+                                     const data &);
+	int Run_ME_Configurator_Spin2Mh9(const process_description &,
+                                     const data &);
+	int Run_ME_Configurator_Spin2Mh10(const process_description &,
+                                      const data &);
 	// A mixed state of two contributions
-	int Run_ME_Configurator_Spin0Pm_Spin0M(const process_description &);
-	int Run_ME_Configurator_Spin0Pm_Spin0Ph(const process_description &);
-	int Run_ME_Configurator_Spin0M_Spin0Ph(const process_description &);
-	int Run_ME_Configurator_Z4l_BKG(const process_description &);
-	int Run_ME_Configurator_Z4l_SIG(const process_description &);
+	int Run_ME_Configurator_Spin0Pm_Spin0M(const process_description &,
+                                           const data &);
+	int Run_ME_Configurator_Spin0Pm_Spin0Ph(const process_description &,
+                                            const data &);
+	int Run_ME_Configurator_Spin0M_Spin0Ph(const process_description &,
+                                           const data &);
+	int Run_ME_Configurator_Z4l_BKG(const process_description &, 
+                                    const data &);
+	int Run_ME_Configurator_Z4l_SIG(const process_description &,
+                                    const data &);
 
 	/// Dispatches MEs that have correct parameters. Tier 2
 	// RAW MG5_aMC ME
-	int Run_ME_Dispatcher_CPPProcess(const process_description &);
-	int Run_ME_Dispatcher_BKG_ZZ(const process_description &);
-	int Run_ME_Dispatcher_Z4l_BKG(const process_description &);
-	int Run_ME_Dispatcher_Z4l_SIG(const process_description &);
-	int Run_ME_Dispatcher_SIG_Spin0(const process_description &);
-	int Run_ME_Dispatcher_SIG_Spin1(const process_description &);
-	int Run_ME_Dispatcher_SIG_Spin2(const process_description &);
+	int Run_ME_Dispatcher_CPPProcess(const process_description &,
+                                     const data &);
+	int Run_ME_Dispatcher_BKG_ZZ(const process_description &,
+                                 const data &);
+	int Run_ME_Dispatcher_Z4l_BKG(const process_description &,
+                                  const data &);
+	int Run_ME_Dispatcher_Z4l_SIG(const process_description &,
+                                  const data &);
+	int Run_ME_Dispatcher_SIG_Spin0(const process_description &,
+                                    const data &);
+	int Run_ME_Dispatcher_SIG_Spin1(const process_description &,
+                                    const data &);
+	int Run_ME_Dispatcher_SIG_Spin2(const process_description &,
+                                    const data &);
 
 	/// Evaluators. Blind-calculation functions. Handles MEs from Dispatchers.
 	/// Tier 1
