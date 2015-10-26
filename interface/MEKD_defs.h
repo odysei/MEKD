@@ -86,6 +86,9 @@ enum exit_codes {
 
 struct data {
     final_state_types_ fs;  //final_state_types_ final_state_;
+
+	std::vector<double> id;
+	std::vector<double *> p;
 };
 
 }

@@ -23,7 +23,7 @@ namespace mekd
  * 
  */
 
-// p_set(7, new double[4]), => some problems ???
+// idata.p(7, new double[4]), => some problems ???
 MEKD::MEKD()
 {
 	Mixing_Coefficients_Spin0 = new complex<double>[4];
@@ -37,14 +37,14 @@ MEKD::MEKD()
 
 	Check_MEs();
 
-	p_set.reserve(7);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]);
-	p_set.push_back(new double[4]); // a photon comes here, otherwise, unused
+	idata.p.reserve(7);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]);
+	idata.p.push_back(new double[4]); // a photon comes here, otherwise, unused
 
 	p1 = new double[4];
 	p2 = new double[4];
@@ -58,12 +58,12 @@ MEKD::MEKD()
 	id4 = 10000;
 	id5 = 10000;
 
-	id_set.reserve(5);
-	id_set.push_back(id1);
-	id_set.push_back(id2);
-	id_set.push_back(id3);
-	id_set.push_back(id4);
-	id_set.push_back(id5);
+	idata.id.reserve(5);
+	idata.id.push_back(id1);
+	idata.id.push_back(id2);
+	idata.id.push_back(id3);
+	idata.id.push_back(id4);
+	idata.id.push_back(id5);
 
 	pl1_internal = NULL;
 	pl2_internal = NULL;
@@ -112,39 +112,39 @@ MEKD::~MEKD()
 	if (Parameters_Are_Loaded)
 		Unload_pdfreader();
 
-	p_set.clear();
-	id_set.clear();
+	idata.p.clear();
+	idata.id.clear();
 	
 	for (auto runner: ME_runners)
 		delete runner;
 	ME_runners.clear();
 }
 
-int MEKD::Load_Parameters()
+int MEKD::Load_Parameters(parameters &pa)
 {
-	params_MG.read_slha_file(static_cast<string>(Parameter_file));
+	params_MG.read_slha_file(static_cast<string>(pa.params_MG_file));
 	
 	/// Initializing parameters
 	if (!Parameters_Are_Loaded)
 		Load_Parameters_MEs();	// init MEs
 	Load_Parameters_extract_params(params_MG);
 	Load_Parameters_eval_params();
-	Normalize_parton_coeffs();
+	Normalize_parton_coeffs(pa);
 	
 	if (Parameters_Are_Loaded)
 		Unload_pdfreader();
-	Load_pdfreader(const_cast<char *>(PDF_file.c_str()));
+	Load_pdfreader(const_cast<char *>(pa.PDF_file.c_str()));
 
 	Parameters_Are_Loaded = true;
 	return 0;
 }
 
-int MEKD::Reload_params()
+int MEKD::Reload_params(parameters &pa)
 {
 	if (!Parameters_Are_Loaded)
 		return 1;
 
-	return Load_Parameters();
+	return Load_Parameters(pa);
 }
 
 void MEKD::eval_MEs(const input &in, vector<double> &ME2)
@@ -169,7 +169,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	/* End of added block */
 	
 	if (!Parameters_Are_Loaded)
-		Load_Parameters();
+		Load_Parameters(param);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
@@ -182,15 +182,15 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	
 	Run_make_p(idata);
 
-	int range[2] = {2, 6}; 
-	invariant_m = Get_invariant_m(p_set, range);
+	const int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(idata.p, range);
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
-		Normalize_parton_coeffs();
+		Normalize_parton_coeffs(param);
 	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta entering ME(E px py px):\n";
-		Print_4momenta(p_set);
+		Print_4momenta(idata.p);
 	}
 	
 	for (unsigned int i = 0; i < ME_runners.size(); ++i) {
@@ -203,14 +203,14 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta after ME(E px py px) calculations:\n";
-		Print_4momenta(p_set);
+		Print_4momenta(idata.p);
 	}
 }
 
 int MEKD::Run()
 {
 	if (!Parameters_Are_Loaded)
-		Load_Parameters();
+		Load_Parameters(param);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
@@ -223,22 +223,22 @@ int MEKD::Run()
 	
 	Run_make_p(idata);
 
-	int range[2] = {2, 6}; 
-	invariant_m = Get_invariant_m(p_set, range);
+	const int range[2] = {2, 6}; 
+	invariant_m = Get_invariant_m(idata.p, range);
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
-		Normalize_parton_coeffs();
+		Normalize_parton_coeffs(param);
 	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta entering ME(E px py px):\n";
-		Print_4momenta(p_set);
+		Print_4momenta(idata.p);
 	}
 	
 	Run_calculate(idata);
 	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta after ME(E px py px) calculations:\n";
-		Print_4momenta(p_set);
+		Print_4momenta(idata.p);
 	}
 
 	if (Test_Model[0] != '!')
@@ -259,7 +259,7 @@ int MEKD::Run(string Input_Model)
 	return error_value;
 }
 
-void MEKD::Run_make_p(const data &da)
+void MEKD::Run_make_p(data &da)
 {
 	if (flag.Overwrite_e_and_mu_masses) {
 		params_MG.set_block_entry("mass", 11, param.Electron_mass);
@@ -273,12 +273,12 @@ void MEKD::Run_make_p(const data &da)
 	
 	/// Calculate values needed for the PDF in the pT=0 frame
 	if (flag.Use_PDF_w_pT0) {
-		Boost_5p_2_pT0(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4,
-					   p_set[5], 0, p_set[6]);
+		Boost_5p_2_pT0(ml1, da.p[2], ml2, da.p[3], ml3, da.p[4], ml4,
+					   da.p[5], 0, da.p[6]);
 	}
 	
-	PDFx1 = Get_PDF_x1(p_set);
-	PDFx2 = Get_PDF_x2(p_set);
+	PDFx1 = Get_PDF_x1(da.p);
+	PDFx2 = Get_PDF_x2(da.p);
 	if (flag.Debug_Mode) {
 		printf("Coefficients for PDF (x1, x2): (%.10E, %.10E)\n",
 			   PDFx1, PDFx2);
@@ -286,19 +286,19 @@ void MEKD::Run_make_p(const data &da)
 
 	/// If flag is true, boost to CM frame iff PDF is NOT included.
 	if (flag.Boost_To_CM && !flag.Use_PDF_w_pT0) {
-		Boost2CM(ml1, p_set[2], ml2, p_set[3], ml3, p_set[4], ml4, p_set[5], 0,
-				 p_set[6]);
-		double CollisionE = p_set[2][0] + p_set[3][0] + p_set[4][0] +
-							p_set[5][0] + p_set[6][0];
-		p_set[0][0] = 0.5 * CollisionE;
-		p_set[1][0] = 0.5 * CollisionE;
+		Boost2CM(ml1, da.p[2], ml2, da.p[3], ml3, da.p[4], ml4, da.p[5], 0,
+				 da.p[6]);
+		double CollisionE = da.p[2][0] + da.p[3][0] + da.p[4][0] +
+							da.p[5][0] + da.p[6][0];
+		da.p[0][0] = 0.5 * CollisionE;
+		da.p[1][0] = 0.5 * CollisionE;
 	} else {
-		Approx_neg_z_parton(p_set[0], PDFx1 * param.sqrt_s);
-		Approx_pos_z_parton(p_set[1], PDFx2 * param.sqrt_s);
+		Approx_neg_z_parton(da.p[0], PDFx1 * param.sqrt_s);
+		Approx_pos_z_parton(da.p[1], PDFx2 * param.sqrt_s);
 	}
 }
 
-void MEKD::Run_calculate(const data &da)
+void MEKD::Run_calculate(data &da)
 {
 	/// Background is interesting in any case, except for the Signal Runs or '!'
 	/// is indicated in the first model to save CPU
@@ -726,38 +726,38 @@ void MEKD::Run_calculate(const data &da)
 	}
 }
 
-void MEKD::Load_p_set(const data &da)
+void MEKD::Load_p_set(data &da)
 {
 	for (int i = 0; i < 4; ++i) {
-		p_set[0][i] = 0;
-		p_set[1][i] = 0;
+		da.p[0][i] = 0;
+		da.p[1][i] = 0;
 
 		if (pl1_internal == NULL)
-			p_set[2][i] = 0;
+			da.p[2][i] = 0;
 		else
-			p_set[2][i] = pl1_internal[i];
+			da.p[2][i] = pl1_internal[i];
 		if (pl2_internal == NULL)
-			p_set[3][i] = 0;
+			da.p[3][i] = 0;
 		else
-			p_set[3][i] = pl2_internal[i];
+			da.p[3][i] = pl2_internal[i];
 		if (pl3_internal == NULL)
-			p_set[4][i] = 0;
+			da.p[4][i] = 0;
 		else
-			p_set[4][i] = pl3_internal[i];
+			da.p[4][i] = pl3_internal[i];
 		if (pl4_internal == NULL)
-			p_set[5][i] = 0;
+			da.p[5][i] = 0;
 		else
-			p_set[5][i] = pl4_internal[i];
+			da.p[5][i] = pl4_internal[i];
 
 		// Adaptive photon handling
 		if (pA1_internal == NULL)
-			p_set[6][i] = 0;
+			da.p[6][i] = 0;
 		else {
 			if (da.fs == final_2muA) {
-				p_set[4][i] = pA1_internal[i];
-				p_set[6][i] = 0;
+				da.p[4][i] = pA1_internal[i];
+				da.p[6][i] = 0;
 			} else
-				p_set[6][i] = pA1_internal[i];
+				da.p[6][i] = pA1_internal[i];
 		}
 	}
 }
@@ -790,19 +790,19 @@ void MEKD::Prepare_ml_s(const data &da)
 	}
 }
 
-double MEKD::Get_PDF_x1(vector<double *> &p)
+double MEKD::Get_PDF_x1(const vector<double *> &p)
 {
 	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) +
 			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / param.sqrt_s;
 }
 
-double MEKD::Get_PDF_x2(vector<double *> &p)
+double MEKD::Get_PDF_x2(const vector<double *> &p)
 {
 	return ((p[2][0] + p[3][0] + p[4][0] + p[5][0] + p[6][0]) -
 			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / param.sqrt_s;
 }
 
-double MEKD::Get_invariant_m(vector<double *> &p, int p_range[2])
+double MEKD::Get_invariant_m(const vector<double *> &p, const int p_range[2])
 {
 	double sum_E = 0;
 	double sum_px = 0;
@@ -823,7 +823,7 @@ double MEKD::Get_invariant_m(vector<double *> &p, int p_range[2])
 				- sum_pz * sum_pz);
 }
 
-void MEKD::Normalize_parton_coeffs()
+void MEKD::Normalize_parton_coeffs(parameters &pa)
 {
 	double buffer_ = (param.parton_coeff_d + param.parton_coeff_u +
 					  param.parton_coeff_s + param.parton_coeff_c);
@@ -834,7 +834,7 @@ void MEKD::Normalize_parton_coeffs()
 	param.parton_coeff_s = param.parton_coeff_s / buffer_;
 }
 
-void MEKD::Approx_neg_z_parton(double *p, double E)
+void MEKD::Approx_neg_z_parton(double *p, const double E)
 {
 	// 0-mass approximation
 	p[0] = 0.5 * E;
@@ -843,7 +843,7 @@ void MEKD::Approx_neg_z_parton(double *p, double E)
 	p[3] = 0.5 * E; // to be recalculated
 }
 
-void MEKD::Approx_pos_z_parton(double *p, double E)
+void MEKD::Approx_pos_z_parton(double *p, const double E)
 {
 	// 0-mass approximation
 	p[0] = 0.5 * E;

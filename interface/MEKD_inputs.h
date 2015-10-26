@@ -54,6 +54,9 @@ struct parameters
 	double Higgs_width;		// Practically not used, for future implementations
 	double Muon_mass;		// 0.10565837, for enabled overwriting
 	double Proton_mass;		// Always used if needed
+	
+	string params_MG_file;		// Location where a parameter card is stored
+	string PDF_file;			// PDF/PDT table file
 };
 
 // see definitions for descriptions

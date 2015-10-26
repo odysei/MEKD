@@ -12,14 +12,14 @@ namespace mekd
 
 /// ZZ and DY processes
 int MEKD::Run_ME_Configurator_BKG_ZZ(const process_description &d,
-                                     const data &da)
+                                     data &da)
 {
 	return Run_ME_Dispatcher_BKG_ZZ(d, da);
 }
 
 /// Z4l Background processes (t channel)
 int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		params_MG.set_block_entry("mass", 23, invariant_m);
@@ -28,14 +28,14 @@ int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d,
 
 /// Z4l Signal processes (s channel)
 int MEKD::Run_ME_Configurator_Z4l_SIG(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
 		params_MG.set_block_entry("mass", 23, invariant_m);
 	return Run_ME_Dispatcher_Z4l_SIG(d, da);
 }
 
-int MEKD::Run_ME_Configurator_Custom(const data &da)
+int MEKD::Run_ME_Configurator_Custom(data &da)
 {
 	cerr << "FIX ME!\n";
 	process_description d;
@@ -64,7 +64,7 @@ int MEKD::Run_ME_Configurator_Custom(const data &da)
 }
 
 int MEKD::Run_ME_Configurator_CPPProcess(const process_description &d,
-                                         const data &da)
+                                         data &da)
 {
 	return Run_ME_Dispatcher_CPPProcess(d, da);
 }
@@ -75,7 +75,7 @@ int MEKD::Run_ME_Configurator_CPPProcess(const process_description &d,
 
 /// A SM Higgs
 int MEKD::Run_ME_Configurator_Spin0Pm(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(1, 0); // same 2l
@@ -93,7 +93,7 @@ int MEKD::Run_ME_Configurator_Spin0Pm(const process_description &d,
 
 /// A pseudoscalar
 int MEKD::Run_ME_Configurator_Spin0M(const process_description &d,
-                                     const data &da)
+                                     data &da)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -111,7 +111,7 @@ int MEKD::Run_ME_Configurator_Spin0M(const process_description &d,
 
 /// A scalar with higher-order couplings
 int MEKD::Run_ME_Configurator_Spin0Ph(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
@@ -133,7 +133,7 @@ int MEKD::Run_ME_Configurator_Spin0Ph(const process_description &d,
 
 /// A vector default configuration
 int MEKD::Run_ME_Configurator_Spin1M(const process_description &d,
-                                     const data &da)
+                                     data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -155,7 +155,7 @@ int MEKD::Run_ME_Configurator_Spin1M(const process_description &d,
 
 /// A vector default configuration
 int MEKD::Run_ME_Configurator_Spin1P(const process_description &d,
-                                     const data &da)
+                                     data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -181,7 +181,7 @@ int MEKD::Run_ME_Configurator_Spin1P(const process_description &d,
 
 /// A minimal-coupling KK graviton
 int MEKD::Run_ME_Configurator_Spin2Pm(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -225,7 +225,7 @@ int MEKD::Run_ME_Configurator_Spin2Pm(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Ph(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -271,7 +271,7 @@ int MEKD::Run_ME_Configurator_Spin2Ph(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Mh(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -317,7 +317,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Pb(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -361,7 +361,7 @@ int MEKD::Run_ME_Configurator_Spin2Pb(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Ph2(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -405,7 +405,7 @@ int MEKD::Run_ME_Configurator_Spin2Ph2(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Ph3(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -451,7 +451,7 @@ int MEKD::Run_ME_Configurator_Spin2Ph3(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Ph6(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -495,7 +495,7 @@ int MEKD::Run_ME_Configurator_Spin2Ph6(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Ph7(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -539,7 +539,7 @@ int MEKD::Run_ME_Configurator_Spin2Ph7(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Mh9(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -585,7 +585,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh9(const process_description &d,
 
 ///
 int MEKD::Run_ME_Configurator_Spin2Mh10(const process_description &d,
-                                        const data &da)
+                                        data &da)
 {
 	Predefined_Model = true;
 	// Production
@@ -631,7 +631,7 @@ int MEKD::Run_ME_Configurator_Spin2Mh10(const process_description &d,
 
 /// A generic spin-0 resonance handler
 int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
-                                    const data &da,
+                                    data &da,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -743,7 +743,7 @@ void MEKD::Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
 
 /// A generic spin-1 resonance handler
 int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
-                                    const data &da,
+                                    data &da,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -874,7 +874,7 @@ void MEKD::Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
 
 /// A generic spin-2 resonance handler
 int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
-                                    const data &da,
+                                    data &da,
 									SLHAReader_MEKD &par_MG)
 {
 	// local copy for stack
@@ -1002,7 +1002,7 @@ void MEKD::Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
 
 /// ME_RAW (RAW MG5_aMC ME) dispatcher
 int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
-                                       const data &da)
+                                       data &da)
 {
 	/*
 	if (d.decay == decay_ZZ) {
@@ -1192,7 +1192,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 
 /// ZZ and DY ME dispatcher
 int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
-                                   const data &da)
+                                   data &da)
 {
 	if (d.production == prod_no &&
 		!(da.fs == final_2mu || da.fs == final_2muA)) {
@@ -1323,7 +1323,7 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 
 /// Z4l Background ME dispatcher
 int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
-                                    const data &da)
+                                    data &da)
 {
 	if (d.production == prod_no) {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
@@ -1463,7 +1463,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 
 /// Z4l Signal ME dispatcher
 int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
-                                    const data &da)
+                                    data &da)
 {
 	if (d.production == prod_no) {
 		cerr << "Z -> 4l gg initial state is not supported.\n";
@@ -1602,7 +1602,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 
 /// Spin-0 ME dispatcher
 int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	if (d.production == prod_qq) {
 		cerr << "Spin-0 qqbar initial state is redundant, thus not provided.\n";
@@ -1845,7 +1845,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 /// Spin-1 ME dispatcher
 int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	if (d.production == prod_gg) {
 		cerr << "Spin-1 gg initial state is not possible, thus not provided.\n";
@@ -2092,7 +2092,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 /// Spin-2 ME dispatcher
 int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
-                                      const data &da)
+                                      data &da)
 {
 	if (d.decay == decay_ZZ) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
@@ -2321,7 +2321,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 }
 
 template <class Generic_MEKD_ME>
-int MEKD::Run_MEs_Evaluator_Initial_State_NO(bool photon,
+int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da,
+                                             const bool photon,
 											 Generic_MEKD_ME &Generic_ME)
 {
 	Signal_ME = 0;
@@ -2382,7 +2383,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(bool photon,
 }
 
 template <class Generic_MEKD_ME>
-int MEKD::Run_MEs_Evaluator_Initial_State_gg(bool photon,
+int MEKD::Run_MEs_Evaluator_Initial_State_gg(data &da,
+                                             const bool photon,
 											 Generic_MEKD_ME &Generic_ME)
 {
 	Signal_ME = 0;
@@ -2406,7 +2408,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_gg(bool photon,
 }
 
 template <class Generic_MEKD_ME_s, class Generic_MEKD_ME_c>
-int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(bool photon,
+int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
+                                                const bool photon,
 												Generic_MEKD_ME_s &Generic_ME_s,
 												Generic_MEKD_ME_c &Generic_ME_c)
 {
