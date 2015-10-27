@@ -80,6 +80,14 @@ struct input
 	vector<int> *id;
 };
 
+// standardized input to calculator for custom coupling run
+struct input_c: input
+{
+	complex<double> mix_coeffs_Spin0[4];
+    complex<double> mix_coeffs_Spin1[8];
+    complex<double> mix_coeffs_Spin2[20];
+};
+
 /// end of namespace
 }
 

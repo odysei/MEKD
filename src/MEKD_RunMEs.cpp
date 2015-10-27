@@ -22,7 +22,7 @@ int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d,
                                       data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, invariant_m);
+		params_MG.set_block_entry("mass", 23, da.invariant_m);
 	return Run_ME_Dispatcher_Z4l_BKG(d, da);
 }
 
@@ -31,7 +31,7 @@ int MEKD::Run_ME_Configurator_Z4l_SIG(const process_description &d,
                                       data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, invariant_m);
+		params_MG.set_block_entry("mass", 23, da.invariant_m);
 	return Run_ME_Dispatcher_Z4l_SIG(d, da);
 }
 
@@ -39,6 +39,7 @@ int MEKD::Run_ME_Configurator_Custom(data &da)
 {
 	cerr << "FIX ME!\n";
 	process_description d;
+    int error_value;
 	
 	d.production = prod_gg;
 	if ((error_value = Run_ME_Dispatcher_SIG_Spin0(d, da)) != 0)
@@ -77,7 +78,6 @@ int MEKD::Run_ME_Configurator_CPPProcess(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin0Pm(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(1, 0); // same 2l
 	Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0); // same 2l
 	Mixing_Coefficients_Spin0_internal[2] = complex<double>(0, 0);
@@ -95,7 +95,6 @@ int MEKD::Run_ME_Configurator_Spin0Pm(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin0M(const process_description &d,
                                      data &da)
 {
-	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin0_internal[1] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin0_internal[2] = complex<double>(0, 0);
@@ -113,7 +112,6 @@ int MEKD::Run_ME_Configurator_Spin0M(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin0Ph(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	Mixing_Coefficients_Spin0_internal[0] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin0_internal[1] = complex<double>(1, 0);
 	Mixing_Coefficients_Spin0_internal[2] = complex<double>(0, 0);
@@ -135,7 +133,6 @@ int MEKD::Run_ME_Configurator_Spin0Ph(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin1M(const process_description &d,
                                      data &da)
 {
-	Predefined_Model = true;
 	// Production
 	Mixing_Coefficients_Spin1_internal[0] = complex<double>(1, 0);	// same 2l
 	Mixing_Coefficients_Spin1_internal[1] = complex<double>(0, 0);
@@ -157,7 +154,6 @@ int MEKD::Run_ME_Configurator_Spin1M(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin1P(const process_description &d,
                                      data &da)
 {
-	Predefined_Model = true;
 	// Production
 	Mixing_Coefficients_Spin1_internal[0] = complex<double>(0, 0);
 	Mixing_Coefficients_Spin1_internal[1] = complex<double>(1, 0);	// same 2l
@@ -183,42 +179,41 @@ int MEKD::Run_ME_Configurator_Spin1P(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Pm(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	// Production
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(-1, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(-1, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(1, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -227,44 +222,43 @@ int MEKD::Run_ME_Configurator_Spin2Pm(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Ph(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[3] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[3] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -273,44 +267,43 @@ int MEKD::Run_ME_Configurator_Spin2Ph(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Mh(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -319,42 +312,41 @@ int MEKD::Run_ME_Configurator_Spin2Mh(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Pb(const process_description &d,
                                       data &da)
 {
-	Predefined_Model = true;
 	// Production
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -363,42 +355,41 @@ int MEKD::Run_ME_Configurator_Spin2Pb(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Ph2(const process_description &d,
                                        data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -407,44 +398,43 @@ int MEKD::Run_ME_Configurator_Spin2Ph2(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Ph3(const process_description &d,
                                        data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[2] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[2] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -453,42 +443,41 @@ int MEKD::Run_ME_Configurator_Spin2Ph3(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Ph6(const process_description &d,
                                        data &da)
 {
-	Predefined_Model = true;
 	// Production
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -497,42 +486,41 @@ int MEKD::Run_ME_Configurator_Spin2Ph6(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Ph7(const process_description &d,
                                        data &da)
 {
-	Predefined_Model = true;
 	// Production
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -541,44 +529,43 @@ int MEKD::Run_ME_Configurator_Spin2Ph7(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Mh9(const process_description &d,
                                        data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(0, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -587,44 +574,43 @@ int MEKD::Run_ME_Configurator_Spin2Mh9(const process_description &d,
 int MEKD::Run_ME_Configurator_Spin2Mh10(const process_description &d,
                                         data &da)
 {
-	Predefined_Model = true;
 	// Production
-	Mixing_Coefficients_Spin2_internal[0] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[1] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[2] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[3] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[4] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[5] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[6] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[0] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[1] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[2] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[3] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[4] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[5] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[6] = complex<double>(0, 0);
 	if (d.production == prod_gg)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(1, 0);
-	Mixing_Coefficients_Spin2_internal[8] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[9] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[8] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[9] = complex<double>(0, 0);
 	// Decay
-	Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[14] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[15] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[16] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[17] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[18] = complex<double>(0, 0);
-	Mixing_Coefficients_Spin2_internal[19] = complex<double>(1, 0);
+	da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[14] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[15] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[16] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[17] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[18] = complex<double>(0, 0);
+	da.mix_coeffs_SpinX_pred[19] = complex<double>(1, 0);
 
 	if (da.fs == final_2mu || da.fs == final_2muA || d.decay == decay_2f) {
-		Mixing_Coefficients_Spin2_internal[10] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[11] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[12] = complex<double>(0, 0);
-		Mixing_Coefficients_Spin2_internal[13] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[10] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[11] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[12] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[13] = complex<double>(0, 0);
 	}
 
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[0] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[0] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[1] = complex<double>(1, 0);
+		da.mix_coeffs_SpinX_pred[1] = complex<double>(1, 0);
 	if (d.production == prod_qq)
-		Mixing_Coefficients_Spin2_internal[7] = complex<double>(0, 0);
+		da.mix_coeffs_SpinX_pred[7] = complex<double>(0, 0);
 
 	return Run_ME_Configurator_Spin2(d, da, params_MG);
 }
@@ -637,17 +623,17 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = invariant_m;	// system's invariant mass
+	const double M = da.invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
-	if (Predefined_Model) {
-		c = Mixing_Coefficients_Spin0_internal;
-		Predefined_Model = false;
+	if (d.resonance == reson_Spin0) {
+        c = Mixing_Coefficients_Spin0;
 	} else
-		c = Mixing_Coefficients_Spin0;
+        c = Mixing_Coefficients_Spin0_internal;
+		
 
 	if (flag.Use_mh_eq_m4l) {
 		par_MG.set_block_entry("mass", 9000006, M);
@@ -749,18 +735,17 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = invariant_m;	// system's invariant mass
+	const double M = da.invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
     const double vev = param.vev;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
-	
-	if (Predefined_Model) {
-		c = Mixing_Coefficients_Spin1_internal;
-		Predefined_Model = false;
+    
+    if (d.resonance == reson_Spin1) {
+        c = Mixing_Coefficients_Spin1;
 	} else
-		c = Mixing_Coefficients_Spin1;
+        c = Mixing_Coefficients_Spin1_internal;
 
 	if (flag.Use_mh_eq_m4l) {
 		par_MG.set_block_entry("mass", 300, M);
@@ -881,17 +866,16 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 	// local copy for stack
 	const double mH = param.Higgs_mass;
 	const double mZ = params_m_Z;
-	const double M = invariant_m;	// system's invariant mass
+	const double M = da.invariant_m;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
-	
-	if (Predefined_Model) {
-		c = Mixing_Coefficients_Spin2_internal;
-		Predefined_Model = false;
+    
+    if (d.resonance == reson_Spin2) {
+        c = Mixing_Coefficients_Spin2;
 	} else
-		c = Mixing_Coefficients_Spin2;
+        c = da.mix_coeffs_SpinX_pred;
 
 	if (flag.Use_mh_eq_m4l) {
 		par_MG.set_block_entry("mass", 9000007, M);
@@ -2442,8 +2426,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_gg(data &da,
 	const double *buffer = Generic_ME.getMatrixElements();
 
 	if (flag.Use_PDF_w_pT0) {
-		Signal_ME = pdfreader(21, PDFx1, invariant_m) *
-					pdfreader(21, PDFx2, invariant_m) * buffer[0];
+		Signal_ME = pdfreader(21, da.PDFx1, da.invariant_m) *
+					pdfreader(21, da.PDFx2, da.invariant_m) * buffer[0];
 	} else
 		Signal_ME = buffer[0];
 
@@ -2482,11 +2466,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_d = pdfreader(1, PDFx1, invariant_m) *
-								   pdfreader(-1, PDFx2, invariant_m);
+			param.parton_coeff_d = pdfreader(1, da.PDFx1, da.invariant_m) *
+								   pdfreader(-1, da.PDFx2, da.invariant_m);
 			Signal_ME = param.parton_coeff_d * buffer[0];
-			param.parton_coeff_d = pdfreader(-1, PDFx1, invariant_m) *
-								   pdfreader(1, PDFx2, invariant_m);
+			param.parton_coeff_d = pdfreader(-1, da.PDFx1, da.invariant_m) *
+								   pdfreader(1, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_d * buffer[1];
 		} else
 			Signal_ME = param.parton_coeff_d * (buffer[0] + buffer[1]);
@@ -2516,11 +2500,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_s = pdfreader(3, PDFx1, invariant_m) *
-								   pdfreader(-3, PDFx2, invariant_m);
+			param.parton_coeff_s = pdfreader(3, da.PDFx1, da.invariant_m) *
+								   pdfreader(-3, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_s * buffer[0];
-			param.parton_coeff_s = pdfreader(-3, PDFx1, invariant_m) *
-								   pdfreader(3, PDFx2, invariant_m);
+			param.parton_coeff_s = pdfreader(-3, da.PDFx1, da.invariant_m) *
+								   pdfreader(3, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_s * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_s * (buffer[0] + buffer[1]);
@@ -2550,11 +2534,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_u = pdfreader(2, PDFx1, invariant_m) *
-								   pdfreader(-2, PDFx2, invariant_m);
+			param.parton_coeff_u = pdfreader(2, da.PDFx1, da.invariant_m) *
+								   pdfreader(-2, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_u * buffer[0];
-			param.parton_coeff_u = pdfreader(-2, PDFx1, invariant_m) *
-								   pdfreader(2, PDFx2, invariant_m);
+			param.parton_coeff_u = pdfreader(-2, da.PDFx1, da.invariant_m) *
+								   pdfreader(2, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_u * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_u * (buffer[0] + buffer[1]);
@@ -2584,11 +2568,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_c = pdfreader(4, PDFx1, invariant_m) *
-								   pdfreader(-4, PDFx2, invariant_m);
+			param.parton_coeff_c = pdfreader(4, da.PDFx1, da.invariant_m) *
+								   pdfreader(-4, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_c * buffer[0];
-			param.parton_coeff_c = pdfreader(-4, PDFx1, invariant_m) *
-								   pdfreader(4, PDFx2, invariant_m);
+			param.parton_coeff_c = pdfreader(-4, da.PDFx1, da.invariant_m) *
+								   pdfreader(4, da.PDFx2, da.invariant_m);
 			Signal_ME += param.parton_coeff_c * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_c * (buffer[0] + buffer[1]);

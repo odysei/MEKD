@@ -74,12 +74,13 @@ public:
 class MEKD
 {
   public:
+    void eval_MEs(const input_c &, vector<double> &);   // for custom coupl.
 	void eval_MEs(const input &, vector<double> &);
 	
 	// new&internal. Will go to private:
 	vector<ME_runner *> ME_runners;
 	
-	void Load_ME_runners(vector<process_description> &);
+	void Load_ME_runners(const vector<process_description> &);
 	bool Load_ME_runners_try(const process_description &,
 							 ME_runner *,
 							 vector<ME_runner *> &);
@@ -110,6 +111,9 @@ class MEKD
 	
 	/// Parameters
 	parameters param;
+
+	/// Parameter container. For experts only
+	SLHAReader_MEKD params_MG;
     
     /// Internal data
     data idata;
@@ -118,7 +122,7 @@ class MEKD
 	complex<double> *Mixing_Coefficients_Spin0, *Mixing_Coefficients_Spin1,
 		*Mixing_Coefficients_Spin2;
 
-	/// Final-state lepton/photon information
+	/// Final-state lepton/photon information; Version 2 and earlier
 	double *p1, *p2, *p3, *p4, *p5;
 	double id1, id2, id3, id4, id5;
 
@@ -132,16 +136,10 @@ class MEKD
 	vector<string> Test_Models; // same names as for the Test_Model
 
 	/// Calculation results
-	double invariant_m;	// filled after running RUN_XXXX(...). Invariant mass
-						// of the final-state system
 	double Background_ME; // may not be used if running RUN(string) is chosen
 	double Signal_ME;	 // is filled after running RUN_XXXX(...)
 	vector<double> Signal_MEs; // is filled if Test_Models are set after running
 							   // RUN_XXXX(...)
-	double KD;				   // is not filled with RUN(string)
-
-	/// Parameter container. For experts only
-	SLHAReader_MEKD params_MG;
 
 	/// Functions
 	void Set_default_params();
@@ -336,11 +334,9 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 /// RAW MG5_aMC ME. For testing purposes only.
 // CPPProcess ME_RAW;
 	
-	bool Parameters_Are_Loaded, buffer_bool, Predefined_Model;
+	bool Parameters_Are_Loaded;
 
-	int error_value;
-
-	double ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double ml1, ml2, ml3, ml4;
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
@@ -502,7 +498,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
   public:
 	
-	MEKD(vector<process_description> &desc): MEKD()
+	MEKD(const vector<process_description> &desc): MEKD()
 	{
 		Load_ME_runners(desc);
 	}
@@ -710,9 +706,9 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 				  complex<double> *dec_Spin2_relamp);
 
 	/// Mixed-state ME mixer. Variables
-	complex<double> *m_Mixing_Coefficients_Spin0;
-	complex<double> *m_Mixing_Coefficients_Spin1;
-	complex<double> *m_Mixing_Coefficients_Spin2;
+	complex<double> m_Mixing_Coefficients_Spin0[4];
+	complex<double> m_Mixing_Coefficients_Spin1[8];
+	complex<double> m_Mixing_Coefficients_Spin2[20];
 
   private:
 	/// Properties. Variables.

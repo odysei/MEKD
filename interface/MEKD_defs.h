@@ -25,7 +25,7 @@ enum resonance_types {
 	reson_Spin0Pm,	// 0^+_m, Higgs
 	reson_Spin0Ph,	// 0^+_h
 	reson_Spin0M,	// 0^-
-	reson_Spin1,	//generic spin 1 resonance, many couplings
+	reson_Spin1,	// generic spin 1 resonance, many couplings
 	reson_Spin1M,	// 1^-, vector
 	reson_Spin1P,	// 1^+, pseudovector
 	reson_Spin2,	// generic spin 2 resonance, many couplings
@@ -89,6 +89,17 @@ struct data {
 
 	std::vector<double> id;
 	std::vector<double *> p;
+    
+    // filled after running RUN_XXXX(...). Invariant mass of the final state
+	double invariant_m;
+    double PDFx1, PDFx2;
+    
+    std::complex<double> *mix_coeffs_Spin0;
+    std::complex<double> *mix_coeffs_Spin1;
+    std::complex<double> *mix_coeffs_Spin2;
+    std::complex<double> mix_coeffs_Spin0_pred[4];
+    std::complex<double> mix_coeffs_Spin1_pred[8];
+    std::complex<double> mix_coeffs_SpinX_pred[20];  // should be max of all
 };
 
 }
