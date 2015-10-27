@@ -38,6 +38,8 @@ struct flags
 /// Parameters that are used in calculations, some are updated per run
 struct parameters
 {
+    bool loaded = false;
+    
 	/// General parameters
 	// Values have no effect if PDF is used but variables are always used
 	// Parton multipliers.

@@ -118,10 +118,6 @@ class MEKD
     /// Internal data
     data idata;
 
-	/// State mixing
-	complex<double> *Mixing_Coefficients_Spin0, *Mixing_Coefficients_Spin1,
-		*Mixing_Coefficients_Spin2;
-
 	/// Final-state lepton/photon information; Version 2 and earlier
 	double *p1, *p2, *p3, *p4, *p5;
 	double id1, id2, id3, id4, id5;
@@ -170,6 +166,10 @@ class MEKD
 
 	/// Constructors, destructors
 	MEKD();
+	MEKD(const vector<process_description> &desc): MEKD()
+	{
+		Load_ME_runners(desc);
+	}
 	~MEKD();
 
 //   private:
@@ -333,17 +333,11 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // CPPProcess ME_RAW;
-	
-	bool Parameters_Are_Loaded;
 
 	double ml1, ml2, ml3, ml4;
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
-
-	complex<double> *Mixing_Coefficients_Spin0_internal,
-		*Mixing_Coefficients_Spin1_internal,
-		*Mixing_Coefficients_Spin2_internal;
 
 	// Parameters
 	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e,
@@ -498,11 +492,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
   public:
 	
-	MEKD(const vector<process_description> &desc): MEKD()
-	{
-		Load_ME_runners(desc);
-	}
-	
 	/*
 	 * Version 2 and earlier methods: left for backwards compatibility.
 	 */
@@ -545,7 +534,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(string processA, string processB,
+	int computeKD(const string &processA, const string &processB,
 				  double &kd, double &me2processA, double &me2processB);
 
 	///
@@ -567,9 +556,11 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(string processA, string processB,
-				  double lept1P[], int lept1Id, double lept2P[], int lept2Id,
-				  double lept3P[], int lept3Id,double lept4P[], int lept4Id,
+	int computeKD(const string &processA, const string &processB,
+				  const double lept1P[], const int lept1Id,
+                  const double lept2P[], const int lept2Id,
+				  const double lept3P[], const int lept3Id,
+                  const double lept4P[], const int lept4Id,
 				  double &kd, double &me2processA, double &me2processB);
 
 	///
@@ -592,8 +583,9 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(string processA, string processB,
-				  vector<double *> input_Ps, vector<int> input_IDs,
+	int computeKD(const string &processA, const string &processB,
+				  const vector<double *> &input_Ps,
+                  const vector<int> &input_IDs,
 				  double &kd, double &me2processA, double &me2processB);
 
 	///
@@ -611,8 +603,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process of interest (double).
 	/// \return											See exit_codes
 	///
-	int computeME(string processName, vector<double *> input_Ps,
-				  vector<int> input_IDs, double &me2process);
+	int computeME(const string &processName, const vector<double *> &input_Ps,
+				  const vector<int> &input_IDs, double &me2process);
 
 	///
 	/// Compute all default MEs first for the use with
@@ -625,8 +617,10 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// leptons N=1..4 (int, REQUIRED).
 	/// \return											See exit_codes
 	///
-	int computeMEs(double lept1P[], int lept1Id, double lept2P[], int lept2Id,
-				   double lept3P[], int lept3Id, double lept4P[], int lept4Id);
+	int computeMEs(const double lept1P[], const int lept1Id,
+                   const double lept2P[], const int lept2Id,
+				   const double lept3P[], const int lept3Id,
+                   const double lept4P[], const int lept4Id);
 
 	///
 	/// Compute all important/default MEs first for the use with
@@ -640,7 +634,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
 	/// \return											See exit_codes
 	///
-	int computeMEs(vector<double *> input_Ps, vector<int> input_IDs);
+	int computeMEs(const vector<double *> &input_Ps,
+                   const vector<int> &input_IDs);
 
 	///
 	/// Mixed-state ME mixer of (gg)Spin0Pm, (gg)Spin0Ph, (gg)Spin0Phexotic, and
@@ -657,10 +652,10 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// amplitude of the Spin0M state
 	/// \return											See exit_codes
 	///
-	int Mix_Spin0(complex<double> Spin0Pm_relamp,
-				  complex<double> Spin0Ph_relamp,
-				  complex<double> Spin0Phexo_relamp,
-				  complex<double> Spin0M_relamp);
+	int Mix_Spin0(const complex<double> Spin0Pm_relamp,
+				  const complex<double> Spin0Ph_relamp,
+				  const complex<double> Spin0Phexo_relamp,
+				  const complex<double> Spin0M_relamp);
 
 	///
 	/// Mixed-state ME mixer of production like qqSpin1M, qqSpin1P, exotic,
@@ -682,14 +677,14 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// amplitude for the Spin1P-like decay
 	/// \return											See exit_codes
 	///
-	int Mix_Spin1(complex<double> prod_Spin1M_relamp,
-				  complex<double> prod_Spin1P_relamp,
-				  complex<double> prod_Spin1Mexo_relamp,
-				  complex<double> prod_Spin1Pexo_relamp,
-				  complex<double> dec_Spin1M_relamp,
-				  complex<double> dec_Spin1P_relamp,
-				  complex<double> dec_Spin1_rhomu13_relamp,
-				  complex<double> dec_Spin1_rhomu14_relamp);
+	int Mix_Spin1(const complex<double> prod_Spin1M_relamp,
+				  const complex<double> prod_Spin1P_relamp,
+				  const complex<double> prod_Spin1Mexo_relamp,
+				  const complex<double> prod_Spin1Pexo_relamp,
+				  const complex<double> dec_Spin1M_relamp,
+				  const complex<double> dec_Spin1P_relamp,
+				  const complex<double> dec_Spin1_rhomu13_relamp,
+				  const complex<double> dec_Spin1_rhomu14_relamp);
 
 	///
 	/// Mixed-state ME mixer of Spin-2 states. Production couplings: k1g/rhoQ21,
@@ -702,8 +697,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// amplitudes for the Spin-2 state decay. An array of size 10
 	/// \return											See exit_codes
 	///
-	int Mix_Spin2(complex<double> *prod_Spin2_relamp,
-				  complex<double> *dec_Spin2_relamp);
+	int Mix_Spin2(const complex<double> *prod_Spin2_relamp,
+				  const complex<double> *dec_Spin2_relamp);
 
 	/// Mixed-state ME mixer. Variables
 	complex<double> m_Mixing_Coefficients_Spin0[4];
@@ -712,7 +707,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
   private:
 	/// Properties. Variables.
-	double m_collisionEnergy; // c.m. collision energy sqrt(s) in TeV
 	// computeMEs(...) results
 	double ME_ZZ, ME_Spin0PSMH, ME_Spin0Ph, ME_Spin0M; 
 	double ME_Spin1P, ME_Spin1M, ME_ggSpin2Pm, ME_qqSpin2Pm;
@@ -727,22 +721,16 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	string m_processB; // Name of the process B (background, signal hypotheses,
 					   // etc.). Supported: Custom, SMHiggs, CPoddScalar,
 					   // CPevenScalar, Spin2particle, ZZ
-	bool m_usePDF;	 // flag to use PDFs (true) or not (false)
-	bool m_runBackgroundME; // flat to run the ME for ZZ process (true) or not
-							// (false)
-
-	// For the storage of the four four-momenta and IDs
-	vector<int> four_particle_IDs_i;
-	vector<double *> four_particle_Ps_i; 
 
 	/// Methods
-	int setProcessName(string process); // sanity check for input process name,
-										// translation to the the names
-										// supported by MEKD_MG
-	int setProcessNames(string processA,
-						string processB); // sanity check for input process
-										  // names, translation to the the names
-										  // supported by MEKD_MG
+	int setProcessName(const string &process); // sanity check for input process
+                                              // name, translation to the the
+                                              // names supported by MEKD v2
+	int setProcessNames(const string &processA,
+						const string &processB); // sanity check for input
+                                                 // process names, translation
+                                                 // to the the names supported
+                                                 // by MEKD v2
 	int processParameters();			  // sanity check for internal paramters
 
 #if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) ||                     \
@@ -771,7 +759,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(TString processA, TString processB,
+	int computeKD(const TString &processA, const TString &processB,
 				  double &kd, double &me2processA, double &me2processB);
 
 	///
@@ -796,11 +784,11 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(TString processA, TString processB,
-				  TLorentzVector lept1P, int lept1Id,
-				  TLorentzVector lept2P, int lept2Id,
-				  TLorentzVector lept3P, int lept3Id,
-				  TLorentzVector lept4P, int lept4Id,
+	int computeKD(const TString &processA, const TString &processB,
+				  const TLorentzVector &lept1P, const int lept1Id,
+				  const TLorentzVector &lept2P, const int lept2Id,
+				  const TLorentzVector &lept3P, const int lept3Id,
+				  const TLorentzVector &lept4P, const int lept4Id,
 				  double &kd, double &me2processA, double &me2processB);
 
 	///
@@ -825,9 +813,10 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process B (double).
 	/// \return											See exit_codes
 	///
-	int computeKD(TString processA, TString processB,
-				  vector<TLorentzVector> input_Ps, vector<int> input_IDs,
-				  double &kd, double &me2processA,  double &me2processB);
+	int computeKD(const TString &processA, const TString &processB,
+				  const vector<TLorentzVector> &input_Ps,
+                  const vector<int> &input_IDs,
+				  double &kd, double &me2processA, double &me2processB);
 
 	///
 	/// Compute ME for a processName out of the 4-momenta of the input particles
@@ -844,8 +833,9 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// for process of interest (double).
 	/// \return											See exit_codes
 	///
-	int computeME(TString processName, vector<TLorentzVector> input_Ps,
-				  vector<int> input_IDs, double &me2process);
+	int computeME(const TString &processName,
+                  const vector<TLorentzVector> &input_Ps,
+				  const vector<int> &input_IDs, double &me2process);
 
 	///
 	/// Compute all important/default MEs first for the use with
@@ -859,10 +849,10 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// leptons N=1..4 (int, REQUIRED).
 	/// \return											See exit_codes
 	///
-	int computeMEs(TLorentzVector lept1P, int lept1Id,
-				   TLorentzVector lept2P, int lept2Id,
-				   TLorentzVector lept3P, int lept3Id,
-				   TLorentzVector lept4P, int lept4Id);
+	int computeMEs(const TLorentzVector &lept1P, const int lept1Id,
+				   const TLorentzVector &lept2P, const int lept2Id,
+				   const TLorentzVector &lept3P, const int lept3Id,
+				   const TLorentzVector &lept4P, const int lept4Id);
 
 	///
 	/// Compute all important/default MEs first for the use with
@@ -876,7 +866,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	/// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
 	/// \return											See exit_codes
 	///
-	int computeMEs(vector<TLorentzVector> input_Ps, vector<int> input_IDs);
+	int computeMEs(const vector<TLorentzVector> &input_Ps,
+                   const vector<int> &input_IDs);
 
   private:
 	// For storing TLorentzVectors for internal use

@@ -45,17 +45,17 @@ void MEKD::Set_default_params()
 	param.Muon_mass = 0;			// 0.10565837, for enabled overwriting
 	param.Proton_mass = 0.93827205;	// Always used if needed
 
-	Mixing_Coefficients_Spin0[0] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin0[1] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin0[2] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin0[3] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin0[0] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin0[1] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin0[2] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin0[3] = complex<double>(1 / sqrt(4), 0);
 
-	Mixing_Coefficients_Spin1[0] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin1[1] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin1[2] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin1[3] = complex<double>(1 / sqrt(4), 0);
-	Mixing_Coefficients_Spin1[4] = complex<double>(1 / sqrt(2), 0);
-	Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
+	m_Mixing_Coefficients_Spin1[0] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin1[1] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin1[2] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin1[3] = complex<double>(1 / sqrt(4), 0);
+	m_Mixing_Coefficients_Spin1[4] = complex<double>(1 / sqrt(2), 0);
+	m_Mixing_Coefficients_Spin1[5] = complex<double>(1 / sqrt(2), 0);
 
 	idata.fs = final_2e2mu;
 	Test_Model = "ggSpin0Pm";	// Models: ZZ, DY, Custom, ggSpin0Pm, ggSpin0M,

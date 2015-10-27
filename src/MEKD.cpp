@@ -26,13 +26,6 @@ namespace mekd
 // idata.p(7, new double[4]), => some problems ???
 MEKD::MEKD()
 {
-	Mixing_Coefficients_Spin0 = new complex<double>[4];
-	Mixing_Coefficients_Spin0_internal = new complex<double>[4];
-	Mixing_Coefficients_Spin1 = new complex<double>[8];
-	Mixing_Coefficients_Spin1_internal = new complex<double>[8];
-// 	Mixing_Coefficients_Spin2 = new complex<double>[20];
-// 	Mixing_Coefficients_Spin2_internal = new complex<double>[20];
-
 	Set_default_params();
 
 	Check_MEs();
@@ -74,8 +67,6 @@ MEKD::MEKD()
 	pl3_internal = NULL;
 	pl4_internal = NULL;
 	pA1_internal = NULL;
-
-	Parameters_Are_Loaded = false;
 }
 
 /*
@@ -94,21 +85,11 @@ MEKD::MEKD(const double &collision_energy, const string &PDF_name): MEKD()
 	ME_Spin1M = 0;
 	ME_ggSpin2Pm = 0;
 	ME_qqSpin2Pm = 0;
-
-	four_particle_IDs_i.resize(4, 0);
-	four_particle_Ps_i.resize(4, NULL);
 }
 
 MEKD::~MEKD()
 {
-	delete Mixing_Coefficients_Spin0;
-	delete Mixing_Coefficients_Spin0_internal;
-	delete Mixing_Coefficients_Spin1;
-	delete Mixing_Coefficients_Spin1_internal;
-	delete Mixing_Coefficients_Spin2;
-	delete Mixing_Coefficients_Spin2_internal;
-
-	if (Parameters_Are_Loaded)
+	if (param.loaded)
 		Unload_pdfreader();
 
 	idata.p.clear();
@@ -122,25 +103,25 @@ MEKD::~MEKD()
 int MEKD::Load_Parameters(parameters &pa)
 {
 	params_MG.read_slha_file(pa.params_MG_file);
-	
+    
 	/// Initializing parameters
-	if (!Parameters_Are_Loaded)
+	if (!pa.loaded)
 		Load_Parameters_MEs(pa.params_MG_file);	// init MEs
 	Load_Parameters_extract_params(params_MG);
 	Load_Parameters_eval_params(pa);
 	Normalize_parton_coeffs(pa);
 	
-	if (Parameters_Are_Loaded)
+	if (pa.loaded)
 		Unload_pdfreader();
 	Load_pdfreader(const_cast<char *>(pa.PDF_file.c_str()));
 
-	Parameters_Are_Loaded = true;
+	pa.loaded = true;
 	return 0;
 }
 
 int MEKD::Reload_params(parameters &pa)
 {
-	if (!Parameters_Are_Loaded)
+	if (!pa.loaded)
 		return 1;
 
 	return Load_Parameters(pa);
@@ -153,9 +134,12 @@ void MEKD::eval_MEs(const input_c &in, vector<double> &ME2)
     trimmed_in.id = in.id;
     
     // linking pointers
-    idata.mix_coeffs_Spin0 = in.mix_coeffs_Spin0;
-    idata.mix_coeffs_Spin1 = in.mix_coeffs_Spin1;
-    idata.mix_coeffs_Spin2 = in.mix_coeffs_Spin2;
+    idata.mix_coeffs_Spin0 = const_cast<complex<double> *>(
+        in.mix_coeffs_Spin0);
+    idata.mix_coeffs_Spin1 = const_cast<complex<double> *>(
+        in.mix_coeffs_Spin1);
+    idata.mix_coeffs_Spin2 = const_cast<complex<double> *>(
+        in.mix_coeffs_Spin2);
     
 	eval_MEs(trimmed_in, ME2);
     
@@ -186,7 +170,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	}
 	/* End of added block */
 	
-	if (!Parameters_Are_Loaded)
+	if (!param.loaded)
 		Load_Parameters(param);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
@@ -225,7 +209,12 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 
 int MEKD::Run()
 {
-	if (!Parameters_Are_Loaded)
+    // linking pointers. Version 2 or earlier compatibility hack
+    idata.mix_coeffs_Spin0 = m_Mixing_Coefficients_Spin0;
+    idata.mix_coeffs_Spin1 = m_Mixing_Coefficients_Spin1;
+    idata.mix_coeffs_Spin2 = m_Mixing_Coefficients_Spin2;
+    
+	if (!param.loaded)
 		Load_Parameters(param);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
@@ -254,6 +243,11 @@ int MEKD::Run()
 		cout << "4-momenta after ME(E px py px) calculations:\n";
 		Print_4momenta(idata.p);
 	}
+	
+	// clearing links. Version 2 or earlier compatibility hack
+    idata.mix_coeffs_Spin0 = NULL;
+    idata.mix_coeffs_Spin1 = NULL;
+    idata.mix_coeffs_Spin2 = NULL;
 
 	return 0;
 }
@@ -333,11 +327,11 @@ void MEKD::Run_calculate(data &da)
 			Signal_MEs.resize(Test_Models.size());
 		fill(Signal_MEs.begin(), Signal_MEs.end(), 0);
 		model = &(Test_Models[0]); // Should be NULL or undefined
-											   // before this point; works as
-											   // counter=0
+                                   // before this point; works as
+                                   // counter=0
 	} else
-		model = &Test_Model;	// Should be NULL or undefined
-											// before this point
+		model = &Test_Model;	   // Should be NULL or undefined
+                                   // before this point
 
 	unsigned int counter = 1;
 	while (model != NULL) {
@@ -879,9 +873,7 @@ int MEKD::processParameters()
 	/// Check if the PDF name is supported and set PDF flag
 	if (m_PDFName != "CTEQ6L" && m_PDFName != "" && m_PDFName != "no PDFs")
 		return EXIT_ERROR_PDFS;
-	m_usePDF = (m_PDFName == "CTEQ6L");
-
-	flag.Use_PDF_w_pT0 = m_usePDF;
+	flag.Use_PDF_w_pT0 = (m_PDFName == "CTEQ6L");
 
 	/// Check if sqrt(s) is 7 or 8 TeV
 	if (param.sqrt_s != 7000 && param.sqrt_s != 8000)
@@ -894,7 +886,7 @@ int MEKD::processParameters()
 ///------------------------------------------------------------------------
 /// MEKD::setProcessName - sanity check and setting of process names
 ///------------------------------------------------------------------------
-int MEKD::setProcessName(string process)
+int MEKD::setProcessName(const string &process)
 {
 	/// Check if process is supported, translation of namings
 	if (process == "Custom") {
@@ -1074,7 +1066,7 @@ int MEKD::setProcessName(string process)
 ///------------------------------------------------------------------------
 /// MEKD::setProcessNames - sanity check and setting of process names
 ///------------------------------------------------------------------------
-int MEKD::setProcessNames(string processA, string processB)
+int MEKD::setProcessNames(const string &processA, const string &processB)
 {
 	/// processes A and B should be different
 	if (processA == processB)
@@ -1450,8 +1442,8 @@ int MEKD::setProcessNames(string processA, string processB)
 /// MEKD::computeKD - compute KD from precalculated MEs for input prcesses A and
 /// B
 ///------------------------------------------------------------------------
-int MEKD::computeKD(string processA, string processB, double &kd,
-					double &me2processA, double &me2processB)
+int MEKD::computeKD(const string &processA, const string &processB,
+                    double &kd, double &me2processA, double &me2processB)
 {
 	int return_code;
 	/// Sanity check for input process names
@@ -1517,32 +1509,38 @@ int MEKD::computeKD(string processA, string processB, double &kd,
 ///------------------------------------------------------------------------
 /// MEKD::computeKD - compute KD and MEs for input prcesses A and B
 ///------------------------------------------------------------------------
-int MEKD::computeKD(string processA, string processB, double lept1P[],
-					int lept1Id, double lept2P[], int lept2Id, double lept3P[],
-					int lept3Id, double lept4P[], int lept4Id, double &kd,
-					double &me2processA, double &me2processB)
+int MEKD::computeKD(const string &processA, const string &processB,
+                    const double lept1P[], const int lept1Id,
+                    const double lept2P[], const int lept2Id,
+                    const double lept3P[], const int lept3Id,
+                    const double lept4P[], const int lept4Id,
+                    double &kd, double &me2processA, double &me2processB)
 {
-	/// Load internal containers
-	four_particle_Ps_i[0] = lept1P;
-	four_particle_Ps_i[1] = lept2P;
-	four_particle_Ps_i[2] = lept3P;
-	four_particle_Ps_i[3] = lept4P;
+	vector<double *> p(4);
+    vector<int> id(4);
+    
+	/// Load temp containers
+	p[0] = const_cast<double *>(lept1P);
+	p[1] = const_cast<double *>(lept2P);
+	p[2] = const_cast<double *>(lept3P);
+	p[3] = const_cast<double *>(lept4P);
 
-	four_particle_IDs_i[0] = lept1Id;
-	four_particle_IDs_i[1] = lept2Id;
-	four_particle_IDs_i[2] = lept3Id;
-	four_particle_IDs_i[3] = lept4Id;
+	id[0] = lept1Id;
+	id[1] = lept2Id;
+	id[2] = lept3Id;
+	id[3] = lept4Id;
 
-	return computeKD(processA, processB, four_particle_Ps_i,
-					 four_particle_IDs_i, kd, me2processA, me2processB);
+	return computeKD(processA, processB, p, id,
+                     kd, me2processA, me2processB);
 }
 
 ///------------------------------------------------------------------------
 /// MEKD::computeKD - compute KD and MEs for the input processes A and B
 ///------------------------------------------------------------------------
-int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
-					vector<int> input_IDs, double &kd, double &me2processA,
-					double &me2processB)
+int MEKD::computeKD(const string &processA, const string &processB,
+                    const vector<double *> &input_Ps,
+					const vector<int> &input_IDs, double &kd,
+					double &me2processA, double &me2processB)
 {
 	int return_code;
 	/// Checks input for compatibility
@@ -1596,8 +1594,9 @@ int MEKD::computeKD(string processA, string processB, vector<double *> input_Ps,
 ///------------------------------------------------------------------------
 /// MEKD::computeME - compute ME for the input process
 ///------------------------------------------------------------------------
-int MEKD::computeME(string processName, vector<double *> input_Ps,
-					vector<int> input_IDs, double &me2process)
+int MEKD::computeME(const string &processName,
+                    const vector<double *> &input_Ps,
+					const vector<int> &input_IDs, double &me2process)
 {
 	int return_code;
 	/// Checks input for compatibility
@@ -1644,27 +1643,33 @@ int MEKD::computeME(string processName, vector<double *> input_Ps,
 ///------------------------------------------------------------------------
 /// MEKD::computeMEs - compute MEs for a multiple reuse
 ///------------------------------------------------------------------------
-int MEKD::computeMEs(double lept1P[], int lept1Id, double lept2P[], int lept2Id,
-					 double lept3P[], int lept3Id, double lept4P[], int lept4Id)
+int MEKD::computeMEs(const double lept1P[], const int lept1Id,
+                     const double lept2P[], const int lept2Id,
+					 const double lept3P[], const int lept3Id,
+                     const double lept4P[], const int lept4Id)
 {
-	/// Load internal containers
-	four_particle_Ps_i[0] = lept1P;
-	four_particle_Ps_i[1] = lept2P;
-	four_particle_Ps_i[2] = lept3P;
-	four_particle_Ps_i[3] = lept4P;
+    vector<double *> p(4);
+    vector<int> id(4);
+    
+	/// Load temp containers
+	p[0] = const_cast<double *>(lept1P);
+	p[1] = const_cast<double *>(lept2P);
+	p[2] = const_cast<double *>(lept3P);
+	p[3] = const_cast<double *>(lept4P);
 
-	four_particle_IDs_i[0] = lept1Id;
-	four_particle_IDs_i[1] = lept2Id;
-	four_particle_IDs_i[2] = lept3Id;
-	four_particle_IDs_i[3] = lept4Id;
+	id[0] = lept1Id;
+	id[1] = lept2Id;
+	id[2] = lept3Id;
+	id[3] = lept4Id;
 
-	return computeMEs(four_particle_Ps_i, four_particle_IDs_i);
+	return computeMEs(p, id);
 }
 
 ///------------------------------------------------------------------------
 /// MEKD::computeMEs - compute MEs for a multiple reuse
 ///------------------------------------------------------------------------
-int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
+int MEKD::computeMEs(const vector<double *> &input_Ps,
+                     const vector<int> &input_IDs)
 {
 	int return_code;
 	/// Checks input for compatibility
@@ -1734,18 +1739,16 @@ int MEKD::computeMEs(vector<double *> input_Ps, vector<int> input_IDs)
 /// pseudo, and decay like Spin1M, Spin1P states, corresponding couplings
 /// rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12, rhomu13, rhomu14.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin0(complex<double> Spin0Pm_relamp,
-					complex<double> Spin0Ph_relamp,
-					complex<double> Spin0Phexo_relamp,
-					complex<double> Spin0M_relamp)
+int MEKD::Mix_Spin0(const complex<double> Spin0Pm_relamp,
+					const complex<double> Spin0Ph_relamp,
+					const complex<double> Spin0Phexo_relamp,
+					const complex<double> Spin0M_relamp)
 {
 	m_Mixing_Coefficients_Spin0[0] = Spin0Pm_relamp;
 	m_Mixing_Coefficients_Spin0[1] = Spin0Ph_relamp;
 	m_Mixing_Coefficients_Spin0[2] = Spin0Phexo_relamp;
 	m_Mixing_Coefficients_Spin0[3] = Spin0M_relamp;
 
-	if (m_Mixing_Coefficients_Spin0 == NULL)
-		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
 
@@ -1754,14 +1757,14 @@ int MEKD::Mix_Spin0(complex<double> Spin0Pm_relamp,
 /// pseudo, and decay like Spin1M, Spin1P states, corresponding couplings
 /// rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12, rhomu13, rhomu14.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin1(complex<double> prod_Spin1M_relamp,
-					complex<double> prod_Spin1P_relamp,
-					complex<double> prod_Spin1Mexo_relamp,
-					complex<double> prod_Spin1Pexo_relamp,
-					complex<double> dec_Spin1M_relamp,
-					complex<double> dec_Spin1P_relamp,
-					complex<double> dec_Spin1_rhomu13_relamp,
-					complex<double> dec_Spin1_rhomu14_relamp)
+int MEKD::Mix_Spin1(const complex<double> prod_Spin1M_relamp,
+					const complex<double> prod_Spin1P_relamp,
+					const complex<double> prod_Spin1Mexo_relamp,
+					const complex<double> prod_Spin1Pexo_relamp,
+					const complex<double> dec_Spin1M_relamp,
+					const complex<double> dec_Spin1P_relamp,
+					const complex<double> dec_Spin1_rhomu13_relamp,
+					const complex<double> dec_Spin1_rhomu14_relamp)
 {
 	m_Mixing_Coefficients_Spin1[0] = prod_Spin1M_relamp;
 	m_Mixing_Coefficients_Spin1[1] = prod_Spin1P_relamp;
@@ -1772,8 +1775,6 @@ int MEKD::Mix_Spin1(complex<double> prod_Spin1M_relamp,
 	m_Mixing_Coefficients_Spin1[6] = dec_Spin1_rhomu13_relamp;
 	m_Mixing_Coefficients_Spin1[7] = dec_Spin1_rhomu14_relamp;
 
-	if (m_Mixing_Coefficients_Spin1 == NULL)
-		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
 
@@ -1782,16 +1783,14 @@ int MEKD::Mix_Spin1(complex<double> prod_Spin1M_relamp,
 /// ..., k4g/rhoQ24, ..., k10g, decay couplings: k1z/rhomu21, k4z/rhomu24, ...,
 /// k10z.
 ///------------------------------------------------------------------------
-int MEKD::Mix_Spin2(complex<double> *prod_Spin2_relamp,
-					complex<double> *dec_Spin2_relamp)
+int MEKD::Mix_Spin2(const complex<double> *prod_Spin2_relamp,
+					const complex<double> *dec_Spin2_relamp)
 {
 	for (unsigned int i = 0; i < 10; ++i)
 		m_Mixing_Coefficients_Spin2[i] = prod_Spin2_relamp[i];
 	for (unsigned int i = 10; i < 20; ++i)
 		m_Mixing_Coefficients_Spin2[i] = dec_Spin2_relamp[i];
 
-	if (m_Mixing_Coefficients_Spin2 == NULL)
-		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
 
@@ -1804,11 +1803,12 @@ int MEKD::Mix_Spin2(complex<double> *prod_Spin2_relamp,
 ///------------------------------------------------------------------------
 /// MEKD::computeKD - compute KD and MEs for the input processes A and B
 ///------------------------------------------------------------------------
-int MEKD::computeKD(TString processA, TString processB, TLorentzVector lept1P,
-					int lept1Id, TLorentzVector lept2P, int lept2Id,
-					TLorentzVector lept3P, int lept3Id, TLorentzVector lept4P,
-					int lept4Id, double &kd, double &me2processA,
-					double &me2processB)
+int MEKD::computeKD(const TString &processA, const TString &processB,
+                    const TLorentzVector &lept1P, const int lept1Id,
+                    const TLorentzVector &lept2P, const int lept2Id,
+					const TLorentzVector &lept3P, const int lept3Id,
+                    const TLorentzVector &lept4P, const int lept4Id,
+                    double &kd, double &me2processA, double &me2processB)
 {
 	/// Prepare 4-momenta in the required format
 	lept1P_i[0] = lept1P.E();
@@ -1831,27 +1831,30 @@ int MEKD::computeKD(TString processA, TString processB, TLorentzVector lept1P,
 	lept4P_i[2] = lept4P.Py();
 	lept4P_i[3] = lept4P.Pz();
 
-	/// Load internal containers
-	four_particle_Ps_i[0] = lept1P_i;
-	four_particle_Ps_i[1] = lept2P_i;
-	four_particle_Ps_i[2] = lept3P_i;
-	four_particle_Ps_i[3] = lept4P_i;
+    vector<double *> p(4);
+    vector<int> id(4);
+    
+	/// Load temp containers
+	p[0] = lept1P_i;
+	p[1] = lept2P_i;
+	p[2] = lept3P_i;
+	p[3] = lept4P_i;
 
-	four_particle_IDs_i[0] = lept1Id;
-	four_particle_IDs_i[1] = lept2Id;
-	four_particle_IDs_i[2] = lept3Id;
-	four_particle_IDs_i[3] = lept4Id;
+	id[0] = lept1Id;
+	id[1] = lept2Id;
+	id[2] = lept3Id;
+	id[3] = lept4Id;
 
 	return computeKD((string)processA.Data(), (string)processB.Data(),
-					 four_particle_Ps_i, four_particle_IDs_i, kd, me2processA,
-					 me2processB);
+					 p, id, kd, me2processA, me2processB);
 }
 
 ///------------------------------------------------------------------------
 /// MEKD::computeKD - compute KD and MEs for the input processes A and B
 ///------------------------------------------------------------------------
-int MEKD::computeKD(TString processA, TString processB,
-					vector<TLorentzVector> input_Ps, vector<int> input_IDs,
+int MEKD::computeKD(const TString &processA, const TString &processB,
+					const vector<TLorentzVector> &input_Ps,
+                    const vector<int> &input_IDs,
 					double &kd, double &me2processA, double &me2processB)
 {
 	/// Resize internal vector<double*> if needed
@@ -1881,8 +1884,9 @@ int MEKD::computeKD(TString processA, TString processB,
 ///------------------------------------------------------------------------
 /// MEKD::computeME - compute ME for the input process
 ///------------------------------------------------------------------------
-int MEKD::computeME(TString processName, vector<TLorentzVector> input_Ps,
-					vector<int> input_IDs, double &me2process)
+int MEKD::computeME(const TString &processName,
+                    const vector<TLorentzVector> &input_Ps,
+					const vector<int> &input_IDs, double &me2process)
 {
 	/// Resize internal vector<double*> if needed
 	if (input_Ps_i.size() != input_Ps.size()) {
@@ -1911,9 +1915,10 @@ int MEKD::computeME(TString processName, vector<TLorentzVector> input_Ps,
 ///------------------------------------------------------------------------
 /// MEKD::computeMEs - compute MEs for a multiple reuse
 ///------------------------------------------------------------------------
-int MEKD::computeMEs(TLorentzVector lept1P, int lept1Id, TLorentzVector lept2P,
-					 int lept2Id, TLorentzVector lept3P, int lept3Id,
-					 TLorentzVector lept4P, int lept4Id)
+int MEKD::computeMEs(const TLorentzVector &lept1P, const int lept1Id,
+                     const TLorentzVector &lept2P, const int lept2Id,
+                     const TLorentzVector &lept3P, const int lept3Id,
+					 const TLorentzVector &lept4P, const int lept4Id)
 {
 	/// Prepare 4-momenta in the required format
 	lept1P_i[0] = lept1P.E();
@@ -1936,24 +1941,28 @@ int MEKD::computeMEs(TLorentzVector lept1P, int lept1Id, TLorentzVector lept2P,
 	lept4P_i[2] = lept4P.Py();
 	lept4P_i[3] = lept4P.Pz();
 
-	/// Load internal containers
-	four_particle_Ps_i[0] = lept1P_i;
-	four_particle_Ps_i[1] = lept2P_i;
-	four_particle_Ps_i[2] = lept3P_i;
-	four_particle_Ps_i[3] = lept4P_i;
+	vector<double *> p(4);
+    vector<int> id(4);
+    
+	/// Load temp containers
+	p[0] = lept1P_i;
+	p[1] = lept2P_i;
+	p[2] = lept3P_i;
+	p[3] = lept4P_i;
 
-	four_particle_IDs_i[0] = lept1Id;
-	four_particle_IDs_i[1] = lept2Id;
-	four_particle_IDs_i[2] = lept3Id;
-	four_particle_IDs_i[3] = lept4Id;
+	id[0] = lept1Id;
+	id[1] = lept2Id;
+	id[2] = lept3Id;
+	id[3] = lept4Id;
 
-	return computeMEs(four_particle_Ps_i, four_particle_IDs_i);
+	return computeMEs(p, id);
 }
 
 ///------------------------------------------------------------------------
 /// MEKD::computeMEs - compute MEs for a multiple reuse
 ///------------------------------------------------------------------------
-int MEKD::computeMEs(vector<TLorentzVector> input_Ps, vector<int> input_IDs)
+int MEKD::computeMEs(const vector<TLorentzVector> &input_Ps,
+                     const vector<int> &input_IDs)
 {
 	/// Resize internal vector<double*> if needed
 	if (input_Ps_i.size() != input_Ps.size()) {
