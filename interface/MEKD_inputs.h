@@ -55,6 +55,10 @@ struct parameters
 	double Muon_mass;		// 0.10565837, for enabled overwriting
 	double Proton_mass;		// Always used if needed
 	
+	/// Constants; get updated in the code
+	double vev;            // Vacuum expectation value
+	double hZZ_coupling;
+	
 	string params_MG_file;		// Location where a parameter card is stored
 	string PDF_file;			// PDF/PDT table file
 };

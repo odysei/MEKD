@@ -639,7 +639,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 	const double mZ = params_m_Z;
 	const double M = invariant_m;	// system's invariant mass
 	double wH;
-	const double hZZ = hZZ_coupling;
+	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
@@ -751,7 +751,8 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 	const double mZ = params_m_Z;
 	const double M = invariant_m;	// system's invariant mass
 	double wH;
-	const double hZZ = hZZ_coupling;
+	const double hZZ = param.hZZ_coupling;
+    const double vev = param.vev;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	
@@ -785,7 +786,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 	par_MG.set_block_entry("decay", 300, wH);
 
 	if (flag.Vary_signal_couplings) {
-		Run_ME_Configurator_Spin1_produ(par_MG, c, lgg, v_expectation);
+		Run_ME_Configurator_Spin1_produ(par_MG, c, lgg, vev);
 		Run_ME_Configurator_Spin1_decay(par_MG, c, mZ, hZZ);
 	}
 
@@ -882,7 +883,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 	const double mZ = params_m_Z;
 	const double M = invariant_m;	// system's invariant mass
 	double wH;
-	const double hZZ = hZZ_coupling;
+	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
 	complex<double> *c;	// mixing coefficients
 	

@@ -350,8 +350,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 		*Mixing_Coefficients_Spin2_internal;
 
 	// Parameters
-	double v_expectation; // Vacuum expectation value
-	double hZZ_coupling;
 	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e,
 		params_m_mu, params_m_Z;
 	complex<double> params_rhou01, params_rhou02, params_rhoc01, params_rhoc02,
@@ -374,7 +372,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int Load_Parameters(parameters &);
 	void Load_Parameters_MEs(const string &param_f);
 	void Load_Parameters_extract_params(SLHAReader_MEKD &);
-	void Load_Parameters_eval_params();
+	void Load_Parameters_eval_params(parameters &);
 	
 	void Print_4momenta(const vector<double *> &);
 

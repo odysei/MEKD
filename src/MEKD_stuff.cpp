@@ -753,11 +753,11 @@ void MEKD::Load_Parameters_extract_params(SLHAReader_MEKD &params)
 	params_rhob24 = params.get_block_entry("gravity", 40, 0);
 }
 
-void MEKD::Load_Parameters_eval_params()
+void MEKD::Load_Parameters_eval_params(parameters &pa)
 {
-	v_expectation = 1.0 / sqrt(sqrt(2) *
+	pa.vev = 1.0 / sqrt(sqrt(2) *
 			 params_MG.get_block_entry("sminputs", 2, 1.166370e-05).real());
-	hZZ_coupling = 2.0 * params_m_Z * params_m_Z / v_expectation;
+	pa.hZZ_coupling = 2.0 * params_m_Z * params_m_Z / pa.vev;
 }
 
 /// end of namespace

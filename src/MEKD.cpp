@@ -128,7 +128,7 @@ int MEKD::Load_Parameters(parameters &pa)
 	if (!Parameters_Are_Loaded)
 		Load_Parameters_MEs(pa.params_MG_file);	// init MEs
 	Load_Parameters_extract_params(params_MG);
-	Load_Parameters_eval_params();
+	Load_Parameters_eval_params(pa);
 	Normalize_parton_coeffs(pa);
 	
 	if (Parameters_Are_Loaded)
