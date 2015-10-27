@@ -1011,24 +1011,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
 	
 			if (d.production == prod_no && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
@@ -1037,24 +1041,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
 			if (d.production == prod_no && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg
+				(da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	
 		if (da.fs == final_4mu ||  da.fs == final_4muA) {
@@ -1062,24 +1070,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
 			if (d.production == prod_no && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	}
 	
@@ -1089,24 +1101,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_e);
 	
 			if (d.production == prod_no && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4e)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	
 		if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
@@ -1115,24 +1131,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
 			if (d.production == prod_no && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_2e2mu)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_2e2muA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	
 		if (da.fs == final_4mu ||  da.fs == final_4muA) {
@@ -1140,24 +1160,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
 	
 			if (d.production == prod_no && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_no && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_NO(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, false, ME_RAW);
 	
 			if (d.production == prod_gg && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_gg(
+                    da, true, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4mu)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, false, ME_RAW, ME_RAW);
 	
 			if (d.production == prod_qq && da.fs == final_4muA)
-				return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-															 ME_RAW);
+				return Run_MEs_Evaluator_Initial_State_qqbar(
+                    da, true, ME_RAW, ME_RAW);
 		}
 	}
 	
@@ -1166,24 +1190,28 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
 	
 		if (d.production == prod_no && da.fs == final_2mu)
-				return Run_MEs_Evaluator_Initial_State_NO(false, ME_RAW);
+            return Run_MEs_Evaluator_Initial_State_NO(
+                da, false, ME_RAW);
 	
 		if (d.production == prod_no && da.fs == final_2muA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_RAW);
+            return Run_MEs_Evaluator_Initial_State_NO(
+                da, true, ME_RAW);
 	
 		if (d.production == prod_gg && da.fs == final_2mu)
-				return Run_MEs_Evaluator_Initial_State_gg(false, ME_RAW);
+            return Run_MEs_Evaluator_Initial_State_gg(
+                da, false, ME_RAW);
 	
 		if (d.production == prod_gg && da.fs == final_2muA)
-				return Run_MEs_Evaluator_Initial_State_gg(true, ME_RAW);
+            return Run_MEs_Evaluator_Initial_State_gg(
+                da, true, ME_RAW);
 	
 		if (d.production == prod_qq && da.fs == final_2mu)
-				return Run_MEs_Evaluator_Initial_State_qqbar(false, ME_RAW,
-															 ME_RAW);
+            return Run_MEs_Evaluator_Initial_State_qqbar(
+                da, false, ME_RAW, ME_RAW);
 	
 		if (d.production == prod_qq && da.fs == final_2muA)
-			return Run_MEs_Evaluator_Initial_State_qqbar(true, ME_RAW,
-														 ME_RAW);
+			return Run_MEs_Evaluator_Initial_State_qqbar(
+                da, true, ME_RAW, ME_RAW);
 	}
 	*/
 
@@ -1209,27 +1237,29 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 		params_MG.set_block_entry("mass", 13, params_m_e);
 		/*
 		if (d.production == prod_no && da.fs == final_4e)
-			return Run_MEs_Evaluator_Initial_State_NO(false, ME_ZZ_SF);
+			return Run_MEs_Evaluator_Initial_State_NO(
+                da, false, ME_ZZ_SF);
 		
 		if (d.production == prod_no && da.fs == final_4eA)
-				return Run_MEs_Evaluator_Initial_State_NO(true, ME_ZZ_SFpA);
+            return Run_MEs_Evaluator_Initial_State_NO(
+                da, true, ME_ZZ_SFpA);
 		
 		if (d.production == prod_gg && da.fs == final_4e)
-					return Run_MEs_Evaluator_Initial_State_gg(false,
-															  ME_gg_ZZ_SF);
+            return Run_MEs_Evaluator_Initial_State_gg(
+                da, false, ME_gg_ZZ_SF);
 		
 		if (d.production == prod_gg && da.fs == final_4eA)
-					return Run_MEs_Evaluator_Initial_State_gg(true,
-															  ME_gg_ZZ_SFpA);
+            return Run_MEs_Evaluator_Initial_State_gg(
+                da, true, ME_gg_ZZ_SFpA);
 		*/
 
 		if (d.production == prod_qq && da.fs == final_4e)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
+				da, false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4eA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
+				da, true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
 	}
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
@@ -1237,58 +1267,58 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_ZZ_OF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_ZZ_OFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_ZZ_OF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_ZZ_OFpA);
+//         if (d.production == prod_no && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_ZZ_OF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_ZZ_OFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_ZZ_OF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_ZZ_OFpA);
 
 		if (d.production == prod_qq && da.fs == final_2e2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_ZZ_DownType_OF, ME_qq_ZZ_UpType_OF);
+				da, false, ME_qq_ZZ_DownType_OF, ME_qq_ZZ_UpType_OF);
 
 		if (d.production == prod_qq && da.fs == final_2e2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_ZZ_DownType_OFpA, ME_qq_ZZ_UpType_OFpA);
+				da, true, ME_qq_ZZ_DownType_OFpA, ME_qq_ZZ_UpType_OFpA);
 	}
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_ZZ_SF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_ZZ_SFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_ZZ_SF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_ZZ_SFpA);
+// 		if (d.production == prod_no && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_ZZ_SF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_ZZ_SFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_ZZ_SF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_ZZ_SFpA);
 
 		if (d.production == prod_qq && da.fs == final_4mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
+				da, false, ME_qq_ZZ_DownType_SF, ME_qq_ZZ_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
+				da, true, ME_qq_ZZ_DownType_SFpA, ME_qq_ZZ_UpType_SFpA);
 	}
 
 	if (da.fs == final_2mu || da.fs == final_2muA) {
@@ -1296,26 +1326,28 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
 		if (d.production == prod_no && da.fs == final_2mu)
-			return Run_MEs_Evaluator_Initial_State_NO(false, ME_DY_2l);
+			return Run_MEs_Evaluator_Initial_State_NO(
+                da, false, ME_DY_2l);
 
 		if (d.production == prod_no && da.fs == final_2muA)
-			return Run_MEs_Evaluator_Initial_State_NO(true, ME_DY_2lpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_DY_2l);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_DY_2lpA);
+			return Run_MEs_Evaluator_Initial_State_NO(
+                da, true, ME_DY_2lpA);
+		
+//         if (d.production == prod_gg && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_DY_2l);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_DY_2lpA);
 
 		if (d.production == prod_qq && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_DY_DownType_2l, ME_qq_DY_UpType_2l);
+				da, false, ME_qq_DY_DownType_2l, ME_qq_DY_UpType_2l);
 
 		if (d.production == prod_qq && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_DY_DownType_2lpA, ME_qq_DY_UpType_2lpA);
+				da, true, ME_qq_DY_DownType_2lpA, ME_qq_DY_UpType_2lpA);
 	}
 
 	return 1;
@@ -1343,29 +1375,31 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_e);
 
-		// 		if (d.production == prod_no && da.fs == final_4e)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_BKG_SF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_4eA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_BKG_SFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4e)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_BKG_SF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4eA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_BKG_SFpA);
+// 		if (d.production == prod_no && da.fs == final_4e)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_BKG_SF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_4eA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_BKG_SFpA);
+// 		
+//         if (d.production == prod_gg && da.fs == final_4e)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_BKG_SF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4eA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_BKG_SFpA);
 
 		if (d.production == prod_qq && da.fs == final_4e)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
+				da, false, ME_qq_Z4l_BKG_DownType_SF,
+                ME_qq_Z4l_BKG_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4eA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
+				da, true, ME_qq_Z4l_BKG_DownType_SFpA,
+                ME_qq_Z4l_BKG_UpType_SFpA);
 	}
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
@@ -1373,90 +1407,94 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_BKG_OF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_BKG_OFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_BKG_OF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_BKG_OFpA);
+// 		if (d.production == prod_no && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_BKG_OF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_BKG_OFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_BKG_OF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_BKG_OFpA);
 
 		if (d.production == prod_qq && da.fs == final_2e2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_BKG_DownType_OF, ME_qq_Z4l_BKG_UpType_OF);
+				da, false, ME_qq_Z4l_BKG_DownType_OF,
+                ME_qq_Z4l_BKG_UpType_OF);
 
 		if (d.production == prod_qq && da.fs == final_2e2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_BKG_DownType_OFpA, ME_qq_Z4l_BKG_UpType_OFpA);
+				da, true, ME_qq_Z4l_BKG_DownType_OFpA,
+                ME_qq_Z4l_BKG_UpType_OFpA);
 	}
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_BKG_SF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_BKG_SFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_BKG_SF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_BKG_SFpA);
+// 		if (d.production == prod_no && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_BKG_SF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_BKG_SFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_BKG_SF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_BKG_SFpA);
 
 		if (d.production == prod_qq && da.fs == final_4mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_BKG_DownType_SF, ME_qq_Z4l_BKG_UpType_SF);
+				da, false, ME_qq_Z4l_BKG_DownType_SF,
+                ME_qq_Z4l_BKG_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_BKG_DownType_SFpA, ME_qq_Z4l_BKG_UpType_SFpA);
+				da, true, ME_qq_Z4l_BKG_DownType_SFpA,
+                ME_qq_Z4l_BKG_UpType_SFpA);
 	}
 
-	// 	if (da.fs == final_2mu || da.fs == final_2muA)
-	// 	{
-	// 		/// Mass for the muons
-	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
-	//
-	// 		if (d.production == prod_no && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-	// ME_Z4l_BKG_2l);
-	//
-	// 		if (d.production == prod_no && da.fs == final_2muA)
-	// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-	// ME_Z4l_BKG_2lpA);
-	//
-	// 		if (d.production == prod_gg && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-	// ME_gg_Z4l_BKG__2l);
-	//
-	// 		if (d.production == prod_gg && da.fs == final_2muA)
-	// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-	// ME_gg_Z4l_BKG__2lpA);
-	//
-	// 		if (d.production == prod_qq && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
-	// ME_qq_Z4l_BKG_DownType_2l, ME_qq_Z4l_BKG_UpType_2l);
-	//
-	// 		if (d.production == prod_qq && da.fs == final_2muA)
-	// )
-	// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
-	// ME_qq_Z4l_BKG_DownType_2lpA, ME_qq_Z4l_BKG_UpType_2lpA);
-	// 	}
+// 	if (da.fs == final_2mu || da.fs == final_2muA) {
+// 		/// Mass for the muons
+// 		params_MG.set_block_entry("mass", 13, params_m_mu);
+// 	
+// 		if (d.production == prod_no && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_BKG_2l);
+// 	
+// 		if (d.production == prod_no && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_BKG_2lpA);
+// 	
+// 		if (d.production == prod_gg && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_BKG__2l);
+// 	
+// 		if (d.production == prod_gg && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_BKG__2lpA);
+// 	
+// 		if (d.production == prod_qq && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_qqbar(
+//                 da, false, ME_qq_Z4l_BKG_DownType_2l,
+//                 ME_qq_Z4l_BKG_UpType_2l);
+// 	
+// 		if (d.production == prod_qq && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_qqbar(
+//                 da, true, ME_qq_Z4l_BKG_DownType_2lpA,
+//                 ME_qq_Z4l_BKG_UpType_2lpA);
+// 	}
 
 	return 1;
 }
@@ -1483,29 +1521,31 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_e);
 
-		// 		if (d.production == prod_no && da.fs == final_4e)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_SIG_SF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_4eA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_SIG_SFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4e)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_SIG_SF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4eA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_SIG_SFpA);
+// 		if (d.production == prod_no && da.fs == final_4e)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_SIG_SF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_4eA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_SIG_SFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4e)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_SIG_SF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4eA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_SIG_SFpA);
 
 		if (d.production == prod_qq && da.fs == final_4e)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
+				da, false, ME_qq_Z4l_SIG_DownType_SF,
+                ME_qq_Z4l_SIG_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4eA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
+				da, true, ME_qq_Z4l_SIG_DownType_SFpA,
+                ME_qq_Z4l_SIG_UpType_SFpA);
 	}
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
@@ -1513,89 +1553,94 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 		params_MG.set_block_entry("mass", 11, params_m_e);
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_SIG_OF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_SIG_OFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_SIG_OF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2e2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_SIG_OFpA);
+// 		if (d.production == prod_no && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false ME_Z4l_SIG_OF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_SIG_OFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_SIG_OF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_2e2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_SIG_OFpA);
 
 		if (d.production == prod_qq && da.fs == final_2e2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_SIG_DownType_OF, ME_qq_Z4l_SIG_UpType_OF);
+				da, false, ME_qq_Z4l_SIG_DownType_OF,
+                ME_qq_Z4l_SIG_UpType_OF);
 
 		if (d.production == prod_qq && da.fs == final_2e2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_SIG_DownType_OFpA, ME_qq_Z4l_SIG_UpType_OFpA);
+				da, true, ME_qq_Z4l_SIG_DownType_OFpA,
+                ME_qq_Z4l_SIG_UpType_OFpA);
 	}
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
 		params_MG.set_block_entry("mass", 13, params_m_mu);
 
-		// 		if (d.production == prod_no && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-		// ME_Z4l_SIG_SF);
-		//
-		// 		if (d.production == prod_no && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-		// ME_Z4l_SIG_SFpA);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_gg_Z4l_SIG_SF);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_4muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_gg_Z4l_SIG_SFpA);
+// 		if (d.production == prod_no && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_SIG_SF);
+// 		
+// 		if (d.production == prod_no && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_SIG_SFpA);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_SIG_SF);
+// 		
+// 		if (d.production == prod_gg && da.fs == final_4muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_SIG_SFpA);
 
 		if (d.production == prod_qq && da.fs == final_4mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_qq_Z4l_SIG_DownType_SF, ME_qq_Z4l_SIG_UpType_SF);
+				da, false, ME_qq_Z4l_SIG_DownType_SF,
+                ME_qq_Z4l_SIG_UpType_SF);
 
 		if (d.production == prod_qq && da.fs == final_4muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_qq_Z4l_SIG_DownType_SFpA, ME_qq_Z4l_SIG_UpType_SFpA);
+				da, true, ME_qq_Z4l_SIG_DownType_SFpA,
+                ME_qq_Z4l_SIG_UpType_SFpA);
 	}
 
-	// 	if (da.fs == final_2mu || da.fs == final_2muA)
-	// 	{
-	// 		/// Mass for the muons
-	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
-	//
-	// 		if (d.production == prod_no && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_NO(false,
-	// ME_Z4l_SIG_2l);
-	//
-	// 		if (d.production == prod_no && da.fs == final_2muA)
-	// 			return Run_MEs_Evaluator_Initial_State_NO(true,
-	// ME_Z4l_SIG_2lpA);
-	//
-	// 		if (d.production == prod_gg && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-	// ME_gg_Z4l_SIG__2l);
-	//
-	// 		if (d.production == prod_gg && da.fs == final_2muA)
-	// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-	// ME_gg_Z4l_SIG__2lpA);
-	//
-	// 		if (d.production == prod_qq && da.fs == final_2mu)
-	// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
-	// ME_qq_Z4l_SIG_DownType_2l, ME_qq_Z4l_SIG_UpType_2l);
-	//
-	// 		if (d.production == prod_qq && da.fs == final_2muA)
-	// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
-	// ME_qq_Z4l_SIG_DownType_2lpA, ME_qq_Z4l_SIG_UpType_2lpA);
-	// 	}
+// 	if (da.fs == final_2mu || da.fs == final_2muA) {
+// 		/// Mass for the muons
+// 		params_MG.set_block_entry("mass", 13, params_m_mu);
+// 	
+// 		if (d.production == prod_no && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, false, ME_Z4l_SIG_2l);
+// 	
+// 		if (d.production == prod_no && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_NO(
+//                 da, true, ME_Z4l_SIG_2lpA);
+// 	
+// 		if (d.production == prod_gg && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_gg_Z4l_SIG__2l);
+// 	
+// 		if (d.production == prod_gg && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_gg_Z4l_SIG__2lpA);
+// 	
+// 		if (d.production == prod_qq && da.fs == final_2mu)
+// 			return Run_MEs_Evaluator_Initial_State_qqbar(
+//                 da, false, ME_qq_Z4l_SIG_DownType_2l,
+//                 ME_qq_Z4l_SIG_UpType_2l);
+// 	
+// 		if (d.production == prod_qq && da.fs == final_2muA)
+// 			return Run_MEs_Evaluator_Initial_State_qqbar(
+//                 da, true, ME_qq_Z4l_SIG_DownType_2lpA,
+//                 ME_qq_Z4l_SIG_UpType_2lpA);
+// 	}
 
 	return 1;
 }
@@ -1616,30 +1661,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_SF);
+					da, false, ME_Signal_Spin0_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_SFpA);
+					da, true, ME_Signal_Spin0_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_SF);
+					da, false, ME_Signal_gg_Spin0_SF);
 
 			if (d.production == prod_gg && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_SFpA);
+					da, true, ME_Signal_gg_Spin0_SFpA);
 
-			// 			if (d.production == prod_qq && da.fs == final_4e)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
-			// ME_Signal_qq_Spin0_DownType_SF, ME_Signal_qq_Spin0_UpType_SF);
-			//
-			// 			if (d.production == prod_qq && da.fs == final_4eA)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
-			// ME_Signal_qq_Spin0_DownType_SFpA, ME_Signal_qq_Spin0_UpType_SFpA
-			//);
+// 			if (d.production == prod_qq && da.fs == final_4e)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, false, ME_Signal_qq_Spin0_DownType_SF,
+//                     ME_Signal_qq_Spin0_UpType_SF);
+// 			
+// 			if (d.production == prod_qq && da.fs == final_4eA)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
+//                     ME_Signal_qq_Spin0_UpType_SFpA);
 		}
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
@@ -1649,30 +1693,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_OF);
+					da, false, ME_Signal_Spin0_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_OFpA);
+					da, true, ME_Signal_Spin0_OFpA);
 
 			if (d.production == prod_gg && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_OF);
+					da, false, ME_Signal_gg_Spin0_OF);
 
 			if (d.production == prod_gg && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_OFpA);
+					da, true, ME_Signal_gg_Spin0_OFpA);
 
-			// 	if (d.production == prod_qq && da.fs == final_2e2mu)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
-			// ME_Signal_qq_Spin0_DownType_OF, ME_Signal_qq_Spin0_UpType_OF);
-			//
-			// 	if (d.production == prod_qq && da.fs == final_2e2muA)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
-			// ME_Signal_qq_Spin0_DownType_OFpA,
-			// ME_Signal_qq_Spin0_UpType_OFpA);
+//             if (d.production == prod_qq && da.fs == final_2e2mu)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, false, ME_Signal_qq_Spin0_DownType_OF,
+//                     ME_Signal_qq_Spin0_UpType_OF);
+// 			
+// 			if (d.production == prod_qq && da.fs == final_2e2muA)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, true, ME_Signal_qq_Spin0_DownType_OFpA,
+//                     ME_Signal_qq_Spin0_UpType_OFpA);
 		}
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
@@ -1681,31 +1724,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_SF);
+					da, false, ME_Signal_Spin0_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_SFpA);
+					da, true, ME_Signal_Spin0_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_SF);
+					da, false, ME_Signal_gg_Spin0_SF);
 
 			if (d.production == prod_gg && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_SFpA);
+					da, true, ME_Signal_gg_Spin0_SFpA);
 
-			// 			if (d.production == prod_qq && da.fs == final_4mu)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
-			// ME_Signal_qq_Spin0_DownType_SF,
-			// ME_Signal_qq_Spin0_UpType_SF);
-			//
-			// 			if (d.production == prod_qq && da.fs == final_4muA)
-			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
-			// ME_Signal_qq_Spin0_DownType_SFpA,
-			// ME_Signal_qq_Spin0_UpType_SFpA);
+// 			if (d.production == prod_qq && da.fs == final_4mu)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, false, ME_Signal_qq_Spin0_DownType_SF,
+//                     ME_Signal_qq_Spin0_UpType_SF);
+// 			
+// 			if (d.production == prod_qq && da.fs == final_4muA)
+// 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
+//                     ME_Signal_qq_Spin0_UpType_SFpA);
 		}
 	}
 
@@ -1716,29 +1757,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_2f_SF);
+					da, false, ME_Signal_Spin0_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_2f_SFpA);
+					da, true, ME_Signal_Spin0_2f_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_2f_SF);
+					da, false, ME_Signal_gg_Spin0_2f_SF);
 
 			if (d.production == prod_gg && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_2f_SFpA);
+					da, true, ME_Signal_gg_Spin0_2f_SFpA);
 
 			// 			if (d.production == prod_qq && da.fs == final_4e)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
+			// da, false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF);
 			//
 			// 			if (d.production == prod_qq && da.fs == final_4eA)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
+			// da, true,
 			// ME_Signal_qq_Spin0_2f_DownType_SFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_SFpA);
 		}
@@ -1750,29 +1791,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_2f_OF);
+					da, false, ME_Signal_Spin0_2f_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_2f_OFpA);
+					da, true, ME_Signal_Spin0_2f_OFpA);
 
 			if (d.production == prod_gg && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_2f_OF);
+					da, false, ME_Signal_gg_Spin0_2f_OF);
 
 			if (d.production == prod_gg && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_2f_OFpA);
+					da, true, ME_Signal_gg_Spin0_2f_OFpA);
 
 			// 			if (d.production == prod_qq && da.fs == final_2e2mu)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
+			// da, false,
 			// ME_Signal_qq_Spin0_2f_DownType_OF,
 			// ME_Signal_qq_Spin0_2f_UpType_OF);
 			//
 			// 			if (d.production == prod_qq && da.fs == final_2e2muA)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
+			// da, true,
 			// ME_Signal_qq_Spin0_2f_DownType_OFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_OFpA);
 		}
@@ -1783,29 +1824,29 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin0_2f_SF);
+					da, false, ME_Signal_Spin0_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin0_2f_SFpA);
+					da, true, ME_Signal_Spin0_2f_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4mu )
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin0_2f_SF);
+					da, false, ME_Signal_gg_Spin0_2f_SF);
 
 			if (d.production == prod_gg && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin0_2f_SFpA);
+					da, true, ME_Signal_gg_Spin0_2f_SFpA);
 
 			// 			if (d.production == prod_qq && da.fs == final_4mu)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// false,
+			// da, false,
 			// ME_Signal_qq_Spin0_2f_DownType_SF,
 			// ME_Signal_qq_Spin0_2f_UpType_SF);
 			//
 			// 			if (d.production == prod_qq && da.fs == final_4muA)
 			// 				return Run_MEs_Evaluator_Initial_State_qqbar(
-			// true,
+			// da, true,
 			// ME_Signal_qq_Spin0_2f_DownType_SFpA,
 			// ME_Signal_qq_Spin0_2f_UpType_SFpA);
 		}
@@ -1817,26 +1858,26 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				false, ME_Signal_Spin0_2l);
+				da, false, ME_Signal_Spin0_2l);
 
 		if (d.production == prod_no && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				true, ME_Signal_Spin0_2lpA);
+				da, true, ME_Signal_Spin0_2lpA);
 
 		if (d.production == prod_gg && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_gg(
-				false, ME_Signal_gg_Spin0_2l);
+				da, false, ME_Signal_gg_Spin0_2l);
 
 		if (d.production == prod_gg && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_gg(
-				true, ME_Signal_gg_Spin0_2lpA);
+				da, true, ME_Signal_gg_Spin0_2lpA);
 
 		// 		if (d.production == prod_qq && da.fs == final_2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_qqbar(false,
+		// 			return Run_MEs_Evaluator_Initial_State_qqbar(da, false,
 		// ME_Signal_qq_Spin0_DownType_2l, ME_Signal_qq_Spin0_UpType_2l);
 
 		// 		if (d.production == prod_qq && da.fs == final_2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_qqbar(true,
+		// 			return Run_MEs_Evaluator_Initial_State_qqbar(da, true,
 		// ME_Signal_qq_Spin0_DownType_2lpA, ME_Signal_qq_Spin0_UpType_2lpA);
 	}
 
@@ -1859,30 +1900,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_SF);
+					da, false, ME_Signal_Spin1_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_SFpA);
+					da, true, ME_Signal_Spin1_SFpA);
 
 			// 			if (d.production == prod_gg && da.fs == final_4e)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_SF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_4eA)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// true,
+			// da, true,
 			// ME_Signal_gg_Spin1_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_DownType_SF,
+					da, false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin1_DownType_SFpA,
 					ME_Signal_qq_Spin1_UpType_SFpA);
 		}
 
@@ -1893,30 +1934,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_OF);
+					da, false, ME_Signal_Spin1_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_OFpA);
+					da, true, ME_Signal_Spin1_OFpA);
 
 			//	 		if (d.production == prod_gg && da.fs == final_2e2mu)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_OF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_2e2muA)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// true,
+			// da, true,
 			// ME_Signal_gg_Spin1_OFpA);
 
 			if (d.production == prod_qq && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_DownType_OF,
+					da, false, ME_Signal_qq_Spin1_DownType_OF,
 					ME_Signal_qq_Spin1_UpType_OF);
 
 			if (d.production == prod_qq && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_DownType_OFpA,
+					da, true, ME_Signal_qq_Spin1_DownType_OFpA,
 					ME_Signal_qq_Spin1_UpType_OFpA);
 		}
 
@@ -1926,30 +1967,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_SF);
+					da, false, ME_Signal_Spin1_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_SFpA);
+					da, true, ME_Signal_Spin1_SFpA);
 
 			// 			if (d.production == prod_gg && da.fs == final_4mu)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_SF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_4muA)
 			//	 			return Run_MEs_Evaluator_Initial_State_gg(
-			//true,
+			// da, true,
 			// ME_Signal_gg_Spin1_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_DownType_SF,
+					da, false, ME_Signal_qq_Spin1_DownType_SF,
 					ME_Signal_qq_Spin1_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin1_DownType_SFpA,
 					ME_Signal_qq_Spin1_UpType_SFpA);
 		}
 	}
@@ -1961,30 +2002,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_2f_SF);
+					da, false, ME_Signal_Spin1_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_2f_SFpA);
+					da, true, ME_Signal_Spin1_2f_SFpA);
 
 			// 			if (d.production == prod_gg && da.fs == final_4e)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_2f_SF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_4eA)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// true,
+			// da, true,
 			// ME_Signal_gg_Spin1_2f_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_2f_DownType_SF,
+					da, false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
 					ME_Signal_qq_Spin1_2f_UpType_SFpA);
 		}
 
@@ -1995,30 +2036,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_2f_OF);
+					da, false, ME_Signal_Spin1_2f_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_2f_OFpA);
+					da, true, ME_Signal_Spin1_2f_OFpA);
 
 			//	 		if (d.production == prod_gg && da.fs == final_2e2mu)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_2f_OF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_2e2muA)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// true,
+			// da, true,
 			// ME_Signal_gg_Spin1_2f_OFpA);
 
 			if (d.production == prod_qq && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_2f_DownType_OF,
+					da, false, ME_Signal_qq_Spin1_2f_DownType_OF,
 					ME_Signal_qq_Spin1_2f_UpType_OF);
 
 			if (d.production == prod_qq && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_2f_DownType_OFpA,
+					da, true, ME_Signal_qq_Spin1_2f_DownType_OFpA,
 					ME_Signal_qq_Spin1_2f_UpType_OFpA);
 		}
 
@@ -2028,30 +2069,30 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin1_2f_SF);
+					da, false, ME_Signal_Spin1_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin1_2f_SFpA);
+					da, true, ME_Signal_Spin1_2f_SFpA);
 
 			// 			if (d.production == prod_gg && da.fs == final_4mu)
 			// 				return Run_MEs_Evaluator_Initial_State_gg(
-			// false,
+			// da, false,
 			// ME_Signal_gg_Spin1_2f_SF);
 			//
 			// 			if (d.production == prod_gg && da.fs == final_4muA)
 			//	 			return Run_MEs_Evaluator_Initial_State_gg(
-			//true,
+			// da, true,
 			// ME_Signal_gg_Spin1_2f_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin1_2f_DownType_SF,
+					da, false, ME_Signal_qq_Spin1_2f_DownType_SF,
 					ME_Signal_qq_Spin1_2f_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin1_2f_DownType_SFpA,
 					ME_Signal_qq_Spin1_2f_UpType_SFpA);
 		}
 	}
@@ -2062,28 +2103,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				false, ME_Signal_Spin1_2l);
+				da, false, ME_Signal_Spin1_2l);
 
 		if (d.production == prod_no && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				true, ME_Signal_Spin1_2lpA);
+				da, true, ME_Signal_Spin1_2lpA);
 
-		// 		if (d.production == prod_gg && da.fs == final_2mu)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(false,
-		// ME_Signal_gg_Spin1_2l);
-		//
-		// 		if (d.production == prod_gg && da.fs == final_2muA)
-		// 			return Run_MEs_Evaluator_Initial_State_gg(true,
-		// ME_Signal_gg_Spin1_2lpA);
+//         if (d.production == prod_gg && da.fs == final_2mu)
+//             return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, false, ME_Signal_gg_Spin1_2l);
+// 		
+//         if (d.production == prod_gg && da.fs == final_2muA)
+//             return Run_MEs_Evaluator_Initial_State_gg(
+//                 da, true, ME_Signal_gg_Spin1_2lpA);
 
 		if (d.production == prod_qq && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_Signal_qq_Spin1_DownType_2l,
+				da, false, ME_Signal_qq_Spin1_DownType_2l,
 				ME_Signal_qq_Spin1_UpType_2l);
 
 		if (d.production == prod_qq && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_Signal_qq_Spin1_DownType_2lpA,
+				da, true, ME_Signal_qq_Spin1_DownType_2lpA,
 				ME_Signal_qq_Spin1_UpType_2lpA);
 	}
 
@@ -2101,28 +2142,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_SF);
+					da, false, ME_Signal_Spin2_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_SFpA);
+					da, true, ME_Signal_Spin2_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_SF);
+					da, false, ME_Signal_gg_Spin2_SF);
 
 			if (d.production == prod_gg && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_SFpA);
+					da, true, ME_Signal_gg_Spin2_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_DownType_SF,
+					da, false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin2_DownType_SFpA,
 					ME_Signal_qq_Spin2_UpType_SFpA);
 		}
 
@@ -2133,28 +2174,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_OF);
+					da, false, ME_Signal_Spin2_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_OFpA);
+					da, true, ME_Signal_Spin2_OFpA);
 
 			if (d.production == prod_gg && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_OF);
+					da, false, ME_Signal_gg_Spin2_OF);
 
 			if (d.production == prod_gg && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_OFpA);
+					da, true, ME_Signal_gg_Spin2_OFpA);
 
 			if (d.production == prod_qq && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_DownType_OF,
+					da, false, ME_Signal_qq_Spin2_DownType_OF,
 					ME_Signal_qq_Spin2_UpType_OF);
 
 			if (d.production == prod_qq && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_DownType_OFpA,
+					da, true, ME_Signal_qq_Spin2_DownType_OFpA,
 					ME_Signal_qq_Spin2_UpType_OFpA);
 		}
 
@@ -2164,28 +2205,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_SF);
+					da, false, ME_Signal_Spin2_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_SFpA);
+					da, true, ME_Signal_Spin2_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_SF);
+					da, false, ME_Signal_gg_Spin2_SF);
 
 			if (d.production == prod_gg && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_SFpA);
+					da, true, ME_Signal_gg_Spin2_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_DownType_SF,
+					da, false, ME_Signal_qq_Spin2_DownType_SF,
 					ME_Signal_qq_Spin2_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin2_DownType_SFpA,
 					ME_Signal_qq_Spin2_UpType_SFpA);
 		}
 	}
@@ -2197,28 +2238,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_2f_SF);
+					da, false, ME_Signal_Spin2_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_2f_SFpA);
+					da, true, ME_Signal_Spin2_2f_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_2f_SF);
+					da, false, ME_Signal_gg_Spin2_2f_SF);
 
 			if (d.production == prod_gg && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_2f_SFpA);
+					da, true, ME_Signal_gg_Spin2_2f_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_2f_DownType_SF,
+					da, false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4eA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
 					ME_Signal_qq_Spin2_2f_UpType_SFpA);
 		}
 
@@ -2229,28 +2270,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_2f_OF);
+					da, false, ME_Signal_Spin2_2f_OF);
 
 			if (d.production == prod_no && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_2f_OFpA);
+					da, true, ME_Signal_Spin2_2f_OFpA);
 
 			if (d.production == prod_gg && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_2f_OF);
+					da, false, ME_Signal_gg_Spin2_2f_OF);
 
 			if (d.production == prod_gg && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_2f_OFpA);
+					da, true, ME_Signal_gg_Spin2_2f_OFpA);
 
 			if (d.production == prod_qq && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_2f_DownType_OF,
+					da, false, ME_Signal_qq_Spin2_2f_DownType_OF,
 					ME_Signal_qq_Spin2_2f_UpType_OF);
 
 			if (d.production == prod_qq && da.fs == final_2e2muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_2f_DownType_OFpA,
+					da, true, ME_Signal_qq_Spin2_2f_DownType_OFpA,
 					ME_Signal_qq_Spin2_2f_UpType_OFpA);
 		}
 
@@ -2260,28 +2301,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					false, ME_Signal_Spin2_2f_SF);
+					da, false, ME_Signal_Spin2_2f_SF);
 
 			if (d.production == prod_no && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_NO(
-					true, ME_Signal_Spin2_2f_SFpA);
+					da, true, ME_Signal_Spin2_2f_SFpA);
 
 			if (d.production == prod_gg && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					false, ME_Signal_gg_Spin2_2f_SF);
+					da, false, ME_Signal_gg_Spin2_2f_SF);
 
 			if (d.production == prod_gg && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_gg(
-					true, ME_Signal_gg_Spin2_2f_SFpA);
+					da, true, ME_Signal_gg_Spin2_2f_SFpA);
 
 			if (d.production == prod_qq && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					false, ME_Signal_qq_Spin2_2f_DownType_SF,
+					da, false, ME_Signal_qq_Spin2_2f_DownType_SF,
 					ME_Signal_qq_Spin2_2f_UpType_SF);
 
 			if (d.production == prod_qq && da.fs == final_4muA)
 				return Run_MEs_Evaluator_Initial_State_qqbar(
-					true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
+					da, true, ME_Signal_qq_Spin2_2f_DownType_SFpA,
 					ME_Signal_qq_Spin2_2f_UpType_SFpA);
 		}
 	}
@@ -2292,28 +2333,28 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				false, ME_Signal_Spin2_2l);
+				da, false, ME_Signal_Spin2_2l);
 
 		if (d.production == prod_no && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_NO(
-				true, ME_Signal_Spin2_2lpA);
+				da, true, ME_Signal_Spin2_2lpA);
 
 		if (d.production == prod_gg && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_gg(
-				false, ME_Signal_gg_Spin2_2l);
+				da, false, ME_Signal_gg_Spin2_2l);
 
 		if (d.production == prod_gg && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_gg(
-				true, ME_Signal_gg_Spin2_2lpA);
+				da, true, ME_Signal_gg_Spin2_2lpA);
 
 		if (d.production == prod_qq && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				false, ME_Signal_qq_Spin2_DownType_2l,
+				da, false, ME_Signal_qq_Spin2_DownType_2l,
 				ME_Signal_qq_Spin2_UpType_2l);
 
 		if (d.production == prod_qq && da.fs == final_2muA)
 			return Run_MEs_Evaluator_Initial_State_qqbar(
-				true, ME_Signal_qq_Spin2_DownType_2lpA,
+				da, true, ME_Signal_qq_Spin2_DownType_2lpA,
 				ME_Signal_qq_Spin2_UpType_2lpA);
 	}
 
@@ -2328,56 +2369,57 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da,
 	Signal_ME = 0;
 
 	/// No initial state block
+    double buffer_p[4];
 	for (unsigned int count = 0; count < 4; count++)
-		buffer_p[count] = p_set[0][count];
+		buffer_p[count] = da.p[0][count];
 
 	if (!photon) {
-		p_set[0][0] = p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0];
-		p_set[0][1] = p_set[2][1] + p_set[3][1] + p_set[4][1] + p_set[5][1];
-		p_set[0][2] = p_set[2][2] + p_set[3][2] + p_set[4][2] + p_set[5][2];
-		p_set[0][3] = p_set[2][3] + p_set[3][3] + p_set[4][3] + p_set[5][3];
+		da.p[0][0] = da.p[2][0] + da.p[3][0] + da.p[4][0] + da.p[5][0];
+		da.p[0][1] = da.p[2][1] + da.p[3][1] + da.p[4][1] + da.p[5][1];
+		da.p[0][2] = da.p[2][2] + da.p[3][2] + da.p[4][2] + da.p[5][2];
+		da.p[0][3] = da.p[2][3] + da.p[3][3] + da.p[4][3] + da.p[5][3];
 
-		buffer = p_set[1];
+		double *buffer = da.p[1];
 		for (unsigned int count = 0; count < 4; count++)
-			p_set[count + 1] = p_set[count + 2];
-		p_set[5] = buffer;
+			da.p[count + 1] = da.p[count + 2];
+		da.p[5] = buffer;
 	} else {
-		p_set[0][0] =
-			p_set[2][0] + p_set[3][0] + p_set[4][0] + p_set[5][0] + p_set[6][0];
-		p_set[0][1] =
-			p_set[2][1] + p_set[3][1] + p_set[4][1] + p_set[5][1] + p_set[6][1];
-		p_set[0][2] =
-			p_set[2][2] + p_set[3][2] + p_set[4][2] + p_set[5][2] + p_set[6][2];
-		p_set[0][3] =
-			p_set[2][3] + p_set[3][3] + p_set[4][3] + p_set[5][3] + p_set[6][3];
+		da.p[0][0] =
+			da.p[2][0] + da.p[3][0] + da.p[4][0] + da.p[5][0] + da.p[6][0];
+		da.p[0][1] =
+			da.p[2][1] + da.p[3][1] + da.p[4][1] + da.p[5][1] + da.p[6][1];
+		da.p[0][2] =
+			da.p[2][2] + da.p[3][2] + da.p[4][2] + da.p[5][2] + da.p[6][2];
+		da.p[0][3] =
+			da.p[2][3] + da.p[3][3] + da.p[4][3] + da.p[5][3] + da.p[6][3];
 
-		buffer = p_set[1];
+		double *buffer = da.p[1];
 		for (unsigned int count = 0; count < 5; count++)
-			p_set[count + 1] = p_set[count + 2];
-		p_set[6] = buffer;
+			da.p[count + 1] = da.p[count + 2];
+		da.p[6] = buffer;
 	}
 
 	Generic_ME.updateProc(params_MG);
-	Generic_ME.setMomenta(p_set);
+	Generic_ME.setMomenta(da.p);
 	Generic_ME.sigmaKin();
-	buffer = const_cast<double *>(Generic_ME.getMatrixElements());
+	const double *buffer = Generic_ME.getMatrixElements();
 
 	Signal_ME = buffer[0];
 
 	if (!photon) {
-		buffer = p_set[5];
+		double *buffer = da.p[5];
 		for (unsigned int count = 4; count > 0; count--)
-			p_set[count + 1] = p_set[count];
-		p_set[1] = buffer;
+			da.p[count + 1] = da.p[count];
+		da.p[1] = buffer;
 	} else {
-		buffer = p_set[6];
+		double *buffer = da.p[6];
 		for (unsigned int count = 5; count > 0; count--)
-			p_set[count + 1] = p_set[count];
-		p_set[1] = buffer;
+			da.p[count + 1] = da.p[count];
+		da.p[1] = buffer;
 	}
 
 	for (unsigned int count = 0; count < 4; count++)
-		p_set[0][count] = buffer_p[count];
+		da.p[0][count] = buffer_p[count];
 
 	return 0;
 }
@@ -2390,13 +2432,13 @@ int MEKD::Run_MEs_Evaluator_Initial_State_gg(data &da,
 	Signal_ME = 0;
 
 	/// gg block
-	p_set[0][3] = p_set[0][0];
-	p_set[1][3] = -p_set[1][0];
+	da.p[0][3] = da.p[0][0];
+	da.p[1][3] = -da.p[1][0];
 
 	Generic_ME.updateProc(params_MG);
-	Generic_ME.setMomenta(p_set);
+	Generic_ME.setMomenta(da.p);
 	Generic_ME.sigmaKin();
-	buffer = const_cast<double *>(Generic_ME.getMatrixElements());
+	const double *buffer = Generic_ME.getMatrixElements();
 
 	if (flag.Use_PDF_w_pT0) {
 		Signal_ME = pdfreader(21, PDFx1, invariant_m) *
@@ -2428,15 +2470,15 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		params_MG.set_block_entry("gravity", 34, params_rhod22);
 		params_MG.set_block_entry("gravity", 35, params_rhod23);
 		params_MG.set_block_entry("gravity", 36, params_rhod24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
 						   params_m_d * params_m_d);
-		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
 						    params_m_d * params_m_d);
 
 		Generic_ME_s.updateProc(params_MG);
-		Generic_ME_s.setMomenta(p_set);
+		Generic_ME_s.setMomenta(da.p);
 		Generic_ME_s.sigmaKin();
-		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
+		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
 			param.parton_coeff_d = pdfreader(1, PDFx1, invariant_m) *
@@ -2462,15 +2504,15 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		params_MG.set_block_entry("gravity", 34, params_rhos22);
 		params_MG.set_block_entry("gravity", 35, params_rhos23);
 		params_MG.set_block_entry("gravity", 36, params_rhos24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
 						   params_m_s * params_m_s);
-		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
 							params_m_s * params_m_s);
 
 		Generic_ME_s.updateProc(params_MG);
-		Generic_ME_s.setMomenta(p_set);
+		Generic_ME_s.setMomenta(da.p);
 		Generic_ME_s.sigmaKin();
-		buffer = const_cast<double *>(Generic_ME_s.getMatrixElements());
+		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
 			param.parton_coeff_s = pdfreader(3, PDFx1, invariant_m) *
@@ -2496,15 +2538,15 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		params_MG.set_block_entry("gravity", 26, params_rhou22);
 		params_MG.set_block_entry("gravity", 27, params_rhou23);
 		params_MG.set_block_entry("gravity", 28, params_rhou24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
 						   params_m_u * params_m_u);
-		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
 							params_m_u * params_m_u);
 
 		Generic_ME_c.updateProc(params_MG);
-		Generic_ME_c.setMomenta(p_set);
+		Generic_ME_c.setMomenta(da.p);
 		Generic_ME_c.sigmaKin();
-		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
+		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
 			param.parton_coeff_u = pdfreader(2, PDFx1, invariant_m) *
@@ -2530,15 +2572,15 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		params_MG.set_block_entry("gravity", 26, params_rhoc22);
 		params_MG.set_block_entry("gravity", 27, params_rhoc23);
 		params_MG.set_block_entry("gravity", 28, params_rhoc24);
-		p_set[0][3] = sqrt(p_set[0][0] * p_set[0][0] -
+		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
 						   params_m_c * params_m_c);
-		p_set[1][3] = -sqrt(p_set[1][0] * p_set[1][0] -
+		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
 							params_m_c * params_m_c);
 
 		Generic_ME_c.updateProc(params_MG);
-		Generic_ME_c.setMomenta(p_set);
+		Generic_ME_c.setMomenta(da.p);
 		Generic_ME_c.sigmaKin();
-		buffer = const_cast<double *>(Generic_ME_c.getMatrixElements());
+		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
 			param.parton_coeff_c = pdfreader(4, PDFx1, invariant_m) *

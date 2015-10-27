@@ -340,7 +340,7 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 
 	int error_value;
 
-	double *buffer, buffer_p[4], ml1, ml2, ml3, ml4, PDFx1, PDFx2;
+	double ml1, ml2, ml3, ml4, PDFx1, PDFx2;
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
@@ -372,11 +372,11 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	string Find_local_file(const string &input_f);
 	
 	int Load_Parameters(parameters &);
-	void Load_Parameters_MEs();
-	void Load_Parameters_extract_params(SLHAReader_MEKD&);
+	void Load_Parameters_MEs(const string &param_f);
+	void Load_Parameters_extract_params(SLHAReader_MEKD &);
 	void Load_Parameters_eval_params();
 	
-	void Print_4momenta(vector<double *>&);
+	void Print_4momenta(const vector<double *> &);
 
 	//int Arrange_Internal_pls(process_description &);	// updates description
 	int Arrange_Internal_pls(data &d);	// temp

@@ -34,7 +34,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Custom();
+		in_MEKD.Run_ME_Configurator_Custom(in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -58,7 +58,7 @@ public:
 // 	
 // 	double evaluate(MEKD &in_MEKD, const input &in)
 // 	{
-// 		in_MEKD.Run_ME_Configurator_CPPProcess(me);
+// 		in_MEKD.Run_ME_Configurator_CPPProcess(me, in_MEKD.idata);
 // 		return in_MEKD.Signal_ME;
 // 	}
 // };
@@ -86,7 +86,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Custom();
+		in_MEKD.Run_ME_Configurator_Custom(in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -114,7 +114,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ(me);
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -138,7 +138,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ(me);
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -162,7 +162,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_SIG(me);
+		in_MEKD.Run_ME_Configurator_Z4l_SIG(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -186,7 +186,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_BKG(me);
+		in_MEKD.Run_ME_Configurator_Z4l_BKG(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -214,7 +214,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ(me);
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -238,7 +238,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_BKG_ZZ(me);
+		in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -262,7 +262,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_SIG(me);
+		in_MEKD.Run_ME_Configurator_Z4l_SIG(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -286,7 +286,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Z4l_BKG(me);
+		in_MEKD.Run_ME_Configurator_Z4l_BKG(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };

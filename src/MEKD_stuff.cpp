@@ -525,168 +525,168 @@ void MEKD::Check_MEs()
 	}
 }
 
-void MEKD::Load_Parameters_MEs()
+void MEKD::Load_Parameters_MEs(const string &param_f)
 {
 	// ZZ
-	ME_qq_ZZ_UpType_SF.initProc(Parameter_file);
-	ME_qq_ZZ_UpType_OF.initProc(Parameter_file);
-	ME_qq_ZZ_DownType_SF.initProc(Parameter_file);
-	ME_qq_ZZ_DownType_OF.initProc(Parameter_file);
-	ME_qq_ZZ_UpType_SFpA.initProc(Parameter_file);
-	ME_qq_ZZ_UpType_OFpA.initProc(Parameter_file);
-	ME_qq_ZZ_DownType_SFpA.initProc(Parameter_file);
-	ME_qq_ZZ_DownType_OFpA.initProc(Parameter_file);
+	ME_qq_ZZ_UpType_SF.initProc(param_f);
+	ME_qq_ZZ_UpType_OF.initProc(param_f);
+	ME_qq_ZZ_DownType_SF.initProc(param_f);
+	ME_qq_ZZ_DownType_OF.initProc(param_f);
+	ME_qq_ZZ_UpType_SFpA.initProc(param_f);
+	ME_qq_ZZ_UpType_OFpA.initProc(param_f);
+	ME_qq_ZZ_DownType_SFpA.initProc(param_f);
+	ME_qq_ZZ_DownType_OFpA.initProc(param_f);
 
-	ME_qq_Z4l_BKG_UpType_SF.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_UpType_OF.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_DownType_SF.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_DownType_OF.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_UpType_SFpA.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_UpType_OFpA.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_DownType_SFpA.initProc(Parameter_file);
-	ME_qq_Z4l_BKG_DownType_OFpA.initProc(Parameter_file);
+	ME_qq_Z4l_BKG_UpType_SF.initProc(param_f);
+	ME_qq_Z4l_BKG_UpType_OF.initProc(param_f);
+	ME_qq_Z4l_BKG_DownType_SF.initProc(param_f);
+	ME_qq_Z4l_BKG_DownType_OF.initProc(param_f);
+	ME_qq_Z4l_BKG_UpType_SFpA.initProc(param_f);
+	ME_qq_Z4l_BKG_UpType_OFpA.initProc(param_f);
+	ME_qq_Z4l_BKG_DownType_SFpA.initProc(param_f);
+	ME_qq_Z4l_BKG_DownType_OFpA.initProc(param_f);
 
-	ME_qq_Z4l_SIG_UpType_SF.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_UpType_OF.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_DownType_SF.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_DownType_OF.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_UpType_SFpA.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_UpType_OFpA.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_DownType_SFpA.initProc(Parameter_file);
-	ME_qq_Z4l_SIG_DownType_OFpA.initProc(Parameter_file);
+	ME_qq_Z4l_SIG_UpType_SF.initProc(param_f);
+	ME_qq_Z4l_SIG_UpType_OF.initProc(param_f);
+	ME_qq_Z4l_SIG_DownType_SF.initProc(param_f);
+	ME_qq_Z4l_SIG_DownType_OF.initProc(param_f);
+	ME_qq_Z4l_SIG_UpType_SFpA.initProc(param_f);
+	ME_qq_Z4l_SIG_UpType_OFpA.initProc(param_f);
+	ME_qq_Z4l_SIG_DownType_SFpA.initProc(param_f);
+	ME_qq_Z4l_SIG_DownType_OFpA.initProc(param_f);
 
-	ME_Signal_gg_Spin0_SF.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_OF.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_SFpA.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_OFpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin0_SF.initProc(param_f);
+	ME_Signal_gg_Spin0_OF.initProc(param_f);
+	ME_Signal_gg_Spin0_SFpA.initProc(param_f);
+	ME_Signal_gg_Spin0_OFpA.initProc(param_f);
 
-	// 	ME_Signal_qq_Spin0_DownType_SF.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_DownType_OF.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_SF.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_OF.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_DownType_SFpA.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_DownType_OFpA.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_SFpA.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_OFpA.initProc( Parameter_file );
+	// 	ME_Signal_qq_Spin0_DownType_SF.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_DownType_OF.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_SF.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_OF.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_DownType_SFpA.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_DownType_OFpA.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_SFpA.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_OFpA.initProc(param_f);
 
-	ME_Signal_qq_Spin1_DownType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_DownType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_DownType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_DownType_OFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_OFpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin1_DownType_SF.initProc(param_f);
+	ME_Signal_qq_Spin1_DownType_OF.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_SF.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_OF.initProc(param_f);
+	ME_Signal_qq_Spin1_DownType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_DownType_OFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_OFpA.initProc(param_f);
 
-	ME_Signal_gg_Spin2_SF.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_OF.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_SFpA.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_OFpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin2_SF.initProc(param_f);
+	ME_Signal_gg_Spin2_OF.initProc(param_f);
+	ME_Signal_gg_Spin2_SFpA.initProc(param_f);
+	ME_Signal_gg_Spin2_OFpA.initProc(param_f);
 
-	ME_Signal_qq_Spin2_DownType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_DownType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_DownType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_DownType_OFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_OFpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin2_DownType_SF.initProc(param_f);
+	ME_Signal_qq_Spin2_DownType_OF.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_SF.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_OF.initProc(param_f);
+	ME_Signal_qq_Spin2_DownType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_DownType_OFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_OFpA.initProc(param_f);
 
 	// ZZ and two-fermion couplings
-	ME_Signal_gg_Spin0_2f_SF.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_2f_OF.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_2f_SFpA.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_2f_OFpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin0_2f_SF.initProc(param_f);
+	ME_Signal_gg_Spin0_2f_OF.initProc(param_f);
+	ME_Signal_gg_Spin0_2f_SFpA.initProc(param_f);
+	ME_Signal_gg_Spin0_2f_OFpA.initProc(param_f);
 
-	ME_Signal_qq_Spin1_2f_DownType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_DownType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_UpType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_UpType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_DownType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_DownType_OFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_UpType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_2f_UpType_OFpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin1_2f_DownType_SF.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_DownType_OF.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_UpType_SF.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_UpType_OF.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_DownType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_DownType_OFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_UpType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin1_2f_UpType_OFpA.initProc(param_f);
 
-	ME_Signal_gg_Spin2_2f_SF.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_2f_OF.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_2f_SFpA.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_2f_OFpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin2_2f_SF.initProc(param_f);
+	ME_Signal_gg_Spin2_2f_OF.initProc(param_f);
+	ME_Signal_gg_Spin2_2f_SFpA.initProc(param_f);
+	ME_Signal_gg_Spin2_2f_OFpA.initProc(param_f);
 
-	ME_Signal_qq_Spin2_2f_DownType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_DownType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_UpType_SF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_UpType_OF.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_DownType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_DownType_OFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_UpType_SFpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_2f_UpType_OFpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin2_2f_DownType_SF.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_DownType_OF.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_UpType_SF.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_UpType_OF.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_DownType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_DownType_OFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_UpType_SFpA.initProc(param_f);
+	ME_Signal_qq_Spin2_2f_UpType_OFpA.initProc(param_f);
 
 	// ZZ, no itial state
-	ME_DY_2l.initProc(Parameter_file);
-	ME_DY_2lpA.initProc(Parameter_file);
+	ME_DY_2l.initProc(param_f);
+	ME_DY_2lpA.initProc(param_f);
 
-	ME_Signal_Spin0_2l.initProc(Parameter_file);
-	ME_Signal_Spin0_SF.initProc(Parameter_file);
-	ME_Signal_Spin0_OF.initProc(Parameter_file);
-	ME_Signal_Spin0_2f_SF.initProc(Parameter_file);
-	ME_Signal_Spin0_2f_OF.initProc(Parameter_file);
-	ME_Signal_Spin0_2lpA.initProc(Parameter_file);
-	ME_Signal_Spin0_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin0_OFpA.initProc(Parameter_file);
-	ME_Signal_Spin0_2f_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin0_2f_OFpA.initProc(Parameter_file);
+	ME_Signal_Spin0_2l.initProc(param_f);
+	ME_Signal_Spin0_SF.initProc(param_f);
+	ME_Signal_Spin0_OF.initProc(param_f);
+	ME_Signal_Spin0_2f_SF.initProc(param_f);
+	ME_Signal_Spin0_2f_OF.initProc(param_f);
+	ME_Signal_Spin0_2lpA.initProc(param_f);
+	ME_Signal_Spin0_SFpA.initProc(param_f);
+	ME_Signal_Spin0_OFpA.initProc(param_f);
+	ME_Signal_Spin0_2f_SFpA.initProc(param_f);
+	ME_Signal_Spin0_2f_OFpA.initProc(param_f);
 
-	ME_Signal_Spin1_2l.initProc(Parameter_file);
-	ME_Signal_Spin1_SF.initProc(Parameter_file);
-	ME_Signal_Spin1_OF.initProc(Parameter_file);
-	ME_Signal_Spin1_2f_SF.initProc(Parameter_file);
-	ME_Signal_Spin1_2f_OF.initProc(Parameter_file);
-	ME_Signal_Spin1_2lpA.initProc(Parameter_file);
-	ME_Signal_Spin1_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin1_OFpA.initProc(Parameter_file);
-	ME_Signal_Spin1_2f_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin1_2f_OFpA.initProc(Parameter_file);
+	ME_Signal_Spin1_2l.initProc(param_f);
+	ME_Signal_Spin1_SF.initProc(param_f);
+	ME_Signal_Spin1_OF.initProc(param_f);
+	ME_Signal_Spin1_2f_SF.initProc(param_f);
+	ME_Signal_Spin1_2f_OF.initProc(param_f);
+	ME_Signal_Spin1_2lpA.initProc(param_f);
+	ME_Signal_Spin1_SFpA.initProc(param_f);
+	ME_Signal_Spin1_OFpA.initProc(param_f);
+	ME_Signal_Spin1_2f_SFpA.initProc(param_f);
+	ME_Signal_Spin1_2f_OFpA.initProc(param_f);
 
-	ME_Signal_Spin2_2l.initProc(Parameter_file);
-	ME_Signal_Spin2_SF.initProc(Parameter_file);
-	ME_Signal_Spin2_OF.initProc(Parameter_file);
-	ME_Signal_Spin2_2f_SF.initProc(Parameter_file);
-	ME_Signal_Spin2_2f_OF.initProc(Parameter_file);
-	ME_Signal_Spin2_2lpA.initProc(Parameter_file);
-	ME_Signal_Spin2_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin2_OFpA.initProc(Parameter_file);
-	ME_Signal_Spin2_2f_SFpA.initProc(Parameter_file);
-	ME_Signal_Spin2_2f_OFpA.initProc(Parameter_file);
+	ME_Signal_Spin2_2l.initProc(param_f);
+	ME_Signal_Spin2_SF.initProc(param_f);
+	ME_Signal_Spin2_OF.initProc(param_f);
+	ME_Signal_Spin2_2f_SF.initProc(param_f);
+	ME_Signal_Spin2_2f_OF.initProc(param_f);
+	ME_Signal_Spin2_2lpA.initProc(param_f);
+	ME_Signal_Spin2_SFpA.initProc(param_f);
+	ME_Signal_Spin2_OFpA.initProc(param_f);
+	ME_Signal_Spin2_2f_SFpA.initProc(param_f);
+	ME_Signal_Spin2_2f_OFpA.initProc(param_f);
 
 	// 2mu
-	ME_qq_DY_UpType_2l.initProc(Parameter_file);
-	ME_qq_DY_DownType_2l.initProc(Parameter_file);
-	ME_qq_DY_UpType_2lpA.initProc(Parameter_file);
-	ME_qq_DY_DownType_2lpA.initProc(Parameter_file);
+	ME_qq_DY_UpType_2l.initProc(param_f);
+	ME_qq_DY_DownType_2l.initProc(param_f);
+	ME_qq_DY_UpType_2lpA.initProc(param_f);
+	ME_qq_DY_DownType_2lpA.initProc(param_f);
 
-	ME_Signal_gg_Spin0_2l.initProc(Parameter_file);
-	ME_Signal_gg_Spin0_2lpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin0_2l.initProc(param_f);
+	ME_Signal_gg_Spin0_2lpA.initProc(param_f);
 
-	// 	ME_Signal_qq_Spin0_DownType_2l.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_2l.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_DownType_2lpA.initProc( Parameter_file );
-	// 	ME_Signal_qq_Spin0_UpType_2lpA.initProc( Parameter_file );
+	// 	ME_Signal_qq_Spin0_DownType_2l.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_2l.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_DownType_2lpA.initProc(param_f);
+	// 	ME_Signal_qq_Spin0_UpType_2lpA.initProc(param_f);
 
-	ME_Signal_qq_Spin1_DownType_2l.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_2l.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_DownType_2lpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin1_UpType_2lpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin1_DownType_2l.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_2l.initProc(param_f);
+	ME_Signal_qq_Spin1_DownType_2lpA.initProc(param_f);
+	ME_Signal_qq_Spin1_UpType_2lpA.initProc(param_f);
 
-	ME_Signal_gg_Spin2_2l.initProc(Parameter_file);
-	ME_Signal_gg_Spin2_2lpA.initProc(Parameter_file);
+	ME_Signal_gg_Spin2_2l.initProc(param_f);
+	ME_Signal_gg_Spin2_2lpA.initProc(param_f);
 
-	ME_Signal_qq_Spin2_DownType_2l.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_2l.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_DownType_2lpA.initProc(Parameter_file);
-	ME_Signal_qq_Spin2_UpType_2lpA.initProc(Parameter_file);
+	ME_Signal_qq_Spin2_DownType_2l.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_2l.initProc(param_f);
+	ME_Signal_qq_Spin2_DownType_2lpA.initProc(param_f);
+	ME_Signal_qq_Spin2_UpType_2lpA.initProc(param_f);
 
 	//// RAW MG5_aMC ME. For testing purposes only.
-	//ME_RAW.initProc( "../src/MG5_aMCNLO/RAW/param_card.dat" );
+	//ME_RAW.initProc("../src/MG5_aMCNLO/RAW/param_card.dat");
 }
 
 void MEKD::Load_Parameters_extract_params(SLHAReader_MEKD &params)

@@ -122,11 +122,11 @@ MEKD::~MEKD()
 
 int MEKD::Load_Parameters(parameters &pa)
 {
-	params_MG.read_slha_file(static_cast<string>(pa.params_MG_file));
+	params_MG.read_slha_file(pa.params_MG_file);
 	
 	/// Initializing parameters
 	if (!Parameters_Are_Loaded)
-		Load_Parameters_MEs();	// init MEs
+		Load_Parameters_MEs(pa.params_MG_file);	// init MEs
 	Load_Parameters_extract_params(params_MG);
 	Load_Parameters_eval_params();
 	Normalize_parton_coeffs(pa);

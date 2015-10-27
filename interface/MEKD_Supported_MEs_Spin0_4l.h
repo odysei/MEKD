@@ -42,7 +42,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -66,7 +66,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -90,7 +90,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Ph(me);
+		in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -114,7 +114,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Ph(me);
+		in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -138,7 +138,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -162,7 +162,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -186,7 +186,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -210,7 +211,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -238,7 +240,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -262,7 +264,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -286,7 +288,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Ph(me);
+		in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -310,7 +312,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Ph(me);
+		in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -334,7 +336,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -358,7 +360,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -382,7 +384,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -406,7 +409,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -440,7 +444,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -464,7 +468,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -488,7 +492,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -512,7 +516,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -536,7 +540,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -560,7 +565,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -588,7 +594,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -612,7 +618,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0Pm(me);
+		in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -636,7 +642,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -660,7 +666,7 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0M(me);
+		in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -684,7 +690,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };
@@ -708,7 +715,8 @@ public:
 	
 	double evaluate(MEKD &in_MEKD, const input &in)
 	{
-		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.params_MG);
+		in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata,
+                                          in_MEKD.params_MG);
 		return in_MEKD.Signal_ME;
 	}
 };

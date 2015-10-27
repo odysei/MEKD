@@ -73,13 +73,13 @@ void MEKD::Set_default_params()
 	edm::FileInPath parameterFileWithFullPath(rel_param_path);
 	edm::FileInPath pdfFileWithFullPath(rel_pdf_path);
 	
-	idata.params_MG_file = parameterFileWithFullPath.fullPath();
-	idata.PDF_file = pdfFileWithFullPath.fullPath();
+	param.params_MG_file = parameterFileWithFullPath.fullPath();
+	param.PDF_file = pdfFileWithFullPath.fullPath();
 #else	
 	// parameter card, try standard locations:
-	params_MG_file = Find_local_file(static_cast<string>("param_card.dat"));
+	param.params_MG_file = Find_local_file(static_cast<string>("param_card.dat"));
 	// PDF/PDT table file:
-	idata.PDF_file = Find_local_file(static_cast<string>("cteq6l.pdt"));
+	param.PDF_file = Find_local_file(static_cast<string>("cteq6l.pdt"));
 #endif
 }
 
