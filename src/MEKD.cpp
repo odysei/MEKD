@@ -100,15 +100,15 @@ MEKD::~MEKD()
 	ME_runners.clear();
 }
 
-int MEKD::Load_Parameters(parameters &pa)
+int MEKD::Load_parameters(parameters &pa, data &da)
 {
 	params_MG.read_slha_file(pa.params_MG_file);
     
 	/// Initializing parameters
 	if (!pa.loaded)
-		Load_Parameters_MEs(pa.params_MG_file);	// init MEs
-	Load_Parameters_extract_params(params_MG);
-	Load_Parameters_eval_params(pa);
+		Load_parameters_MEs(pa.params_MG_file);	// init MEs
+	Load_parameters_extract_params(params_MG, da);
+	Load_parameters_eval_params(da, pa);
 	Normalize_parton_coeffs(pa);
 	
 	if (pa.loaded)
@@ -119,12 +119,12 @@ int MEKD::Load_Parameters(parameters &pa)
 	return 0;
 }
 
-int MEKD::Reload_params(parameters &pa)
+int MEKD::Reload_params(parameters &pa, data &da)
 {
 	if (!pa.loaded)
 		return 1;
 
-	return Load_Parameters(pa);
+	return Load_parameters(pa, da);
 }
 
 void MEKD::eval_MEs(const input_c &in, vector<double> &ME2)
@@ -171,7 +171,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	/* End of added block */
 	
 	if (!param.loaded)
-		Load_Parameters(param);
+		Load_parameters(param, idata);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
@@ -183,7 +183,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	Run_make_p(idata);
 
 	const int range[2] = {2, 6}; 
-	idata.invariant_m = Get_invariant_m(idata.p, range);
+	idata.m.sys = Get_sys_m(idata.p, range);
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
 		Normalize_parton_coeffs(param);
@@ -215,7 +215,7 @@ int MEKD::Run()
     idata.mix_coeffs_Spin2 = m_Mixing_Coefficients_Spin2;
     
 	if (!param.loaded)
-		Load_Parameters(param);
+		Load_parameters(param, idata);
 	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
@@ -227,7 +227,7 @@ int MEKD::Run()
 	Run_make_p(idata);
 
 	const int range[2] = {2, 6}; 
-	idata.invariant_m = Get_invariant_m(idata.p, range);
+	idata.m.sys = Get_sys_m(idata.p, range);
 	
 	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
 		Normalize_parton_coeffs(param);
@@ -269,38 +269,106 @@ void MEKD::Run_make_p(data &da)
 	if (flag.Overwrite_e_and_mu_masses) {
 		params_MG.set_block_entry("mass", 11, param.Electron_mass);
 		params_MG.set_block_entry("mass", 13, param.Muon_mass);
-		params_m_e = param.Electron_mass;
-		params_m_mu = param.Muon_mass;
+		da.m.e = param.Electron_mass;
+		da.m.mu = param.Muon_mass;
 	}
 
 	Load_p_set(da);	// load 4-momenta from plX_internal
-	Prepare_ml_s(da);	// fill ml values; used in boosts only
 	
-	/// Calculate values needed for the PDF in the pT=0 frame
-	if (flag.Use_PDF_w_pT0) {
-		Boost_5p_2_pT0(ml1, da.p[2], ml2, da.p[3], ml3, da.p[4], ml4,
-					   da.p[5], 0, da.p[6]);
-	}
-	
+    /// Calculate values needed for the PDF in the pT=0 frame
 	da.PDFx1 = Get_PDF_x1(da.p);
 	da.PDFx2 = Get_PDF_x2(da.p);
 	if (flag.Debug_Mode) {
 		printf("Coefficients for PDF (x1, x2): (%.10E, %.10E)\n",
 			   da.PDFx1, da.PDFx2);
 	}
-
+    
 	/// If flag is true, boost to CM frame iff PDF is NOT included.
 	if (flag.Boost_To_CM && !flag.Use_PDF_w_pT0) {
-		Boost2CM(ml1, da.p[2], ml2, da.p[3], ml3, da.p[4], ml4, da.p[5], 0,
-				 da.p[6]);
-		double CollisionE = da.p[2][0] + da.p[3][0] + da.p[4][0] +
-							da.p[5][0] + da.p[6][0];
-		da.p[0][0] = 0.5 * CollisionE;
-		da.p[1][0] = 0.5 * CollisionE;
+        Run_make_p_boost(0, da);
+		const double collision_E = da.p[2][0] + da.p[3][0] + da.p[4][0] +
+                                   da.p[5][0] + da.p[6][0];
+		da.p[0][0] = 0.5 * collision_E;
+		da.p[1][0] = 0.5 * collision_E;
 	} else {
+        if (flag.Use_PDF_w_pT0)
+            Run_make_p_boost(1, da);
 		Approx_neg_z_parton(da.p[0], da.PDFx1 * param.sqrt_s);
 		Approx_pos_z_parton(da.p[1], da.PDFx2 * param.sqrt_s);
 	}
+}
+
+// int = 0: CM; 1: pT0
+void MEKD::Run_make_p_boost(const int mode, data &da)
+{
+	if (da.fs == final_4e || da.fs == final_4eA) {
+		const double m = params_MG.get_block_entry("mass", 11,
+                                                   param.Electron_mass).real();
+        
+        if (mode == 0) {
+            Boost2CM(m, da.p[2], m, da.p[3], m, da.p[4],
+                     m, da.p[5], 0, da.p[6]);
+            return;
+        }
+        if (mode == 1) {
+            Boost_5p_2_pT0(m, da.p[2], m, da.p[3], m, da.p[4],
+                           m, da.p[5], 0, da.p[6]);
+            return;
+        }
+    }
+    
+	if (da.fs == final_4mu || da.fs == final_4muA) {
+		const double m = params_MG.get_block_entry("mass", 13,
+                                                   param.Muon_mass).real();
+        
+        if (mode == 0) {
+            Boost2CM(m, da.p[2], m, da.p[3], m, da.p[4],
+                     m, da.p[5], 0, da.p[6]);
+            return;
+        }
+        if (mode == 1) {
+            Boost_5p_2_pT0(m, da.p[2], m, da.p[3], m, da.p[4],
+                           m, da.p[5], 0, da.p[6]);
+            return;
+        }
+    }
+    
+	if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
+		const double m1 = params_MG.get_block_entry("mass", 11,
+                                                   param.Electron_mass).real();
+		const double m2 = params_MG.get_block_entry("mass", 13,
+                                                    param.Muon_mass).real();
+        
+        if (mode == 0) {
+            Boost2CM(m1, da.p[2], m1, da.p[3], m2, da.p[4],
+                     m2, da.p[5], 0, da.p[6]);
+            return;
+        }
+        if (mode == 1) {
+            Boost_5p_2_pT0(m1, da.p[2], m1, da.p[3], m2, da.p[4],
+                           m2, da.p[5], 0, da.p[6]);
+            return;
+        }
+    }
+    
+	if (da.fs == final_2mu || da.fs == final_2muA) {
+		const double m = params_MG.get_block_entry("mass", 13,
+                                                   param.Muon_mass).real();
+        
+        if (mode == 0) {
+            Boost2CM(m, da.p[2], m, da.p[3], 0, da.p[4],
+                     0, da.p[5], 0, da.p[6]);
+            return;
+        }
+        if (mode == 1) {
+            Boost_5p_2_pT0(m, da.p[2], m, da.p[3], 0, da.p[4],
+                           0, da.p[5], 0, da.p[6]);
+            return;
+        }
+	}
+	
+    cerr << "MAYDAY!!! Undefined behavior!\n";
+    exit(1);
 }
 
 void MEKD::Run_calculate(data &da)
@@ -767,34 +835,6 @@ void MEKD::Load_p_set(data &da)
 	}
 }
 
-void MEKD::Prepare_ml_s(const data &da)
-{
-	if (da.fs == final_4e || da.fs == final_4eA) {
-		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
-		ml2 = ml1;
-		ml3 = ml1;
-		ml4 = ml1;
-	} else if (da.fs == final_4mu || da.fs == final_4muA) {
-		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
-		ml2 = ml1;
-		ml3 = ml1;
-		ml4 = ml1;
-	} else if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
-		ml1 = params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
-		ml2 = ml1;
-		ml3 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
-		ml4 = ml3;
-	} else if (da.fs == final_2mu || da.fs == final_2muA) {
-		ml1 = params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
-		ml2 = ml1;
-		ml3 = 0;
-		ml4 = 0;
-	} else {
-		cerr << "MAYDAY!!! Undefined behavior!\n";
-		exit(1);
-	}
-}
-
 // exact mT/sqrt_s * (e^eta3 + e^eta4), mt=sqrt(m^2+pT^2), 12 -> 34
 double MEKD::Get_PDF_x1(const vector<double *> &p)
 {
@@ -809,7 +849,7 @@ double MEKD::Get_PDF_x2(const vector<double *> &p)
 			(p[2][3] + p[3][3] + p[4][3] + p[5][3] + p[6][3])) / param.sqrt_s;
 }
 
-double MEKD::Get_invariant_m(const vector<double *> &p, const int p_range[2])
+double MEKD::Get_sys_m(const vector<double *> &p, const int p_range[2])
 {
 	double sum_E = 0;
 	double sum_px = 0;

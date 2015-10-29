@@ -85,15 +85,51 @@ enum exit_codes {
     EXIT_ERROR_CONFIG
 };
 
+struct masses {
+    // systems invariant mass
+    double sys;
+    
+	// quarks
+	double d, u, s, c;
+    
+    // leptons
+    double e, mu;
+    
+    // vectors
+    double Z;
+};
+
+struct couplings {
+    // spin 0
+	std::complex<double> rhou01, rhou02, rhoc01, rhoc02,
+		rhod01, rhod02, rhos01, rhos02,
+		rhob01, rhob02;
+        
+    // spin 1
+	std::complex<double> rhou11, rhou12, rhou13, rhou14,
+		rhoc11, rhoc12, rhoc13, rhoc14,
+		rhod11, rhod12, rhod13, rhod14,
+		rhos11, rhos12, rhos13, rhos14,
+		rhob11, rhob12, rhob13, rhob14;
+        
+    // spin 2
+	std::complex<double> rhou21, rhou22, rhou23, rhou24,
+		rhoc21, rhoc22, rhoc23, rhoc24,
+		rhod21, rhod22, rhod23, rhod24,
+		rhos21, rhos22, rhos23, rhos24,
+		rhob21, rhob22, rhob23, rhob24;
+};
+
 struct data {
     final_state_types_ fs;  //final_state_types_ final_state_;
 
 	std::vector<double> id;
 	std::vector<double *> p;
     
-    // filled after running RUN_XXXX(...). Invariant mass of the final state
-	double invariant_m;
     double PDFx1, PDFx2;
+    
+    masses m;
+    couplings c;
     
     std::complex<double> *mix_coeffs_Spin0;
     std::complex<double> *mix_coeffs_Spin1;

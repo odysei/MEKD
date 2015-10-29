@@ -525,7 +525,7 @@ void MEKD::Check_MEs()
 	}
 }
 
-void MEKD::Load_Parameters_MEs(const string &param_f)
+void MEKD::Load_parameters_MEs(const string &param_f)
 {
 	// ZZ
 	ME_qq_ZZ_UpType_SF.initProc(param_f);
@@ -689,75 +689,76 @@ void MEKD::Load_Parameters_MEs(const string &param_f)
 	//ME_RAW.initProc("../src/MG5_aMCNLO/RAW/param_card.dat");
 }
 
-void MEKD::Load_Parameters_extract_params(SLHAReader_MEKD &params)
+void MEKD::Load_parameters_extract_params(SLHAReader_MEKD &params,
+                                          data &da)
 {
-	params_m_d = params.get_block_entry("mass", 1, 0).real();
-	params_m_u = params.get_block_entry("mass", 2, 0).real();
-	params_m_s = params.get_block_entry("mass", 3, 0).real();
-	params_m_c = params.get_block_entry("mass", 4, 0).real();
-	params_m_e = params.get_block_entry("mass", 11, 0).real();
-	params_m_mu = params.get_block_entry("mass", 13, 0).real();
-	params_m_Z = params.get_block_entry("mass", 23, 9.11876e+01).real();
+	da.m.d = params.get_block_entry("mass", 1, 0).real();
+	da.m.u = params.get_block_entry("mass", 2, 0).real();
+	da.m.s = params.get_block_entry("mass", 3, 0).real();
+	da.m.c = params.get_block_entry("mass", 4, 0).real();
+	da.m.e = params.get_block_entry("mass", 11, 0).real();
+	da.m.mu = params.get_block_entry("mass", 13, 0).real();
+	da.m.Z = params.get_block_entry("mass", 23, 9.11876e+01).real();
 
-	params_rhou11 = params.get_block_entry("heff", 9, 0);
-	params_rhou12 = params.get_block_entry("heff", 10, 0);
-	params_rhoc11 = params.get_block_entry("heff", 11, 0);
-	params_rhoc12 = params.get_block_entry("heff", 12, 0);
-	params_rhod11 = params.get_block_entry("heff", 13, 0);
-	params_rhod12 = params.get_block_entry("heff", 14, 0);
-	params_rhos11 = params.get_block_entry("heff", 15, 0);
-	params_rhos12 = params.get_block_entry("heff", 16, 0);
-	params_rhob11 = params.get_block_entry("heff", 17, 0);
-	params_rhob12 = params.get_block_entry("heff", 18, 0);
+	da.c.rhou11 = params.get_block_entry("heff", 9, 0);
+	da.c.rhou12 = params.get_block_entry("heff", 10, 0);
+	da.c.rhoc11 = params.get_block_entry("heff", 11, 0);
+	da.c.rhoc12 = params.get_block_entry("heff", 12, 0);
+	da.c.rhod11 = params.get_block_entry("heff", 13, 0);
+	da.c.rhod12 = params.get_block_entry("heff", 14, 0);
+	da.c.rhos11 = params.get_block_entry("heff", 15, 0);
+	da.c.rhos12 = params.get_block_entry("heff", 16, 0);
+	da.c.rhob11 = params.get_block_entry("heff", 17, 0);
+	da.c.rhob12 = params.get_block_entry("heff", 18, 0);
 
-	params_rhou11 = params.get_block_entry("vec", 3, 0);
-	params_rhou12 = params.get_block_entry("vec", 4, 0);
-	params_rhou13 = params.get_block_entry("vec", 5, 0);
-	params_rhou14 = params.get_block_entry("vec", 6, 0);
-	params_rhoc11 = params.get_block_entry("vec", 7, 0);
-	params_rhoc12 = params.get_block_entry("vec", 8, 0);
-	params_rhoc13 = params.get_block_entry("vec", 9, 0);
-	params_rhoc14 = params.get_block_entry("vec", 10, 0);
-	params_rhod11 = params.get_block_entry("vec", 11, 0);
-	params_rhod12 = params.get_block_entry("vec", 12, 0);
-	params_rhod13 = params.get_block_entry("vec", 13, 0);
-	params_rhod14 = params.get_block_entry("vec", 14, 0);
-	params_rhos11 = params.get_block_entry("vec", 15, 0);
-	params_rhos12 = params.get_block_entry("vec", 16, 0);
-	params_rhos13 = params.get_block_entry("vec", 17, 0);
-	params_rhos14 = params.get_block_entry("vec", 18, 0);
-	params_rhob11 = params.get_block_entry("vec", 19, 0);
-	params_rhob12 = params.get_block_entry("vec", 20, 0);
-	params_rhob13 = params.get_block_entry("vec", 21, 0);
-	params_rhob14 = params.get_block_entry("vec", 22, 0);
+	da.c.rhou11 = params.get_block_entry("vec", 3, 0);
+	da.c.rhou12 = params.get_block_entry("vec", 4, 0);
+	da.c.rhou13 = params.get_block_entry("vec", 5, 0);
+	da.c.rhou14 = params.get_block_entry("vec", 6, 0);
+	da.c.rhoc11 = params.get_block_entry("vec", 7, 0);
+	da.c.rhoc12 = params.get_block_entry("vec", 8, 0);
+	da.c.rhoc13 = params.get_block_entry("vec", 9, 0);
+	da.c.rhoc14 = params.get_block_entry("vec", 10, 0);
+	da.c.rhod11 = params.get_block_entry("vec", 11, 0);
+	da.c.rhod12 = params.get_block_entry("vec", 12, 0);
+	da.c.rhod13 = params.get_block_entry("vec", 13, 0);
+	da.c.rhod14 = params.get_block_entry("vec", 14, 0);
+	da.c.rhos11 = params.get_block_entry("vec", 15, 0);
+	da.c.rhos12 = params.get_block_entry("vec", 16, 0);
+	da.c.rhos13 = params.get_block_entry("vec", 17, 0);
+	da.c.rhos14 = params.get_block_entry("vec", 18, 0);
+	da.c.rhob11 = params.get_block_entry("vec", 19, 0);
+	da.c.rhob12 = params.get_block_entry("vec", 20, 0);
+	da.c.rhob13 = params.get_block_entry("vec", 21, 0);
+	da.c.rhob14 = params.get_block_entry("vec", 22, 0);
 
-	params_rhou21 = params.get_block_entry("gravity", 21, 0);
-	params_rhou22 = params.get_block_entry("gravity", 22, 0);
-	params_rhou23 = params.get_block_entry("gravity", 23, 0);
-	params_rhou24 = params.get_block_entry("gravity", 24, 0);
-	params_rhoc21 = params.get_block_entry("gravity", 25, 0);
-	params_rhoc22 = params.get_block_entry("gravity", 26, 0);
-	params_rhoc23 = params.get_block_entry("gravity", 27, 0);
-	params_rhoc24 = params.get_block_entry("gravity", 28, 0);
-	params_rhod21 = params.get_block_entry("gravity", 29, 0);
-	params_rhod22 = params.get_block_entry("gravity", 30, 0);
-	params_rhod23 = params.get_block_entry("gravity", 31, 0);
-	params_rhod24 = params.get_block_entry("gravity", 32, 0);
-	params_rhos21 = params.get_block_entry("gravity", 33, 0);
-	params_rhos22 = params.get_block_entry("gravity", 34, 0);
-	params_rhos23 = params.get_block_entry("gravity", 35, 0);
-	params_rhos24 = params.get_block_entry("gravity", 36, 0);
-	params_rhob21 = params.get_block_entry("gravity", 37, 0);
-	params_rhob22 = params.get_block_entry("gravity", 38, 0);
-	params_rhob23 = params.get_block_entry("gravity", 39, 0);
-	params_rhob24 = params.get_block_entry("gravity", 40, 0);
+	da.c.rhou21 = params.get_block_entry("gravity", 21, 0);
+	da.c.rhou22 = params.get_block_entry("gravity", 22, 0);
+	da.c.rhou23 = params.get_block_entry("gravity", 23, 0);
+	da.c.rhou24 = params.get_block_entry("gravity", 24, 0);
+	da.c.rhoc21 = params.get_block_entry("gravity", 25, 0);
+	da.c.rhoc22 = params.get_block_entry("gravity", 26, 0);
+	da.c.rhoc23 = params.get_block_entry("gravity", 27, 0);
+	da.c.rhoc24 = params.get_block_entry("gravity", 28, 0);
+	da.c.rhod21 = params.get_block_entry("gravity", 29, 0);
+	da.c.rhod22 = params.get_block_entry("gravity", 30, 0);
+	da.c.rhod23 = params.get_block_entry("gravity", 31, 0);
+	da.c.rhod24 = params.get_block_entry("gravity", 32, 0);
+	da.c.rhos21 = params.get_block_entry("gravity", 33, 0);
+	da.c.rhos22 = params.get_block_entry("gravity", 34, 0);
+	da.c.rhos23 = params.get_block_entry("gravity", 35, 0);
+	da.c.rhos24 = params.get_block_entry("gravity", 36, 0);
+	da.c.rhob21 = params.get_block_entry("gravity", 37, 0);
+	da.c.rhob22 = params.get_block_entry("gravity", 38, 0);
+	da.c.rhob23 = params.get_block_entry("gravity", 39, 0);
+	da.c.rhob24 = params.get_block_entry("gravity", 40, 0);
 }
 
-void MEKD::Load_Parameters_eval_params(parameters &pa)
+void MEKD::Load_parameters_eval_params(const data &da, parameters &pa)
 {
 	pa.vev = 1.0 / sqrt(sqrt(2) *
 			 params_MG.get_block_entry("sminputs", 2, 1.166370e-05).real());
-	pa.hZZ_coupling = 2.0 * params_m_Z * params_m_Z / pa.vev;
+	pa.hZZ_coupling = 2.0 * da.m.Z * da.m.Z / pa.vev;
 }
 
 /// end of namespace

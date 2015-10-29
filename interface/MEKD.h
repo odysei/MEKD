@@ -139,8 +139,6 @@ class MEKD
 
 	/// Functions
 	void Set_default_params();
-
-	int Reload_params(parameters &); // reloads parameter set and updates PDF file reader
 	
 	void Check_MEs();
 	
@@ -151,13 +149,13 @@ class MEKD
 									// ignores automatic background
 									// calculation. Updates Signal_ME
 	void Run_make_p(data &);
+    void Run_make_p_boost(const int, data &);    // int = 0: CM; 1: pT0
 	void Run_calculate(data &);
 	double Get_PDF_x1(const vector<double *> &p);
 	double Get_PDF_x2(const vector<double *> &p);
 	
-	double Get_invariant_m(const vector<double *> &p, const int p_range[2]);
+	double Get_sys_m(const vector<double *> &p, const int p_range[2]);
 	
-	void Prepare_ml_s(const data &);
 	void Load_p_set(data &);
 	void Approx_neg_z_parton(double *p, const double E);
 	void Approx_pos_z_parton(double *p, const double E);
@@ -172,7 +170,9 @@ class MEKD
 	}
 	~MEKD();
 
-//   private:
+    /*
+     * Temporary ME place. Should become a part of ME_runners
+     */
 	/// 4l final state (+photon)
 qq_Z4l_SIG_DN_OF ME_qq_Z4l_SIG_DownType_OF;
 qq_Z4l_SIG_DN_SF ME_qq_Z4l_SIG_DownType_SF;
@@ -334,35 +334,24 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 /// RAW MG5_aMC ME. For testing purposes only.
 // CPPProcess ME_RAW;
 
-	double ml1, ml2, ml3, ml4;
+    /*
+     * END OF
+     * Temporary ME place. Should become a part of ME_runners
+     */
+    // private:
 	// used by sorter, allows shuffling p_set
 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
 		*pA1_internal;
 
-	// Parameters
-	double params_m_d, params_m_u, params_m_s, params_m_c, params_m_e,
-		params_m_mu, params_m_Z;
-	complex<double> params_rhou01, params_rhou02, params_rhoc01, params_rhoc02,
-		params_rhod01, params_rhod02, params_rhos01, params_rhos02,
-		params_rhob01, params_rhob02;
-	complex<double> params_rhou11, params_rhou12, params_rhou13, params_rhou14,
-		params_rhoc11, params_rhoc12, params_rhoc13, params_rhoc14,
-		params_rhod11, params_rhod12, params_rhod13, params_rhod14,
-		params_rhos11, params_rhos12, params_rhos13, params_rhos14,
-		params_rhob11, params_rhob12, params_rhob13, params_rhob14;
-	complex<double> params_rhou21, params_rhou22, params_rhou23, params_rhou24,
-		params_rhoc21, params_rhoc22, params_rhoc23, params_rhoc24,
-		params_rhod21, params_rhod22, params_rhod23, params_rhod24,
-		params_rhos21, params_rhos22, params_rhos23, params_rhos24,
-		params_rhob21, params_rhob22, params_rhob23, params_rhob24;
-
 	/// Internal functions ///
 	string Find_local_file(const string &input_f);
 	
-	int Load_Parameters(parameters &);
-	void Load_Parameters_MEs(const string &param_f);
-	void Load_Parameters_extract_params(SLHAReader_MEKD &);
-	void Load_Parameters_eval_params(parameters &);
+	int Load_parameters(parameters &, data &);
+	void Load_parameters_MEs(const string &param_f);
+	void Load_parameters_extract_params(SLHAReader_MEKD &, data &);
+	void Load_parameters_eval_params(const data &, parameters &);
+    // reloads parameter set and updates PDF file reader
+	int Reload_params(parameters &, data &);
 	
 	void Print_4momenta(const vector<double *> &);
 
@@ -380,37 +369,40 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int Run_ME_Configurator_Spin0(const process_description &,
                                   data &,
 								  SLHAReader_MEKD &par_MG);
-	void Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
-										 const double lgg);
-	void Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
+	void Run_ME_Configurator_Spin0_produ(const complex<double> *c,
+										 const double lgg,
+                                         data &da,
+                                         SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin0_decay(const complex<double> *c,
 										 const double mZ, const double Mi,
-										 const double hZZ);
+										 const double hZZ,
+                                         SLHAReader_MEKD &par_MG);
 	// Generic mixed spin-1 state
 	int Run_ME_Configurator_Spin1(const process_description &,
                                   data &,
 								  SLHAReader_MEKD &par_MG);
-	void Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
+	void Run_ME_Configurator_Spin1_produ(const complex<double> *c,
 										 const double lgg,
-										 const double vev);
-	void Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
+										 const double vev,
+                                         data &da,
+                                         SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin1_decay(const complex<double> *c,
 										 const double mZ,
-										 const double hZZ);
+										 const double hZZ,
+                                         SLHAReader_MEKD &par_MG);
 	// Generic mixed spin-2 state
 	int Run_ME_Configurator_Spin2(const process_description &,
                                   data &,
 								  SLHAReader_MEKD &par_MG);
-	void Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
+	void Run_ME_Configurator_Spin2_produ(const complex<double> *c,
 										 const double Mi,
-										 const double lgg);
-	void Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
-										 const complex<double> *c,
+										 const double lgg,
+                                         data &da,
+                                         SLHAReader_MEKD &par_MG);
+	void Run_ME_Configurator_Spin2_decay(const complex<double> *c,
 										 const double mZ, const double Mi,
-										 const double hZZ);
+										 const double hZZ,
+                                         SLHAReader_MEKD &par_MG);
 	// SM Higgs
 	int Run_ME_Configurator_Spin0Pm(const process_description &,
                                     data &);

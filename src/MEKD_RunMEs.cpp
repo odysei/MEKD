@@ -22,7 +22,7 @@ int MEKD::Run_ME_Configurator_Z4l_BKG(const process_description &d,
                                       data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, da.invariant_m);
+		params_MG.set_block_entry("mass", 23, da.m.sys);
 	return Run_ME_Dispatcher_Z4l_BKG(d, da);
 }
 
@@ -31,7 +31,7 @@ int MEKD::Run_ME_Configurator_Z4l_SIG(const process_description &d,
                                       data &da)
 {
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, da.invariant_m);
+		params_MG.set_block_entry("mass", 23, da.m.sys);
 	return Run_ME_Dispatcher_Z4l_SIG(d, da);
 }
 
@@ -622,8 +622,8 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 {
 	// local copy for stack
 	const double mH = param.Higgs_mass;
-	const double mZ = params_m_Z;
-	const double M = da.invariant_m;	// system's invariant mass
+	const double mZ = da.m.Z;
+	const double M = da.m.sys;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
@@ -660,20 +660,21 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d,
 	par_MG.set_block_entry("decay", 9000006, wH);
 
 	if (flag.Vary_signal_couplings) {
-		Run_ME_Configurator_Spin0_produ(par_MG, c, lgg);
+		Run_ME_Configurator_Spin0_produ(c, lgg, da, par_MG);
 
 		if (flag.Use_mh_eq_m4l)
-			Run_ME_Configurator_Spin0_decay(par_MG, c, mZ, M, hZZ);
+			Run_ME_Configurator_Spin0_decay(c, mZ, M, hZZ, par_MG);
 		else
-			Run_ME_Configurator_Spin0_decay(par_MG, c, mZ, mH, hZZ);
+			Run_ME_Configurator_Spin0_decay(c, mZ, mH, hZZ, par_MG);
 	}
 
 	return Run_ME_Dispatcher_SIG_Spin0(d, da);
 }
 
-void MEKD::Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
-										   const double lgg)
+void MEKD::Run_ME_Configurator_Spin0_produ(const complex<double> *c,
+										   const double lgg,
+                                           data &da,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// gg
 	const complex<double> common_coupl = complex<double>(4 * lgg, 0);
@@ -691,22 +692,22 @@ void MEKD::Run_ME_Configurator_Spin0_produ(SLHAReader_MEKD &par_MG,
 	}
 	
 	// qq
-	params_rhou01 = complex<double>(0, 0);
-	params_rhou02 = complex<double>(0, 0);
-	params_rhoc01 = complex<double>(0, 0);
-	params_rhoc02 = complex<double>(0, 0);
-	params_rhod01 = complex<double>(0, 0);
-	params_rhod02 = complex<double>(0, 0);
-	params_rhos01 = complex<double>(0, 0);
-	params_rhos02 = complex<double>(0, 0);
-	params_rhob01 = complex<double>(0, 0);
-	params_rhob02 = complex<double>(0, 0);
+	da.c.rhou01 = complex<double>(0, 0);
+	da.c.rhou02 = complex<double>(0, 0);
+	da.c.rhoc01 = complex<double>(0, 0);
+	da.c.rhoc02 = complex<double>(0, 0);
+	da.c.rhod01 = complex<double>(0, 0);
+	da.c.rhod02 = complex<double>(0, 0);
+	da.c.rhos01 = complex<double>(0, 0);
+	da.c.rhos02 = complex<double>(0, 0);
+	da.c.rhob01 = complex<double>(0, 0);
+	da.c.rhob02 = complex<double>(0, 0);
 }
 
-void MEKD::Run_ME_Configurator_Spin0_decay(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
+void MEKD::Run_ME_Configurator_Spin0_decay(const complex<double> *c,
 										   const double mZ, const double Mi,
-										   const double hZZ)
+										   const double hZZ,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// Decay to ZZ
 	const complex<double> chZZ = complex<double>(hZZ, 0);
@@ -735,8 +736,8 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 {
 	// local copy for stack
 	const double mH = param.Higgs_mass;
-	const double mZ = params_m_Z;
-	const double M = da.invariant_m;	// system's invariant mass
+	const double mZ = da.m.Z;
+	const double M = da.m.sys;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
     const double vev = param.vev;
@@ -774,72 +775,73 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d,
 	par_MG.set_block_entry("decay", 300, wH);
 
 	if (flag.Vary_signal_couplings) {
-		Run_ME_Configurator_Spin1_produ(par_MG, c, lgg, vev);
-		Run_ME_Configurator_Spin1_decay(par_MG, c, mZ, hZZ);
+		Run_ME_Configurator_Spin1_produ(c, lgg, vev, da, par_MG);
+		Run_ME_Configurator_Spin1_decay(c, mZ, hZZ, par_MG);
 	}
 
 	return Run_ME_Dispatcher_SIG_Spin1(d, da);
 }
 
-void MEKD::Run_ME_Configurator_Spin1_produ(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
+void MEKD::Run_ME_Configurator_Spin1_produ(const complex<double> *c,
 										   const double lgg,
-										   const double vev)
+										   const double vev,
+                                           data &da,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// qq
 	if (flag.Fix_Spin1_Production) {
 		const complex<double> common_coupl =
 			complex<double>(sqrt(1 / 2) * lgg * vev, 0);
-		params_rhod11 = common_coupl;
-		params_rhos11 = common_coupl;
-		params_rhob11 = common_coupl;
-		params_rhou11 = common_coupl;
-		params_rhoc11 = common_coupl;
-		params_rhod12 = complex<double>(0, 0);
-		params_rhos12 = complex<double>(0, 0);
-		params_rhob12 = complex<double>(0, 0);
-		params_rhou12 = complex<double>(0, 0);
-		params_rhoc12 = complex<double>(0, 0);
-		params_rhod13 = complex<double>(0, 0);
-		params_rhos13 = complex<double>(0, 0);
-		params_rhob13 = complex<double>(0, 0);
-		params_rhou13 = complex<double>(0, 0);
-		params_rhoc13 = complex<double>(0, 0);
-		params_rhod14 = complex<double>(0, 0);
-		params_rhos14 = complex<double>(0, 0);
-		params_rhob14 = complex<double>(0, 0);
-		params_rhou14 = complex<double>(0, 0);
-		params_rhoc14 = complex<double>(0, 0);
+		da.c.rhod11 = common_coupl;
+		da.c.rhos11 = common_coupl;
+		da.c.rhob11 = common_coupl;
+		da.c.rhou11 = common_coupl;
+		da.c.rhoc11 = common_coupl;
+		da.c.rhod12 = complex<double>(0, 0);
+		da.c.rhos12 = complex<double>(0, 0);
+		da.c.rhob12 = complex<double>(0, 0);
+		da.c.rhou12 = complex<double>(0, 0);
+		da.c.rhoc12 = complex<double>(0, 0);
+		da.c.rhod13 = complex<double>(0, 0);
+		da.c.rhos13 = complex<double>(0, 0);
+		da.c.rhob13 = complex<double>(0, 0);
+		da.c.rhou13 = complex<double>(0, 0);
+		da.c.rhoc13 = complex<double>(0, 0);
+		da.c.rhod14 = complex<double>(0, 0);
+		da.c.rhos14 = complex<double>(0, 0);
+		da.c.rhob14 = complex<double>(0, 0);
+		da.c.rhou14 = complex<double>(0, 0);
+		da.c.rhoc14 = complex<double>(0, 0);
 	} else {
 		const complex<double> common_coupl = 
 			complex<double>(lgg * vev, 0);
-		params_rhod11 = c[0] * common_coupl;
-		params_rhos11 = c[0] * common_coupl;
-		params_rhob11 = c[0] * common_coupl;
-		params_rhou11 = c[0] * common_coupl;
-		params_rhoc11 = c[0] * common_coupl;
-		params_rhod12 = c[1] * common_coupl;
-		params_rhos12 = c[1] * common_coupl;
-		params_rhob12 = c[1] * common_coupl;
-		params_rhou12 = c[1] * common_coupl;
-		params_rhoc12 = c[1] * common_coupl;
-		params_rhod13 = c[2] * common_coupl;
-		params_rhos13 = c[2] * common_coupl;
-		params_rhob13 = c[2] * common_coupl;
-		params_rhou13 = c[2] * common_coupl;
-		params_rhoc13 = c[2] * common_coupl;
-		params_rhod14 = c[3] * common_coupl;
-		params_rhos14 = c[3] * common_coupl;
-		params_rhob14 = c[3] * common_coupl;
-		params_rhou14 = c[3] * common_coupl;
-		params_rhoc14 = c[3] * common_coupl;
+		da.c.rhod11 = c[0] * common_coupl;
+		da.c.rhos11 = c[0] * common_coupl;
+		da.c.rhob11 = c[0] * common_coupl;
+		da.c.rhou11 = c[0] * common_coupl;
+		da.c.rhoc11 = c[0] * common_coupl;
+		da.c.rhod12 = c[1] * common_coupl;
+		da.c.rhos12 = c[1] * common_coupl;
+		da.c.rhob12 = c[1] * common_coupl;
+		da.c.rhou12 = c[1] * common_coupl;
+		da.c.rhoc12 = c[1] * common_coupl;
+		da.c.rhod13 = c[2] * common_coupl;
+		da.c.rhos13 = c[2] * common_coupl;
+		da.c.rhob13 = c[2] * common_coupl;
+		da.c.rhou13 = c[2] * common_coupl;
+		da.c.rhoc13 = c[2] * common_coupl;
+		da.c.rhod14 = c[3] * common_coupl;
+		da.c.rhos14 = c[3] * common_coupl;
+		da.c.rhob14 = c[3] * common_coupl;
+		da.c.rhou14 = c[3] * common_coupl;
+		da.c.rhoc14 = c[3] * common_coupl;
 	}
 }
 
-void MEKD::Run_ME_Configurator_Spin1_decay(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
+void MEKD::Run_ME_Configurator_Spin1_decay(const complex<double> *c,
 										   const double mZ,
-										   const double hZZ)
+										   const double hZZ,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// Decay to ZZ
 	const complex<double> c1 = complex<double>(hZZ / 2 / mZ, 0);
@@ -868,8 +870,8 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 {
 	// local copy for stack
 	const double mH = param.Higgs_mass;
-	const double mZ = params_m_Z;
-	const double M = da.invariant_m;	// system's invariant mass
+	const double mZ = da.m.Z;
+	const double M = da.m.sys;	// system's invariant mass
 	double wH;
 	const double hZZ = param.hZZ_coupling;
 	double lgg;	// lambda hgg
@@ -907,21 +909,22 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d,
 
 	if (flag.Vary_signal_couplings) {
 		if (flag.Use_mh_eq_m4l) {
-			Run_ME_Configurator_Spin2_produ(par_MG, c, M, lgg);
-			Run_ME_Configurator_Spin2_decay(par_MG, c, mZ, M, hZZ);
+			Run_ME_Configurator_Spin2_produ(c, M, lgg, da, par_MG);
+			Run_ME_Configurator_Spin2_decay(c, mZ, M, hZZ, par_MG);
 		} else {
-			Run_ME_Configurator_Spin2_decay(par_MG, c, mZ, mH, hZZ);
-			Run_ME_Configurator_Spin2_produ(par_MG, c, mH, lgg);
+			Run_ME_Configurator_Spin2_produ(c, mH, lgg, da, par_MG);
+			Run_ME_Configurator_Spin2_decay(c, mZ, mH, hZZ, par_MG);
 		}
 	}
 
 	return Run_ME_Dispatcher_SIG_Spin2(d, da);
 }
 
-void MEKD::Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
+void MEKD::Run_ME_Configurator_Spin2_produ(const complex<double> *c,
 										   const double Mi,
-										   const double lgg)
+										   const double lgg,
+                                           data &da,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// gg
 	par_MG.set_block_entry("gravity", 1, c[0] * complex<double>(8.0 * lgg, 0)); // 8 flavors
@@ -936,32 +939,32 @@ void MEKD::Run_ME_Configurator_Spin2_produ(SLHAReader_MEKD &par_MG,
 	par_MG.set_block_entry("gravity", 10, c[9] * complex<double>(8.0 * lgg / Mi / Mi, 0));
 
 	// qq
-	params_rhod21 = c[0] * complex<double>(lgg, 0);
-	params_rhos21 = c[0] * complex<double>(lgg, 0);
-	params_rhob21 = c[0] * complex<double>(lgg, 0);
-	params_rhou21 = c[0] * complex<double>(lgg, 0);
-	params_rhoc21 = c[0] * complex<double>(lgg, 0);
-	params_rhod22 = c[1] * complex<double>(lgg, 0);
-	params_rhos22 = c[1] * complex<double>(lgg, 0);
-	params_rhob22 = c[1] * complex<double>(lgg, 0);
-	params_rhou22 = c[1] * complex<double>(lgg, 0);
-	params_rhoc22 = c[1] * complex<double>(lgg, 0);
-	params_rhod23 = c[2] * complex<double>(lgg, 0);
-	params_rhos23 = c[2] * complex<double>(lgg, 0);
-	params_rhob23 = c[2] * complex<double>(lgg, 0);
-	params_rhou23 = c[2] * complex<double>(lgg, 0);
-	params_rhoc23 = c[2] * complex<double>(lgg, 0);
-	params_rhod24 = c[3] * complex<double>(lgg, 0);
-	params_rhos24 = c[3] * complex<double>(lgg, 0);
-	params_rhob24 = c[3] * complex<double>(lgg, 0);
-	params_rhou24 = c[3] * complex<double>(lgg, 0);
-	params_rhoc24 = c[3] * complex<double>(lgg, 0);
+	da.c.rhod21 = c[0] * complex<double>(lgg, 0);
+	da.c.rhos21 = c[0] * complex<double>(lgg, 0);
+	da.c.rhob21 = c[0] * complex<double>(lgg, 0);
+	da.c.rhou21 = c[0] * complex<double>(lgg, 0);
+	da.c.rhoc21 = c[0] * complex<double>(lgg, 0);
+	da.c.rhod22 = c[1] * complex<double>(lgg, 0);
+	da.c.rhos22 = c[1] * complex<double>(lgg, 0);
+	da.c.rhob22 = c[1] * complex<double>(lgg, 0);
+	da.c.rhou22 = c[1] * complex<double>(lgg, 0);
+	da.c.rhoc22 = c[1] * complex<double>(lgg, 0);
+	da.c.rhod23 = c[2] * complex<double>(lgg, 0);
+	da.c.rhos23 = c[2] * complex<double>(lgg, 0);
+	da.c.rhob23 = c[2] * complex<double>(lgg, 0);
+	da.c.rhou23 = c[2] * complex<double>(lgg, 0);
+	da.c.rhoc23 = c[2] * complex<double>(lgg, 0);
+	da.c.rhod24 = c[3] * complex<double>(lgg, 0);
+	da.c.rhos24 = c[3] * complex<double>(lgg, 0);
+	da.c.rhob24 = c[3] * complex<double>(lgg, 0);
+	da.c.rhou24 = c[3] * complex<double>(lgg, 0);
+	da.c.rhoc24 = c[3] * complex<double>(lgg, 0);
 }
 
-void MEKD::Run_ME_Configurator_Spin2_decay(SLHAReader_MEKD &par_MG,
-										   const complex<double> *c,
+void MEKD::Run_ME_Configurator_Spin2_decay(const complex<double> *c,
 										   const double mZ, const double Mi,
-										   const double hZZ)
+										   const double hZZ,
+                                           SLHAReader_MEKD &par_MG)
 {
 	// Decay to ZZ
 	par_MG.set_block_entry("gravity", 11, c[10] * complex<double>(hZZ / 2 / mZ / mZ / sqrt(2), 0));
@@ -998,7 +1001,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	if (d.decay == decay_ZZ) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 	// 		/// Common mass for the same-flavor leptons
-	// 			params_MG.set_block_entry("mass", 13, params_m_e);
+	// 			params_MG.set_block_entry("mass", 13, da.m.e);
 	
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1027,8 +1030,8 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 	// 			/// Common mass for the opposite-flavor leptons
-	// 			params_MG.set_block_entry("mass", 11, params_m_e);
-	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
+	// 			params_MG.set_block_entry("mass", 11, da.m.e);
+	// 			params_MG.set_block_entry("mass", 13, da.m.mu);
 	
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1057,7 +1060,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	
 		if (da.fs == final_4mu ||  da.fs == final_4muA) {
 	// 			/// Common mass for the same-flavor leptons
-	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
+	// 			params_MG.set_block_entry("mass", 13, da.m.mu);
 	
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1088,7 +1091,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	if (d.decay == decay_2f) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 	// 			/// Common mass for the same-flavor leptons
-	// 			params_MG.set_block_entry("mass", 13, params_m_e);
+	// 			params_MG.set_block_entry("mass", 13, da.m.e);
 	
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1117,8 +1120,8 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	
 		if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
 	// 			/// Common mass for the opposite-flavor leptons
-	// 			params_MG.set_block_entry("mass", 11, params_m_e);
-	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
+	// 			params_MG.set_block_entry("mass", 11, da.m.e);
+	// 			params_MG.set_block_entry("mass", 13, da.m.mu);
 	
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1147,7 +1150,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	
 		if (da.fs == final_4mu ||  da.fs == final_4muA) {
 	// 			/// Common mass for the same-flavor leptons
-	// 			params_MG.set_block_entry("mass", 13, params_m_mu);
+	// 			params_MG.set_block_entry("mass", 13, da.m.mu);
 	
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1177,7 +1180,7 @@ int MEKD::Run_ME_Dispatcher_CPPProcess(const process_description &d,
 	
 	if (da.fs == final_2mu || da.fs == final_2muA) {
 	// 		/// Mass for the muons
-	// 		params_MG.set_block_entry("mass", 13, params_m_mu);
+	// 		params_MG.set_block_entry("mass", 13, da.m.mu);
 	
 		if (d.production == prod_no && da.fs == final_2mu)
             return Run_MEs_Evaluator_Initial_State_NO(
@@ -1224,7 +1227,7 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 
 	if (da.fs == final_4e || da.fs == final_4eA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_e);
+		params_MG.set_block_entry("mass", 13, da.m.e);
 		/*
 		if (d.production == prod_no && da.fs == final_4e)
 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1254,8 +1257,8 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
 		/// Common mass for the opposite-flavor leptons
-		params_MG.set_block_entry("mass", 11, params_m_e);
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 11, da.m.e);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 //         if (d.production == prod_no && da.fs == final_2e2mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1284,7 +1287,7 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 // 		if (d.production == prod_no && da.fs == final_4mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1313,7 +1316,7 @@ int MEKD::Run_ME_Dispatcher_BKG_ZZ(const process_description &d,
 
 	if (da.fs == final_2mu || da.fs == final_2muA) {
 		/// Mass for the muons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1363,7 +1366,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 
 	if (da.fs == final_4e || da.fs == final_4eA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_e);
+		params_MG.set_block_entry("mass", 13, da.m.e);
 
 // 		if (d.production == prod_no && da.fs == final_4e)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1394,8 +1397,8 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
 		/// Common mass for the opposite-flavor leptons
-		params_MG.set_block_entry("mass", 11, params_m_e);
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 11, da.m.e);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 // 		if (d.production == prod_no && da.fs == final_2e2mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1426,7 +1429,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 // 		if (d.production == prod_no && da.fs == final_4mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1457,7 +1460,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_BKG(const process_description &d,
 
 // 	if (da.fs == final_2mu || da.fs == final_2muA) {
 // 		/// Mass for the muons
-// 		params_MG.set_block_entry("mass", 13, params_m_mu);
+// 		params_MG.set_block_entry("mass", 13, da.m.mu);
 // 	
 // 		if (d.production == prod_no && da.fs == final_2mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1509,7 +1512,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 
 	if (da.fs == final_4e || da.fs == final_4eA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_e);
+		params_MG.set_block_entry("mass", 13, da.m.e);
 
 // 		if (d.production == prod_no && da.fs == final_4e)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1540,8 +1543,8 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 
 	if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
 		/// Common mass for the opposite-flavor leptons
-		params_MG.set_block_entry("mass", 11, params_m_e);
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 11, da.m.e);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 // 		if (d.production == prod_no && da.fs == final_2e2mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1572,7 +1575,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 
 	if (da.fs == final_4mu || da.fs == final_4muA) {
 		/// Common mass for the same-flavor leptons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 // 		if (d.production == prod_no && da.fs == final_4mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1603,7 +1606,7 @@ int MEKD::Run_ME_Dispatcher_Z4l_SIG(const process_description &d,
 
 // 	if (da.fs == final_2mu || da.fs == final_2muA) {
 // 		/// Mass for the muons
-// 		params_MG.set_block_entry("mass", 13, params_m_mu);
+// 		params_MG.set_block_entry("mass", 13, da.m.mu);
 // 	
 // 		if (d.production == prod_no && da.fs == final_2mu)
 // 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1647,7 +1650,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 	if (d.decay == decay_ZZ) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1678,8 +1681,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1710,7 +1713,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1743,7 +1746,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 	if (d.decay == decay_2f) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1776,8 +1779,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1810,7 +1813,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1844,7 +1847,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d,
 
 	if (da.fs == final_2mu || da.fs == final_2muA) {
 		/// Mass for the muons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -1886,7 +1889,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 	if (d.decay == decay_ZZ) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1919,8 +1922,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1953,7 +1956,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -1988,7 +1991,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 	if (d.decay == decay_2f) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2021,8 +2024,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2055,7 +2058,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2089,7 +2092,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin1(const process_description &d,
 
 	if (da.fs == final_2mu || da.fs == final_2muA) {
 		/// Mass for the muons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -2128,7 +2131,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 	if (d.decay == decay_ZZ) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2159,8 +2162,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 		if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2191,7 +2194,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 		if (da.fs == final_4mu || da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2224,7 +2227,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 	if (d.decay == decay_2f) {
 		if (da.fs == final_4e || da.fs == final_4eA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_e);
+			params_MG.set_block_entry("mass", 13, da.m.e);
 
 			if (d.production == prod_no && da.fs == final_4e)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2255,8 +2258,8 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 		if (da.fs == final_2e2mu ||  da.fs == final_2e2muA) {
 			/// Common mass for the opposite-flavor leptons
-			params_MG.set_block_entry("mass", 11, params_m_e);
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 11, da.m.e);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_2e2mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2287,7 +2290,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 		if (da.fs == final_4mu ||  da.fs == final_4muA) {
 			/// Common mass for the same-flavor leptons
-			params_MG.set_block_entry("mass", 13, params_m_mu);
+			params_MG.set_block_entry("mass", 13, da.m.mu);
 
 			if (d.production == prod_no && da.fs == final_4mu)
 				return Run_MEs_Evaluator_Initial_State_NO(
@@ -2319,7 +2322,7 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin2(const process_description &d,
 
 	if (da.fs == final_2mu || da.fs == final_2muA) {
 		/// Mass for the muons
-		params_MG.set_block_entry("mass", 13, params_m_mu);
+		params_MG.set_block_entry("mass", 13, da.m.mu);
 
 		if (d.production == prod_no && da.fs == final_2mu)
 			return Run_MEs_Evaluator_Initial_State_NO(
@@ -2431,8 +2434,8 @@ int MEKD::Run_MEs_Evaluator_Initial_State_gg(data &da,
 	const double *buffer = Generic_ME.getMatrixElements();
 
 	if (flag.Use_PDF_w_pT0) {
-		Signal_ME = pdfreader(21, da.PDFx1, da.invariant_m) *
-					pdfreader(21, da.PDFx2, da.invariant_m) * buffer[0];
+		Signal_ME = pdfreader(21, da.PDFx1, da.m.sys) *
+					pdfreader(21, da.PDFx2, da.m.sys) * buffer[0];
 	} else
 		Signal_ME = buffer[0];
 
@@ -2449,21 +2452,21 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 
 	/// Down quark block. Down type (s-like)
 	if (param.parton_coeff_d != 0) {
-		params_MG.set_block_entry("mass", 3, params_m_d);
-// 		params_MG.set_block_entry("heff", 15, params_rhod01);
-// 		params_MG.set_block_entry("heff", 16, params_rhod02);
-		params_MG.set_block_entry("vec", 15, params_rhod11);
-		params_MG.set_block_entry("vec", 16, params_rhod12);
-		params_MG.set_block_entry("vec", 17, params_rhod13);
-		params_MG.set_block_entry("vec", 18, params_rhod14);
-		params_MG.set_block_entry("gravity", 33, params_rhod21);
-		params_MG.set_block_entry("gravity", 34, params_rhod22);
-		params_MG.set_block_entry("gravity", 35, params_rhod23);
-		params_MG.set_block_entry("gravity", 36, params_rhod24);
+		params_MG.set_block_entry("mass", 3, da.m.d);
+// 		params_MG.set_block_entry("heff", 15, da.c.rhod01);
+// 		params_MG.set_block_entry("heff", 16, da.c.rhod02);
+		params_MG.set_block_entry("vec", 15, da.c.rhod11);
+		params_MG.set_block_entry("vec", 16, da.c.rhod12);
+		params_MG.set_block_entry("vec", 17, da.c.rhod13);
+		params_MG.set_block_entry("vec", 18, da.c.rhod14);
+		params_MG.set_block_entry("gravity", 33, da.c.rhod21);
+		params_MG.set_block_entry("gravity", 34, da.c.rhod22);
+		params_MG.set_block_entry("gravity", 35, da.c.rhod23);
+		params_MG.set_block_entry("gravity", 36, da.c.rhod24);
 		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
-						   params_m_d * params_m_d);
+						   da.m.d * da.m.d);
 		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
-						    params_m_d * params_m_d);
+						    da.m.d * da.m.d);
 
 		Generic_ME_s.updateProc(params_MG);
 		Generic_ME_s.setMomenta(da.p);
@@ -2471,11 +2474,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_d = pdfreader(1, da.PDFx1, da.invariant_m) *
-								   pdfreader(-1, da.PDFx2, da.invariant_m);
+			param.parton_coeff_d = pdfreader(1, da.PDFx1, da.m.sys) *
+								   pdfreader(-1, da.PDFx2, da.m.sys);
 			Signal_ME = param.parton_coeff_d * buffer[0];
-			param.parton_coeff_d = pdfreader(-1, da.PDFx1, da.invariant_m) *
-								   pdfreader(1, da.PDFx2, da.invariant_m);
+			param.parton_coeff_d = pdfreader(-1, da.PDFx1, da.m.sys) *
+								   pdfreader(1, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_d * buffer[1];
 		} else
 			Signal_ME = param.parton_coeff_d * (buffer[0] + buffer[1]);
@@ -2483,21 +2486,21 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 
 	/// Strange quark block. Down type (s-like)
 	if (param.parton_coeff_s != 0) {
-		params_MG.set_block_entry("mass", 3, params_m_s);
-// 		params_MG.set_block_entry("heff", 15, params_rhos01);
-// 		params_MG.set_block_entry("heff", 16, params_rhos02);
-		params_MG.set_block_entry("vec", 15, params_rhos11);
-		params_MG.set_block_entry("vec", 16, params_rhos12);
-		params_MG.set_block_entry("vec", 17, params_rhos13);
-		params_MG.set_block_entry("vec", 18, params_rhos14);
-		params_MG.set_block_entry("gravity", 33, params_rhos21);
-		params_MG.set_block_entry("gravity", 34, params_rhos22);
-		params_MG.set_block_entry("gravity", 35, params_rhos23);
-		params_MG.set_block_entry("gravity", 36, params_rhos24);
+		params_MG.set_block_entry("mass", 3, da.m.s);
+// 		params_MG.set_block_entry("heff", 15, da.c.rhos01);
+// 		params_MG.set_block_entry("heff", 16, da.c.rhos02);
+		params_MG.set_block_entry("vec", 15, da.c.rhos11);
+		params_MG.set_block_entry("vec", 16, da.c.rhos12);
+		params_MG.set_block_entry("vec", 17, da.c.rhos13);
+		params_MG.set_block_entry("vec", 18, da.c.rhos14);
+		params_MG.set_block_entry("gravity", 33, da.c.rhos21);
+		params_MG.set_block_entry("gravity", 34, da.c.rhos22);
+		params_MG.set_block_entry("gravity", 35, da.c.rhos23);
+		params_MG.set_block_entry("gravity", 36, da.c.rhos24);
 		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
-						   params_m_s * params_m_s);
+						   da.m.s * da.m.s);
 		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
-							params_m_s * params_m_s);
+							da.m.s * da.m.s);
 
 		Generic_ME_s.updateProc(params_MG);
 		Generic_ME_s.setMomenta(da.p);
@@ -2505,11 +2508,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_s = pdfreader(3, da.PDFx1, da.invariant_m) *
-								   pdfreader(-3, da.PDFx2, da.invariant_m);
+			param.parton_coeff_s = pdfreader(3, da.PDFx1, da.m.sys) *
+								   pdfreader(-3, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_s * buffer[0];
-			param.parton_coeff_s = pdfreader(-3, da.PDFx1, da.invariant_m) *
-								   pdfreader(3, da.PDFx2, da.invariant_m);
+			param.parton_coeff_s = pdfreader(-3, da.PDFx1, da.m.sys) *
+								   pdfreader(3, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_s * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_s * (buffer[0] + buffer[1]);
@@ -2517,21 +2520,21 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 
 	/// Up quark block. Up type (c-like)
 	if (param.parton_coeff_u != 0) {
-		params_MG.set_block_entry("mass", 4, params_m_u);
-// 		params_MG.set_block_entry("heff", 11, params_rhou01);
-// 		params_MG.set_block_entry("heff", 12, params_rhou02);
-		params_MG.set_block_entry("vec", 7, params_rhou11);
-		params_MG.set_block_entry("vec", 8, params_rhou12);
-		params_MG.set_block_entry("vec", 9, params_rhou13);
-		params_MG.set_block_entry("vec", 10, params_rhou14);
-		params_MG.set_block_entry("gravity", 25, params_rhou21);
-		params_MG.set_block_entry("gravity", 26, params_rhou22);
-		params_MG.set_block_entry("gravity", 27, params_rhou23);
-		params_MG.set_block_entry("gravity", 28, params_rhou24);
+		params_MG.set_block_entry("mass", 4, da.m.u);
+// 		params_MG.set_block_entry("heff", 11, da.c.rhou01);
+// 		params_MG.set_block_entry("heff", 12, da.c.rhou02);
+		params_MG.set_block_entry("vec", 7, da.c.rhou11);
+		params_MG.set_block_entry("vec", 8, da.c.rhou12);
+		params_MG.set_block_entry("vec", 9, da.c.rhou13);
+		params_MG.set_block_entry("vec", 10, da.c.rhou14);
+		params_MG.set_block_entry("gravity", 25, da.c.rhou21);
+		params_MG.set_block_entry("gravity", 26, da.c.rhou22);
+		params_MG.set_block_entry("gravity", 27, da.c.rhou23);
+		params_MG.set_block_entry("gravity", 28, da.c.rhou24);
 		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
-						   params_m_u * params_m_u);
+						   da.m.u * da.m.u);
 		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
-							params_m_u * params_m_u);
+							da.m.u * da.m.u);
 
 		Generic_ME_c.updateProc(params_MG);
 		Generic_ME_c.setMomenta(da.p);
@@ -2539,11 +2542,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_u = pdfreader(2, da.PDFx1, da.invariant_m) *
-								   pdfreader(-2, da.PDFx2, da.invariant_m);
+			param.parton_coeff_u = pdfreader(2, da.PDFx1, da.m.sys) *
+								   pdfreader(-2, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_u * buffer[0];
-			param.parton_coeff_u = pdfreader(-2, da.PDFx1, da.invariant_m) *
-								   pdfreader(2, da.PDFx2, da.invariant_m);
+			param.parton_coeff_u = pdfreader(-2, da.PDFx1, da.m.sys) *
+								   pdfreader(2, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_u * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_u * (buffer[0] + buffer[1]);
@@ -2551,21 +2554,21 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 
 	/// Charm quark block. Up type (c-like)
 	if (param.parton_coeff_c != 0) {
-		params_MG.set_block_entry("mass", 4, params_m_c);
-// 		params_MG.set_block_entry("heff", 11, params_rhoc01);
-// 		params_MG.set_block_entry("heff", 12, params_rhoc02);
-		params_MG.set_block_entry("vec", 7, params_rhoc11);
-		params_MG.set_block_entry("vec", 8, params_rhoc12);
-		params_MG.set_block_entry("vec", 9, params_rhoc13);
-		params_MG.set_block_entry("vec", 10, params_rhoc14);
-		params_MG.set_block_entry("gravity", 25, params_rhoc21);
-		params_MG.set_block_entry("gravity", 26, params_rhoc22);
-		params_MG.set_block_entry("gravity", 27, params_rhoc23);
-		params_MG.set_block_entry("gravity", 28, params_rhoc24);
+		params_MG.set_block_entry("mass", 4, da.m.c);
+// 		params_MG.set_block_entry("heff", 11, da.c.rhoc01);
+// 		params_MG.set_block_entry("heff", 12, da.c.rhoc02);
+		params_MG.set_block_entry("vec", 7, da.c.rhoc11);
+		params_MG.set_block_entry("vec", 8, da.c.rhoc12);
+		params_MG.set_block_entry("vec", 9, da.c.rhoc13);
+		params_MG.set_block_entry("vec", 10, da.c.rhoc14);
+		params_MG.set_block_entry("gravity", 25, da.c.rhoc21);
+		params_MG.set_block_entry("gravity", 26, da.c.rhoc22);
+		params_MG.set_block_entry("gravity", 27, da.c.rhoc23);
+		params_MG.set_block_entry("gravity", 28, da.c.rhoc24);
 		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] -
-						   params_m_c * params_m_c);
+						   da.m.c * da.m.c);
 		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] -
-							params_m_c * params_m_c);
+							da.m.c * da.m.c);
 
 		Generic_ME_c.updateProc(params_MG);
 		Generic_ME_c.setMomenta(da.p);
@@ -2573,11 +2576,11 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_c = pdfreader(4, da.PDFx1, da.invariant_m) *
-								   pdfreader(-4, da.PDFx2, da.invariant_m);
+			param.parton_coeff_c = pdfreader(4, da.PDFx1, da.m.sys) *
+								   pdfreader(-4, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_c * buffer[0];
-			param.parton_coeff_c = pdfreader(-4, da.PDFx1, da.invariant_m) *
-								   pdfreader(4, da.PDFx2, da.invariant_m);
+			param.parton_coeff_c = pdfreader(-4, da.PDFx1, da.m.sys) *
+								   pdfreader(4, da.PDFx2, da.m.sys);
 			Signal_ME += param.parton_coeff_c * buffer[1];
 		} else
 			Signal_ME += param.parton_coeff_c * (buffer[0] + buffer[1]);
@@ -2585,7 +2588,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 
 	// return to real mass. Used in Z -> 4l
 	if (flag.Use_mZ4l_eq_m4l)
-		params_MG.set_block_entry("mass", 23, params_m_Z);
+		params_MG.set_block_entry("mass", 23, da.m.Z);
 
 	return 0;
 }
