@@ -165,15 +165,17 @@ int MEKD_Test_Check_Models_Test2(input &in)
 	MEKD test2A(modelsA);
 	test2.eval_MEs(in, MEs);
 	test2A.eval_MEs(inA, MEsA);
-	for (unsigned int count_model = 0; count_model < models.size();
-		 ++count_model) {
-		cout << setw(30) << left << "Result for " << setw(15) << left
-			 << models_v2[count_model] << ": " << MEs[count_model] << endl;
+    {
+        const unsigned int size = MEs.size();
+        for (unsigned int count_model = 0; count_model < size; ++count_model) {
+            cout << setw(30) << left << "Result for " << setw(15) << left
+                << models_v2[count_model] << ": " << MEs[count_model] << endl;
 
-		cout << setw(30) << left << "Result for (with a photon)" << setw(15)
-			 << left << models_v2[count_model] << ": " << MEsA[count_model]
-			 << endl;
-	}
+            cout << setw(30) << left << "Result for (with a photon)"
+                 << setw(15) << left << models_v2[count_model] << ": "
+                 << MEsA[count_model] << endl;
+        }
+    }
 
 	if (Show_Description) {
 		cout << "\n ------------------------------------------------ \n";
@@ -198,15 +200,17 @@ int MEKD_Test_Check_Models_Test2(input &in)
 	
 	test2.eval_MEs(in, MEs);
 	test2A.eval_MEs(inA, MEsA);
-	for (unsigned int count_model = 0; count_model < models.size();
-		 ++count_model) {
-		cout << setw(30) << left << "Result for " << setw(15) << left
-			 << models_v2[count_model] << ": " << MEs[count_model] << endl;
+    {
+        const unsigned int size = MEs.size();
+        for (unsigned int count_model = 0; count_model < size; ++count_model) {
+            cout << setw(30) << left << "Result for " << setw(15) << left
+                << models_v2[count_model] << ": " << MEs[count_model] << endl;
 
-		cout << setw(30) << left << "Result for (with a photon)" << setw(15)
-			 << left << models_v2[count_model] << ": " << MEsA[count_model]
-			 << endl;
-	}
+            cout << setw(30) << left << "Result for (with a photon)"
+                 << setw(15) << left << models_v2[count_model] << ": "
+                 << MEsA[count_model] << endl;
+        }
+    }
 	
 	// revert input
 	(*in.id)[0] = 11;

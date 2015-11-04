@@ -10,7 +10,7 @@
 namespace mekd
 {
 
-/// 6 4-momenta printout
+/// 7 4-momenta printout
 void MEKD::Print_4momenta(const vector<double *> &p)
 {
 	printf("Initial state:\n");
@@ -38,6 +38,29 @@ void MEKD::Print_4momenta(const vector<double *> &p)
 							  p[5][3] + p[6][3]));
 	printf("Sum E=%.10E\n", (p[2][0] + p[3][0] + p[4][0] +
 							 p[5][0] + p[6][0]));
+}
+
+void MEKD::Print_4momenta_auto(const vector<double *> &p)
+{
+    double p0 = 0;
+    double p1 = 0;
+    double p2 = 0;
+    double p3 = 0;
+    for (auto i: p) {
+        const double ip0 = i[0];
+        const double ip1 = i[1];
+        const double ip2 = i[2];
+        const double ip3 = i[3];
+        printf("%.10E %.10E %.10E %.10E\n", ip0, ip1, ip2, ip3);
+        p0 += ip0;
+        p1 += ip1;
+        p2 += ip2;
+        p3 += ip3;
+    }
+    printf("Sum p[0]=%.10E\n", p0);
+    printf("Sum p[1]=%.10E\n", p1);
+    printf("Sum p[2]=%.10E\n", p2);
+    printf("Sum p[3]=%.10E\n", p3);
 }
 
 /// end of namespace

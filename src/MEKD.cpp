@@ -30,43 +30,42 @@ MEKD::MEKD()
 
 	Check_MEs();
 
-	idata.p.reserve(7);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]);
-	idata.p.push_back(new double[4]); // a photon comes here, otherwise, unused
+	idata.fp.reserve(5);
+	idata.fp.push_back(new double[4]);
+	idata.fp.push_back(new double[4]);
+	idata.fp.push_back(new double[4]);
+	idata.fp.push_back(new double[4]);
+	idata.fp.push_back(new double[4]); // a photon comes here, otherwise, unused
 
-	idata.id.reserve(5);
-	idata.id.push_back(id1);
-	idata.id.push_back(id2);
-	idata.id.push_back(id3);
-	idata.id.push_back(id4);
-	idata.id.push_back(id5);
+	idata.p.reserve(7);
+	idata.p.push_back(new double[4]);  // in parton 1
+	idata.p.push_back(new double[4]);  // in parton 2
+    for (auto i: idata.fp)
+        idata.p.push_back(i);
+
+	idata.id.resize(5, 10000); // idata.id.reserve(5);
     
     idata.mix_coeffs_Spin0 = NULL;
     idata.mix_coeffs_Spin1 = NULL;
     idata.mix_coeffs_Spin2 = NULL;
 
-	p1 = new double[4];
-	p2 = new double[4];
-	p3 = new double[4];
-	p4 = new double[4];
-	p5 = new double[4];
-
-	id1 = 10000;
-	id2 = 10000;
-	id3 = 10000;
-	id4 = 10000;
-	id5 = 10000;
-
+// 	p1 = new double[4];
+// 	p2 = new double[4];
+// 	p3 = new double[4];
+// 	p4 = new double[4];
+// 	p5 = new double[4];
+// 
+// 	id1 = 10000;
+// 	id2 = 10000;
+// 	id3 = 10000;
+// 	id4 = 10000;
+// 	id5 = 10000;
+/*
 	pl1_internal = NULL;
 	pl2_internal = NULL;
 	pl3_internal = NULL;
 	pl4_internal = NULL;
-	pA1_internal = NULL;
+	pA1_internal = NULL;*/
 }
 
 /*
@@ -153,26 +152,31 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 {
 	if (ME2.size() != ME_runners.size())
 		ME2.resize(ME_runners.size(), 0);
-	cerr << "FIX ME!\n";
-	/* Added block */
-	p1 = (*in.p)[0];
-	p2 = (*in.p)[1];
-	p3 = (*in.p)[2];
-	p4 = (*in.p)[3];
-	
-	id1 = (*in.id)[0];
-	id2 = (*in.id)[1];
-	id3 = (*in.id)[2];
-	id4 = (*in.id)[3];
-	if ((*in.p).size() > 4) {
-		p5 = (*in.p)[4];
-		id5 = (*in.id)[4];
-	}
-	/* End of added block */
+    
+    {
+        const unsigned int in_id_size = (*in.id).size();
+        const unsigned int size = idata.id.size();
+        
+        for (unsigned int i = 0; i < size; ++i) {
+            if (i < in_id_size) {
+                idata.id[i] = (*in.id)[i];
+                idata.fp[i][0] = (*in.p)[i][0];
+                idata.fp[i][1] = (*in.p)[i][1];
+                idata.fp[i][2] = (*in.p)[i][2];
+                idata.fp[i][3] = (*in.p)[i][3];
+            } else {
+                idata.id[i] = 10000;
+                idata.fp[i][0] = 0;
+                idata.fp[i][1] = 0;
+                idata.fp[i][2] = 0;
+                idata.fp[i][3] = 0;
+            }
+        }
+    }
 	
 	if (!param.loaded)
 		Load_parameters(param, idata);
-	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
+	if (Arrange_4momenta(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
 	}
@@ -207,16 +211,37 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	}
 }
 
-int MEKD::Run()
+int MEKD::Run(const input &in)
 {
     // linking pointers. Version 2 or earlier compatibility hack
     idata.mix_coeffs_Spin0 = m_Mixing_Coefficients_Spin0;
     idata.mix_coeffs_Spin1 = m_Mixing_Coefficients_Spin1;
     idata.mix_coeffs_Spin2 = m_Mixing_Coefficients_Spin2;
     
+    {
+        const unsigned int in_id_size = (*in.id).size();
+        const unsigned int size = idata.id.size();
+        
+        for (unsigned int i = 0; i < size; ++i) {
+            if (i < in_id_size) {
+                idata.id[i] = (*in.id)[i];
+                idata.fp[i][0] = (*in.p)[i][0];
+                idata.fp[i][1] = (*in.p)[i][1];
+                idata.fp[i][2] = (*in.p)[i][2];
+                idata.fp[i][3] = (*in.p)[i][3];
+            } else {
+                idata.id[i] = 10000;
+                idata.fp[i][0] = 0;
+                idata.fp[i][1] = 0;
+                idata.fp[i][2] = 0;
+                idata.fp[i][3] = 0;
+            }
+        }
+    }
+    
 	if (!param.loaded)
 		Load_parameters(param, idata);
-	if (Arrange_Internal_pls(idata) == 1) {	// loads&arranges plX_internal
+	if (Arrange_4momenta(idata) == 1) {	// loads&arranges plX_internal
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
 	}
@@ -252,13 +277,13 @@ int MEKD::Run()
 	return 0;
 }
 
-int MEKD::Run(string Input_Model)
+int MEKD::Run(const input &in, string Input_Model)
 {
 	const string buff = Test_Model;
 	Test_Model = "!";
 	Test_Model += Input_Model;
 
-	int error_value = Run();
+	int error_value = Run(in);
 
 	Test_Model = buff;
 	return error_value;
@@ -801,38 +826,13 @@ void MEKD::Run_calculate(data &da)
 
 void MEKD::Load_p_set(data &da)
 {
-	for (int i = 0; i < 4; ++i) {
+	for (unsigned int i = 0; i < 4; ++i) {
 		da.p[0][i] = 0;
 		da.p[1][i] = 0;
-
-		if (pl1_internal == NULL)
-			da.p[2][i] = 0;
-		else
-			da.p[2][i] = pl1_internal[i];
-		if (pl2_internal == NULL)
-			da.p[3][i] = 0;
-		else
-			da.p[3][i] = pl2_internal[i];
-		if (pl3_internal == NULL)
-			da.p[4][i] = 0;
-		else
-			da.p[4][i] = pl3_internal[i];
-		if (pl4_internal == NULL)
-			da.p[5][i] = 0;
-		else
-			da.p[5][i] = pl4_internal[i];
-
-		// Adaptive photon handling
-		if (pA1_internal == NULL)
-			da.p[6][i] = 0;
-		else {
-			if (da.fs == final_2muA) {
-				da.p[4][i] = pA1_internal[i];
-				da.p[6][i] = 0;
-			} else
-				da.p[6][i] = pA1_internal[i];
-		}
 	}
+	
+	for (unsigned int i = 0; i < da.fp.size(); ++i)
+        da.p[i + 2] = da.fp[i];
 }
 
 // exact mT/sqrt_s * (e^eta3 + e^eta4), mt=sqrt(m^2+pT^2), 12 -> 34
@@ -1596,33 +1596,17 @@ int MEKD::computeKD(const string &processA, const string &processB,
 		return return_code;
 
 	/// Set input-particle kinematics
-	p1 = input_Ps[0];
-	id1 = input_IDs[0];
-	p2 = input_Ps[1];
-	id2 = input_IDs[1];
-	if (input_IDs.size() >= 3) {
-		p3 = input_Ps[2];
-		id3 = input_IDs[2];
-	} else
-		id3 = 0;
-	if (input_IDs.size() >= 4) {
-		p4 = input_Ps[3];
-		id4 = input_IDs[3];
-	} else
-		id4 = 0;
-	if (input_IDs.size() >= 5) {
-		p5 = input_Ps[4];
-		id5 = input_IDs[4];
-	} else
-		id5 = 0;
+    input in;
+    in.p = const_cast<vector<double *> *>(&input_Ps);
+    in.id = const_cast<vector<int> *>(&input_IDs);
 
 	/// Compute ME for process A only (e.g. signal 1)
-	return_code = Run(m_processA);
+	return_code = Run(in, m_processA);
 	/// Get ME for process A
 	me2processA = Signal_ME;
 
 	/// Compute ME for process B only (e.g. signal 2 or background)
-	return_code = Run(m_processB);
+	return_code = Run(in, m_processB);
 	/// Get ME for process B
 	me2processB = Signal_ME;
 	/// Build Kinematic Discriminant (KD) as a ratio of logs of MEs
@@ -1652,28 +1636,12 @@ int MEKD::computeME(const string &processName,
 		return return_code;
 
 	/// Set input-particle kinematics
-	p1 = input_Ps[0];
-	id1 = input_IDs[0];
-	p2 = input_Ps[1];
-	id2 = input_IDs[1];
-	if (input_IDs.size() >= 3) {
-		p3 = input_Ps[2];
-		id3 = input_IDs[2];
-	} else
-		id3 = 0;
-	if (input_IDs.size() >= 4) {
-		p4 = input_Ps[3];
-		id4 = input_IDs[3];
-	} else
-		id4 = 0;
-	if (input_IDs.size() >= 5) {
-		p5 = input_Ps[4];
-		id5 = input_IDs[4];
-	} else
-		id5 = 0;
+    input in;
+    in.p = const_cast<vector<double *> *>(&input_Ps);
+    in.id = const_cast<vector<int> *>(&input_IDs);
 
 	/// Compute ME for the process (e.g. signal 1)
-	return_code = Run(m_process);
+	return_code = Run(in, m_process);
 	/// Get ME for the process
 	me2process = Signal_ME;
 
@@ -1738,28 +1706,12 @@ int MEKD::computeMEs(const vector<double *> &input_Ps,
 		return EXIT_ERROR_PROCESS;
 
 	/// Set input-particle kinematics
-	p1 = input_Ps[0];
-	id1 = input_IDs[0];
-	p2 = input_Ps[1];
-	id2 = input_IDs[1];
-	if (input_IDs.size() >= 3) {
-		p3 = input_Ps[2];
-		id3 = input_IDs[2];
-	} else
-		id3 = 0;
-	if (input_IDs.size() >= 4) {
-		p4 = input_Ps[3];
-		id4 = input_IDs[3];
-	} else
-		id4 = 0;
-	if (input_IDs.size() >= 5) {
-		p5 = input_Ps[4];
-		id5 = input_IDs[4];
-	} else
-		id5 = 0;
+    input in;
+    in.p = const_cast<vector<double *> *>(&input_Ps);
+    in.id = const_cast<vector<int> *>(&input_IDs);
 
 	/// Compute MEs
-	return_code = Run();
+	return_code = Run(in);
 
 	/// ME value readouts
 	ME_ZZ = Signal_MEs[0];

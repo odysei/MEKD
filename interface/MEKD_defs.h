@@ -123,8 +123,9 @@ struct couplings {
 struct data {
     final_state_types_ fs;  //final_state_types_ final_state_;
 
-	std::vector<double> id;
-	std::vector<double *> p;
+	std::vector<int> id;
+	std::vector<double *> fp;  // final state p
+	std::vector<double *> p;   // with initial state partons
     
     double PDFx1, PDFx2;
     

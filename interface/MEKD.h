@@ -119,8 +119,8 @@ class MEKD
     data idata;
 
 	/// Final-state lepton/photon information; Version 2 and earlier
-	double *p1, *p2, *p3, *p4, *p5;
-	double id1, id2, id3, id4, id5;
+// 	double *p1, *p2, *p3, *p4, *p5;
+// 	double id1, id2, id3, id4, id5;
 
 	/// String flags and file locations
 	string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
@@ -143,11 +143,12 @@ class MEKD
 	void Check_MEs();
 	
 	/// Run-related functions
-	int Run();	// main routine to evaluate matrix elements; updates
+	int Run(const input &);	// main routine to evaluate matrix elements; updates
 				// "Calculation results"
-	int Run(string Input_Model);	// Calculates a ME ONLY for a chosen model;
-									// ignores automatic background
-									// calculation. Updates Signal_ME
+	int Run(const input &, string Input_Model);	// Calculates a ME ONLY for a
+                                            // chosen model; ignores automatic 
+                                            // background calculation.
+                                            // Updates Signal_ME
 	void Run_make_p(data &);
     void Run_make_p_boost(const int, data &);    // int = 0: CM; 1: pT0
 	void Run_calculate(data &);
@@ -340,8 +341,8 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
      */
     // private:
 	// used by sorter, allows shuffling p_set
-	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
-		*pA1_internal;
+// 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
+// 		*pA1_internal;
 
 	/// Internal functions ///
 	string Find_local_file(const string &input_f);
@@ -354,9 +355,10 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
 	int Reload_params(parameters &, data &);
 	
 	void Print_4momenta(const vector<double *> &);
+    void Print_4momenta_auto(const vector<double *> &);
 
 	//int Arrange_Internal_pls(process_description &);	// updates description
-	int Arrange_Internal_pls(data &d);	// temp
+	int Arrange_4momenta(data &d);	// temp
 
 	/// Sets up particular choices. Tier 3
 	int Run_ME_Configurator_BKG_ZZ(const process_description &,
