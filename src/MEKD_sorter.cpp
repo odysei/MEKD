@@ -10,76 +10,48 @@
 namespace mekd
 {
 // helper function, can be exported
-int MEKD::Arrange_4momenta(data &da)
+int MEKD::Arrange_4momenta(vector<pair<int, double *> > &id_p,
+                           vector<double *> &p,
+                           final_state_types_ &fs)
 {
-    vector<int> id(da.id);
-    vector<double *> p(da.fp);
+    for (auto it = id_p.begin(); it != id_p.end(); ++it) {
+        if ((*it).first == 0)
+            (*it).first = 10000;
+    }
     
-// 	id[0] = id1;
-// 	id[1] = id2;
-// 	id[2] = id3;
-// 	id[3] = id4;
-// 	id[4] = id5;
-
-	if (id[0] == 0)
-		id[0] = 10000;
-	if (id[1] == 0)
-		id[1] = 10000;
-	if (id[2] == 0)
-		id[2] = 10000;
-	if (id[3] == 0)
-		id[3] = 10000;
-	if (id[4] == 0)
-		id[4] = 10000;
-	sort(id.begin(), id.end());
+	sort(id_p.begin(), id_p.end());
+    
+    if (id_p.size() != 5)
+        return EXIT_ERROR_INPUT;
+    
+    // for size 5
+    const int id0 = id_p[0].first;
+    const int id1 = id_p[1].first;
+    const int id2 = id_p[2].first;
+    const int id3 = id_p[3].first;
+    const int id4 = id_p[4].first;
 
 	////////////////////////////
 	/// 2mu-decay-mode block ///
 	////////////////////////////
 
 	/// Two-lepton final state block
-	if (id[0] == -13 && id[1] == 13 && id[2] == 10000 &&
-		id[3] == 10000 && id[4] == 10000) {
-		if (da.id[0] == 13)
-			da.fp[0] = p[0];
-		if (da.id[1] == 13)
-			da.fp[0] = p[1];
-
-		if (da.id[0] == -13)
-			da.fp[1] = p[0];
-		if (da.id[1] == -13)
-			da.fp[1] = p[1];
-
-// 		da.fp[4] = NULL;
-		da.fs = final_2mu;
+	if (id0 == -13 && id1 == 13 && id2 == 10000 &&
+		id3 == 10000 && id4 == 10000) {
+		p[2] = id_p[1].second;
+        p[3] = id_p[0].second;
+		fs = final_2mu;
 
 		return 0;
 	}
 
 	/// Two-lepton + photon final state block
-	if (id[0] == -13 && id[1] == 13 && id[2] == 22 &&
-		id[3] == 10000 && id[4] == 10000) {
-		if (da.id[0] == 13)
-			da.fp[0] = p[0];
-		if (da.id[1] == 13)
-			da.fp[0] = p[1];
-		if (da.id[2] == 13)
-			da.fp[0] = p[2];
-
-		if (da.id[0] == -13)
-			da.fp[1] = p[0];
-		if (da.id[1] == -13)
-			da.fp[1] = p[1];
-		if (da.id[2] == -13)
-			da.fp[1] = p[2];
-
-		if (da.id[0] == 22)
-			da.fp[4] = p[0];
-		if (da.id[1] == 22)
-			da.fp[4] = p[1];
-		if (da.id[2] == 22)
-			da.fp[4] = p[2];
-		da.fs = final_2muA;
+	if (id0 == -13 && id1 == 13 && id2 == 22 &&
+		id3 == 10000 && id4 == 10000) {
+        p[2] = id_p[1].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[2].second;
+		fs = final_2muA;
 
 		return 0;
 	}
@@ -89,359 +61,89 @@ int MEKD::Arrange_4momenta(data &da)
 	///////////////////////////
 
 	/// Four-lepton final state block
-	if (id[0] == -13 && id[1] == -11 && id[2] == 11 &&
-		id[3] == 13 && id[4] == 10000) {
-		if (da.id[0] == 11)
-			da.fp[0] = p[0];
-		if (da.id[1] == 11)
-			da.fp[0] = p[1];
-		if (da.id[2] == 11)
-			da.fp[0] = p[2];
-		if (da.id[3] == 11)
-			da.fp[0] = p[3];
-
-		if (da.id[0] == -11)
-			da.fp[1] = p[0];
-		if (da.id[1] == -11)
-			da.fp[1] = p[1];
-		if (da.id[2] == -11)
-			da.fp[1] = p[2];
-		if (da.id[3] == -11)
-			da.fp[1] = p[3];
-
-		if (da.id[0] == 13)
-			da.fp[2] = p[0];
-		if (da.id[1] == 13)
-			da.fp[2] = p[1];
-		if (da.id[2] == 13)
-			da.fp[2] = p[2];
-		if (da.id[3] == 13)
-			da.fp[2] = p[3];
-
-		if (da.id[0] == -13)
-			da.fp[3] = p[0];
-		if (da.id[1] == -13)
-			da.fp[3] = p[1];
-		if (da.id[2] == -13)
-			da.fp[3] = p[2];
-		if (da.id[3] == -13)
-			da.fp[3] = p[3];
-
-// 		da.fp[4] = NULL;
-		da.fs = final_2e2mu;
+	if (id0 == -13 && id1 == -11 && id2 == 11 &&
+		id3 == 13 && id4 == 10000) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[1].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[0].second;
+		fs = final_2e2mu;
 
 		return 0;
 	}
 
-	if (id[0] == -13 && id[1] == -13 && id[2] == 13 &&
-		id[3] == 13 && id[4] == 10000) {
-		bool caught = false; // first muon has beed caught
-		if (da.id[0] == 13 && !caught) {
-			da.fp[0] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == 13 && caught)
-			da.fp[2] = p[1];
-		if (da.id[1] == 13 && !caught) {
-			da.fp[0] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == 13 && caught)
-			da.fp[2] = p[2];
-		if (da.id[2] == 13 && !caught) {
-			da.fp[0] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == 13 && caught)
-			da.fp[2] = p[3];
-
-		caught = false; // first antimuon has beed caught
-		if (da.id[0] == -13 && !caught) {
-			da.fp[1] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == -13 && caught)
-			da.fp[3] = p[1];
-		if (da.id[1] == -13 && !caught) {
-			da.fp[1] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == -13 && caught)
-			da.fp[3] = p[2];
-		if (da.id[2] == -13 && !caught) {
-			da.fp[1] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == -13 && caught)
-			da.fp[3] = p[3];
-
-// 		da.fp[4] = NULL;
-		da.fs = final_4mu;
+	if (id0 == -13 && id1 == -13 && id2 == 13 &&
+		id3 == 13 && id4 == 10000) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[1].second;
+		fs = final_4mu;
 
 		return 0;
 	}
 
-	if (id[0] == -11 && id[1] == -11 && id[2] == 11 &&
-		id[3] == 11 && id[4] == 10000) {
-		bool caught = false; // first electron has beed caught
-		if (da.id[0] == 11 && !caught) {
-			da.fp[0] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == 11 && caught)
-			da.fp[2] = p[1];
-		if (da.id[1] == 11 && !caught) {
-			da.fp[0] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == 11 && caught)
-			da.fp[2] = p[2];
-		if (da.id[2] == 11 && !caught) {
-			da.fp[0] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == 11 && caught)
-			da.fp[2] = p[3];
-
-		caught = false; // first positron has beed caught
-		if (da.id[0] == -11 && !caught) {
-			da.fp[1] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == -11 && caught)
-			da.fp[3] = p[1];
-		if (da.id[1] == -11 && !caught) {
-			da.fp[1] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == -11 && caught)
-			da.fp[3] = p[2];
-		if (da.id[2] == -11 && !caught) {
-			da.fp[1] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == -11 && caught)
-			da.fp[3] = p[3];
-
-// 		da.fp[4] = NULL;
-		da.fs = final_4e;
+	if (id0 == -11 && id1 == -11 && id2 == 11 &&
+		id3 == 11 && id4 == 10000) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[1].second;
+		fs = final_4e;
 
 		return 0;
 	}
 
 	/// Four-lepton + photon final state block
-	if (id[0] == -13 && id[1] == -11 && id[2] == 11 &&
-		id[3] == 13 && id[4] == 22) {
-		if (da.id[0] == 11)
-			da.fp[0] = p[0];
-		if (da.id[1] == 11)
-			da.fp[0] = p[1];
-		if (da.id[2] == 11)
-			da.fp[0] = p[2];
-		if (da.id[3] == 11)
-			da.fp[0] = p[3];
-		if (da.id[4] == 11)
-			da.fp[0] = p[4];
-
-		if (da.id[0] == -11)
-			da.fp[1] = p[0];
-		if (da.id[1] == -11)
-			da.fp[1] = p[1];
-		if (da.id[2] == -11)
-			da.fp[1] = p[2];
-		if (da.id[3] == -11)
-			da.fp[1] = p[3];
-		if (da.id[4] == -11)
-			da.fp[0] = p[4];
-
-		if (da.id[0] == 13)
-			da.fp[2] = p[0];
-		if (da.id[1] == 13)
-			da.fp[2] = p[1];
-		if (da.id[2] == 13)
-			da.fp[2] = p[2];
-		if (da.id[3] == 13)
-			da.fp[2] = p[3];
-		if (da.id[4] == 13)
-			da.fp[2] = p[4];
-
-		if (da.id[0] == -13)
-			da.fp[3] = p[0];
-		if (da.id[1] == -13)
-			da.fp[3] = p[1];
-		if (da.id[2] == -13)
-			da.fp[3] = p[2];
-		if (da.id[3] == -13)
-			da.fp[3] = p[3];
-		if (da.id[4] == -13)
-			da.fp[3] = p[4];
-
-		if (da.id[0] == 22)
-			da.fp[4] = p[0];
-		if (da.id[1] == 22)
-			da.fp[4] = p[1];
-		if (da.id[2] == 22)
-			da.fp[4] = p[2];
-		if (da.id[3] == 22)
-			da.fp[4] = p[3];
-		if (da.id[4] == 22)
-			da.fp[4] = p[4];
-		da.fs = final_2e2muA;
+	if (id0 == -13 && id1 == -11 && id2 == 11 &&
+		id3 == 13 && id4 == 22) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[1].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[0].second;
+        p[6] = id_p[4].second;
+		fs = final_2e2muA;
 
 		return 0;
 	}
 
-	if (id[0] == -13 && id[1] == -13 && id[2] == 13 &&
-		id[3] == 13 && id[4] == 22) {
-		bool caught = false; // first muon has beed caught
-		if (da.id[0] == 13 && !caught) {
-			da.fp[0] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == 13 && caught)
-			da.fp[2] = p[1];
-		if (da.id[1] == 13 && !caught) {
-			da.fp[0] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == 13 && caught)
-			da.fp[2] = p[2];
-		if (da.id[2] == 13 && !caught) {
-			da.fp[0] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == 13 && caught)
-			da.fp[2] = p[3];
-		if (da.id[3] == 13 && !caught) {
-			da.fp[0] = p[3];
-			caught = true;
-		}
-		if (da.id[4] == 13 && caught)
-			da.fp[2] = p[4];
-
-		caught = false; // first antimuon has beed caught
-		if (da.id[0] == -13 && !caught) {
-			da.fp[1] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == -13 && caught)
-			da.fp[3] = p[1];
-		if (da.id[1] == -13 && !caught) {
-			da.fp[1] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == -13 && caught)
-			da.fp[3] = p[2];
-		if (da.id[2] == -13 && !caught) {
-			da.fp[1] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == -13 && caught)
-			da.fp[3] = p[3];
-		if (da.id[3] == -13 && !caught) {
-			da.fp[1] = p[3];
-			caught = true;
-		}
-		if (da.id[4] == -13 && caught)
-			da.fp[3] = p[4];
-
-		if (da.id[0] == 22)
-			da.fp[4] = p[0];
-		if (da.id[1] == 22)
-			da.fp[4] = p[1];
-		if (da.id[2] == 22)
-			da.fp[4] = p[2];
-		if (da.id[3] == 22)
-			da.fp[4] = p[3];
-		if (da.id[4] == 22)
-			da.fp[4] = p[4];
-		da.fs = final_4muA;
+	if (id0 == -13 && id1 == -13 && id2 == 13 &&
+		id3 == 13 && id4 == 22) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[1].second;
+        p[6] = id_p[4].second;
+		fs = final_4muA;
 
 		return 0;
 	}
 
-	if (id[0] == -11 && id[1] == -11 && id[2] == 11 &&
-		id[3] == 11 && id[4] == 22) {
-		bool caught = false; // first electron has beed caught
-		if (da.id[0] == 11 && !caught) {
-			da.fp[0] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == 11 && caught)
-			da.fp[2] = p[1];
-		if (da.id[1] == 11 && !caught) {
-			da.fp[0] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == 11 && caught)
-			da.fp[2] = p[2];
-		if (da.id[2] == 11 && !caught) {
-			da.fp[0] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == 11 && caught)
-			da.fp[2] = p[3];
-		if (da.id[3] == 11 && !caught) {
-			da.fp[0] = p[3];
-			caught = true;
-		}
-		if (da.id[4] == 11 && caught)
-			da.fp[2] = p[4];
-
-		caught = false; // first positron has beed caught
-		if (da.id[0] == -11 && !caught) {
-			da.fp[1] = p[0];
-			caught = true;
-		}
-		if (da.id[1] == -11 && caught)
-			da.fp[3] = p[1];
-		if (da.id[1] == -11 && !caught) {
-			da.fp[1] = p[1];
-			caught = true;
-		}
-		if (da.id[2] == -11 && caught)
-			da.fp[3] = p[2];
-		if (da.id[2] == -11 && !caught) {
-			da.fp[1] = p[2];
-			caught = true;
-		}
-		if (da.id[3] == -11 && caught)
-			da.fp[3] = p[3];
-		if (da.id[3] == -11 && !caught) {
-			da.fp[1] = p[3];
-			caught = true;
-		}
-		if (da.id[4] == -11 && caught)
-			da.fp[3] = p[4];
-
-		if (da.id[0] == 22)
-			da.fp[4] = p[0];
-		if (da.id[1] == 22)
-			da.fp[4] = p[1];
-		if (da.id[2] == 22)
-			da.fp[4] = p[2];
-		if (da.id[3] == 22)
-			da.fp[4] = p[3];
-		if (da.id[4] == 22)
-			da.fp[4] = p[4];
-		da.fs = final_4eA;
+	if (id0 == -11 && id1 == -11 && id2 == 11 &&
+		id3 == 11 && id4 == 22) {
+        p[2] = id_p[2].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[3].second;
+        p[5] = id_p[1].second;
+        p[6] = id_p[4].second;
+		fs = final_4eA;
 
 		return 0;
 	}
 
-	if (id[0] == 10000 && id[1] == 10000 && id[2] == 10000 &&
-		id[3] == 10000 && id[4] == 10000) {
+	if (id0 == 10000 && id1 == 10000 && id2 == 10000 &&
+		id3 == 10000 && id4 == 10000) {
 		if (flag.Warning_Mode)
 			cout << "Warning. Particle ids are not set. Assuming a proper "
 					"input-particle configuration.\n";
 		if (flag.Warning_Mode)
 			cout << "Proceeding according to a specified final state ("
-				 << da.fs << ").\n";
-		da.fp[0] = p[0];
-		da.fp[1] = p[1];
-		da.fp[2] = p[2];
-		da.fp[3] = p[3];
-		da.fp[4] = p[4];
+				 << fs << ").\n";
+        p[2] = id_p[0].second;
+        p[3] = id_p[1].second;
+        p[4] = id_p[2].second;
+        p[5] = id_p[3].second;
+        p[6] = id_p[4].second;
 
 		return 0;
 	}

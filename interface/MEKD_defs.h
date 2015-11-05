@@ -9,6 +9,8 @@
 
 #include "MEKD.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -101,19 +103,19 @@ struct masses {
 
 struct couplings {
     // spin 0
-	std::complex<double> rhou01, rhou02, rhoc01, rhoc02,
+	complex<double> rhou01, rhou02, rhoc01, rhoc02,
 		rhod01, rhod02, rhos01, rhos02,
 		rhob01, rhob02;
         
     // spin 1
-	std::complex<double> rhou11, rhou12, rhou13, rhou14,
+	complex<double> rhou11, rhou12, rhou13, rhou14,
 		rhoc11, rhoc12, rhoc13, rhoc14,
 		rhod11, rhod12, rhod13, rhod14,
 		rhos11, rhos12, rhos13, rhos14,
 		rhob11, rhob12, rhob13, rhob14;
         
     // spin 2
-	std::complex<double> rhou21, rhou22, rhou23, rhou24,
+	complex<double> rhou21, rhou22, rhou23, rhou24,
 		rhoc21, rhoc22, rhoc23, rhoc24,
 		rhod21, rhod22, rhod23, rhod24,
 		rhos21, rhos22, rhos23, rhos24,
@@ -121,23 +123,26 @@ struct couplings {
 };
 
 struct data {
+    // delete
+//     vector<int> id;
+// 	vector<double *> fp;  // final state p
+	
+	vector<pair<int, double *> > id_p;
+	
     final_state_types_ fs;  //final_state_types_ final_state_;
-
-	std::vector<int> id;
-	std::vector<double *> fp;  // final state p
-	std::vector<double *> p;   // with initial state partons
+	vector<double *> p;   // with initial state partons
     
     double PDFx1, PDFx2;
     
     masses m;
     couplings c;
     
-    std::complex<double> *mix_coeffs_Spin0;
-    std::complex<double> *mix_coeffs_Spin1;
-    std::complex<double> *mix_coeffs_Spin2;
-    std::complex<double> mix_coeffs_Spin0_pred[4];
-    std::complex<double> mix_coeffs_Spin1_pred[8];
-    std::complex<double> mix_coeffs_SpinX_pred[20];  // should be max of all
+    complex<double> *mix_coeffs_Spin0;
+    complex<double> *mix_coeffs_Spin1;
+    complex<double> *mix_coeffs_Spin2;
+    complex<double> mix_coeffs_Spin0_pred[4];
+    complex<double> mix_coeffs_Spin1_pred[8];
+    complex<double> mix_coeffs_SpinX_pred[20];  // should be max of all
 };
 
 }

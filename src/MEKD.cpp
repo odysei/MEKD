@@ -29,21 +29,19 @@ MEKD::MEKD()
 	Set_default_params();
 
 	Check_MEs();
-
-	idata.fp.reserve(5);
-	idata.fp.push_back(new double[4]);
-	idata.fp.push_back(new double[4]);
-	idata.fp.push_back(new double[4]);
-	idata.fp.push_back(new double[4]);
-	idata.fp.push_back(new double[4]); // a photon comes here, otherwise, unused
+    
+    idata.id_p.reserve(5);
+    idata.id_p.push_back(pair<int, double *>(10000, new double[4]));
+    idata.id_p.push_back(pair<int, double *>(10000, new double[4]));
+    idata.id_p.push_back(pair<int, double *>(10000, new double[4]));
+    idata.id_p.push_back(pair<int, double *>(10000, new double[4]));
+    idata.id_p.push_back(pair<int, double *>(10000, new double[4]));
 
 	idata.p.reserve(7);
 	idata.p.push_back(new double[4]);  // in parton 1
 	idata.p.push_back(new double[4]);  // in parton 2
-    for (auto i: idata.fp)
-        idata.p.push_back(i);
-
-	idata.id.resize(5, 10000); // idata.id.reserve(5);
+    for (auto i: idata.id_p)
+        idata.p.push_back(i.second);
     
     idata.mix_coeffs_Spin0 = NULL;
     idata.mix_coeffs_Spin1 = NULL;
@@ -92,7 +90,7 @@ MEKD::~MEKD()
 		Unload_pdfreader();
 
 	idata.p.clear();
-	idata.id.clear();
+	idata.id_p.clear();
 	
 	for (auto runner: ME_runners)
 		delete runner;
@@ -155,28 +153,28 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
     
     {
         const unsigned int in_id_size = (*in.id).size();
-        const unsigned int size = idata.id.size();
+        const unsigned int size = idata.id_p.size();
         
         for (unsigned int i = 0; i < size; ++i) {
             if (i < in_id_size) {
-                idata.id[i] = (*in.id)[i];
-                idata.fp[i][0] = (*in.p)[i][0];
-                idata.fp[i][1] = (*in.p)[i][1];
-                idata.fp[i][2] = (*in.p)[i][2];
-                idata.fp[i][3] = (*in.p)[i][3];
+                idata.id_p[i].first = (*in.id)[i];
+                idata.id_p[i].second[0] = (*in.p)[i][0];
+                idata.id_p[i].second[1] = (*in.p)[i][1];
+                idata.id_p[i].second[2] = (*in.p)[i][2];
+                idata.id_p[i].second[3] = (*in.p)[i][3];
             } else {
-                idata.id[i] = 10000;
-                idata.fp[i][0] = 0;
-                idata.fp[i][1] = 0;
-                idata.fp[i][2] = 0;
-                idata.fp[i][3] = 0;
+                idata.id_p[i].first = 10000;
+                idata.id_p[i].second[0] = 0;
+                idata.id_p[i].second[1] = 0;
+                idata.id_p[i].second[2] = 0;
+                idata.id_p[i].second[3] = 0;
             }
         }
     }
 	
 	if (!param.loaded)
 		Load_parameters(param, idata);
-	if (Arrange_4momenta(idata) == 1) {	// loads&arranges plX_internal
+	if (Arrange_4momenta(idata.id_p, idata.p, idata.fs) == 1) {
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
 	}
@@ -220,28 +218,28 @@ int MEKD::Run(const input &in)
     
     {
         const unsigned int in_id_size = (*in.id).size();
-        const unsigned int size = idata.id.size();
+        const unsigned int size = idata.id_p.size();
         
         for (unsigned int i = 0; i < size; ++i) {
             if (i < in_id_size) {
-                idata.id[i] = (*in.id)[i];
-                idata.fp[i][0] = (*in.p)[i][0];
-                idata.fp[i][1] = (*in.p)[i][1];
-                idata.fp[i][2] = (*in.p)[i][2];
-                idata.fp[i][3] = (*in.p)[i][3];
+                idata.id_p[i].first = (*in.id)[i];
+                idata.id_p[i].second[0] = (*in.p)[i][0];
+                idata.id_p[i].second[1] = (*in.p)[i][1];
+                idata.id_p[i].second[2] = (*in.p)[i][2];
+                idata.id_p[i].second[3] = (*in.p)[i][3];
             } else {
-                idata.id[i] = 10000;
-                idata.fp[i][0] = 0;
-                idata.fp[i][1] = 0;
-                idata.fp[i][2] = 0;
-                idata.fp[i][3] = 0;
+                idata.id_p[i].first = 10000;
+                idata.id_p[i].second[0] = 0;
+                idata.id_p[i].second[1] = 0;
+                idata.id_p[i].second[2] = 0;
+                idata.id_p[i].second[3] = 0;
             }
         }
     }
     
 	if (!param.loaded)
 		Load_parameters(param, idata);
-	if (Arrange_4momenta(idata) == 1) {	// loads&arranges plX_internal
+	if (Arrange_4momenta(idata.id_p, idata.p, idata.fs) == 1) {
 		cerr << "Particle id error. Exiting.\n";
 		exit(1);
 	}
@@ -298,7 +296,7 @@ void MEKD::Run_make_p(data &da)
 		da.m.mu = param.Muon_mass;
 	}
 
-	Load_p_set(da);	// load 4-momenta from plX_internal
+	Zero_first_two(da.p);	// zero first two 4-momenta
 	
     /// Calculate values needed for the PDF in the pT=0 frame
 	da.PDFx1 = Get_PDF_x1(da.p);
@@ -824,15 +822,17 @@ void MEKD::Run_calculate(data &da)
 	}
 }
 
-void MEKD::Load_p_set(data &da)
+void MEKD::Zero_first_two(vector<double *> &p)
 {
-	for (unsigned int i = 0; i < 4; ++i) {
-		da.p[0][i] = 0;
-		da.p[1][i] = 0;
-	}
-	
-	for (unsigned int i = 0; i < da.fp.size(); ++i)
-        da.p[i + 2] = da.fp[i];
+    p[0][0] = 0;
+    p[0][1] = 0;
+    p[0][2] = 0;
+    p[0][3] = 0;
+    
+    p[1][0] = 0;
+    p[1][1] = 0;
+    p[1][2] = 0;
+    p[1][3] = 0;
 }
 
 // exact mT/sqrt_s * (e^eta3 + e^eta4), mt=sqrt(m^2+pT^2), 12 -> 34
@@ -898,6 +898,51 @@ void MEKD::Approx_pos_z_parton(double *p, const double E)
 	p[2] = 0;
 	p[3] = -0.5 * E; // to be recalculated
 }
+
+// map<int, vector<double *>> MEKD::Make_map(const vector<int> &id,
+//                                           const vector<double *> &p)
+// {
+//     if (id.size() != p.size()) {
+//         map<int, vector<double *>> empty;
+//         return empty;
+//     }
+//     
+//     vector<int> id_sorted(id);
+//     sort(id_sorted.begin(), id_sorted.end());
+//     
+//     vector<int> unique_ids;
+//     unique_ids.reserve(8);   // guessed nr.
+//     
+//     map<int, unsigned int> id_counts;
+//     {
+//         int prev_diff = -10000;  // WARNING 10000 is custom or empty
+//         for (auto i: id_sorted) {
+//             ++id_counts[i];
+//             if (i != prev_diff) {
+//                 unique_ids.push_back(i);
+//                 prev_diff = i;
+//             }
+//         }
+//     }
+//     
+//     // alocate
+//     map<int, vector<double *>> output;
+//     for (auto unique_id: unique_ids) {
+//         vector<double *> ip;
+//         ip.reserve(id_counts[unique_id]);
+//         
+//         output[unique_id] = ip;
+//     }
+//     
+//     // copy data into new arrays of a map
+//     for (unsigned int i = 0; i < id.size(); ++i)
+//         output[id[i]].push_back(new double[4] {p[i][0],
+//                                                p[i][1],
+//                                                p[i][2],
+//                                                p[i][3]});
+//     
+//     return output;
+// }
 
 /*
  * Version 2 and earlier methods: left for backwards compatibility.

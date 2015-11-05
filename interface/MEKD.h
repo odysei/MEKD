@@ -118,11 +118,7 @@ class MEKD
     /// Internal data
     data idata;
 
-	/// Final-state lepton/photon information; Version 2 and earlier
-// 	double *p1, *p2, *p3, *p4, *p5;
-// 	double id1, id2, id3, id4, id5;
-
-	/// String flags and file locations
+	/// String flags and file locations: Version 2 and earlier
 	string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
 					   // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
 					   // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
@@ -138,6 +134,9 @@ class MEKD
 							   // RUN_XXXX(...)
 
 	/// Functions
+// 	map<int, vector<double *>> Make_map(const vector<int> &,
+//                                         const vector<double *> &);
+	
 	void Set_default_params();
 	
 	void Check_MEs();
@@ -157,7 +156,7 @@ class MEKD
 	
 	double Get_sys_m(const vector<double *> &p, const int p_range[2]);
 	
-	void Load_p_set(data &);
+	void Zero_first_two(vector<double *> &);
 	void Approx_neg_z_parton(double *p, const double E);
 	void Approx_pos_z_parton(double *p, const double E);
 	void Normalize_parton_coeffs(parameters &);
@@ -340,9 +339,6 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
      * Temporary ME place. Should become a part of ME_runners
      */
     // private:
-	// used by sorter, allows shuffling p_set
-// 	double *pl1_internal, *pl2_internal, *pl3_internal, *pl4_internal,
-// 		*pA1_internal;
 
 	/// Internal functions ///
 	string Find_local_file(const string &input_f);
@@ -358,7 +354,9 @@ qq_Spin2_UP_2lpA ME_Signal_qq_Spin2_UpType_2lpA;
     void Print_4momenta_auto(const vector<double *> &);
 
 	//int Arrange_Internal_pls(process_description &);	// updates description
-	int Arrange_4momenta(data &d);	// temp
+	int Arrange_4momenta(vector<pair<int, double *> > &,
+                         vector<double *> &,
+                         final_state_types_ &);
 
 	/// Sets up particular choices. Tier 3
 	int Run_ME_Configurator_BKG_ZZ(const process_description &,
