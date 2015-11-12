@@ -26,10 +26,10 @@ void qq_DY_UP_2lpA::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	mME.push_back(pars->ZERO);
 	jamp2[0] = new double[1];
 }
@@ -45,10 +45,10 @@ void qq_DY_UP_2lpA::updateProc(SLHAReader_MEKD &slha)
 
 	// Set external particle masses for this matrix element
 	// Should correspond to initProc
-	mME[0] = (pars->MC);
-	mME[1] = (pars->MC);
-	mME[2] = (pars->MM);
-	mME[3] = (pars->MM);
+	mME[0] = (pars->mdl_MC);
+	mME[1] = (pars->mdl_MC);
+	mME[2] = (pars->mdl_MM);
+	mME[3] = (pars->mdl_MM);
 	mME[4] = (pars->ZERO);
 }
 
@@ -220,15 +220,15 @@ void qq_DY_UP_2lpA::calculate_wavefunctions(const int perm[], const int hel[])
 	ixxxxx(p[perm[3]], mME[3], hel[3], -1, w[3]);
 	vxxxxx(p[perm[4]], mME[4], hel[4], +1, w[4]);
 	FFV2P0_3(w[0], w[1], pars->HEF_MEKD2_1_GC_4, pars->ZERO, pars->ZERO, w[5]);
-	FFV2_1(w[2], w[4], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[6]);
+	FFV2_1(w[2], w[4], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[6]);
 	FFV5_8_3(w[0], w[1], pars->HEF_MEKD2_1_GC_182, pars->HEF_MEKD2_1_GC_187,
-			 pars->MZ, pars->WZ, w[7]);
-	FFV2_2(w[3], w[4], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[8]);
-	FFV2_2(w[0], w[4], pars->HEF_MEKD2_1_GC_4, pars->MC, pars->ZERO, w[9]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[7]);
+	FFV2_2(w[3], w[4], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[8]);
+	FFV2_2(w[0], w[4], pars->HEF_MEKD2_1_GC_4, pars->mdl_MC, pars->ZERO, w[9]);
 	FFV2P0_3(w[3], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[10]);
 	FFV5_7_3(w[3], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[11]);
-	FFV2_1(w[1], w[4], pars->HEF_MEKD2_1_GC_4, pars->MC, pars->ZERO, w[12]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[11]);
+	FFV2_1(w[1], w[4], pars->HEF_MEKD2_1_GC_4, pars->mdl_MC, pars->ZERO, w[12]);
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0

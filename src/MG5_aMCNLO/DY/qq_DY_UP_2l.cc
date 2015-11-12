@@ -26,10 +26,10 @@ void qq_DY_UP_2l::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 }
 
@@ -44,10 +44,10 @@ void qq_DY_UP_2l::updateProc(SLHAReader_MEKD &slha)
 
 	// Set external particle masses for this matrix element
 	// Should correspond to initProc
-	mME[0] = (pars->MC);
-	mME[1] = (pars->MC);
-	mME[2] = (pars->MM);
-	mME[3] = (pars->MM);
+	mME[0] = (pars->mdl_MC);
+	mME[1] = (pars->mdl_MC);
+	mME[2] = (pars->mdl_MM);
+	mME[3] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------
@@ -202,7 +202,7 @@ void qq_DY_UP_2l::calculate_wavefunctions(const int perm[], const int hel[])
 	ixxxxx(p[perm[3]], mME[3], hel[3], -1, w[3]);
 	FFV2P0_3(w[0], w[1], pars->HEF_MEKD2_1_GC_4, pars->ZERO, pars->ZERO, w[4]);
 	FFV5_8_3(w[0], w[1], pars->HEF_MEKD2_1_GC_182, pars->HEF_MEKD2_1_GC_187,
-			 pars->MZ, pars->WZ, w[5]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[5]);
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0

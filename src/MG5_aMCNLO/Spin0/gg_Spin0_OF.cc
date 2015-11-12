@@ -28,10 +28,10 @@ void gg_Spin0_OF::initProc(string param_card_name)
 	// Set external particle masses for this matrix element
 	mME.push_back(pars->ZERO);
 	mME.push_back(pars->ZERO);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 }
 
@@ -47,10 +47,10 @@ void gg_Spin0_OF::updateProc(SLHAReader_MEKD &slha)
 	// Set external particle masses for this matrix element
 	mME[0] = (pars->ZERO);
 	mME[1] = (pars->ZERO);
-	mME[2] = (pars->Me);
-	mME[3] = (pars->Me);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[2] = (pars->mdl_Me);
+	mME[3] = (pars->mdl_Me);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------
@@ -232,12 +232,12 @@ void gg_Spin0_OF::calculate_wavefunctions(const int perm[], const int hel[])
 	oxxxxx(p[perm[4]], mME[4], hel[4], +1, w[4]);
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	VVS3_4_5_3(w[0], w[1], pars->HEF_MEKD_GC_13, pars->HEF_MEKD_GC_15,
-			   pars->HEF_MEKD_GC_19, pars->MH, pars->WH, w[6]);
-	FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ,
-			 pars->WZ, w[7]);
-	FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ,
-			 pars->WZ, w[8]);
-	VVS1_3(w[0], w[1], pars->HEF_MEKD_GC_23, pars->MH, pars->WH, w[9]);
+			   pars->HEF_MEKD_GC_19, pars->mdl_MH, pars->mdl_WH, w[6]);
+	FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->mdl_MZ,
+			 pars->mdl_WZ, w[7]);
+	FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->mdl_MZ,
+			 pars->mdl_WZ, w[8]);
+	VVS1_3(w[0], w[1], pars->HEF_MEKD_GC_23, pars->mdl_MH, pars->mdl_WH, w[9]);
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0

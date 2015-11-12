@@ -27,12 +27,12 @@ void qq_Z4l_BKG_UP_OF::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MC);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 	for (int count = 0; count < namplitudes; count++)
 		amp[count] = 0;
@@ -48,12 +48,12 @@ void qq_Z4l_BKG_UP_OF::updateProc(SLHAReader_MEKD &slha)
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 
 	// Set external particle masses for this matrix element
-	mME[0] = (pars->MC);
-	mME[1] = (pars->MC);
-	mME[2] = (pars->Me);
-	mME[3] = (pars->Me);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[0] = (pars->mdl_MC);
+	mME[1] = (pars->mdl_MC);
+	mME[2] = (pars->mdl_Me);
+	mME[3] = (pars->mdl_Me);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------
@@ -258,34 +258,34 @@ void qq_Z4l_BKG_UP_OF::calculate_wavefunctions(const int perm[],
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	FFV41_3(w[0], w[1], pars->GC_2, pars->ZERO, pars->ZERO, w[6]);
 	FFV41_3(w[3], w[2], pars->GC_3, pars->ZERO, pars->ZERO, w[7]);
-	FFV41_1(w[4], w[6], pars->GC_3, pars->MM, pars->ZERO, w[8]);
-	FFV41_2(w[5], w[6], pars->GC_3, pars->MM, pars->ZERO, w[9]);
-	FFV42_44_3(w[3], w[2], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	FFV41_1(w[4], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[8]);
+	FFV41_2(w[5], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[9]);
+	FFV42_44_3(w[3], w[2], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[10]);
-	//   FFV42_45_3(w[0], w[1], pars->GC_110, pars->GC_115, pars->MZ, pars->WZ,
+	//   FFV42_45_3(w[0], w[1], pars->GC_110, pars->GC_115, pars->mdl_MZ, pars->mdl_WZ,
 	//       w[11]);
-	//   FFV42_44_1(w[4], w[11], pars->GC_109, pars->GC_116, pars->MM,
+	//   FFV42_44_1(w[4], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM,
 	//   pars->ZERO,
 	//       w[12]);
-	//   FFV42_44_2(w[5], w[11], pars->GC_109, pars->GC_116, pars->MM,
+	//   FFV42_44_2(w[5], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM,
 	//   pars->ZERO,
 	//       w[13]);
 	FFV41_3(w[5], w[4], pars->GC_3, pars->ZERO, pars->ZERO, w[14]);
-	FFV41_1(w[2], w[6], pars->GC_3, pars->Me, pars->ZERO, w[15]);
-	FFV41_2(w[3], w[6], pars->GC_3, pars->Me, pars->ZERO, w[16]);
-	FFV42_44_3(w[5], w[4], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	FFV41_1(w[2], w[6], pars->GC_3, pars->mdl_Me, pars->ZERO, w[15]);
+	FFV41_2(w[3], w[6], pars->GC_3, pars->mdl_Me, pars->ZERO, w[16]);
+	FFV42_44_3(w[5], w[4], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[17]);
-	//   FFV42_44_1(w[2], w[11], pars->GC_109, pars->GC_116, pars->Me,
+	//   FFV42_44_1(w[2], w[11], pars->GC_109, pars->GC_116, pars->mdl_Me,
 	//   pars->ZERO,
 	//       w[18]);
-	//   FFV42_44_2(w[3], w[11], pars->GC_109, pars->GC_116, pars->Me,
+	//   FFV42_44_2(w[3], w[11], pars->GC_109, pars->GC_116, pars->mdl_Me,
 	//   pars->ZERO,
 	//       w[19]);
-	FFV41_2(w[0], w[7], pars->GC_2, pars->MC, pars->ZERO, w[20]);
-	FFV41_2(w[0], w[14], pars->GC_2, pars->MC, pars->ZERO, w[21]);
-	FFV42_45_2(w[0], w[17], pars->GC_110, pars->GC_115, pars->MC, pars->ZERO,
+	FFV41_2(w[0], w[7], pars->GC_2, pars->mdl_MC, pars->ZERO, w[20]);
+	FFV41_2(w[0], w[14], pars->GC_2, pars->mdl_MC, pars->ZERO, w[21]);
+	FFV42_45_2(w[0], w[17], pars->GC_110, pars->GC_115, pars->mdl_MC, pars->ZERO,
 			   w[22]);
-	FFV42_45_2(w[0], w[10], pars->GC_110, pars->GC_115, pars->MC, pars->ZERO,
+	FFV42_45_2(w[0], w[10], pars->GC_110, pars->GC_115, pars->mdl_MC, pars->ZERO,
 			   w[23]);
 
 	// Calculate all amplitudes

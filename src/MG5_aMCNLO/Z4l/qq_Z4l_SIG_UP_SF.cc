@@ -27,12 +27,12 @@ void qq_Z4l_SIG_UP_SF::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 	for (int count = 0; count < namplitudes; count++)
 		amp[count] = 0;
@@ -48,12 +48,12 @@ void qq_Z4l_SIG_UP_SF::updateProc(SLHAReader_MEKD &slha)
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 
 	// Set external particle masses for this matrix element
-	mME[0] = (pars->MC);
-	mME[1] = (pars->MC);
-	mME[2] = (pars->MM);
-	mME[3] = (pars->MM);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[0] = (pars->mdl_MC);
+	mME[1] = (pars->mdl_MC);
+	mME[2] = (pars->mdl_MM);
+	mME[3] = (pars->mdl_MM);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------
@@ -258,45 +258,45 @@ void qq_Z4l_SIG_UP_SF::calculate_wavefunctions(const int perm[],
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	//   FFV41_3(w[0], w[1], pars->GC_2, pars->ZERO, pars->ZERO, w[6]);
 	FFV41_3(w[3], w[2], pars->GC_3, pars->ZERO, pars->ZERO, w[7]);
-	//   FFV41_1(w[4], w[6], pars->GC_3, pars->MM, pars->ZERO, w[8]);
-	//   FFV41_2(w[5], w[6], pars->GC_3, pars->MM, pars->ZERO, w[9]);
-	FFV42_44_3(w[3], w[2], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	//   FFV41_1(w[4], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[8]);
+	//   FFV41_2(w[5], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[9]);
+	FFV42_44_3(w[3], w[2], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[10]);
-	FFV42_45_3(w[0], w[1], pars->GC_110, pars->GC_115, pars->MZ, pars->WZ,
+	FFV42_45_3(w[0], w[1], pars->GC_110, pars->GC_115, pars->mdl_MZ, pars->mdl_WZ,
 			   w[11]);
-	FFV42_44_1(w[4], w[11], pars->GC_109, pars->GC_116, pars->MM, pars->ZERO,
+	FFV42_44_1(w[4], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM, pars->ZERO,
 			   w[12]);
-	FFV42_44_2(w[5], w[11], pars->GC_109, pars->GC_116, pars->MM, pars->ZERO,
+	FFV42_44_2(w[5], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM, pars->ZERO,
 			   w[13]);
 	FFV41_3(w[5], w[2], pars->GC_3, pars->ZERO, pars->ZERO, w[14]);
-	//   FFV41_2(w[3], w[6], pars->GC_3, pars->MM, pars->ZERO, w[15]);
-	FFV42_44_3(w[5], w[2], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	//   FFV41_2(w[3], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[15]);
+	FFV42_44_3(w[5], w[2], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[16]);
-	FFV42_44_2(w[3], w[11], pars->GC_109, pars->GC_116, pars->MM, pars->ZERO,
+	FFV42_44_2(w[3], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM, pars->ZERO,
 			   w[17]);
 	FFV41_3(w[3], w[4], pars->GC_3, pars->ZERO, pars->ZERO, w[18]);
-	FFV41_1(w[2], w[6], pars->GC_3, pars->MM, pars->ZERO, w[19]);
-	FFV42_44_3(w[3], w[4], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	FFV41_1(w[2], w[6], pars->GC_3, pars->mdl_MM, pars->ZERO, w[19]);
+	FFV42_44_3(w[3], w[4], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[20]);
-	FFV42_44_1(w[2], w[11], pars->GC_109, pars->GC_116, pars->MM, pars->ZERO,
+	FFV42_44_1(w[2], w[11], pars->GC_109, pars->GC_116, pars->mdl_MM, pars->ZERO,
 			   w[21]);
 	FFV41_3(w[5], w[4], pars->GC_3, pars->ZERO, pars->ZERO, w[22]);
-	FFV42_44_3(w[5], w[4], pars->GC_109, pars->GC_116, pars->MZ, pars->WZ,
+	FFV42_44_3(w[5], w[4], pars->GC_109, pars->GC_116, pars->mdl_MZ, pars->mdl_WZ,
 			   w[23]);
-	//   FFV41_2(w[0], w[7], pars->GC_2, pars->MC, pars->ZERO, w[24]);
-	//   FFV41_2(w[0], w[22], pars->GC_2, pars->MC, pars->ZERO, w[25]);
-	//   FFV42_45_2(w[0], w[23], pars->GC_110, pars->GC_115, pars->MC,
+	//   FFV41_2(w[0], w[7], pars->GC_2, pars->mdl_MC, pars->ZERO, w[24]);
+	//   FFV41_2(w[0], w[22], pars->GC_2, pars->mdl_MC, pars->ZERO, w[25]);
+	//   FFV42_45_2(w[0], w[23], pars->GC_110, pars->GC_115, pars->mdl_MC,
 	//   pars->ZERO,
 	//       w[26]);
-	//   FFV42_45_2(w[0], w[10], pars->GC_110, pars->GC_115, pars->MC,
+	//   FFV42_45_2(w[0], w[10], pars->GC_110, pars->GC_115, pars->mdl_MC,
 	//   pars->ZERO,
 	//       w[27]);
-	//   FFV41_2(w[0], w[14], pars->GC_2, pars->MC, pars->ZERO, w[28]);
-	//   FFV41_2(w[0], w[18], pars->GC_2, pars->MC, pars->ZERO, w[29]);
-	//   FFV42_45_2(w[0], w[20], pars->GC_110, pars->GC_115, pars->MC,
+	//   FFV41_2(w[0], w[14], pars->GC_2, pars->mdl_MC, pars->ZERO, w[28]);
+	//   FFV41_2(w[0], w[18], pars->GC_2, pars->mdl_MC, pars->ZERO, w[29]);
+	//   FFV42_45_2(w[0], w[20], pars->GC_110, pars->GC_115, pars->mdl_MC,
 	//   pars->ZERO,
 	//       w[30]);
-	//   FFV42_45_2(w[0], w[16], pars->GC_110, pars->GC_115, pars->MC,
+	//   FFV42_45_2(w[0], w[16], pars->GC_110, pars->GC_115, pars->mdl_MC,
 	//   pars->ZERO,
 	//       w[31]);
 

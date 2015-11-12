@@ -9,10 +9,13 @@
 ######################################################################
 
 ###################################
-## INFORMATION FOR CKMBLOCK
+## INFORMATION FOR WOLFENSTEIN
 ###################################
-Block ckmblock 
-    1 2.279182e-01 # cabi 
+Block wolfenstein 
+    1 2.253000e-01 # lamWS 
+    2 8.080000e-01 # AWS 
+    3 1.320000e-01 # rhoWS 
+    4 3.410000e-01 # etaWS 
 
 ###################################
 ## INFORMATION FOR GRAVITY
