@@ -34,9 +34,9 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
 	ZERO = 0;
 	// Prepare a vector for indices
 	vector<int> indices(2, 0);
-	aS = slha.get_block_entry("sminputs", 3, 1.184000e-01).real();
-	mdl_Gf = slha.get_block_entry("sminputs", 2, 1.166370e-05).real();
-	aEWM1 = slha.get_block_entry("sminputs", 1, 1.279000e+02).real();
+	aS = slha.get_block_entry("sminputs", 3, 1.180000e-01).real();
+	mdl_Gf = slha.get_block_entry("sminputs", 2, 1.166390e-05).real();
+	aEWM1 = slha.get_block_entry("sminputs", 1, 1.325070e+02).real();
 	mdl_MXG = slha.get_block_entry("mass", 9000007, 1.250000e+02).real();
 	mdl_MH = slha.get_block_entry("mass", 9000006, 1.250000e+02).real();
 	mdl_MZp = slha.get_block_entry("mass", 300, 1.250000e+02).real();
@@ -44,7 +44,7 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
 	mdl_MTA = slha.get_block_entry("mass", 15, 1.777000e+00).real();
 	mdl_MM = slha.get_block_entry("mass", 13, 1.056600e-01).real();
 	mdl_Me = slha.get_block_entry("mass", 11, 5.110000e-04).real();
-	mdl_MT = slha.get_block_entry("mass", 6, 1.720000e+02).real();
+	mdl_MT = slha.get_block_entry("mass", 6, 1.733400e+02).real();
 	mdl_MB = slha.get_block_entry("mass", 5, 4.700000e+00).real();
 	mdl_MC = slha.get_block_entry("mass", 4, 1.270000e+00).real();
 	mdl_MS = slha.get_block_entry("mass", 3, 1.010000e-01).real();
@@ -170,8 +170,8 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
 	k3g = slha.get_block_entry("gravity", 3, 1.000000e-01);
 	k2g = slha.get_block_entry("gravity", 2, 1.000000e-01);
 	k1g = slha.get_block_entry("gravity", 1, 1.000000e-01);
-	mdl_gw = 1.;
-	mdl_g1 = 1.;
+// 	mdl_gw = 1.;
+// 	mdl_g1 = 1.;
 	mdl_complexi = std::complex<double>(0., 1.);
 // 	cos__cabi = cos(cabi);
 // 	mdl_CKM1x1 = cos__cabi;
@@ -196,11 +196,7 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_CKM3x1 = mdl_AWS * mdl_lamWS__exp__3 * (1. - mdl_etaWS * mdl_complexi -
                                                 mdl_rhoWS);
     mdl_CKM3x2 = - (mdl_AWS * mdl_lamWS__exp__2); 
-    mdl_CKM3x3 = 1.; 
-	mdl_MZ__exp__2 = pow(mdl_MZ, 2.);
-	mdl_MZ__exp__4 = pow(mdl_MZ, 4.);
-	mdl_sqrt__2 = sqrt(2.);
-	mdl_MH__exp__2 = pow(mdl_MH, 2.);
+    mdl_CKM3x3 = 1.;
 	mdl_conjg__CKM1x1 = conj(mdl_CKM1x1);
 	mdl_conjg__CKM2x1 = conj(mdl_CKM2x1);
 	mdl_conjg__CKM3x1 = conj(mdl_CKM3x1);
@@ -210,6 +206,10 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
 	mdl_conjg__CKM1x3 = conj(mdl_CKM1x3);
 	mdl_conjg__CKM2x3 = conj(mdl_CKM2x3);
 	mdl_conjg__CKM3x3 = conj(mdl_CKM3x3);
+	mdl_MZ__exp__2 = pow(mdl_MZ, 2.);
+	mdl_MZ__exp__4 = pow(mdl_MZ, 4.);
+	mdl_sqrt__2 = sqrt(2.);
+	mdl_MH__exp__2 = pow(mdl_MH, 2.);
 	mdl_aEW = 1. / aEWM1;
 	mdl_MW = sqrt(mdl_MZ__exp__2 / 2. +
                   sqrt(mdl_MZ__exp__4 / 4. -
@@ -221,6 +221,8 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
 	mdl_cw = sqrt(1. - mdl_sw2);
 	mdl_sqrt__sw2 = sqrt(mdl_sw2);
 	mdl_sw = mdl_sqrt__sw2;
+    mdl_g1 = mdl_ee / mdl_cw;
+    mdl_gw = mdl_ee / mdl_sw;
 	mdl_vev = (2. * mdl_MW * mdl_sw) / mdl_ee;
 	mdl_vev__exp__2 = pow(mdl_vev, 2.);
 	mdl_lam = mdl_MH__exp__2 / (2. * mdl_vev__exp__2);

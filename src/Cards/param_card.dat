@@ -141,14 +141,15 @@ Block mass
     3 9.350000e-02 # MS 
     4 1.275000e+00 # MC 
     5 4.180000e+00 # MB 
-    6 1.735000e+02 # MT 
+    6 1.733400e+02 # MT 
    11 5.109989e-04 # Me 
    13 1.056584e-01 # MM 
    15 1.776820e+00 # MTA 
    23 9.118760e+01 # MZ
-  300 1.260000e+01 # MZp, Spin1
-  9000006 1.260000e+02 # MH 
-  9000007 1.260000e+02 # MXG 
+   25 1.250000e+02 # MH, must match 9000006
+  300 1.250000e+01 # MZp, Spin1
+  9000006 1.250000e+02 # MH 
+  9000007 1.250000e+02 # MXG 
 ##  Not dependent paramater.
 ## Those values should be edited following the 
 ## analytical expression. MG5 ignore those values 
@@ -159,15 +160,15 @@ Block mass
   16 0.000000 # vt : 0.0 
   21 0.000000 # g : 0.0 
   22 0.000000 # a : 0.0 
-  24 79.824360 # w+ : cmath.sqrt(MZ__exp__2/2. + cmath.sqrt(MZ__exp__4/4. - (aEW*cmath.pi*MZ__exp__2)/(Gf*sqrt__2))) 
+  24 80.419000 # w+ : cmath.sqrt(MZ__exp__2/2. + cmath.sqrt(MZ__exp__4/4. - (aEW*cmath.pi*MZ__exp__2)/(Gf*sqrt__2))) 
 
 ###################################
 ## INFORMATION FOR SMINPUTS
 ###################################
 Block sminputs 
-    1 1.279000e+02 # aEWM1 
-    2 1.166370e-05 # Gf 
-    3 1.184000e-01 # aS 
+    1 1.325070e+02 # aEWM1 
+    2 1.166390e-05 # Gf 
+    3 1.180000e-01 # aS 
 
 ###################################
 ## INFORMATION FOR YUKAWA
@@ -189,6 +190,7 @@ Block yukawa
 DECAY   6 1.990000e+00 # WT 
 DECAY  23 2.495200e+00 # WZ 
 DECAY  24 2.091000e+00 # WW
+DECAY  25 5.753088e-03 # WH, must match 9000006
 DECAY 300 5.753088e-03 # WZp
 DECAY 9000006 5.753088e-03 # WH 
 DECAY 9000007 5.753088e-03 # WXG 
