@@ -3,6 +3,9 @@
 // MadGraph 5 v. 1.5.2, 2012-10-15
 // By the MadGraph Development Team
 // Please visit us at https://launchpad.net/madgraph5
+//
+// Updated to MadGraph5_aMC@NLO v. 2.3.3, 2015-10-25
+// by Aurelijus Rinkevicius (odysei)
 //==========================================================================
 
 #ifndef Parameters_MEKD_CC

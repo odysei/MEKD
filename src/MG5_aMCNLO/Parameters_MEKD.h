@@ -1,5 +1,5 @@
 //==========================================================================
-// This file has been automatically generated for C++
+// This file has been automatically generated for C++ by
 // MadGraph 5 v. 1.5.2, 2012-10-15
 // By the MadGraph Development Team
 // Please visit us at https://launchpad.net/madgraph5
