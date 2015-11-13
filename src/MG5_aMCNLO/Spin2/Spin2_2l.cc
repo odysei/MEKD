@@ -26,9 +26,9 @@ void Spin2_2l::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MXG);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MXG);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 }
 
@@ -43,9 +43,9 @@ void Spin2_2l::updateProc(SLHAReader_MEKD &slha)
 
 	// Set external particle masses for this matrix element
 	// Should correspond to initProc
-	mME[0] = (pars->MXG);
-	mME[1] = (pars->MM);
-	mME[2] = (pars->MM);
+	mME[0] = (pars->mdl_MXG);
+	mME[1] = (pars->mdl_MM);
+	mME[2] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------

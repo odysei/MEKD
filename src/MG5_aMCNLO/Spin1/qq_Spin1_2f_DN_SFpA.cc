@@ -26,12 +26,12 @@ void qq_Spin1_2f_DN_SFpA::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MS);
-	mME.push_back(pars->MS);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MS);
+	mME.push_back(pars->mdl_MS);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	mME.push_back(pars->ZERO);
 	jamp2[0] = new double[1];
 	for (int count = 0; count < namplitudes; count++)
@@ -49,12 +49,12 @@ void qq_Spin1_2f_DN_SFpA::updateProc(SLHAReader_MEKD &slha)
 
 	// Set external particle masses for this matrix element
 	// Should correspond to initProc
-	mME[0] = (pars->MS);
-	mME[1] = (pars->MS);
-	mME[2] = (pars->MM);
-	mME[3] = (pars->MM);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[0] = (pars->mdl_MS);
+	mME[1] = (pars->mdl_MS);
+	mME[2] = (pars->mdl_MM);
+	mME[3] = (pars->mdl_MM);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 	mME[6] = (pars->ZERO);
 }
 
@@ -326,347 +326,347 @@ void qq_Spin1_2f_DN_SFpA::calculate_wavefunctions(const int perm[],
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	vxxxxx(p[perm[6]], mME[6], hel[6], +1, w[6]);
 	FFV1_2_3_4_3(w[0], w[1], pars->HEF_MEKD2_1_GC_151, pars->HEF_MEKD2_1_GC_148,
-				 pars->HEF_MEKD2_1_GC_149, pars->HEF_MEKD2_1_GC_150, pars->MZp,
-				 pars->WZp, w[7]);
+				 pars->HEF_MEKD2_1_GC_149, pars->HEF_MEKD2_1_GC_150, pars->mdl_MZp,
+				 pars->mdl_WZp, w[7]);
 	FFV2P0_3(w[3], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[8]);
 	FFV1_2_3_4_1(w[4], w[7], pars->HEF_MEKD2_1_GC_141, pars->HEF_MEKD2_1_GC_138,
-				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->MM,
+				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->mdl_MM,
 				 pars->ZERO, w[9]);
-	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[10]);
+	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[10]);
 	FFV1_2_3_4_2(w[5], w[7], pars->HEF_MEKD2_1_GC_141, pars->HEF_MEKD2_1_GC_138,
-				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->MM,
+				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->mdl_MM,
 				 pars->ZERO, w[11]);
-	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[12]);
+	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[12]);
 	FFV5_7_3(w[3], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[13]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[13]);
 	FFV5_7_2(w[5], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[14]);
+			 pars->mdl_MM, pars->ZERO, w[14]);
 	FFV5_7_1(w[4], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[15]);
+			 pars->mdl_MM, pars->ZERO, w[15]);
 	//   FFV2P0_3(w[0], w[1], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[16]);
 	//   FFV1_2_3_4_3(w[3], w[2], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[17]);
-	//   FFV2_1(w[4], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[17]);
+	//   FFV2_1(w[4], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[18]);
 	//   FFV1_2_3_4_2(w[5], w[17], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[19]);
-	//   FFV2_2(w[5], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[19]);
+	//   FFV2_2(w[5], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[20]);
 	//   FFV1_2_3_4_1(w[4], w[17], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[21]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[21]);
 	//   FFV5_6_3(w[0], w[1], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ, w[22]);
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ, w[22]);
 	//   FFV5_7_1(w[4], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[23]);
 	//   FFV5_7_2(w[5], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[24]);
-	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[25]);
+	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[25]);
 	FFV1_2_3_4_1(w[25], w[7], pars->HEF_MEKD2_1_GC_141,
 				 pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-				 pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[26]);
+				 pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[26]);
 	//   VVV1_2_1(w[13], w[7], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[27]);
-	//   FFV2_1(w[25], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//   pars->mdl_MZ, pars->mdl_WZ, w[27]);
+	//   FFV2_1(w[25], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[28]);
 	//   VVV1_2_1(w[22], w[17], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[29]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[29]);
 	//   FFV5_7_1(w[25], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[30]);
 	//   VVV1_2_3(w[22], w[13], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZp, pars->WZp, w[31]);
-	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[32]);
+	//   pars->mdl_MZp, pars->mdl_WZp, w[31]);
+	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[32]);
 	FFV1_2_3_4_2(w[32], w[7], pars->HEF_MEKD2_1_GC_141,
 				 pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-				 pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[33]);
-	//   FFV2_2(w[32], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+				 pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[33]);
+	//   FFV2_2(w[32], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[34]);
 	//   FFV5_7_2(w[32], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[35]);
 	FFV2P0_3(w[5], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[36]);
 	FFV1_2_3_4_2(w[3], w[7], pars->HEF_MEKD2_1_GC_141, pars->HEF_MEKD2_1_GC_138,
-				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->MM,
+				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->mdl_MM,
 				 pars->ZERO, w[37]);
-	FFV2_1(w[4], w[36], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[38]);
-	FFV2_2(w[3], w[36], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[39]);
+	FFV2_1(w[4], w[36], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[38]);
+	FFV2_2(w[3], w[36], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[39]);
 	FFV5_7_3(w[5], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[40]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[40]);
 	FFV5_7_1(w[4], w[40], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[41]);
+			 pars->mdl_MM, pars->ZERO, w[41]);
 	FFV5_7_2(w[3], w[40], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[42]);
+			 pars->mdl_MM, pars->ZERO, w[42]);
 	//   FFV1_2_3_4_3(w[5], w[2], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[43]);
-	//   FFV2_2(w[3], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[43]);
+	//   FFV2_2(w[3], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[44]);
 	//   FFV1_2_3_4_1(w[4], w[43], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[45]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[45]);
 	//   FFV1_2_3_4_2(w[3], w[43], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[46]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[46]);
 	//   FFV5_7_2(w[3], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[47]);
-	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[48]);
+	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[48]);
 	FFV1_2_3_4_2(w[48], w[7], pars->HEF_MEKD2_1_GC_141,
 				 pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-				 pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[49]);
+				 pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[49]);
 	//   VVV1_2_1(w[40], w[7], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[50]);
-	//   FFV2_2(w[48], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//   pars->mdl_MZ, pars->mdl_WZ, w[50]);
+	//   FFV2_2(w[48], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[51]);
 	//   VVV1_2_1(w[22], w[43], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[52]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[52]);
 	//   FFV5_7_2(w[48], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[53]);
 	//   VVV1_2_3(w[22], w[40], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZp, pars->WZp, w[54]);
-	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[55]);
+	//   pars->mdl_MZp, pars->mdl_WZp, w[54]);
+	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[55]);
 	FFV2P0_3(w[5], w[55], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[56]);
 	FFV5_7_3(w[5], w[55], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[57]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[57]);
 	FFV2P0_3(w[3], w[55], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[58]);
 	FFV5_7_3(w[3], w[55], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[59]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[59]);
 	//   FFV1_2_3_4_3(w[5], w[55], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[60]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[60]);
 	//   FFV1_2_3_4_3(w[3], w[55], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[61]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[61]);
 	FFV2P0_3(w[3], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[62]);
 	FFV1_2_3_4_1(w[55], w[7], pars->HEF_MEKD2_1_GC_141,
 				 pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-				 pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[63]);
+				 pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[63]);
 	FFV5_7_3(w[3], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[64]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[64]);
 	//   VVV1_2_1(w[64], w[7], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[65]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[65]);
 	//   FFV1_2_3_4_3(w[3], w[4], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[66]);
-	//   FFV2_1(w[55], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[66]);
+	//   FFV2_1(w[55], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[67]);
 	//   FFV5_7_1(w[55], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[68]);
 	//   VVV1_2_1(w[22], w[66], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[69]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[69]);
 	//   VVV1_2_3(w[22], w[64], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZp, pars->WZp, w[70]);
+	//   pars->mdl_MZp, pars->mdl_WZp, w[70]);
 	FFV2P0_3(w[5], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[71]);
 	FFV5_7_3(w[5], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[72]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[72]);
 	//   VVV1_2_1(w[72], w[7], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[73]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[73]);
 	//   FFV1_2_3_4_3(w[5], w[4], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[74]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[74]);
 	//   VVV1_2_1(w[22], w[74], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZ, pars->WZ, w[75]);
+	//   pars->mdl_MZ, pars->mdl_WZ, w[75]);
 	//   VVV1_2_3(w[22], w[72], pars->HEF_MEKD2_1_GC_2, pars->HEF_MEKD2_1_GC_1,
-	//   pars->MZp, pars->WZp, w[76]);
+	//   pars->mdl_MZp, pars->mdl_WZp, w[76]);
 	FFV1_2_3_4_1(w[2], w[7], pars->HEF_MEKD2_1_GC_141, pars->HEF_MEKD2_1_GC_138,
-				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->MM,
+				 pars->HEF_MEKD2_1_GC_139, pars->HEF_MEKD2_1_GC_140, pars->mdl_MM,
 				 pars->ZERO, w[77]);
-	FFV2_2(w[5], w[62], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[78]);
-	FFV2_1(w[2], w[62], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[79]);
+	FFV2_2(w[5], w[62], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[78]);
+	FFV2_1(w[2], w[62], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[79]);
 	FFV5_7_2(w[5], w[64], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[80]);
+			 pars->mdl_MM, pars->ZERO, w[80]);
 	FFV5_7_1(w[2], w[64], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[81]);
-	//   FFV2_1(w[2], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+			 pars->mdl_MM, pars->ZERO, w[81]);
+	//   FFV2_1(w[2], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[82]);
 	//   FFV1_2_3_4_2(w[5], w[66], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[83]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[83]);
 	//   FFV1_2_3_4_1(w[2], w[66], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[84]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[84]);
 	//   FFV5_7_1(w[2], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[85]);
 	FFV2P0_3(w[48], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[86]);
 	FFV5_7_3(w[48], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[87]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[87]);
 	FFV2P0_3(w[48], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[88]);
 	FFV5_7_3(w[48], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[89]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[89]);
 	//   FFV1_2_3_4_3(w[48], w[4], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[90]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[90]);
 	//   FFV1_2_3_4_3(w[48], w[2], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[91]);
-	FFV2_2(w[3], w[71], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[92]);
-	FFV2_1(w[2], w[71], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[93]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[91]);
+	FFV2_2(w[3], w[71], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[92]);
+	FFV2_1(w[2], w[71], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[93]);
 	FFV5_7_2(w[3], w[72], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[94]);
+			 pars->mdl_MM, pars->ZERO, w[94]);
 	FFV5_7_1(w[2], w[72], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[95]);
+			 pars->mdl_MM, pars->ZERO, w[95]);
 	//   FFV1_2_3_4_2(w[3], w[74], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[96]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[96]);
 	//   FFV1_2_3_4_1(w[2], w[74], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MM, pars->ZERO, w[97]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MM, pars->ZERO, w[97]);
 	FFV2P0_3(w[3], w[25], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[98]);
 	FFV5_7_3(w[3], w[25], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[99]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[99]);
 	FFV2P0_3(w[5], w[25], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[100]);
 	FFV5_7_3(w[5], w[25], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[101]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[101]);
 	//   FFV1_2_3_4_3(w[3], w[25], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[102]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[102]);
 	//   FFV1_2_3_4_3(w[5], w[25], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[103]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[103]);
 	FFV2P0_3(w[32], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[104]);
 	FFV5_7_3(w[32], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[105]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[105]);
 	FFV2P0_3(w[32], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[106]);
 	FFV5_7_3(w[32], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[107]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[107]);
 	//   FFV1_2_3_4_3(w[32], w[4], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[108]);
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[108]);
 	//   FFV1_2_3_4_3(w[32], w[2], pars->HEF_MEKD2_1_GC_141,
 	//   pars->HEF_MEKD2_1_GC_138, pars->HEF_MEKD2_1_GC_139,
-	//       pars->HEF_MEKD2_1_GC_140, pars->MZp, pars->WZp, w[109]);
-	//   FFV2_2(w[0], w[6], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_140, pars->mdl_MZp, pars->mdl_WZp, w[109]);
+	//   FFV2_2(w[0], w[6], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[110]);
 	//   FFV2P0_3(w[110], w[1], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[111]);
 	//   FFV5_6_3(w[110], w[1], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ,
 	//       w[112]);
 	//   FFV1_2_3_4_3(w[110], w[1], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MZp, pars->WZp, w[113]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MZp, pars->mdl_WZp, w[113]);
 	//   FFV1_2_3_4_2(w[110], w[17], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[114]);
-	//   FFV2_2(w[110], w[71], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[114]);
+	//   FFV2_2(w[110], w[71], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[115]);
 	//   FFV5_6_2(w[110], w[72], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[116]);
-	//   FFV2_2(w[110], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[110], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[117]);
 	//   FFV1_2_3_4_2(w[110], w[74], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[118]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[118]);
 	//   FFV5_6_2(w[110], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[119]);
 	//   FFV1_2_3_4_2(w[110], w[43], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[120]);
-	//   FFV2_2(w[110], w[62], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[120]);
+	//   FFV2_2(w[110], w[62], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[121]);
 	//   FFV5_6_2(w[110], w[64], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[122]);
-	//   FFV2_2(w[110], w[36], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[110], w[36], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[123]);
 	//   FFV1_2_3_4_2(w[110], w[66], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[124]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[124]);
 	//   FFV5_6_2(w[110], w[40], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[125]);
-	//   FFV2_1(w[1], w[6], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_1(w[1], w[6], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[126]);
 	//   FFV2P0_3(w[0], w[126], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[127]);
 	//   FFV5_6_3(w[0], w[126], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ,
 	//       w[128]);
 	//   FFV1_2_3_4_3(w[0], w[126], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MZp, pars->WZp, w[129]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MZp, pars->mdl_WZp, w[129]);
 	//   FFV1_2_3_4_2(w[0], w[17], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[130]);
-	//   FFV2_2(w[0], w[71], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[130]);
+	//   FFV2_2(w[0], w[71], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[131]);
 	//   FFV5_6_2(w[0], w[72], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[132]);
-	//   FFV2_2(w[0], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[0], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[133]);
 	//   FFV1_2_3_4_2(w[0], w[74], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[134]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[134]);
 	//   FFV5_6_2(w[0], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[135]);
 	//   FFV1_2_3_4_2(w[0], w[43], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[136]);
-	//   FFV2_2(w[0], w[62], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[136]);
+	//   FFV2_2(w[0], w[62], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[137]);
 	//   FFV5_6_2(w[0], w[64], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[138]);
-	//   FFV2_2(w[0], w[36], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[0], w[36], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[139]);
 	//   FFV1_2_3_4_2(w[0], w[66], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[140]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[140]);
 	//   FFV5_6_2(w[0], w[40], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[141]);
-	//   FFV2_1(w[1], w[71], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_1(w[1], w[71], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[142]);
 	//   FFV1_2_3_4_1(w[1], w[17], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[143]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[143]);
 	//   FFV5_6_1(w[1], w[72], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[144]);
 	//   FFV1_2_3_4_1(w[1], w[74], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[145]);
-	//   FFV2_1(w[1], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[145]);
+	//   FFV2_1(w[1], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[146]);
 	//   FFV5_6_1(w[1], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[147]);
-	//   FFV2_1(w[1], w[62], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_1(w[1], w[62], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[148]);
 	//   FFV1_2_3_4_1(w[1], w[43], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[149]);
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[149]);
 	//   FFV5_6_1(w[1], w[64], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[150]);
 	//   FFV1_2_3_4_1(w[1], w[66], pars->HEF_MEKD2_1_GC_151,
 	//   pars->HEF_MEKD2_1_GC_148, pars->HEF_MEKD2_1_GC_149,
-	//       pars->HEF_MEKD2_1_GC_150, pars->MS, pars->ZERO, w[151]);
-	//   FFV2_1(w[1], w[36], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_150, pars->mdl_MS, pars->ZERO, w[151]);
+	//   FFV2_1(w[1], w[36], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[152]);
 	//   FFV5_6_1(w[1], w[40], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[153]);
 
 	// Calculate all amplitudes

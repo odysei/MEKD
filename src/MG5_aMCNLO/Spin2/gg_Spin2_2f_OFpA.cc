@@ -28,10 +28,10 @@ void gg_Spin2_2f_OFpA::initProc(string param_card_name)
 	// Set external particle masses for this matrix element
 	mME.push_back(pars->ZERO);
 	mME.push_back(pars->ZERO);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	mME.push_back(pars->ZERO);
 	jamp2[0] = new double[1];
 	for (int count = 0; count < namplitudes; count++)
@@ -51,10 +51,10 @@ void gg_Spin2_2f_OFpA::updateProc(SLHAReader_MEKD &slha)
 	// Should correspond to initProc
 	mME[0] = (pars->ZERO);
 	mME[1] = (pars->ZERO);
-	mME[2] = (pars->Me);
-	mME[3] = (pars->Me);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[2] = (pars->mdl_Me);
+	mME[3] = (pars->mdl_Me);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 	mME[6] = (pars->ZERO);
 }
 
@@ -309,109 +309,109 @@ void gg_Spin2_2f_OFpA::calculate_wavefunctions(const int perm[],
 		pars->HEF_MEKD2_1_GC_80, pars->HEF_MEKD2_1_GC_64,
 		pars->HEF_MEKD2_1_GC_68, pars->HEF_MEKD2_1_GC_91,
 		pars->HEF_MEKD2_1_GC_62, pars->HEF_MEKD2_1_GC_84,
-		pars->HEF_MEKD2_1_GC_76, pars->HEF_MEKD2_1_GC_82, pars->MXG, pars->WXG,
+		pars->HEF_MEKD2_1_GC_76, pars->HEF_MEKD2_1_GC_82, pars->mdl_MXG, pars->mdl_WXG,
 		w[7]);
 	FFV2P0_3(w[3], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[8]);
 	FFT1_2_3_5_1(w[4], w[7], pars->HEF_MEKD2_1_GC_145, pars->HEF_MEKD2_1_GC_142,
-				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->MM,
+				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->mdl_MM,
 				 pars->ZERO, w[9]);
-	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[10]);
+	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[10]);
 	FFT1_2_3_5_2(w[5], w[7], pars->HEF_MEKD2_1_GC_145, pars->HEF_MEKD2_1_GC_142,
-				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->MM,
+				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->mdl_MM,
 				 pars->ZERO, w[11]);
-	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[12]);
+	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[12]);
 	FFV5_7_3(w[3], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[13]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[13]);
 	FFV5_7_2(w[5], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[14]);
+			 pars->mdl_MM, pars->ZERO, w[14]);
 	FFV5_7_1(w[4], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[15]);
-	VVT4_3(w[0], w[1], pars->HEF_MEKD2_1_GC_63, pars->MXG, pars->WXG, w[16]);
+			 pars->mdl_MM, pars->ZERO, w[15]);
+	VVT4_3(w[0], w[1], pars->HEF_MEKD2_1_GC_63, pars->mdl_MXG, pars->mdl_WXG, w[16]);
 	FFT1_2_3_5_1(w[4], w[16], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[17]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[17]);
 	FFT1_2_3_5_2(w[5], w[16], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[18]);
-	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[19]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[18]);
+	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[19]);
 	FFT1_2_3_5_1(w[19], w[7], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[20]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[20]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[13], w[7], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
 	//       pars->HEF_MEKD2_1_GC_67, pars->HEF_MEKD2_1_GC_71,
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[21]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[21]);
 	FFT1_2_3_5_1(w[19], w[16], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[22]);
-	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[23]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[22]);
+	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[23]);
 	FFT1_2_3_5_2(w[23], w[7], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[24]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[24]);
 	FFT1_2_3_5_2(w[23], w[16], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[25]);
-	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[26]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[25]);
+	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[26]);
 	FFV2P0_3(w[3], w[26], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[27]);
 	FFV5_7_3(w[3], w[26], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[28]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[28]);
 	FFV2P0_3(w[5], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[29]);
 	FFT1_2_3_5_1(w[26], w[7], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[30]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[30]);
 	FFT1_2_3_5_2(w[3], w[7], pars->HEF_MEKD2_1_GC_135, pars->HEF_MEKD2_1_GC_132,
-				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->Me,
+				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->mdl_Me,
 				 pars->ZERO, w[31]);
 	FFV5_7_3(w[5], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[32]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[32]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[32], w[7], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
 	//       pars->HEF_MEKD2_1_GC_67, pars->HEF_MEKD2_1_GC_71,
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[33]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[33]);
 	FFT1_2_3_5_1(w[26], w[16], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[34]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[34]);
 	FFT1_2_3_5_2(w[3], w[16], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[35]);
-	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[36]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[35]);
+	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[36]);
 	FFV2P0_3(w[36], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[37]);
 	FFV5_7_3(w[36], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[38]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[38]);
 	FFT1_2_3_5_1(w[2], w[7], pars->HEF_MEKD2_1_GC_135, pars->HEF_MEKD2_1_GC_132,
-				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->Me,
+				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->mdl_Me,
 				 pars->ZERO, w[39]);
 	FFT1_2_3_5_2(w[36], w[7], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[40]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[40]);
 	FFT1_2_3_5_1(w[2], w[16], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[41]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[41]);
 	FFT1_2_3_5_2(w[36], w[16], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[42]);
-	FFV2_2(w[3], w[29], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[43]);
-	FFV2_1(w[2], w[29], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[44]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[42]);
+	FFV2_2(w[3], w[29], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[43]);
+	FFV2_1(w[2], w[29], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[44]);
 	FFV5_7_2(w[3], w[32], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->Me, pars->ZERO, w[45]);
+			 pars->mdl_Me, pars->ZERO, w[45]);
 	FFV5_7_1(w[2], w[32], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->Me, pars->ZERO, w[46]);
+			 pars->mdl_Me, pars->ZERO, w[46]);
 	FFV2P0_3(w[5], w[19], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[47]);
 	FFV5_7_3(w[5], w[19], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[48]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[48]);
 	FFV2P0_3(w[23], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[49]);
 	FFV5_7_3(w[23], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[50]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[50]);
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0

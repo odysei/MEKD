@@ -26,12 +26,12 @@ void qq_Spin2_2f_DN_OFpA::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MS);
-	mME.push_back(pars->MS);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MS);
+	mME.push_back(pars->mdl_MS);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	mME.push_back(pars->ZERO);
 	jamp2[0] = new double[1];
 	for (int count = 0; count < namplitudes; count++)
@@ -49,12 +49,12 @@ void qq_Spin2_2f_DN_OFpA::updateProc(SLHAReader_MEKD &slha)
 
 	// Set external particle masses for this matrix element
 	// Should correspond to initProc
-	mME[0] = (pars->MS);
-	mME[1] = (pars->MS);
-	mME[2] = (pars->Me);
-	mME[3] = (pars->Me);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[0] = (pars->mdl_MS);
+	mME[1] = (pars->mdl_MS);
+	mME[2] = (pars->mdl_Me);
+	mME[3] = (pars->mdl_Me);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 	mME[6] = (pars->ZERO);
 }
 
@@ -326,58 +326,58 @@ void qq_Spin2_2f_DN_OFpA::calculate_wavefunctions(const int perm[],
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	vxxxxx(p[perm[6]], mME[6], hel[6], +1, w[6]);
 	FFT1_2_3_5_3(w[0], w[1], pars->HEF_MEKD2_1_GC_155, pars->HEF_MEKD2_1_GC_152,
-				 pars->HEF_MEKD2_1_GC_153, pars->HEF_MEKD2_1_GC_154, pars->MXG,
-				 pars->WXG, w[7]);
+				 pars->HEF_MEKD2_1_GC_153, pars->HEF_MEKD2_1_GC_154, pars->mdl_MXG,
+				 pars->mdl_WXG, w[7]);
 	FFV2P0_3(w[3], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[8]);
 	FFT1_2_3_5_1(w[4], w[7], pars->HEF_MEKD2_1_GC_145, pars->HEF_MEKD2_1_GC_142,
-				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->MM,
+				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->mdl_MM,
 				 pars->ZERO, w[9]);
-	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[10]);
+	FFV2_2(w[5], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[10]);
 	FFT1_2_3_5_2(w[5], w[7], pars->HEF_MEKD2_1_GC_145, pars->HEF_MEKD2_1_GC_142,
-				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->MM,
+				 pars->HEF_MEKD2_1_GC_143, pars->HEF_MEKD2_1_GC_144, pars->mdl_MM,
 				 pars->ZERO, w[11]);
-	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[12]);
+	FFV2_1(w[4], w[8], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[12]);
 	FFV5_7_3(w[3], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[13]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[13]);
 	FFV5_7_2(w[5], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[14]);
+			 pars->mdl_MM, pars->ZERO, w[14]);
 	FFV5_7_1(w[4], w[13], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MM, pars->ZERO, w[15]);
+			 pars->mdl_MM, pars->ZERO, w[15]);
 	//   FFV2P0_3(w[0], w[1], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[16]);
 	//   FFT1_2_3_5_3(w[3], w[2], pars->HEF_MEKD2_1_GC_135,
 	//   pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-	//       pars->HEF_MEKD2_1_GC_134, pars->MXG, pars->WXG, w[17]);
-	//   FFV2_1(w[4], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_134, pars->mdl_MXG, pars->mdl_WXG, w[17]);
+	//   FFV2_1(w[4], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[18]);
 	//   FFT1_2_3_5_2(w[5], w[17], pars->HEF_MEKD2_1_GC_145,
 	//   pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-	//       pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[19]);
-	//   FFV2_2(w[5], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[19]);
+	//   FFV2_2(w[5], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[20]);
 	//   FFT1_2_3_5_1(w[4], w[17], pars->HEF_MEKD2_1_GC_145,
 	//   pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-	//       pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[21]);
+	//       pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[21]);
 	//   FFV5_6_3(w[0], w[1], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ, w[22]);
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ, w[22]);
 	//   FFV5_7_1(w[4], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[23]);
 	//   FFV5_7_2(w[5], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[24]);
-	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[25]);
+	FFV2_1(w[4], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[25]);
 	FFT1_2_3_5_1(w[25], w[7], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[26]);
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[26]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[13], w[7], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
 	//       pars->HEF_MEKD2_1_GC_67, pars->HEF_MEKD2_1_GC_71,
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[27]);
-	//   FFV2_1(w[25], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[27]);
+	//   FFV2_1(w[25], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[28]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[22], w[17], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
@@ -385,9 +385,9 @@ void qq_Spin2_2f_DN_OFpA::calculate_wavefunctions(const int perm[],
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[29]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[29]);
 	//   FFV5_7_1(w[25], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[30]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_3(w[22], w[13], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
@@ -395,52 +395,52 @@ void qq_Spin2_2f_DN_OFpA::calculate_wavefunctions(const int perm[],
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MXG, pars->WXG, w[31]);
-	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO, w[32]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MXG, pars->mdl_WXG, w[31]);
+	FFV2_2(w[5], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO, w[32]);
 	FFT1_2_3_5_2(w[32], w[7], pars->HEF_MEKD2_1_GC_145,
 				 pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-				 pars->HEF_MEKD2_1_GC_144, pars->MM, pars->ZERO, w[33]);
-	//   FFV2_2(w[32], w[16], pars->HEF_MEKD2_1_GC_5, pars->MM, pars->ZERO,
+				 pars->HEF_MEKD2_1_GC_144, pars->mdl_MM, pars->ZERO, w[33]);
+	//   FFV2_2(w[32], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_MM, pars->ZERO,
 	//   w[34]);
 	//   FFV5_7_2(w[32], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->MM, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_MM, pars->ZERO,
 	//       w[35]);
-	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[36]);
+	FFV2_1(w[2], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[36]);
 	FFV2P0_3(w[3], w[36], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[37]);
 	FFV5_7_3(w[3], w[36], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[38]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[38]);
 	//   FFT1_2_3_5_3(w[3], w[36], pars->HEF_MEKD2_1_GC_135,
 	//   pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-	//       pars->HEF_MEKD2_1_GC_134, pars->MXG, pars->WXG, w[39]);
+	//       pars->HEF_MEKD2_1_GC_134, pars->mdl_MXG, pars->mdl_WXG, w[39]);
 	FFV2P0_3(w[5], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO, w[40]);
 	FFT1_2_3_5_1(w[36], w[7], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[41]);
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[41]);
 	FFT1_2_3_5_2(w[3], w[7], pars->HEF_MEKD2_1_GC_135, pars->HEF_MEKD2_1_GC_132,
-				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->Me,
+				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->mdl_Me,
 				 pars->ZERO, w[42]);
 	FFV5_7_3(w[5], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[43]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[43]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[43], w[7], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
 	//       pars->HEF_MEKD2_1_GC_67, pars->HEF_MEKD2_1_GC_71,
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[44]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[44]);
 	//   FFT1_2_3_5_3(w[5], w[4], pars->HEF_MEKD2_1_GC_145,
 	//   pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-	//       pars->HEF_MEKD2_1_GC_144, pars->MXG, pars->WXG, w[45]);
-	//   FFV2_1(w[36], w[16], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_144, pars->mdl_MXG, pars->mdl_WXG, w[45]);
+	//   FFV2_1(w[36], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO,
 	//   w[46]);
-	//   FFV2_2(w[3], w[16], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO,
+	//   FFV2_2(w[3], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO,
 	//   w[47]);
 	//   FFV5_7_1(w[36], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->Me, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_Me, pars->ZERO,
 	//       w[48]);
 	//   FFV5_7_2(w[3], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->Me, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_Me, pars->ZERO,
 	//       w[49]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_1(w[22], w[45], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
@@ -448,129 +448,129 @@ void qq_Spin2_2f_DN_OFpA::calculate_wavefunctions(const int perm[],
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MZ, pars->WZ, w[50]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MZ, pars->mdl_WZ, w[50]);
 	//   VVT10_11_12_13_2_3_6_7_8_9_3(w[22], w[43], pars->HEF_MEKD2_1_GC_75,
 	//   pars->HEF_MEKD2_1_GC_81,
 	//       pars->HEF_MEKD2_1_GC_67, pars->HEF_MEKD2_1_GC_71,
 	//       pars->HEF_MEKD2_1_GC_90, pars->HEF_MEKD2_1_GC_92,
 	//       pars->HEF_MEKD2_1_GC_63,
 	//       pars->HEF_MEKD2_1_GC_85, pars->HEF_MEKD2_1_GC_79,
-	//       pars->HEF_MEKD2_1_GC_83, pars->MXG, pars->WXG, w[51]);
-	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[52]);
+	//       pars->HEF_MEKD2_1_GC_83, pars->mdl_MXG, pars->mdl_WXG, w[51]);
+	FFV2_2(w[3], w[6], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[52]);
 	FFV2P0_3(w[52], w[2], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[53]);
 	FFV5_7_3(w[52], w[2], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[54]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[54]);
 	//   FFT1_2_3_5_3(w[52], w[2], pars->HEF_MEKD2_1_GC_135,
 	//   pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-	//       pars->HEF_MEKD2_1_GC_134, pars->MXG, pars->WXG, w[55]);
+	//       pars->HEF_MEKD2_1_GC_134, pars->mdl_MXG, pars->mdl_WXG, w[55]);
 	FFT1_2_3_5_1(w[2], w[7], pars->HEF_MEKD2_1_GC_135, pars->HEF_MEKD2_1_GC_132,
-				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->Me,
+				 pars->HEF_MEKD2_1_GC_133, pars->HEF_MEKD2_1_GC_134, pars->mdl_Me,
 				 pars->ZERO, w[56]);
 	FFT1_2_3_5_2(w[52], w[7], pars->HEF_MEKD2_1_GC_135,
 				 pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-				 pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[57]);
-	//   FFV2_1(w[2], w[16], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO,
+				 pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[57]);
+	//   FFV2_1(w[2], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO,
 	//   w[58]);
-	//   FFV2_2(w[52], w[16], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO,
+	//   FFV2_2(w[52], w[16], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO,
 	//   w[59]);
 	//   FFV5_7_1(w[2], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->Me, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_Me, pars->ZERO,
 	//       w[60]);
 	//   FFV5_7_2(w[52], w[22], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_188, pars->Me, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_188, pars->mdl_Me, pars->ZERO,
 	//       w[61]);
-	FFV2_2(w[3], w[40], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[62]);
-	FFV2_1(w[2], w[40], pars->HEF_MEKD2_1_GC_5, pars->Me, pars->ZERO, w[63]);
+	FFV2_2(w[3], w[40], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[62]);
+	FFV2_1(w[2], w[40], pars->HEF_MEKD2_1_GC_5, pars->mdl_Me, pars->ZERO, w[63]);
 	FFV5_7_2(w[3], w[43], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->Me, pars->ZERO, w[64]);
+			 pars->mdl_Me, pars->ZERO, w[64]);
 	FFV5_7_1(w[2], w[43], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->Me, pars->ZERO, w[65]);
+			 pars->mdl_Me, pars->ZERO, w[65]);
 	//   FFT1_2_3_5_2(w[3], w[45], pars->HEF_MEKD2_1_GC_135,
 	//   pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-	//       pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[66]);
+	//       pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[66]);
 	//   FFT1_2_3_5_1(w[2], w[45], pars->HEF_MEKD2_1_GC_135,
 	//   pars->HEF_MEKD2_1_GC_132, pars->HEF_MEKD2_1_GC_133,
-	//       pars->HEF_MEKD2_1_GC_134, pars->Me, pars->ZERO, w[67]);
+	//       pars->HEF_MEKD2_1_GC_134, pars->mdl_Me, pars->ZERO, w[67]);
 	FFV2P0_3(w[5], w[25], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[68]);
 	FFV5_7_3(w[5], w[25], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[69]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[69]);
 	//   FFT1_2_3_5_3(w[5], w[25], pars->HEF_MEKD2_1_GC_145,
 	//   pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-	//       pars->HEF_MEKD2_1_GC_144, pars->MXG, pars->WXG, w[70]);
+	//       pars->HEF_MEKD2_1_GC_144, pars->mdl_MXG, pars->mdl_WXG, w[70]);
 	FFV2P0_3(w[32], w[4], pars->HEF_MEKD2_1_GC_5, pars->ZERO, pars->ZERO,
 			 w[71]);
 	FFV5_7_3(w[32], w[4], pars->HEF_MEKD2_1_GC_181, pars->HEF_MEKD2_1_GC_188,
-			 pars->MZ, pars->WZ, w[72]);
+			 pars->mdl_MZ, pars->mdl_WZ, w[72]);
 	//   FFT1_2_3_5_3(w[32], w[4], pars->HEF_MEKD2_1_GC_145,
 	//   pars->HEF_MEKD2_1_GC_142, pars->HEF_MEKD2_1_GC_143,
-	//       pars->HEF_MEKD2_1_GC_144, pars->MXG, pars->WXG, w[73]);
-	//   FFV2_2(w[0], w[6], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_144, pars->mdl_MXG, pars->mdl_WXG, w[73]);
+	//   FFV2_2(w[0], w[6], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[74]);
 	//   FFV2P0_3(w[74], w[1], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[75]);
 	//   FFV5_6_3(w[74], w[1], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ, w[76]);
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ, w[76]);
 	//   FFT1_2_3_5_3(w[74], w[1], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MXG, pars->WXG, w[77]);
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MXG, pars->mdl_WXG, w[77]);
 	//   FFT1_2_3_5_2(w[74], w[17], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[78]);
-	//   FFV2_2(w[74], w[40], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[78]);
+	//   FFV2_2(w[74], w[40], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[79]);
 	//   FFV5_6_2(w[74], w[43], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[80]);
-	//   FFV2_2(w[74], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[74], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[81]);
 	//   FFT1_2_3_5_2(w[74], w[45], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[82]);
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[82]);
 	//   FFV5_6_2(w[74], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[83]);
-	//   FFV2_1(w[1], w[6], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_1(w[1], w[6], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[84]);
 	//   FFV2P0_3(w[0], w[84], pars->HEF_MEKD2_1_GC_3, pars->ZERO, pars->ZERO,
 	//   w[85]);
 	//   FFV5_6_3(w[0], w[84], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MZ, pars->WZ, w[86]);
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MZ, pars->mdl_WZ, w[86]);
 	//   FFT1_2_3_5_3(w[0], w[84], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MXG, pars->WXG, w[87]);
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MXG, pars->mdl_WXG, w[87]);
 	//   FFT1_2_3_5_2(w[0], w[17], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[88]);
-	//   FFV2_2(w[0], w[40], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[88]);
+	//   FFV2_2(w[0], w[40], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[89]);
 	//   FFV5_6_2(w[0], w[43], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[90]);
-	//   FFV2_2(w[0], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_2(w[0], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[91]);
 	//   FFT1_2_3_5_2(w[0], w[45], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[92]);
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[92]);
 	//   FFV5_6_2(w[0], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[93]);
-	//   FFV2_1(w[1], w[40], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//   FFV2_1(w[1], w[40], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[94]);
 	//   FFT1_2_3_5_1(w[1], w[17], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[95]);
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[95]);
 	//   FFV5_6_1(w[1], w[43], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[96]);
 	//   FFT1_2_3_5_1(w[1], w[45], pars->HEF_MEKD2_1_GC_155,
 	//   pars->HEF_MEKD2_1_GC_152, pars->HEF_MEKD2_1_GC_153,
-	//       pars->HEF_MEKD2_1_GC_154, pars->MS, pars->ZERO, w[97]);
-	//   FFV2_1(w[1], w[8], pars->HEF_MEKD2_1_GC_3, pars->MS, pars->ZERO,
+	//       pars->HEF_MEKD2_1_GC_154, pars->mdl_MS, pars->ZERO, w[97]);
+	//   FFV2_1(w[1], w[8], pars->HEF_MEKD2_1_GC_3, pars->mdl_MS, pars->ZERO,
 	//   w[98]);
 	//   FFV5_6_1(w[1], w[13], pars->HEF_MEKD2_1_GC_181,
-	//   pars->HEF_MEKD2_1_GC_187, pars->MS, pars->ZERO,
+	//   pars->HEF_MEKD2_1_GC_187, pars->mdl_MS, pars->ZERO,
 	//       w[99]);
 
 	// Calculate all amplitudes

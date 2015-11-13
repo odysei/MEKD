@@ -26,12 +26,12 @@ void qq_Spin2_UP_OF::initProc(string param_card_name)
 	pars->setIndependentCouplings();
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 	// Set external particle masses for this matrix element
-	mME.push_back(pars->MC);
-	mME.push_back(pars->MC);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->Me);
-	mME.push_back(pars->MM);
-	mME.push_back(pars->MM);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_MC);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_Me);
+	mME.push_back(pars->mdl_MM);
+	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
 }
 
@@ -45,12 +45,12 @@ void qq_Spin2_UP_OF::updateProc(SLHAReader_MEKD &slha)
 	ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 
 	// Set external particle masses for this matrix element
-	mME[0] = (pars->MC);
-	mME[1] = (pars->MC);
-	mME[2] = (pars->Me);
-	mME[3] = (pars->Me);
-	mME[4] = (pars->MM);
-	mME[5] = (pars->MM);
+	mME[0] = (pars->mdl_MC);
+	mME[1] = (pars->mdl_MC);
+	mME[2] = (pars->mdl_Me);
+	mME[3] = (pars->mdl_Me);
+	mME[4] = (pars->mdl_MM);
+	mME[5] = (pars->mdl_MM);
 }
 
 //--------------------------------------------------------------------------
@@ -253,12 +253,12 @@ void qq_Spin2_UP_OF::calculate_wavefunctions(const int perm[], const int hel[])
 	oxxxxx(p[perm[4]], mME[4], hel[4], +1, w[4]);
 	ixxxxx(p[perm[5]], mME[5], hel[5], -1, w[5]);
 	FFT1_2_3_4_3(w[0], w[1], pars->HEF_MEKD_GC_115, pars->HEF_MEKD_GC_112,
-				 pars->HEF_MEKD_GC_113, pars->HEF_MEKD_GC_114, pars->MXG,
-				 pars->WXG, w[6]);
-	FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ,
-			 pars->WZ, w[7]);
-	FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->MZ,
-			 pars->WZ, w[8]);
+				 pars->HEF_MEKD_GC_113, pars->HEF_MEKD_GC_114, pars->mdl_MXG,
+				 pars->mdl_WXG, w[6]);
+	FFV5_7_3(w[3], w[2], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->mdl_MZ,
+			 pars->mdl_WZ, w[7]);
+	FFV5_7_3(w[5], w[4], pars->HEF_MEKD_GC_161, pars->HEF_MEKD_GC_168, pars->mdl_MZ,
+			 pars->mdl_WZ, w[8]);
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0
