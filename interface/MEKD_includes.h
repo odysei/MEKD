@@ -19,7 +19,7 @@
 #include "../src/Extra_code/MEKD_CalcHEP_Extra_functions.h"
 #include "../src/Extra_code/MEKD_Boosts.h"
 #include "../src/higgs_properties/hggeffective.h"
-#include "../src/MG5_aMCNLO/read_slha.h"
+#include "../src/MG5_aMCNLO/Commons/Parameters_MEKD.h"
 
 /// CMSSW includes
 #ifndef MEKD_STANDALONE
@@ -32,13 +32,13 @@ extern "C" {
 }
 
 /// MEs.
-#include "../src/MG5_aMCNLO/DY/MEKD_MEs_DY.h"
-#include "../src/MG5_aMCNLO/Z4l/MEKD_MEs_Z4l.h"
-#include "../src/MG5_aMCNLO/ZZ/MEKD_MEs_ZZ.h"
+#include "../src/MG5_aMCNLO/HEF_UFO_Unitary/Z4l/MEKD_MEs_Z4l.h"
+#include "../src/MG5_aMCNLO/HEF_UFO_Unitary/ZZ/MEKD_MEs_ZZ.h"
 
-#include "../src/MG5_aMCNLO/Spin0/MEKD_MEs_Spin0.h"
-#include "../src/MG5_aMCNLO/Spin1/MEKD_MEs_Spin1.h"
-#include "../src/MG5_aMCNLO/Spin2/MEKD_MEs_Spin2.h"
+#include "../src/MG5_aMCNLO/HEF_MEKD/DY/MEKD_MEs_DY.h"
+#include "../src/MG5_aMCNLO/HEF_MEKD/Spin0/MEKD_MEs_Spin0.h"
+#include "../src/MG5_aMCNLO/HEF_MEKD/Spin1/MEKD_MEs_Spin1.h"
+#include "../src/MG5_aMCNLO/HEF_MEKD/Spin2/MEKD_MEs_Spin2.h"
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "../src/MG5_aMCNLO/RAW/CPPProcess.h"	// ME_RAW
