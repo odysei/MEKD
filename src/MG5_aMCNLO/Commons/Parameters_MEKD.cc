@@ -11,17 +11,15 @@
 #ifndef Parameters_MEKD_CC
 #define Parameters_MEKD_CC
 
-#include <iostream>
-#include <iomanip>
 #include "Parameters_MEKD.h"
 
 // Initialize static instance
-Parameters_MEKD *Parameters_MEKD::instance = 0;
+Parameters_MEKD *Parameters_MEKD::instance = NULL;
 
 // Function to get static instance - only one instance per program
 Parameters_MEKD *Parameters_MEKD::getInstance()
 {
-	if (instance == 0)
+	if (instance == NULL)
 		instance = new Parameters_MEKD();
 
 	return instance;

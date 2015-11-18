@@ -12,7 +12,10 @@ objects0=$(INCDIR4_0)/Parameters_MEKD.o $(INCDIR4_0)/read_slha_MEKD.o
 
 objects1=$(INCDIR4_1)/HelAmps_HEF_UFO_bkg.o \
 $(INCDIR4_1)/HelAmps_HZZ_Unitary_bkgpA.o \
-$(INCDIR4_2)/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/HelAmps_HEF_MEKD.o
+$(INCDIR4_2)/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/HelAmps_HEF_MEKD.o \
+$(INCDIR4_3)/src/HelAmps_sm_full.o \
+$(INCDIR4_3)/src/Parameters_sm_full.o \
+$(INCDIR4_3)/src/read_slha.o
 
 
 
@@ -130,6 +133,15 @@ $(INCDIR4_2)/Spin2/Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/Spin2_2f_SFpA.o
 
 
 
+###############################
+### ttH (sm-full) processes ###
+###############################
+
+objects2_ttH_smfull=\
+$(INCDIR4_3)/ttbb_all/cc_ttbb.o
+
+
+
 #####################
 ### Misc. objects ###
 #####################
@@ -137,6 +149,12 @@ $(INCDIR4_2)/Spin2/Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/Spin2_2f_SFpA.o
 objects3=\
 $(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o \
 $(INCDIR2)/MEKD_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
+
+
+
+#########################
+### MEKD core objects ###
+#########################
 
 objects4=\
 $(INCDIR1)/MEKD.o $(INCDIR1)/MEKD_Load_ME_runners.o \
@@ -163,6 +181,7 @@ objects2=\
 $(objects2_ZZ) $(objects2_Z4l) $(objects2_DY) \
 $(objects2_spin0) $(objects2_spin0_2) $(objects2_spin0_3) \
 $(objects2_spin1) $(objects2_spin1_2) $(objects2_spin1_3) \
-$(objects2_spin2) $(objects2_spin2_2) $(objects2_spin2_3)
+$(objects2_spin2) $(objects2_spin2_2) $(objects2_spin2_3) \
+$(objects2_ttH_smfull)
 
 objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) $(objects5)

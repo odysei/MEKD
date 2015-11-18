@@ -33,7 +33,7 @@ void gg_Spin2_2f_OF::initProc(string param_card_name)
 	mME.push_back(pars->mdl_MM);
 	mME.push_back(pars->mdl_MM);
 	jamp2[0] = new double[1];
-	for (int count = 0; count < namplitudes; count++)
+	for (int count = 0; count < namplitudes; ++count)
 		amp[count] = 0;
 }
 

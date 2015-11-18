@@ -325,7 +325,7 @@ void qq_Spin2_2f_UP_OF::calculate_wavefunctions(const int perm[],
 
 	// Calculate all amplitudes
 	// Amplitude(s) for diagram number 0
-	for (int count = 0; count < namplitudes; count++)
+	for (int count = 0; count < namplitudes; ++count)
 		amp[count] = 0;
 	FFV2_0(w[5], w[8], w[7], pars->HEF_MEKD2_1_GC_5, amp[0]);
 	FFV2_0(w[9], w[4], w[7], pars->HEF_MEKD2_1_GC_5, amp[1]);

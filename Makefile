@@ -15,6 +15,8 @@ INCDIR4=src/MG5_aMCNLO
 INCDIR4_0=$(INCDIR4)/Commons
 INCDIR4_1=$(INCDIR4)/HEF_UFO_Unitary
 INCDIR4_2=$(INCDIR4)/HEF_MEKD
+INCDIR4_3=$(INCDIR4)/sm-full
+INCDIR4_3_=$(INCDIR4)/sm-full/src
 
 PDF_DIR=src/PDF_tables
 
@@ -28,7 +30,7 @@ PDF_DIR=src/PDF_tables
 CXXFLAGS= -std=c++11 -pedantic -Wunused-variable -Werror=sign-compare \
 -Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC -O \
 -I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR3) -I $(INCDIR4) \
--I $(INCDIR4_0) -I $(INCDIR4_1)
+-I $(INCDIR4_0) -I $(INCDIR4_1) -I $(INCDIR4_3_)
 CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare \
 -Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC \
 -std=c99
