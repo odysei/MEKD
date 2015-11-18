@@ -13,7 +13,9 @@
 
 #include "Parameters_sm_full.h"
 
-using namespace std; 
+using namespace std;
+namespace MG5_sm_full 
+{
 
 //==========================================================================
 // A class for calculating the matrix elements for
@@ -84,7 +86,9 @@ class cc_ttbb
     // Initial particle ids
     int id1, id2; 
 
-}; 
+};
+
+}
 
 
 #endif  // MG5_Sigma_sm_full_ccx_ttxbbx_H

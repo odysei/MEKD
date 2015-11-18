@@ -8,7 +8,8 @@
 #include "cc_ttbb.h"
 #include "HelAmps_sm_full.h"
 
-using namespace MG5_sm_full; 
+namespace MG5_sm_full 
+{
 
 //==========================================================================
 // Class member functions for calculating the matrix elements for
@@ -392,5 +393,5 @@ double cc_ttbb::matrix_1_ccx_ttxbbx()
   return matrix; 
 }
 
-
+}
 

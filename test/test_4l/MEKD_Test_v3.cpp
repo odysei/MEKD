@@ -63,11 +63,17 @@ void test_block6(input &in)
 // 	else
 // 		cout << "TEST 1: \"FAILED\"\n";
 // 	
-	int error_value = MEKD_Test_Check_Models_Test2(in);
+// 	int error_value = MEKD_Test_Check_Models_Test2(in);
+// 	if (error_value == 0)
+// 		cout << "TEST 2: PASSED\n";
+// 	else
+// 		cout << "TEST 2: \"FAILED\"\n";
+    
+	int error_value = MEKD_Test_Check_Models_Test3(in);
 	if (error_value == 0)
-		cout << "TEST 2: PASSED\n";
+		cout << "TEST 3: PASSED\n";
 	else
-		cout << "TEST 2: \"FAILED\"\n";
+		cout << "TEST 3: \"FAILED\"\n";
 }
 
 input Initialize_tester(input &in)
