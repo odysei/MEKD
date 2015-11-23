@@ -15,14 +15,19 @@ namespace mekd
 {
 
 enum process_types {
+    proc_empty,
 	proc_simple,	// typically production couples to X
+    proc_ttX,
 	proc_RAW		// an experimental setting
 };
 
 enum resonance_types {
+    reson_empty,
 	bkg_Z,
 	bkg_Zs,			// Z -> 4l via s ch.
 	bkg_Zt,			// Z -> 4l via t ch.
+    bkg_tt,
+    bkg_reson_Spin0Pm,  // bkg + resonance
 	reson_Spin0,	// generic spin 0 resonance, many couplings
 	reson_Spin0Pm,	// 0^+_m, Higgs
 	reson_Spin0Ph,	// 0^+_h
@@ -45,6 +50,7 @@ enum resonance_types {
 };
 
 enum production_types {
+    prod_empty,
 	prod_all,		// many if applicable
 	prod_gg,
 	prod_qq,
@@ -52,15 +58,18 @@ enum production_types {
 };
 
 enum resonance_decay_types {
+    decay_empty,
 	decay_ZZ,
 	decay_2f
 };
 
 enum final_state_types {
+    final_empty,
 	final_4l,
 	final_4lA,	// 4l plus photon
 	final_2l,
-	final_2lA	// 2l plus photon
+	final_2lA,	// 2l plus photon
+	final_ttbb
 };
 
 /// explicit final state types. Internal use.

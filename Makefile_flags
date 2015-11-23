@@ -1,0 +1,28 @@
+######################
+### Compiler flags ###
+######################
+
+CXXFLAGS= -std=c++11 -pedantic -Wunused-variable -Werror=sign-compare \
+-Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC -O \
+-I $(PROJECT_DIR) \
+-I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR3) -I $(INCDIR4) \
+-I $(INCDIR4_0) -I $(INCDIR4_1) -I $(INCDIR4_3) -I $(INCDIR4_3_)
+CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare \
+-Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC \
+-std=c99
+LIBFLAGS=-L $(LIBDIR)
+
+
+
+
+####################
+### Custom flags ###
+####################
+
+ifeq ($(MEKD_STANDALONE), Yes)
+CXXFLAGS+= -D MEKD_STANDALONE
+endif
+
+ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
+CXXFLAGS+= -D MEKD_with_ROOT -std=c++0x
+endif

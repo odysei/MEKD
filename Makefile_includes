@@ -1,0 +1,24 @@
+###############################
+### Src and build locations ###
+###############################
+
+LIBDIR=$(PROJECT_DIR)/lib
+
+INCDIR0=$(PROJECT_DIR)/interface
+INCDIR1=$(PROJECT_DIR)/src
+INCDIR2=$(PROJECT_DIR)/src/Extra_code
+INCDIR3=$(PROJECT_DIR)/src/higgs_properties
+INCDIR4=$(PROJECT_DIR)/src/MG5_aMCNLO
+INCDIR4_0=$(INCDIR4)/Commons
+INCDIR4_1=$(INCDIR4)/HEF_UFO_Unitary
+INCDIR4_2=$(INCDIR4)/HEF_MEKD
+INCDIR4_3=$(INCDIR4)/sm-full
+INCDIR4_3_=$(INCDIR4)/sm-full/src
+
+PDF_DIR=$(PROJECT_DIR)/src/PDF_tables
+
+
+########## ROOT PART ##########
+ROOTLIB=$(ROOTSYS)/lib
+ROOTINCLUDES=$(ROOTSYS)/include
+###############################

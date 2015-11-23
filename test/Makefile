@@ -12,8 +12,9 @@ export BIN_DIR=../bin
 ###############################
 
 TEST_1=test_4l
+TEST_2=test_ttbb
 
-TEST=$(TEST_1)
+TEST=$(TEST_1) $(TEST_2)
 
 # Otherwise make is not happy if such names exist in PWD
 .PHONY: $(TEST)
@@ -42,6 +43,10 @@ $(TEST_1):
 	$(MAKE) -C $(TEST_1)
 
 
+$(TEST_2):
+	$(MAKE) -C $(TEST_2)
+
+
 
 
 #####################
@@ -52,3 +57,4 @@ $(TEST_1):
 
 clean:
 	$(MAKE) -C $(TEST_1) clean
+	$(MAKE) -C $(TEST_2) clean

@@ -29,10 +29,9 @@ endif
 ### All targets ###
 ###################
 
-test=MEKD_Test
-test2=MEKD_Test_v3
+test=MEKD_Test_ttbb
 
-all: $(test) $(test2)
+all: $(test)
 
 
 
@@ -41,21 +40,8 @@ all: $(test) $(test2)
 ### Building block ###
 ######################
 
-ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
-
 $(test):
-	$(CXX) $(CXXFLAGS) `$(ROOTSYS)/bin/root-config --ldflags` \
--I $(ROOTINCLUDES) $(test).cpp -o $(BIN_DIRL)/$(test) -L. $(LIBFLAGS) \
--L $(ROOTLIB) `$(ROOTSYS)/bin/root-config --libs --glibs` -l MEKD
-else
-
-$(test):
-	echo '${test} does not compile without ROOT.'
-endif
-
-
-$(test2):
-	$(CXX) $(CXXFLAGS) $(test2).cpp -o $(BIN_DIRL)/$(test2) -L. $(LIBFLAGS) \
+	$(CXX) $(CXXFLAGS) $(test).cpp -o $(BIN_DIRL)/$(test) -L. $(LIBFLAGS) \
 -l MEKD
 
 

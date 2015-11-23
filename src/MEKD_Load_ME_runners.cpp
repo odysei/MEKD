@@ -7,7 +7,7 @@
 #ifndef MEKD_Load_ME_runners_cpp
 #define MEKD_Load_ME_runners_cpp
 
-#include "../interface/MEKD.h"
+#include "MEKD.h"
 
 namespace mekd
 {
@@ -36,6 +36,9 @@ void MEKD::Load_ME_runners(const vector<process_description> &desc)
 			continue;
 		if (Load_ME_runners_try_Spin2_4lA(d, ME_runners))
 			continue;
+        
+		if (Load_ME_runners_try_Spin0_ttbb(d, ME_runners))
+			continue;
 		
 		cerr << "ME runner not found:\n"
 			 << "process: " << d.process << endl
@@ -48,8 +51,8 @@ void MEKD::Load_ME_runners(const vector<process_description> &desc)
 }
 
 bool MEKD::Load_ME_runners_try(const process_description &desc,
-								  ME_runner *runner,
-								  vector<ME_runner *> &v)
+                               ME_runner *runner,
+                               vector<ME_runner *> &v)
 {
 	if (runner->is_my_type(desc)) {
 		v.push_back(runner);	// load if a correct one
@@ -58,6 +61,21 @@ bool MEKD::Load_ME_runners_try(const process_description &desc,
 	
 	delete runner;				// dismiss if not the one
 	return false;
+}
+
+void MEKD::Initialize_ME_runners(const string &param_f,
+                                 vector<ME_runner *> &ME_runners)
+{
+    for (auto r: ME_runners) {
+        if(!r->initialize(param_f)) {
+            cerr << "ME runner not initializable:\n"
+                << "process: " << r->my_type().process << endl
+                << "resonance: " << r->my_type().resonance << endl
+                << "production: " << r->my_type().production << endl
+                << "decay: " << r->my_type().decay << endl
+                << "final_state: " << r->my_type().final_state << endl;
+        }
+    }
 }
 
 /// end of namespace

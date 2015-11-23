@@ -102,8 +102,10 @@ int MEKD::Load_parameters(parameters &pa, data &da)
 	params_MG.read_slha_file(pa.params_MG_file);
     
 	/// Initializing parameters
-	if (!pa.loaded)
+	if (!pa.loaded) {
 		Load_parameters_MEs(pa.params_MG_file);	// init MEs
+        Initialize_ME_runners(pa.params_MG_file, ME_runners);
+    }
 	Load_parameters_extract_params(params_MG, da);
 	Load_parameters_eval_params(da, pa);
 	Normalize_parton_coeffs(pa);

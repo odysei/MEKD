@@ -50,15 +50,32 @@ class MEKD;
 class ME_runner
 {
 public:
-	virtual double evaluate(MEKD &in_MEKD, const input &in)
+    virtual double evaluate(MEKD &in_MEKD, const input &in)
 	{
 		return -1;
+	}
+	
+	virtual const process_description my_type()
+	{
+        process_description empty;
+        empty.process = proc_empty;
+        empty.resonance = reson_empty;
+        empty.production = prod_empty;
+        empty.decay = decay_empty;
+        empty.final_state = final_empty;
+        
+		return empty;
 	}
 	
 	virtual bool is_my_type(const process_description &in)
 	{
 		return false;
 	}
+	
+	virtual bool initialize(const string &param_f)
+    {
+        return false;
+    }
 	
 	bool compare_types(const process_description &in,
 					   const process_description &in2)
@@ -104,6 +121,11 @@ class MEKD
 									  vector<ME_runner *> &);
 	bool Load_ME_runners_try_Spin2_4lA(const process_description &,
 									   vector<ME_runner *> &);
+    
+	bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
+                                        vector<ME_runner *> &);
+    
+    void Initialize_ME_runners(const string &param_f, vector<ME_runner *> &);
 	// end
 	
 	/// Flags
