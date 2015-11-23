@@ -16,6 +16,7 @@ src/MEKD_debug.o
 src/MEKD_defaults.o
 src/MEKD_sorter.o
 src/MEKD_stuff.o
+src/ME_runners/MEKD_Supported_MEs_Spin0_ttbb.o
 src/MG5_aMCNLO/Commons/Parameters_MEKD.o
 src/MG5_aMCNLO/Commons/read_slha_MEKD.o
 src/MG5_aMCNLO/HEF_MEKD/HelAmps_HEF_MEKD.o

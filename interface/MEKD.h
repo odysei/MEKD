@@ -76,6 +76,8 @@ public:
     {
         return false;
     }
+    
+    virtual void deinitialize() {}
 	
 	bool compare_types(const process_description &in,
 					   const process_description &in2)

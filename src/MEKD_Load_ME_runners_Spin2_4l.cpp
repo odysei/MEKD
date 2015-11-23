@@ -7,8 +7,8 @@
 #ifndef MEKD_Load_ME_runners_Spin2_4l_cpp
 #define MEKD_Load_ME_runners_Spin2_4l_cpp
 
-#include "../interface/MEKD.h"
-#include "../interface/MEKD_Supported_MEs_Spin2_4l.h"
+#include "MEKD.h"
+#include "MEKD_Supported_MEs_Spin2_4l.h"
 
 namespace mekd
 {

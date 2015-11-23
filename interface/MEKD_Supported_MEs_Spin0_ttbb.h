@@ -4,6 +4,9 @@
  * 
  * 
  */
+#ifndef MEKD_Supported_MEs_Spin0_ttbb_h
+#define MEKD_Supported_MEs_Spin0_ttbb_h
+
 #include "MEKD.h"
 
 namespace mekd
@@ -34,39 +37,17 @@ public:
 		decay_2f,		// decay
 		final_ttbb		// final_state
 	};
-    
-    virtual const process_description my_type()
-	{
-        return me;
-	}
-	
-	bool is_my_type(const process_description &in)
-	{
-		return compare_types(in, me);
-	}
-	
-	bool initialize(const string &param_f)
-    {
-        ME = new MG5_sm_full::cc_ttbb;
-        if (ME->nprocesses != 2) {
-            cerr << "Problem in ME class detected.\n";
-            return false;
-        }
-        ME->initProc(param_f);
-        return true;
-    }
-	
-	double evaluate(MEKD &in_MEKD, const input &in)
-	{
-		ME->setMomenta(in_MEKD.idata.p);
-		ME->sigmaKin();
-		const double *buffer = ME->getMatrixElements();
-        
-		return (buffer[0] + buffer[1]);
-	}
 	
 	// Actual MEs
     MG5_sm_full::cc_ttbb *ME;
+    
+    const process_description my_type();
+	bool is_my_type(const process_description &in);
+	
+	bool initialize(const string &param_f);
+    void deinitialize();
+	
+	double evaluate(MEKD &in_MEKD, const input &in);
 };
 
 /*
@@ -75,6 +56,8 @@ public:
 
 /// end of namespace
 }
+
+#endif
 
 /////////////////////////////////////
 /// END OF MEKD_Supported_MEs_h   ///

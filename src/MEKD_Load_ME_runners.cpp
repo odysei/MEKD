@@ -69,11 +69,11 @@ void MEKD::Initialize_ME_runners(const string &param_f,
     for (auto r: ME_runners) {
         if(!r->initialize(param_f)) {
             cerr << "ME runner not initializable:\n"
-                << "process: " << r->my_type().process << endl
-                << "resonance: " << r->my_type().resonance << endl
-                << "production: " << r->my_type().production << endl
-                << "decay: " << r->my_type().decay << endl
-                << "final_state: " << r->my_type().final_state << endl;
+                 << "process: " << r->my_type().process << endl
+                 << "resonance: " << r->my_type().resonance << endl
+                 << "production: " << r->my_type().production << endl
+                 << "decay: " << r->my_type().decay << endl
+                 << "final_state: " << r->my_type().final_state << endl;
         }
     }
 }

@@ -7,7 +7,7 @@
 #define MEKD_cpp
 
 /// MEKD header
-#include "../interface/MEKD.h"
+#include "MEKD.h"
 
 using namespace std;
 
@@ -92,8 +92,10 @@ MEKD::~MEKD()
 	idata.p.clear();
 	idata.id_p.clear();
 	
-	for (auto runner: ME_runners)
+	for (auto runner: ME_runners) {
+        runner->deinitialize();
 		delete runner;
+    }
 	ME_runners.clear();
 }
 
