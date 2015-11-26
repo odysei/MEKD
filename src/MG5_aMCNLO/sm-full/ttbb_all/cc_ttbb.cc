@@ -25,8 +25,8 @@ void cc_ttbb::initProc(string param_card_name)
   SLHAReader slha(param_card_name); 
   pars->setIndependentParameters(slha); 
   pars->setIndependentCouplings(); 
-  pars->printIndependentParameters(); 
-  pars->printIndependentCouplings(); 
+//   pars->printIndependentParameters(); 
+//   pars->printIndependentCouplings(); 
   // Set external particle masses for this matrix element
   mME.push_back(pars->mdl_MC); 
   mME.push_back(pars->mdl_MC); 
@@ -35,6 +35,21 @@ void cc_ttbb::initProc(string param_card_name)
   mME.push_back(pars->mdl_MB); 
   mME.push_back(pars->mdl_MB); 
   jamp2[0] = new double[6]; 
+}
+
+//--------------------------------------------------------------------------
+// Update process.
+
+void cc_ttbb::updateProc()
+{
+	// Set external particle masses for this matrix element
+	// Should correspond to initProc
+// 	mME[0] = (pars->mdl_MC);
+// 	mME[1] = (pars->mdl_MC);
+// 	mME[2] = (pars->mdl_MT);
+// 	mME[3] = (pars->mdl_MT);
+// 	mME[4] = (pars->mdl_MB);
+// 	mME[5] = (pars->mdl_MB);
 }
 
 //--------------------------------------------------------------------------

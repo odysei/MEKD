@@ -47,6 +47,7 @@ struct parameters
 	double parton_coeff_u;
 	double parton_coeff_s;
 	double parton_coeff_c;
+	double parton_coeff_b;
 	// 	double GG;	// Assign QCD coupling, force g3 running if needed
 	double sqrt_s; // Max energy, collision energy
 	

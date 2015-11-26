@@ -696,6 +696,7 @@ void MEKD::Load_parameters_extract_params(SLHAReader_MEKD &params,
 	da.m.u = params.get_block_entry("mass", 2, 0).real();
 	da.m.s = params.get_block_entry("mass", 3, 0).real();
 	da.m.c = params.get_block_entry("mass", 4, 0).real();
+	da.m.b = params.get_block_entry("mass", 5, 0).real();
 	da.m.e = params.get_block_entry("mass", 11, 0).real();
 	da.m.mu = params.get_block_entry("mass", 13, 0).real();
 	da.m.Z = params.get_block_entry("mass", 23, 9.11876e+01).real();

@@ -5,7 +5,7 @@
 #ifndef MEKD_RunMEs_cpp
 #define MEKD_RunMEs_cpp
 
-#include "../interface/MEKD.h"
+#include "MEKD.h"
 
 namespace mekd
 {

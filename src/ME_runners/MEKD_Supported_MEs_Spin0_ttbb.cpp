@@ -8,6 +8,7 @@
 #define MEKD_Supported_MEs_Spin0_ttbb_cpp
 
 #include "MEKD_Supported_MEs_Spin0_ttbb.h"
+#include "MEKD_Evaluators.h"
 
 namespace mekd
 {
@@ -57,11 +58,11 @@ void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb::evaluate(MEKD &in_MEKD,
                                                    const input &in)
 {
-	ME->setMomenta(in_MEKD.idata.p);
-	ME->sigmaKin();
-	const double *buffer = ME->getMatrixElements();
-        
-	return (buffer[0] + buffer[1]);
+    double ME2 = ME_Evaluator_IS_u(in_MEKD.param.parton_coeff_u,
+                                   in_MEKD.flag.Use_PDF_w_pT0,
+                                   in_MEKD.idata,
+                                   ME);
+    return ME2;
 }
 
 /*

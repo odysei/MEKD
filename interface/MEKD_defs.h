@@ -101,7 +101,7 @@ struct masses {
     double sys;
     
 	// quarks
-	double d, u, s, c;
+	double d, u, s, c, b;
     
     // leptons
     double e, mu;

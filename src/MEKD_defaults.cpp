@@ -36,6 +36,7 @@ void MEKD::Set_default_params()
 	param.parton_coeff_u = 1;
 	param.parton_coeff_s = 0;
 	param.parton_coeff_c = 0;
+	param.parton_coeff_b = 0;
 	// 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed
 	param.sqrt_s = 8000;	// Max energy, collision energy
 	

@@ -31,6 +31,8 @@ class cc_ttbb
 
     // Initialize process.
     virtual void initProc(string param_card_name); 
+    
+    virtual void updateProc();
 
     // Calculate flavour-independent parts of cross section.
     virtual void sigmaKin(); 
