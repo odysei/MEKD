@@ -21,7 +21,6 @@ void MEKD::Set_default_params()
 	flag.Fix_Spin1_Production = false;
 // flag.Force_g3_running = false;
 	flag.Overwrite_e_and_mu_masses = false;
-	flag.per_event_parton_coeffs = false;
 	flag.Use_mh_eq_m4l = true;
 	flag.Use_mZ4l_eq_m4l = true;
 	flag.Use_Higgs_width = true;
@@ -29,14 +28,15 @@ void MEKD::Set_default_params()
 	flag.Vary_resonance_width = true;
 	flag.Vary_signal_couplings = true;
 	flag.Warning_Mode = true;
-
-	// Values have no effect if PDF is used but variables are always used
-	// Parton multipliers.
-	param.parton_coeff_d = 0;
-	param.parton_coeff_u = 1;
-	param.parton_coeff_s = 0;
-	param.parton_coeff_c = 0;
-	param.parton_coeff_b = 0;
+    
+    flag.use_prod_2013_convetion_for_4l = true;
+	flag.use_prod_d = true;
+    flag.use_prod_u = true;
+    flag.use_prod_s = true;
+    flag.use_prod_c = true;
+    flag.use_prod_b = true;
+    flag.use_prod_g = true;
+    
 	// 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed
 	param.sqrt_s = 8000;	// Max energy, collision energy
 	

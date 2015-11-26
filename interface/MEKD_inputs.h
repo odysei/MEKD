@@ -23,7 +23,6 @@ struct flags
 	bool Fix_Spin1_Production; 	// use the a hybrid production mechanism
 	//bool Force_g3_running;		// unused. Was included for alpha_QCD
 	bool Overwrite_e_and_mu_masses; // switch for manual m_e, m_mu masses
-	bool per_event_parton_coeffs;	// if PDF is not used, allow altering
 									// parton contributions per event
 	bool Use_Higgs_width;		// if false, width is fixed to =1
 	bool Use_mh_eq_m4l;			// Set mh to m4l for every event
@@ -33,6 +32,14 @@ struct flags
 	bool Vary_resonance_width;  // Allow width to be varied with mass
 	bool Vary_signal_couplings; // Allow couplings to change with mass
 	bool Warning_Mode;			// Print warnings
+	
+	bool use_prod_2013_convetion_for_4l;    // 2013 convention for 4l states
+	bool use_prod_d;   // use d quarks in IS
+    bool use_prod_u;   // use u quarks in IS
+    bool use_prod_s;   // use s quarks in IS
+    bool use_prod_c;   // use c quarks in IS
+    bool use_prod_b;   // use b quarks in IS
+    bool use_prod_g;   // use gluons in IS
 };
 
 /// Parameters that are used in calculations, some are updated per run
@@ -41,13 +48,6 @@ struct parameters
     bool loaded = false;
     
 	/// General parameters
-	// Values have no effect if PDF is used but variables are always used
-	// Parton multipliers.
-	double parton_coeff_d;
-	double parton_coeff_u;
-	double parton_coeff_s;
-	double parton_coeff_c;
-	double parton_coeff_b;
 	// 	double GG;	// Assign QCD coupling, force g3 running if needed
 	double sqrt_s; // Max energy, collision energy
 	

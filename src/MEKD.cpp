@@ -110,7 +110,6 @@ int MEKD::Load_parameters(parameters &pa, data &da)
     }
 	Load_parameters_extract_params(params_MG, da);
 	Load_parameters_eval_params(da, pa);
-	Normalize_parton_coeffs(pa);
 	
 	if (pa.loaded)
 		Unload_pdfreader();
@@ -191,9 +190,6 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 	const int range[2] = {2, 6}; 
 	idata.m.sys = Get_sys_m(idata.p, range);
 	
-	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
-		Normalize_parton_coeffs(param);
-	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta entering ME(E px py px):\n";
 		Print_4momenta(idata.p);
@@ -255,9 +251,6 @@ int MEKD::Run(const input &in)
 
 	const int range[2] = {2, 6}; 
 	idata.m.sys = Get_sys_m(idata.p, range);
-	
-	if (flag.per_event_parton_coeffs && !flag.Use_PDF_w_pT0)
-		Normalize_parton_coeffs(param);
 	
 	if (flag.Debug_Mode) {
 		cout << "4-momenta entering ME(E px py px):\n";
@@ -872,19 +865,6 @@ double MEKD::Get_sys_m(const vector<double *> &p, const int p_range[2])
 				- sum_px * sum_px
 				- sum_py * sum_py
 				- sum_pz * sum_pz);
-}
-
-void MEKD::Normalize_parton_coeffs(parameters &pa)
-{
-	double buffer_ = (param.parton_coeff_d + param.parton_coeff_u +
-					  param.parton_coeff_s + param.parton_coeff_c +
-                      param.parton_coeff_b);
-	
-	param.parton_coeff_d = param.parton_coeff_d / buffer_;
-	param.parton_coeff_u = param.parton_coeff_u / buffer_;
-	param.parton_coeff_c = param.parton_coeff_c / buffer_;
-	param.parton_coeff_s = param.parton_coeff_s / buffer_;
-	param.parton_coeff_b = param.parton_coeff_b / buffer_;
 }
 
 void MEKD::Approx_neg_z_parton(double *p, const double E)

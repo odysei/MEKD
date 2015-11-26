@@ -183,7 +183,6 @@ class MEKD
 	void Zero_first_two(vector<double *> &);
 	void Approx_neg_z_parton(double *p, const double E);
 	void Approx_pos_z_parton(double *p, const double E);
-	void Normalize_parton_coeffs(parameters &);
 	
 
 	/// Constructors, destructors

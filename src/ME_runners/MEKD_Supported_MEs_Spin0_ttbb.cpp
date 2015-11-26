@@ -58,10 +58,11 @@ void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb::evaluate(MEKD &in_MEKD,
                                                    const input &in)
 {
-    double ME2 = ME_Evaluator_IS_u(in_MEKD.param.parton_coeff_u,
-                                   in_MEKD.flag.Use_PDF_w_pT0,
-                                   in_MEKD.idata,
-                                   ME);
+    double ME2 = 0;
+    if (in_MEKD.flag.use_prod_u)
+        ME2 += ME_Evaluator_IS_u(in_MEKD.flag.Use_PDF_w_pT0,
+                                 in_MEKD.idata,
+                                 ME);
     return ME2;
 }
 

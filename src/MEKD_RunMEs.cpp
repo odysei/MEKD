@@ -2451,7 +2451,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 	Signal_ME = 0;
 
 	/// Down quark block. Down type (s-like)
-	if (param.parton_coeff_d != 0) {
+	if (flag.use_prod_d && !flag.use_prod_2013_convetion_for_4l) {
 		params_MG.set_block_entry("mass", 3, da.m.d);
 // 		params_MG.set_block_entry("heff", 15, da.c.rhod01);
 // 		params_MG.set_block_entry("heff", 16, da.c.rhod02);
@@ -2474,18 +2474,18 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_d = pdfreader(1, da.PDFx1, da.m.sys) *
-								   pdfreader(-1, da.PDFx2, da.m.sys);
-			Signal_ME = param.parton_coeff_d * buffer[0];
-			param.parton_coeff_d = pdfreader(-1, da.PDFx1, da.m.sys) *
-								   pdfreader(1, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_d * buffer[1];
+			const double ME_value1 = buffer[0] *
+                                        pdfreader(1, da.PDFx1, da.m.sys) *
+                                        pdfreader(-1, da.PDFx2, da.m.sys);
+			Signal_ME = (ME_value1 + buffer[1] *
+                                    pdfreader(-1, da.PDFx1, da.m.sys) *
+                                    pdfreader(1, da.PDFx2, da.m.sys));
 		} else
-			Signal_ME = param.parton_coeff_d * (buffer[0] + buffer[1]);
+			Signal_ME = (buffer[0] + buffer[1]);
 	}
 
 	/// Strange quark block. Down type (s-like)
-	if (param.parton_coeff_s != 0) {
+	if (flag.use_prod_s && !flag.use_prod_2013_convetion_for_4l) {
 		params_MG.set_block_entry("mass", 3, da.m.s);
 // 		params_MG.set_block_entry("heff", 15, da.c.rhos01);
 // 		params_MG.set_block_entry("heff", 16, da.c.rhos02);
@@ -2508,18 +2508,18 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_s.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_s = pdfreader(3, da.PDFx1, da.m.sys) *
-								   pdfreader(-3, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_s * buffer[0];
-			param.parton_coeff_s = pdfreader(-3, da.PDFx1, da.m.sys) *
-								   pdfreader(3, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_s * buffer[1];
+			const double ME_value1 = buffer[0] *
+                                        pdfreader(3, da.PDFx1, da.m.sys) *
+                                        pdfreader(-3, da.PDFx2, da.m.sys);
+			Signal_ME += (ME_value1 + buffer[1] *
+                                    pdfreader(-3, da.PDFx1, da.m.sys) *
+                                    pdfreader(3, da.PDFx2, da.m.sys));
 		} else
-			Signal_ME += param.parton_coeff_s * (buffer[0] + buffer[1]);
+			Signal_ME += (buffer[0] + buffer[1]);
 	}
 
 	/// Up quark block. Up type (c-like)
-	if (param.parton_coeff_u != 0) {
+	if (flag.use_prod_u || flag.use_prod_2013_convetion_for_4l) {
 		params_MG.set_block_entry("mass", 4, da.m.u);
 // 		params_MG.set_block_entry("heff", 11, da.c.rhou01);
 // 		params_MG.set_block_entry("heff", 12, da.c.rhou02);
@@ -2542,18 +2542,18 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_u = pdfreader(2, da.PDFx1, da.m.sys) *
-								   pdfreader(-2, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_u * buffer[0];
-			param.parton_coeff_u = pdfreader(-2, da.PDFx1, da.m.sys) *
-								   pdfreader(2, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_u * buffer[1];
+			const double ME_value1 = buffer[0] *
+                                        pdfreader(2, da.PDFx1, da.m.sys) *
+                                        pdfreader(-2, da.PDFx2, da.m.sys);
+			Signal_ME += (ME_value1 + buffer[1] *
+                                    pdfreader(-2, da.PDFx1, da.m.sys) *
+                                    pdfreader(2, da.PDFx2, da.m.sys));
 		} else
-			Signal_ME += param.parton_coeff_u * (buffer[0] + buffer[1]);
+			Signal_ME += (buffer[0] + buffer[1]);
 	}
 
 	/// Charm quark block. Up type (c-like)
-	if (param.parton_coeff_c != 0) {
+	if (flag.use_prod_c && !flag.use_prod_2013_convetion_for_4l) {
 		params_MG.set_block_entry("mass", 4, da.m.c);
 // 		params_MG.set_block_entry("heff", 11, da.c.rhoc01);
 // 		params_MG.set_block_entry("heff", 12, da.c.rhoc02);
@@ -2576,14 +2576,14 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da,
 		const double *buffer = Generic_ME_c.getMatrixElements();
 
 		if (flag.Use_PDF_w_pT0) {
-			param.parton_coeff_c = pdfreader(4, da.PDFx1, da.m.sys) *
-								   pdfreader(-4, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_c * buffer[0];
-			param.parton_coeff_c = pdfreader(-4, da.PDFx1, da.m.sys) *
-								   pdfreader(4, da.PDFx2, da.m.sys);
-			Signal_ME += param.parton_coeff_c * buffer[1];
+			const double ME_value1 = buffer[0] *
+                                        pdfreader(4, da.PDFx1, da.m.sys) *
+                                        pdfreader(-4, da.PDFx2, da.m.sys);
+			Signal_ME += (ME_value1 + buffer[1] *
+                                    pdfreader(-4, da.PDFx1, da.m.sys) *
+                                    pdfreader(4, da.PDFx2, da.m.sys));
 		} else
-			Signal_ME += param.parton_coeff_c * (buffer[0] + buffer[1]);
+			Signal_ME += (buffer[0] + buffer[1]);
 	}
 
 	// return to real mass. Used in Z -> 4l
