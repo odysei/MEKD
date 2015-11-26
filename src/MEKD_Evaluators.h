@@ -12,53 +12,53 @@ namespace mekd
 template <class cME_g>
 double ME_Evaluator_IS_g(const bool use_PDFs, data &da, cME_g *ME_g)
 {
-	/// gg block
-	if (ME_g != NULL) {
-		da.p[0][3] = da.p[0][0];
+    /// gg block
+    if (ME_g != NULL) {
+        da.p[0][3] = da.p[0][0];
         da.p[1][3] = -da.p[1][0];
 
-		ME_g->updateProc();
-		ME_g->setMomenta(da.p);
-		ME_g->sigmaKin();
-		const double *buffer = ME_g->getMatrixElements();
+        ME_g->updateProc();
+        ME_g->setMomenta(da.p);
+        ME_g->sigmaKin();
+        const double *buffer = ME_g->getMatrixElements();
 
-		if (use_PDFs) {
-			return buffer[0] * pdfreader(21, da.PDFx1, da.m.sys) *
-                                pdfreader(21, da.PDFx2, da.m.sys);
-		} else
-			return buffer[0];
-	}
+        if (use_PDFs) {
+            return buffer[0] * pdfreader(21, da.PDFx1, da.m.sys) *
+                   pdfreader(21, da.PDFx2, da.m.sys);
+        } else
+            return buffer[0];
+    }
 
-	return 0;
+    return 0;
 }
 
 template <class cME_q>
 double ME_Evaluator_IS_q(const bool use_PDFs, data &da, cME_q *ME_q,
                          const double &m_q, const long &PDG_q)
 {
-	/// Generic quark block.
-	if (ME_q != NULL) {
+    /// Generic quark block.
+    if (ME_q != NULL) {
         const double m_q2 = m_q * m_q;
-		da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] - m_q2);
-		da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] - m_q2);
+        da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] - m_q2);
+        da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] - m_q2);
 
-		ME_q->updateProc();
-		ME_q->setMomenta(da.p);
-		ME_q->sigmaKin();
-		const double *buffer = ME_q->getMatrixElements();
+        ME_q->updateProc();
+        ME_q->setMomenta(da.p);
+        ME_q->sigmaKin();
+        const double *buffer = ME_q->getMatrixElements();
 
-		if (use_PDFs) {
-			const double ME_value1 = buffer[0] *
-                                        pdfreader(PDG_q, da.PDFx1, da.m.sys) *
-                                        pdfreader(-PDG_q, da.PDFx2, da.m.sys);
-			return (ME_value1 + buffer[1] *
-                                    pdfreader(-PDG_q, da.PDFx1, da.m.sys) *
-                                    pdfreader(PDG_q, da.PDFx2, da.m.sys));
-		} else
-			return (buffer[0] + buffer[1]);
-	}
+        if (use_PDFs) {
+            const double ME_value1 = buffer[0] *
+                                     pdfreader(PDG_q, da.PDFx1, da.m.sys) *
+                                     pdfreader(-PDG_q, da.PDFx2, da.m.sys);
+            return (ME_value1 +
+                    buffer[1] * pdfreader(-PDG_q, da.PDFx1, da.m.sys) *
+                        pdfreader(PDG_q, da.PDFx2, da.m.sys));
+        } else
+            return (buffer[0] + buffer[1]);
+    }
 
-	return 0;
+    return 0;
 }
 
 /// Down quark block. Down type (s-like)

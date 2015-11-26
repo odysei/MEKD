@@ -1,8 +1,8 @@
 /*
- * 
+ *
  * Load_ME_runners_try functions
- * 
- * 
+ *
+ *
  */
 #ifndef MEKD_Load_ME_runners_Spin0_ttbb_cpp
 #define MEKD_Load_ME_runners_Spin0_ttbb_cpp
@@ -16,11 +16,10 @@ namespace mekd
 bool MEKD::Load_ME_runners_try_Spin0_ttbb(const process_description &d,
                                           vector<ME_runner *> &v)
 {
-	if (Load_ME_runners_try(d, new ME_runner_all_bkg_Spin0Pm_2f_ttbb(),
-							v))
-		return true;
-	
-	return false;
+    if (Load_ME_runners_try(d, new ME_runner_all_bkg_Spin0Pm_2f_ttbb(), v))
+        return true;
+
+    return false;
 }
 
 /// end of namespace
