@@ -67,9 +67,9 @@ void MEKD::Set_default_params()
 
 #ifndef MEKD_STANDALONE
     // Relative location where a parameter card is stored:
-    string rel_param_path = "ZZMatrixElement/MEKD/src/Cards/param_card.dat";
+    string rel_param_path = "ZZMatrixElement/MEKD/data/Cards/param_card.dat";
     // PDF/PDT table file:
-    string rel_pdf_path = "ZZMatrixElement/MEKD/src/PDF_tables/cteq6l.pdt";
+    string rel_pdf_path = "ZZMatrixElement/MEKD/data/PDF_tables/cteq6l.pdt";
     edm::FileInPath parameterFileWithFullPath(rel_param_path);
     edm::FileInPath pdfFileWithFullPath(rel_pdf_path);
 
@@ -93,10 +93,10 @@ string MEKD::Find_local_file(const string &input_f)
     lookup.push_back("PDF_tables/");
     lookup.push_back("../Cards/");
     lookup.push_back("../PDF_tables/"); // [4]
-    lookup.push_back("../src/Cards/");
-    lookup.push_back("../src/PDF_tables/");
-    lookup.push_back("../../src/Cards/");
-    lookup.push_back("../../src/PDF_tables/");
+    lookup.push_back("../data/Cards/");
+    lookup.push_back("../data/PDF_tables/");
+    lookup.push_back("../../data/Cards/");
+    lookup.push_back("../../data/PDF_tables/");
 
     for (auto path : lookup) {
         string file_in_path = path + input_f;

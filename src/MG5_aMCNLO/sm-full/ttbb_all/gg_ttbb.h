@@ -30,6 +30,7 @@ class gg_ttbb
 
     // Initialize process.
     virtual void initProc(string param_card_name);
+    virtual void initProc();
 
     virtual void updateProc();
 

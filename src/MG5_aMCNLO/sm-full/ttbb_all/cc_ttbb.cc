@@ -37,6 +37,21 @@ void cc_ttbb::initProc(string param_card_name)
     jamp2[0] = new double[6];
 }
 
+void cc_ttbb::initProc()
+{
+    // Instantiate the model class and set parameters that stay fixed during run
+    pars = Parameters_sm_full::getInstance();
+    // Set external particle masses for this matrix element
+    mME.push_back(pars->mdl_MC);
+    mME.push_back(pars->mdl_MC);
+    mME.push_back(pars->mdl_MT);
+    mME.push_back(pars->mdl_MT);
+    mME.push_back(pars->mdl_MB);
+    mME.push_back(pars->mdl_MB);
+    jamp2[0] = new double[6];
+}
+
+
 //--------------------------------------------------------------------------
 // Update process.
 

@@ -689,76 +689,76 @@ void MEKD::Load_parameters_MEs(const string &param_f)
     // ME_RAW.initProc("../src/MG5_aMCNLO/RAW/param_card.dat");
 }
 
-void MEKD::Load_parameters_extract_params(SLHAReader_MEKD &params, data &da)
+void MEKD::Load_parameters_extract_params(const Parameters_MEKD *pa, data &da)
 {
-    da.m.d = params.get_block_entry("mass", 1, 0).real();
-    da.m.u = params.get_block_entry("mass", 2, 0).real();
-    da.m.s = params.get_block_entry("mass", 3, 0).real();
-    da.m.c = params.get_block_entry("mass", 4, 0).real();
-    da.m.b = params.get_block_entry("mass", 5, 0).real();
-    da.m.e = params.get_block_entry("mass", 11, 0).real();
-    da.m.mu = params.get_block_entry("mass", 13, 0).real();
-    da.m.Z = params.get_block_entry("mass", 23, 9.11876e+01).real();
+    da.m.d = pa->mdl_MD;
+    da.m.u = pa->mdl_MU;
+    da.m.s = pa->mdl_MS;
+    da.m.c = pa->mdl_MC;
+    da.m.b = pa->mdl_MB;
+    da.m.e = pa->mdl_Me;
+    da.m.mu = pa->mdl_MM;
+    da.m.Z = pa->mdl_MZ;
+    
+    da.c.rhou01 = pa->rhou01;
+    da.c.rhou02 = pa->rhou02;
+    da.c.rhoc01 = pa->rhoc01;
+    da.c.rhoc02 = pa->rhoc02;
+    da.c.rhod01 = pa->rhod01;
+    da.c.rhod02 = pa->rhod02;
+    da.c.rhos01 = pa->rhos01;
+    da.c.rhos02 = pa->rhos02;
+    da.c.rhob01 = pa->rhob01;
+    da.c.rhob02 = pa->rhob02;
 
-    da.c.rhou11 = params.get_block_entry("heff", 9, 0);
-    da.c.rhou12 = params.get_block_entry("heff", 10, 0);
-    da.c.rhoc11 = params.get_block_entry("heff", 11, 0);
-    da.c.rhoc12 = params.get_block_entry("heff", 12, 0);
-    da.c.rhod11 = params.get_block_entry("heff", 13, 0);
-    da.c.rhod12 = params.get_block_entry("heff", 14, 0);
-    da.c.rhos11 = params.get_block_entry("heff", 15, 0);
-    da.c.rhos12 = params.get_block_entry("heff", 16, 0);
-    da.c.rhob11 = params.get_block_entry("heff", 17, 0);
-    da.c.rhob12 = params.get_block_entry("heff", 18, 0);
+    da.c.rhou11 = pa->rhou11;
+    da.c.rhou12 = pa->rhou12;
+    da.c.rhou13 = pa->rhou13;
+    da.c.rhou14 = pa->rhou14;
+    da.c.rhoc11 = pa->rhoc11;
+    da.c.rhoc12 = pa->rhoc12;
+    da.c.rhoc13 = pa->rhoc13;
+    da.c.rhoc14 = pa->rhoc14;
+    da.c.rhod11 = pa->rhod11;
+    da.c.rhod12 = pa->rhod12;
+    da.c.rhod13 = pa->rhod13;
+    da.c.rhod14 = pa->rhod14;
+    da.c.rhos11 = pa->rhos11;
+    da.c.rhos12 = pa->rhos12;
+    da.c.rhos13 = pa->rhos13;
+    da.c.rhos14 = pa->rhos14;
+    da.c.rhob11 = pa->rhob11;
+    da.c.rhob12 = pa->rhob12;
+    da.c.rhob13 = pa->rhob13;
+    da.c.rhob14 = pa->rhob14;
 
-    da.c.rhou11 = params.get_block_entry("vec", 3, 0);
-    da.c.rhou12 = params.get_block_entry("vec", 4, 0);
-    da.c.rhou13 = params.get_block_entry("vec", 5, 0);
-    da.c.rhou14 = params.get_block_entry("vec", 6, 0);
-    da.c.rhoc11 = params.get_block_entry("vec", 7, 0);
-    da.c.rhoc12 = params.get_block_entry("vec", 8, 0);
-    da.c.rhoc13 = params.get_block_entry("vec", 9, 0);
-    da.c.rhoc14 = params.get_block_entry("vec", 10, 0);
-    da.c.rhod11 = params.get_block_entry("vec", 11, 0);
-    da.c.rhod12 = params.get_block_entry("vec", 12, 0);
-    da.c.rhod13 = params.get_block_entry("vec", 13, 0);
-    da.c.rhod14 = params.get_block_entry("vec", 14, 0);
-    da.c.rhos11 = params.get_block_entry("vec", 15, 0);
-    da.c.rhos12 = params.get_block_entry("vec", 16, 0);
-    da.c.rhos13 = params.get_block_entry("vec", 17, 0);
-    da.c.rhos14 = params.get_block_entry("vec", 18, 0);
-    da.c.rhob11 = params.get_block_entry("vec", 19, 0);
-    da.c.rhob12 = params.get_block_entry("vec", 20, 0);
-    da.c.rhob13 = params.get_block_entry("vec", 21, 0);
-    da.c.rhob14 = params.get_block_entry("vec", 22, 0);
-
-    da.c.rhou21 = params.get_block_entry("gravity", 21, 0);
-    da.c.rhou22 = params.get_block_entry("gravity", 22, 0);
-    da.c.rhou23 = params.get_block_entry("gravity", 23, 0);
-    da.c.rhou24 = params.get_block_entry("gravity", 24, 0);
-    da.c.rhoc21 = params.get_block_entry("gravity", 25, 0);
-    da.c.rhoc22 = params.get_block_entry("gravity", 26, 0);
-    da.c.rhoc23 = params.get_block_entry("gravity", 27, 0);
-    da.c.rhoc24 = params.get_block_entry("gravity", 28, 0);
-    da.c.rhod21 = params.get_block_entry("gravity", 29, 0);
-    da.c.rhod22 = params.get_block_entry("gravity", 30, 0);
-    da.c.rhod23 = params.get_block_entry("gravity", 31, 0);
-    da.c.rhod24 = params.get_block_entry("gravity", 32, 0);
-    da.c.rhos21 = params.get_block_entry("gravity", 33, 0);
-    da.c.rhos22 = params.get_block_entry("gravity", 34, 0);
-    da.c.rhos23 = params.get_block_entry("gravity", 35, 0);
-    da.c.rhos24 = params.get_block_entry("gravity", 36, 0);
-    da.c.rhob21 = params.get_block_entry("gravity", 37, 0);
-    da.c.rhob22 = params.get_block_entry("gravity", 38, 0);
-    da.c.rhob23 = params.get_block_entry("gravity", 39, 0);
-    da.c.rhob24 = params.get_block_entry("gravity", 40, 0);
+    da.c.rhou21 = pa->rhou21;
+    da.c.rhou22 = pa->rhou22;
+    da.c.rhou23 = pa->rhou23;
+    da.c.rhou24 = pa->rhou24;
+    da.c.rhoc21 = pa->rhoc21;
+    da.c.rhoc22 = pa->rhoc22;
+    da.c.rhoc23 = pa->rhoc23;
+    da.c.rhoc24 = pa->rhoc24;
+    da.c.rhod21 = pa->rhod21;
+    da.c.rhod22 = pa->rhod22;
+    da.c.rhod23 = pa->rhod23;
+    da.c.rhod24 = pa->rhod24;
+    da.c.rhos21 = pa->rhos21;
+    da.c.rhos22 = pa->rhos22;
+    da.c.rhos23 = pa->rhos23;
+    da.c.rhos24 = pa->rhos24;
+    da.c.rhob21 = pa->rhob21;
+    da.c.rhob22 = pa->rhob22;
+    da.c.rhob23 = pa->rhob23;
+    da.c.rhob24 = pa->rhob24;
 }
 
-void MEKD::Load_parameters_eval_params(const data &da, parameters &pa)
+void MEKD::Load_parameters_eval_params(const Parameters_MEKD *paM,
+                                       const data &da,
+                                       parameters &pa)
 {
-    pa.vev = 1.0 / sqrt(sqrt(2) *
-                        params_MG.get_block_entry("sminputs", 2, 1.166370e-05)
-                            .real());
+    pa.vev = paM->mdl_vev; // = 1.0 / sqrt(sqrt(2) * paM->mdl_Gf;
     pa.hZZ_coupling = 2.0 * da.m.Z * da.m.Z / pa.vev;
 }
 

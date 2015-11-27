@@ -357,8 +357,10 @@ class MEKD
 
     int Load_parameters(parameters &, data &);
     void Load_parameters_MEs(const string &param_f);
-    void Load_parameters_extract_params(SLHAReader_MEKD &, data &);
-    void Load_parameters_eval_params(const data &, parameters &);
+    void Load_parameters_extract_params(const Parameters_MEKD *, data &);
+    void Load_parameters_eval_params(const Parameters_MEKD *,
+                                     const data &,
+                                     parameters &);
     // reloads parameter set and updates PDF file reader
     int Reload_params(parameters &, data &);
 

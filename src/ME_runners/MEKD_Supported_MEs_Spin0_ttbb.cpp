@@ -67,7 +67,7 @@ void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb::evaluate(MEKD &in_MEKD,
                                                    const input &in)
 {
-    in_MEKD.params_sm_full->mdl_MH = 160;
+//     in_MEKD.params_sm_full->mdl_MH = 160;
     double ME2 = 0;
     if (in_MEKD.flag.use_prod_c)
         ME2 += ME_Evaluator_IS_c(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,

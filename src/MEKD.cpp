@@ -113,8 +113,8 @@ int MEKD::Load_parameters(parameters &pa, data &da)
         Load_parameters_MEs(pa.params_MG_file); // init MEs
         Initialize_ME_runners(pa.params_MG_file, ME_runners);
     }
-    Load_parameters_extract_params(params_MG, da);
-    Load_parameters_eval_params(da, pa);
+    Load_parameters_extract_params(params_MEKD, da);
+    Load_parameters_eval_params(params_MEKD, da, pa);
 
     if (pa.loaded)
         Unload_pdfreader();
@@ -289,8 +289,8 @@ int MEKD::Run(const input &in, string Input_Model)
 void MEKD::Run_make_p(data &da)
 {
     if (flag.Overwrite_e_and_mu_masses) {
-        params_MG.set_block_entry("mass", 11, param.Electron_mass);
-        params_MG.set_block_entry("mass", 13, param.Muon_mass);
+        params_MEKD->mdl_Me = param.Electron_mass;
+        params_MEKD->mdl_MM = param.Muon_mass;
         da.m.e = param.Electron_mass;
         da.m.mu = param.Muon_mass;
     }
@@ -324,8 +324,7 @@ void MEKD::Run_make_p(data &da)
 void MEKD::Run_make_p_boost(const int mode, data &da)
 {
     if (da.fs == final_4e || da.fs == final_4eA) {
-        const double m =
-            params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
+        const double m = da.m.e;
 
         if (mode == 0) {
             Boost2CM(m, da.p[2], m, da.p[3], m, da.p[4], m, da.p[5], 0,
@@ -340,8 +339,7 @@ void MEKD::Run_make_p_boost(const int mode, data &da)
     }
 
     if (da.fs == final_4mu || da.fs == final_4muA) {
-        const double m =
-            params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+        const double m = da.m.mu;
 
         if (mode == 0) {
             Boost2CM(m, da.p[2], m, da.p[3], m, da.p[4], m, da.p[5], 0,
@@ -356,10 +354,8 @@ void MEKD::Run_make_p_boost(const int mode, data &da)
     }
 
     if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
-        const double m1 =
-            params_MG.get_block_entry("mass", 11, param.Electron_mass).real();
-        const double m2 =
-            params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+        const double m1 = da.m.e;
+        const double m2 = da.m.mu;
 
         if (mode == 0) {
             Boost2CM(m1, da.p[2], m1, da.p[3], m2, da.p[4], m2, da.p[5], 0,
@@ -374,8 +370,7 @@ void MEKD::Run_make_p_boost(const int mode, data &da)
     }
 
     if (da.fs == final_2mu || da.fs == final_2muA) {
-        const double m =
-            params_MG.get_block_entry("mass", 13, param.Muon_mass).real();
+        const double m = da.m.mu;
 
         if (mode == 0) {
             Boost2CM(m, da.p[2], m, da.p[3], 0, da.p[4], 0, da.p[5], 0,
