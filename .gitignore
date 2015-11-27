@@ -147,5 +147,6 @@ src/MG5_aMCNLO/sm-full/src/HelAmps_sm_full.o
 src/MG5_aMCNLO/sm-full/src/Parameters_sm_full.o
 src/MG5_aMCNLO/sm-full/src/read_slha.o
 src/MG5_aMCNLO/sm-full/ttbb_all/cc_ttbb.o
+src/MG5_aMCNLO/sm-full/ttbb_all/gg_ttbb.o
 src/PDF_tables/pdt.o
 src/higgs_properties/hggeffective.o

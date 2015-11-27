@@ -21,39 +21,39 @@ Parameters_sm_full *Parameters_sm_full::getInstance()
     return instance;
 }
 
-void Parameters_sm_full::setIndependentParameters(SLHAReader &slha)
+void Parameters_sm_full::setIndependentParameters(SLHAReader_MEKD &slha)
 {
     // Define "zero"
     zero = 0;
     ZERO = 0;
     // Prepare a vector for indices
     vector<int> indices(2, 0);
-    mdl_WH = slha.get_block_entry("decay", 25, 6.382339e-03);
-    mdl_WW = slha.get_block_entry("decay", 24, 2.047600e+00);
-    mdl_WZ = slha.get_block_entry("decay", 23, 2.441404e+00);
-    mdl_WTau = slha.get_block_entry("decay", 15, 2.270000e-12);
-    mdl_WT = slha.get_block_entry("decay", 6, 1.508336e+00);
-    mdl_ymtau = slha.get_block_entry("yukawa", 15, 1.777000e+00);
-    mdl_ymm = slha.get_block_entry("yukawa", 13, 1.056600e-01);
-    mdl_yme = slha.get_block_entry("yukawa", 11, 5.110000e-04);
-    mdl_ymt = slha.get_block_entry("yukawa", 6, 1.645000e+02);
-    mdl_ymb = slha.get_block_entry("yukawa", 5, 4.200000e+00);
-    mdl_ymc = slha.get_block_entry("yukawa", 4, 1.270000e+00);
-    mdl_etaWS = slha.get_block_entry("wolfenstein", 4, 3.410000e-01);
-    mdl_rhoWS = slha.get_block_entry("wolfenstein", 3, 1.320000e-01);
-    mdl_AWS = slha.get_block_entry("wolfenstein", 2, 8.080000e-01);
-    mdl_lamWS = slha.get_block_entry("wolfenstein", 1, 2.253000e-01);
-    aS = slha.get_block_entry("sminputs", 3, 1.180000e-01);
-    mdl_Gf = slha.get_block_entry("sminputs", 2, 1.166390e-05);
-    aEWM1 = slha.get_block_entry("sminputs", 1, 1.325070e+02);
-    mdl_MH = slha.get_block_entry("mass", 25, 1.250000e+02);
-    mdl_MZ = slha.get_block_entry("mass", 23, 9.118800e+01);
-    mdl_MTA = slha.get_block_entry("mass", 15, 1.777000e+00);
-    mdl_MM = slha.get_block_entry("mass", 13, 1.056600e-01);
-    mdl_Me = slha.get_block_entry("mass", 11, 5.110000e-04);
-    mdl_MT = slha.get_block_entry("mass", 6, 1.720000e+02);
-    mdl_MB = slha.get_block_entry("mass", 5, 4.700000e+00);
-    mdl_MC = slha.get_block_entry("mass", 4, 1.270000e+00);
+    mdl_WH = slha.get_block_entry("decay", 25, 6.382339e-03).real();
+    mdl_WW = slha.get_block_entry("decay", 24, 2.047600e+00).real();
+    mdl_WZ = slha.get_block_entry("decay", 23, 2.441404e+00).real();
+    mdl_WTau = slha.get_block_entry("decay", 15, 2.270000e-12).real();
+    mdl_WT = slha.get_block_entry("decay", 6, 1.508336e+00).real();
+    mdl_ymtau = slha.get_block_entry("yukawa", 15, 1.777000e+00).real();
+    mdl_ymm = slha.get_block_entry("yukawa", 13, 1.056600e-01).real();
+    mdl_yme = slha.get_block_entry("yukawa", 11, 5.110000e-04).real();
+    mdl_ymt = slha.get_block_entry("yukawa", 6, 1.645000e+02).real();
+    mdl_ymb = slha.get_block_entry("yukawa", 5, 4.200000e+00).real();
+    mdl_ymc = slha.get_block_entry("yukawa", 4, 1.270000e+00).real();
+    mdl_etaWS = slha.get_block_entry("wolfenstein", 4, 3.410000e-01).real();
+    mdl_rhoWS = slha.get_block_entry("wolfenstein", 3, 1.320000e-01).real();
+    mdl_AWS = slha.get_block_entry("wolfenstein", 2, 8.080000e-01).real();
+    mdl_lamWS = slha.get_block_entry("wolfenstein", 1, 2.253000e-01).real();
+    aS = slha.get_block_entry("sminputs", 3, 1.180000e-01).real();
+    mdl_Gf = slha.get_block_entry("sminputs", 2, 1.166390e-05).real();
+    aEWM1 = slha.get_block_entry("sminputs", 1, 1.325070e+02).real();
+    mdl_MH = slha.get_block_entry("mass", 25, 1.250000e+02).real();
+    mdl_MZ = slha.get_block_entry("mass", 23, 9.118800e+01).real();
+    mdl_MTA = slha.get_block_entry("mass", 15, 1.777000e+00).real();
+    mdl_MM = slha.get_block_entry("mass", 13, 1.056600e-01).real();
+    mdl_Me = slha.get_block_entry("mass", 11, 5.110000e-04).real();
+    mdl_MT = slha.get_block_entry("mass", 6, 1.720000e+02).real();
+    mdl_MB = slha.get_block_entry("mass", 5, 4.700000e+00).real();
+    mdl_MC = slha.get_block_entry("mass", 4, 1.270000e+00).real();
     mdl_lamWS__exp__2 = pow(mdl_lamWS, 2.);
     mdl_CKM1x1 = 1. - mdl_lamWS__exp__2 / 2.;
     mdl_CKM1x2 = mdl_lamWS;

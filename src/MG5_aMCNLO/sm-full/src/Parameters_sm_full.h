@@ -10,7 +10,7 @@
 
 #include <complex>
 
-#include "read_slha.h"
+#include "read_slha_MEKD.h"
 using namespace std;
 
 class Parameters_sm_full
@@ -48,7 +48,7 @@ class Parameters_sm_full
     std::complex<double> GC_12, GC_11, GC_10;
 
     // Set parameters that are unchanged during the run
-    void setIndependentParameters(SLHAReader &slha);
+    void setIndependentParameters(SLHAReader_MEKD &slha);
     // Set couplings that are unchanged during the run
     void setIndependentCouplings();
     // Set parameters that are changed event by event

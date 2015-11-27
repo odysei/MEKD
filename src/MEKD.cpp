@@ -26,8 +26,9 @@ namespace mekd
 // idata.p(7, new double[4]), => some problems ???
 MEKD::MEKD()
 {
-    Set_default_params();
+    Set_default_params();   // loads mostly flag (s) and param (s)
     params_sm_full = Parameters_sm_full::getInstance();
+    params_MEKD = Parameters_MEKD::getInstance();
 
     Check_MEs();
 
@@ -93,12 +94,19 @@ MEKD::~MEKD()
     }
     ME_runners.clear();
     
+    delete params_MEKD;
     delete params_sm_full;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)
 {
     params_MG.read_slha_file(pa.params_MG_file);
+    
+    SLHAReader_MEKD slha(pa.params_MG_file);
+    params_MEKD->setIndependentParameters(slha);
+    params_MEKD->setIndependentCouplings();
+    params_sm_full->setIndependentParameters(slha);
+    params_sm_full->setIndependentCouplings();
 
     /// Initializing parameters
     if (!pa.loaded) {

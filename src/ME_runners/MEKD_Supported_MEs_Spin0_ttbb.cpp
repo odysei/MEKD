@@ -41,23 +41,40 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::is_my_type(
 
 bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::initialize(const string &param_f)
 {
-    ME = new MG5_sm_full::cc_ttbb;
-    if (ME->nprocesses != 2) {
-        cerr << "Problem in ME class detected.\n";
+    ME_c = new MG5_sm_full::cc_ttbb;
+    if (ME_c->nprocesses != 2) {
+        cerr << "Problem in ME_c class detected.\n";
         return false;
     }
-    ME->initProc(param_f);
+    ME_c->initProc(param_f);
+    
+    ME_g = new MG5_sm_full::gg_ttbb;
+    if (ME_g->nprocesses != 1) {
+        cerr << "Problem in ME_g class detected.\n";
+        return false;
+    }
+    ME_g->initProc(param_f);
+    
     return true;
 }
 
-void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize() { delete ME; }
+void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
+{
+    delete ME_c;
+    delete ME_g;
+}
 
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb::evaluate(MEKD &in_MEKD,
                                                    const input &in)
 {
+    in_MEKD.params_sm_full->mdl_MH = 160;
     double ME2 = 0;
-    if (in_MEKD.flag.use_prod_u)
-        ME2 += ME_Evaluator_IS_u(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata, ME);
+    if (in_MEKD.flag.use_prod_c)
+        ME2 += ME_Evaluator_IS_c(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
+                                 ME_c);
+    if (in_MEKD.flag.use_prod_g)
+        ME2 += ME_Evaluator_IS_g(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
+                                 ME_g);
     return ME2;
 }
 
