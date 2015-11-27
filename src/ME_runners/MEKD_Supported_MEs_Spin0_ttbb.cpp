@@ -46,16 +46,27 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::initialize(const string &param_f)
         cerr << "Problem in ME_c class detected.\n";
         return false;
     }
-    ME_c->initProc(param_f);
+    if (param_f == "")
+        ME_c->initProc();
+    else
+        ME_c->initProc(param_f);
     
     ME_g = new MG5_sm_full::gg_ttbb;
     if (ME_g->nprocesses != 1) {
         cerr << "Problem in ME_g class detected.\n";
         return false;
     }
-    ME_g->initProc(param_f);
+    if (param_f == "")
+        ME_g->initProc();
+    else
+        ME_g->initProc(param_f);
     
     return true;
+}
+
+bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::initialize()
+{
+    return initialize("");
 }
 
 void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
