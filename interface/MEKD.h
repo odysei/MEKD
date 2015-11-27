@@ -126,6 +126,7 @@ class MEKD
 
     /// Parameter container. For experts only
     SLHAReader_MEKD params_MG;
+    Parameters_sm_full *params_sm_full;
 
     /// Internal data
     data idata;

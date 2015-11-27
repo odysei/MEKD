@@ -27,6 +27,7 @@ namespace mekd
 MEKD::MEKD()
 {
     Set_default_params();
+    params_sm_full = Parameters_sm_full::getInstance();
 
     Check_MEs();
 
@@ -58,12 +59,6 @@ MEKD::MEKD()
     // 	id3 = 10000;
     // 	id4 = 10000;
     // 	id5 = 10000;
-    /*
-        pl1_internal = NULL;
-        pl2_internal = NULL;
-        pl3_internal = NULL;
-        pl4_internal = NULL;
-        pA1_internal = NULL;*/
 }
 
 /*
@@ -97,6 +92,8 @@ MEKD::~MEKD()
         delete runner;
     }
     ME_runners.clear();
+    
+    delete params_sm_full;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)

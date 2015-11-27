@@ -60,12 +60,12 @@ void cc_ttbb::sigmaKin()
     // Set the parameters which change event by event
     pars->setDependentParameters();
     pars->setDependentCouplings();
-    static bool firsttime = true;
-    if (firsttime) {
-        pars->printDependentParameters();
-        pars->printDependentCouplings();
-        firsttime = false;
-    }
+//     static bool firsttime = true;
+//     if (firsttime) {
+//         pars->printDependentParameters();
+//         pars->printDependentCouplings();
+//         firsttime = false;
+//     }
 
     // Reset color flows
     for (int i = 0; i < 6; i++)
