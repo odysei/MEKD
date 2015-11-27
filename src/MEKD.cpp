@@ -94,8 +94,8 @@ MEKD::~MEKD()
     }
     ME_runners.clear();
     
-    delete params_MEKD;
-    delete params_sm_full;
+//     delete params_MEKD;
+//     delete params_sm_full;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)
