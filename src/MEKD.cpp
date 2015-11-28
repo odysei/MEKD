@@ -111,7 +111,7 @@ int MEKD::Load_parameters(parameters &pa, data &da)
     /// Initializing parameters
     if (!pa.loaded) {
         Load_parameters_MEs(pa.params_MG_file); // init MEs
-        Initialize_ME_runners(pa.params_MG_file, ME_runners);
+        Initialize_ME_runners(ME_runners);
     }
     Load_parameters_extract_params(params_MEKD, da);
     Load_parameters_eval_params(params_MEKD, da, pa);

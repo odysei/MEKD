@@ -66,6 +66,7 @@ class ME_runner
 
     virtual bool is_my_type(const process_description &in) { return false; }
 
+    virtual bool initialize() { return false; }
     virtual bool initialize(const string &param_f) { return false; }
 
     virtual void deinitialize() {}
@@ -115,6 +116,7 @@ class MEKD
     bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
                                         vector<ME_runner *> &);
 
+    void Initialize_ME_runners(vector<ME_runner *> &);
     void Initialize_ME_runners(const string &param_f, vector<ME_runner *> &);
     // end
 

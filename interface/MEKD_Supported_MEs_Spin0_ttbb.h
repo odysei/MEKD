@@ -44,8 +44,8 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb : public ME_runner
     const process_description my_type();
     bool is_my_type(const process_description &in);
 
-    bool initialize(const string &param_f);
     bool initialize();
+    bool initialize(const string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
