@@ -9,18 +9,18 @@
 namespace mekd
 {
 
-template <class cME_g>
-double ME_Evaluator_IS_g(const bool use_PDFs, data &da, cME_g *ME_g)
+template <class cME_gg>
+double ME_Evaluator_IS_gg(const bool use_PDFs, data &da, cME_gg *ME_gg)
 {
     /// gg block
-    if (ME_g != NULL) {
+    if (ME_gg != NULL) {
         da.p[0][3] = da.p[0][0];
         da.p[1][3] = -da.p[1][0];
 
-        ME_g->updateProc();
-        ME_g->setMomenta(da.p);
-        ME_g->sigmaKin();
-        const double *buffer = ME_g->getMatrixElements();
+        ME_gg->updateProc();
+        ME_gg->setMomenta(da.p);
+        ME_gg->sigmaKin();
+        const double *buffer = ME_gg->getMatrixElements();
 
         if (use_PDFs) {
             return buffer[0] * pdfreader(21, da.PDFx1, da.m.sys) *
@@ -32,20 +32,20 @@ double ME_Evaluator_IS_g(const bool use_PDFs, data &da, cME_g *ME_g)
     return 0;
 }
 
-template <class cME_q>
-double ME_Evaluator_IS_q(const bool use_PDFs, data &da, cME_q *ME_q,
-                         const double &m_q, const long &PDG_q)
+template <class cME_qqx>
+double ME_Evaluator_IS_qqx(const bool use_PDFs, data &da, cME_qqx *ME_qqx,
+                           const double &m_q, const long &PDG_q)
 {
     /// Generic quark block.
-    if (ME_q != NULL) {
+    if (ME_qqx != NULL) {
         const double m_q2 = m_q * m_q;
         da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] - m_q2);
         da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] - m_q2);
 
-        ME_q->updateProc();
-        ME_q->setMomenta(da.p);
-        ME_q->sigmaKin();
-        const double *buffer = ME_q->getMatrixElements();
+        ME_qqx->updateProc();
+        ME_qqx->setMomenta(da.p);
+        ME_qqx->sigmaKin();
+        const double *buffer = ME_qqx->getMatrixElements();
 
         if (use_PDFs) {
             const double ME_value1 = buffer[0] *
@@ -62,38 +62,38 @@ double ME_Evaluator_IS_q(const bool use_PDFs, data &da, cME_q *ME_q,
 }
 
 /// Down quark block. Down type (s-like)
-template <class cME_d>
-double ME_Evaluator_IS_d(const bool use_PDFs, data &da, cME_d *ME_d)
+template <class cME_ddx>
+double ME_Evaluator_IS_ddx(const bool use_PDFs, data &da, cME_ddx *ME_ddx)
 {
-    return ME_Evaluator_IS_q(use_PDFs, da, ME_d, da.m.d, 1);
+    return ME_Evaluator_IS_qqx(use_PDFs, da, ME_ddx, da.m.d, 1);
 }
 
 /// Up quark block. Up type (c-like)
-template <class cME_u>
-double ME_Evaluator_IS_u(const bool use_PDFs, data &da, cME_u *ME_u)
+template <class cME_uux>
+double ME_Evaluator_IS_uux(const bool use_PDFs, data &da, cME_uux *ME_uux)
 {
-    return ME_Evaluator_IS_q(use_PDFs, da, ME_u, da.m.u, 2);
+    return ME_Evaluator_IS_qqx(use_PDFs, da, ME_uux, da.m.u, 2);
 }
 
 /// Strange quark block. Down type (s-like)
-template <class cME_s>
-double ME_Evaluator_IS_s(const bool use_PDFs, data &da, cME_s *ME_s)
+template <class cME_ssx>
+double ME_Evaluator_IS_ssx(const bool use_PDFs, data &da, cME_ssx *ME_ssx)
 {
-    return ME_Evaluator_IS_q(use_PDFs, da, ME_s, da.m.s, 3);
+    return ME_Evaluator_IS_qqx(use_PDFs, da, ME_ssx, da.m.s, 3);
 }
 
 /// Charm quark block. Up type (c-like)
-template <class cME_c>
-double ME_Evaluator_IS_c(const bool use_PDFs, data &da, cME_c *ME_c)
+template <class cME_ccx>
+double ME_Evaluator_IS_ccx(const bool use_PDFs, data &da, cME_ccx *ME_ccx)
 {
-    return ME_Evaluator_IS_q(use_PDFs, da, ME_c, da.m.c, 4);
+    return ME_Evaluator_IS_qqx(use_PDFs, da, ME_ccx, da.m.c, 4);
 }
 
 /// Bottom quark block. Down type (s-like)
-template <class cME_b>
-double ME_Evaluator_IS_b(const bool use_PDFs, data &da, cME_b *ME_b)
+template <class cME_bbx>
+double ME_Evaluator_IS_bbx(const bool use_PDFs, data &da, cME_bbx *ME_bbx)
 {
-    return ME_Evaluator_IS_b(use_PDFs, da, ME_b, da.m.b, 5);
+    return ME_Evaluator_IS_qqx(use_PDFs, da, ME_bbx, da.m.b, 5);
 }
 
 /// end of namespace

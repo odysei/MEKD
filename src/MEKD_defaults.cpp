@@ -29,12 +29,12 @@ void MEKD::Set_default_params()
     flag.Warning_Mode = true;
 
     flag.use_prod_2013_convetion_for_4l = true;
-    flag.use_prod_d = true;
-    flag.use_prod_u = true;
-    flag.use_prod_s = true;
-    flag.use_prod_c = true;
-    flag.use_prod_b = true;
-    flag.use_prod_g = true;
+    flag.use_prod_ddx = true;
+    flag.use_prod_uux = true;
+    flag.use_prod_ssx = true;
+    flag.use_prod_ccx = true;
+    flag.use_prod_bbx = true;
+    flag.use_prod_gg = true;
 
     // 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed
     param.sqrt_s = 8000; // Max energy, collision energy

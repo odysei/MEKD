@@ -38,9 +38,16 @@ class ME_runner_gg_Spin0Pm_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OF *ME_gg_OF;
+    gg_Spin0_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -57,9 +64,16 @@ class ME_runner_no_Spin0Pm_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OF *ME_OF;
+    Spin0_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -76,9 +90,16 @@ class ME_runner_gg_Spin0Ph_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OF *ME_gg_OF;
+    gg_Spin0_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -95,9 +116,16 @@ class ME_runner_no_Spin0Ph_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OF *ME_OF;
+    Spin0_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -114,9 +142,16 @@ class ME_runner_gg_Spin0M_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OF *ME_gg_OF;
+    gg_Spin0_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -133,9 +168,16 @@ class ME_runner_no_Spin0M_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OF *ME_OF;
+    Spin0_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -152,9 +194,16 @@ class ME_runner_gg_Spin0_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OF *ME_gg_OF;
+    gg_Spin0_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -171,9 +220,16 @@ class ME_runner_no_Spin0_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OF *ME_OF;
+    Spin0_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -194,9 +250,16 @@ class ME_runner_gg_Spin0Pm_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OFpA *ME_gg_OF;
+    gg_Spin0_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -213,9 +276,16 @@ class ME_runner_no_Spin0Pm_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OFpA *ME_OF;
+    Spin0_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -232,9 +302,16 @@ class ME_runner_gg_Spin0Ph_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OFpA *ME_gg_OF;
+    gg_Spin0_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -251,9 +328,16 @@ class ME_runner_no_Spin0Ph_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OFpA *ME_OF;
+    Spin0_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -270,9 +354,16 @@ class ME_runner_gg_Spin0M_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OFpA *ME_gg_OF;
+    gg_Spin0_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -289,9 +380,16 @@ class ME_runner_no_Spin0M_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OFpA *ME_OF;
+    Spin0_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -308,9 +406,16 @@ class ME_runner_gg_Spin0_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_OFpA *ME_gg_OF;
+    gg_Spin0_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -327,9 +432,16 @@ class ME_runner_no_Spin0_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_OFpA *ME_OF;
+    Spin0_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -356,9 +468,16 @@ class ME_runner_gg_Spin0Pm_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OF *ME_gg_OF;
+    gg_Spin0_2f_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -375,9 +494,16 @@ class ME_runner_no_Spin0Pm_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OF *ME_OF;
+    Spin0_2f_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -394,9 +520,16 @@ class ME_runner_gg_Spin0M_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OF *ME_gg_OF;
+    gg_Spin0_2f_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -413,9 +546,16 @@ class ME_runner_no_Spin0M_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OF *ME_OF;
+    Spin0_2f_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -432,9 +572,16 @@ class ME_runner_gg_Spin0_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OF *ME_gg_OF;
+    gg_Spin0_2f_SF *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -451,9 +598,16 @@ class ME_runner_no_Spin0_2f_4l : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OF *ME_OF;
+    Spin0_2f_SF *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -474,9 +628,16 @@ class ME_runner_gg_Spin0Pm_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OFpA *ME_gg_OF;
+    gg_Spin0_2f_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -493,9 +654,16 @@ class ME_runner_no_Spin0Pm_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OFpA *ME_OF;
+    Spin0_2f_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -512,9 +680,16 @@ class ME_runner_gg_Spin0M_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OFpA *ME_gg_OF;
+    gg_Spin0_2f_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -531,9 +706,16 @@ class ME_runner_no_Spin0M_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OFpA *ME_OF;
+    Spin0_2f_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -550,9 +732,16 @@ class ME_runner_gg_Spin0_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    gg_Spin0_2f_OFpA *ME_gg_OF;
+    gg_Spin0_2f_SFpA *ME_gg_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };
@@ -569,9 +758,16 @@ class ME_runner_no_Spin0_2f_4lA : public ME_runner
     };
 
     // Actual MEs
+    Spin0_2f_OFpA *ME_OF;
+    Spin0_2f_SFpA *ME_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+    
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };

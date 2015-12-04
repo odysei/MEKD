@@ -36,13 +36,27 @@ void Spin0_SFpA::initProc(string param_card_name)
     jamp2[0] = new double[1];
 }
 
+void Spin0_SFpA::initProc()
+{
+    // Instantiate the model class and set parameters that stay fixed during run
+    pars = Parameters_MEKD::getInstance();
+    ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
+
+    // Set external particle masses for this matrix element
+    mME.push_back(pars->mdl_MH);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->ZERO);
+    jamp2[0] = new double[1];
+}
+
 //--------------------------------------------------------------------------
 // Update process.
 
-void Spin0_SFpA::updateProc(SLHAReader_MEKD &slha)
+void Spin0_SFpA::updateProc()
 {
-    pars->setIndependentParameters(slha);
-    pars->setIndependentCouplings();
     ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 
     // Set external particle masses for this matrix element

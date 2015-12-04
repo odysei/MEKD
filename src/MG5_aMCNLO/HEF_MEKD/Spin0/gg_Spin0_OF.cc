@@ -35,13 +35,26 @@ void gg_Spin0_OF::initProc(string param_card_name)
     jamp2[0] = new double[1];
 }
 
+void gg_Spin0_OF::initProc()
+{
+    // Instantiate the model class and set parameters that stay fixed during run
+    pars = Parameters_MEKD::getInstance();
+    ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
+    // Set external particle masses for this matrix element
+    mME.push_back(pars->ZERO);
+    mME.push_back(pars->ZERO);
+    mME.push_back(pars->mdl_Me);
+    mME.push_back(pars->mdl_Me);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    jamp2[0] = new double[1];
+}
+
 //--------------------------------------------------------------------------
 // Update process.
 
-void gg_Spin0_OF::updateProc(SLHAReader_MEKD &slha)
+void gg_Spin0_OF::updateProc()
 {
-    pars->setIndependentParameters(slha);
-    pars->setIndependentCouplings();
     ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
 
     // Set external particle masses for this matrix element

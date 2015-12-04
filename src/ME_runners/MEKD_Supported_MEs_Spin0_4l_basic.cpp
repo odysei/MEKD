@@ -37,12 +37,6 @@ bool ME_runner_gg_Spin0Pm_ZZ_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0Pm_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0Pm_ZZ_4l
 const process_description ME_runner_no_Spin0Pm_ZZ_4l::my_type()
 {
@@ -53,13 +47,6 @@ bool ME_runner_no_Spin0Pm_ZZ_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
 }
-
-double ME_runner_no_Spin0Pm_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_gg_Spin0Ph_ZZ_4l
 const process_description ME_runner_gg_Spin0Ph_ZZ_4l::my_type()
 {
@@ -69,12 +56,6 @@ const process_description ME_runner_gg_Spin0Ph_ZZ_4l::my_type()
 bool ME_runner_gg_Spin0Ph_ZZ_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_gg_Spin0Ph_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_no_Spin0Ph_ZZ_4l
@@ -88,12 +69,6 @@ bool ME_runner_no_Spin0Ph_ZZ_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_no_Spin0Ph_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_gg_Spin0M_ZZ_4l
 const process_description ME_runner_gg_Spin0M_ZZ_4l::my_type()
 {
@@ -103,12 +78,6 @@ const process_description ME_runner_gg_Spin0M_ZZ_4l::my_type()
 bool ME_runner_gg_Spin0M_ZZ_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_gg_Spin0M_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_no_Spin0M_ZZ_4l
@@ -122,12 +91,6 @@ bool ME_runner_no_Spin0M_ZZ_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_no_Spin0M_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_gg_Spin0_ZZ_4l
 const process_description ME_runner_gg_Spin0_ZZ_4l::my_type()
 {
@@ -139,12 +102,6 @@ bool ME_runner_gg_Spin0_ZZ_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0_ZZ_4l
 const process_description ME_runner_no_Spin0_ZZ_4l::my_type()
 {
@@ -154,12 +111,6 @@ const process_description ME_runner_no_Spin0_ZZ_4l::my_type()
 bool ME_runner_no_Spin0_ZZ_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
 }
 
 /*
@@ -177,12 +128,6 @@ bool ME_runner_gg_Spin0Pm_ZZ_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0Pm_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0Pm_ZZ_4lA
 const process_description ME_runner_no_Spin0Pm_ZZ_4lA::my_type()
 {
@@ -192,12 +137,6 @@ const process_description ME_runner_no_Spin0Pm_ZZ_4lA::my_type()
 bool ME_runner_no_Spin0Pm_ZZ_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0Pm_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0Ph_ZZ_4lA
@@ -211,12 +150,6 @@ bool ME_runner_gg_Spin0Ph_ZZ_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0Ph_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0Ph_ZZ_4lA
 const process_description ME_runner_no_Spin0Ph_ZZ_4lA::my_type()
 {
@@ -226,12 +159,6 @@ const process_description ME_runner_no_Spin0Ph_ZZ_4lA::my_type()
 bool ME_runner_no_Spin0Ph_ZZ_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0Ph_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Ph(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0M_ZZ_4lA
@@ -245,12 +172,6 @@ bool ME_runner_gg_Spin0M_ZZ_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0M_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0M_ZZ_4lA
 const process_description ME_runner_no_Spin0M_ZZ_4lA::my_type()
 {
@@ -260,12 +181,6 @@ const process_description ME_runner_no_Spin0M_ZZ_4lA::my_type()
 bool ME_runner_no_Spin0M_ZZ_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0M_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0_ZZ_4lA
@@ -279,12 +194,6 @@ bool ME_runner_gg_Spin0_ZZ_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0_ZZ_4lA
 const process_description ME_runner_no_Spin0_ZZ_4lA::my_type()
 {
@@ -294,12 +203,6 @@ const process_description ME_runner_no_Spin0_ZZ_4lA::my_type()
 bool ME_runner_no_Spin0_ZZ_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
 }
 
 /*
@@ -323,12 +226,6 @@ bool ME_runner_gg_Spin0Pm_2f_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0Pm_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0Pm_2f_4l
 const process_description ME_runner_no_Spin0Pm_2f_4l::my_type()
 {
@@ -338,12 +235,6 @@ const process_description ME_runner_no_Spin0Pm_2f_4l::my_type()
 bool ME_runner_no_Spin0Pm_2f_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0Pm_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0M_2f_4l
@@ -357,12 +248,6 @@ bool ME_runner_gg_Spin0M_2f_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0M_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0M_2f_4l
 const process_description ME_runner_no_Spin0M_2f_4l::my_type()
 {
@@ -372,12 +257,6 @@ const process_description ME_runner_no_Spin0M_2f_4l::my_type()
 bool ME_runner_no_Spin0M_2f_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0M_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0_2f_4l
@@ -391,12 +270,6 @@ bool ME_runner_gg_Spin0_2f_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0_2f_4l
 const process_description ME_runner_no_Spin0_2f_4l::my_type()
 {
@@ -406,12 +279,6 @@ const process_description ME_runner_no_Spin0_2f_4l::my_type()
 bool ME_runner_no_Spin0_2f_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
 }
 
 /*
@@ -429,12 +296,6 @@ bool ME_runner_gg_Spin0Pm_2f_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0Pm_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0Pm_2f_4lA
 const process_description ME_runner_no_Spin0Pm_2f_4lA::my_type()
 {
@@ -444,12 +305,6 @@ const process_description ME_runner_no_Spin0Pm_2f_4lA::my_type()
 bool ME_runner_no_Spin0Pm_2f_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0Pm_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0Pm(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0M_2f_4lA
@@ -463,12 +318,6 @@ bool ME_runner_gg_Spin0M_2f_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0M_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0M_2f_4lA
 const process_description ME_runner_no_Spin0M_2f_4lA::my_type()
 {
@@ -478,12 +327,6 @@ const process_description ME_runner_no_Spin0M_2f_4lA::my_type()
 bool ME_runner_no_Spin0M_2f_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0M_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0M(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
 }
 
 /// ME_runner_gg_Spin0_2f_4lA
@@ -497,12 +340,6 @@ bool ME_runner_gg_Spin0_2f_4lA::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
-double ME_runner_gg_Spin0_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
-}
-
 /// ME_runner_no_Spin0_2f_4lA
 const process_description ME_runner_no_Spin0_2f_4lA::my_type()
 {
@@ -512,12 +349,6 @@ const process_description ME_runner_no_Spin0_2f_4lA::my_type()
 bool ME_runner_no_Spin0_2f_4lA::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
-}
-
-double ME_runner_no_Spin0_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_Spin0(me, in_MEKD.idata, in_MEKD.params_MG);
-    return in_MEKD.Signal_ME;
 }
 
 /*

@@ -33,12 +33,12 @@ struct flags {
     bool Warning_Mode;              // Print warnings
 
     bool use_prod_2013_convetion_for_4l; // 2013 convention for 4l states
-    bool use_prod_d;                     // use d quarks in IS
-    bool use_prod_u;                     // use u quarks in IS
-    bool use_prod_s;                     // use s quarks in IS
-    bool use_prod_c;                     // use c quarks in IS
-    bool use_prod_b;                     // use b quarks in IS
-    bool use_prod_g;                     // use gluons in IS
+    bool use_prod_ddx;                   // use ddx quarks in IS
+    bool use_prod_uux;                   // use uux quarks in IS
+    bool use_prod_ssx;                   // use ssx quarks in IS
+    bool use_prod_ccx;                   // use ccx quarks in IS
+    bool use_prod_bbx;                   // use bbx quarks in IS
+    bool use_prod_gg;                    // use gg in IS
 };
 
 /// Parameters that are used in calculations, some are updated per run

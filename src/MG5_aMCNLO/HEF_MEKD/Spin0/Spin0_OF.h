@@ -11,7 +11,7 @@
 #include <complex>
 #include <vector>
 
-#include "../../Commons/Parameters_MEKD.h"
+#include "Parameters_MEKD.h"
 
 using namespace std;
 
@@ -28,9 +28,10 @@ class Spin0_OF
 
     // Initialize process.
     virtual void initProc(string param_card_name);
+    virtual void initProc();
 
     // Update process.
-    virtual void updateProc(SLHAReader_MEKD &slha);
+    virtual void updateProc();
 
     // Calculate flavour-independent parts of cross section.
     virtual void sigmaKin();

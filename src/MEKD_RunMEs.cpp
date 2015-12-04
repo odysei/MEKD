@@ -1632,232 +1632,232 @@ int MEKD::Run_ME_Dispatcher_SIG_Spin0(const process_description &d, data &da)
         return 1;
     }
 
-    if (d.decay == decay_ZZ) {
-        if (da.fs == final_4e || da.fs == final_4eA) {
-            /// Common mass for the same-flavor leptons
-            params_MG.set_block_entry("mass", 13, da.m.e);
-
-            if (d.production == prod_no && da.fs == final_4e)
-                return Run_MEs_Evaluator_Initial_State_NO(da, false,
-                                                          ME_Signal_Spin0_SF);
-
-            if (d.production == prod_no && da.fs == final_4eA)
-                return Run_MEs_Evaluator_Initial_State_NO(da, true,
-                                                          ME_Signal_Spin0_SFpA);
-
-            if (d.production == prod_gg && da.fs == final_4e)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_SF);
-
-            if (d.production == prod_gg && da.fs == final_4eA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_SFpA);
-
-            // 			if (d.production == prod_qq && da.fs == final_4e)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, false, ME_Signal_qq_Spin0_DownType_SF,
-            //                     ME_Signal_qq_Spin0_UpType_SF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_4eA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
-            //                     ME_Signal_qq_Spin0_UpType_SFpA);
-        }
-
-        if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
-            /// Common mass for the opposite-flavor leptons
-            params_MG.set_block_entry("mass", 11, da.m.e);
-            params_MG.set_block_entry("mass", 13, da.m.mu);
-
-            if (d.production == prod_no && da.fs == final_2e2mu)
-                return Run_MEs_Evaluator_Initial_State_NO(da, false,
-                                                          ME_Signal_Spin0_OF);
-
-            if (d.production == prod_no && da.fs == final_2e2muA)
-                return Run_MEs_Evaluator_Initial_State_NO(da, true,
-                                                          ME_Signal_Spin0_OFpA);
-
-            if (d.production == prod_gg && da.fs == final_2e2mu)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_OF);
-
-            if (d.production == prod_gg && da.fs == final_2e2muA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_OFpA);
-
-            //             if (d.production == prod_qq && da.fs == final_2e2mu)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, false, ME_Signal_qq_Spin0_DownType_OF,
-            //                     ME_Signal_qq_Spin0_UpType_OF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_2e2muA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, true, ME_Signal_qq_Spin0_DownType_OFpA,
-            //                     ME_Signal_qq_Spin0_UpType_OFpA);
-        }
-
-        if (da.fs == final_4mu || da.fs == final_4muA) {
-            /// Common mass for the same-flavor leptons
-            params_MG.set_block_entry("mass", 13, da.m.mu);
-
-            if (d.production == prod_no && da.fs == final_4mu)
-                return Run_MEs_Evaluator_Initial_State_NO(da, false,
-                                                          ME_Signal_Spin0_SF);
-
-            if (d.production == prod_no && da.fs == final_4muA)
-                return Run_MEs_Evaluator_Initial_State_NO(da, true,
-                                                          ME_Signal_Spin0_SFpA);
-
-            if (d.production == prod_gg && da.fs == final_4mu)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_SF);
-
-            if (d.production == prod_gg && da.fs == final_4muA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_SFpA);
-
-            // 			if (d.production == prod_qq && da.fs == final_4mu)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, false, ME_Signal_qq_Spin0_DownType_SF,
-            //                     ME_Signal_qq_Spin0_UpType_SF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_4muA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            //                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
-            //                     ME_Signal_qq_Spin0_UpType_SFpA);
-        }
-    }
-
-    if (d.decay == decay_2f) {
-        if (da.fs == final_4e || da.fs == final_4eA) {
-            /// Common mass for the same-flavor leptons
-            params_MG.set_block_entry("mass", 13, da.m.e);
-
-            if (d.production == prod_no && da.fs == final_4e)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, false, ME_Signal_Spin0_2f_SF);
-
-            if (d.production == prod_no && da.fs == final_4eA)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, true, ME_Signal_Spin0_2f_SFpA);
-
-            if (d.production == prod_gg && da.fs == final_4e)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_2f_SF);
-
-            if (d.production == prod_gg && da.fs == final_4eA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_2f_SFpA);
-
-            // 			if (d.production == prod_qq && da.fs == final_4e)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, false,
-            // ME_Signal_qq_Spin0_2f_DownType_SF,
-            // ME_Signal_qq_Spin0_2f_UpType_SF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_4eA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, true,
-            // ME_Signal_qq_Spin0_2f_DownType_SFpA,
-            // ME_Signal_qq_Spin0_2f_UpType_SFpA);
-        }
-
-        if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
-            /// Common mass for the opposite-flavor leptons
-            params_MG.set_block_entry("mass", 11, da.m.e);
-            params_MG.set_block_entry("mass", 13, da.m.mu);
-
-            if (d.production == prod_no && da.fs == final_2e2mu)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, false, ME_Signal_Spin0_2f_OF);
-
-            if (d.production == prod_no && da.fs == final_2e2muA)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, true, ME_Signal_Spin0_2f_OFpA);
-
-            if (d.production == prod_gg && da.fs == final_2e2mu)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_2f_OF);
-
-            if (d.production == prod_gg && da.fs == final_2e2muA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_2f_OFpA);
-
-            // 			if (d.production == prod_qq && da.fs == final_2e2mu)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, false,
-            // ME_Signal_qq_Spin0_2f_DownType_OF,
-            // ME_Signal_qq_Spin0_2f_UpType_OF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_2e2muA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, true,
-            // ME_Signal_qq_Spin0_2f_DownType_OFpA,
-            // ME_Signal_qq_Spin0_2f_UpType_OFpA);
-        }
-
-        if (da.fs == final_4mu || da.fs == final_4muA) {
-            /// Common mass for the same-flavor leptons
-            params_MG.set_block_entry("mass", 13, da.m.mu);
-
-            if (d.production == prod_no && da.fs == final_4mu)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, false, ME_Signal_Spin0_2f_SF);
-
-            if (d.production == prod_no && da.fs == final_4muA)
-                return Run_MEs_Evaluator_Initial_State_NO(
-                    da, true, ME_Signal_Spin0_2f_SFpA);
-
-            if (d.production == prod_gg && da.fs == final_4mu)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, false, ME_Signal_gg_Spin0_2f_SF);
-
-            if (d.production == prod_gg && da.fs == final_4muA)
-                return Run_MEs_Evaluator_Initial_State_gg(
-                    da, true, ME_Signal_gg_Spin0_2f_SFpA);
-
-            // 			if (d.production == prod_qq && da.fs == final_4mu)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, false,
-            // ME_Signal_qq_Spin0_2f_DownType_SF,
-            // ME_Signal_qq_Spin0_2f_UpType_SF);
-            //
-            // 			if (d.production == prod_qq && da.fs == final_4muA)
-            // 				return Run_MEs_Evaluator_Initial_State_qqbar(
-            // da, true,
-            // ME_Signal_qq_Spin0_2f_DownType_SFpA,
-            // ME_Signal_qq_Spin0_2f_UpType_SFpA);
-        }
-    }
-
-    if (da.fs == final_2mu || da.fs == final_2muA) {
-        /// Mass for the muons
-        params_MG.set_block_entry("mass", 13, da.m.mu);
-
-        if (d.production == prod_no && da.fs == final_2mu)
-            return Run_MEs_Evaluator_Initial_State_NO(da, false,
-                                                      ME_Signal_Spin0_2l);
-
-        if (d.production == prod_no && da.fs == final_2muA)
-            return Run_MEs_Evaluator_Initial_State_NO(da, true,
-                                                      ME_Signal_Spin0_2lpA);
-
-        if (d.production == prod_gg && da.fs == final_2mu)
-            return Run_MEs_Evaluator_Initial_State_gg(da, false,
-                                                      ME_Signal_gg_Spin0_2l);
-
-        if (d.production == prod_gg && da.fs == final_2muA)
-            return Run_MEs_Evaluator_Initial_State_gg(da, true,
-                                                      ME_Signal_gg_Spin0_2lpA);
-
-        // 		if (d.production == prod_qq && da.fs == final_2mu)
-        // 			return Run_MEs_Evaluator_Initial_State_qqbar(da, false,
-        // ME_Signal_qq_Spin0_DownType_2l, ME_Signal_qq_Spin0_UpType_2l);
-
-        // 		if (d.production == prod_qq && da.fs == final_2muA)
-        // 			return Run_MEs_Evaluator_Initial_State_qqbar(da, true,
-        // ME_Signal_qq_Spin0_DownType_2lpA, ME_Signal_qq_Spin0_UpType_2lpA);
-    }
+//     if (d.decay == decay_ZZ) {
+//         if (da.fs == final_4e || da.fs == final_4eA) {
+//             /// Common mass for the same-flavor leptons
+//             params_MG.set_block_entry("mass", 13, da.m.e);
+// 
+//             if (d.production == prod_no && da.fs == final_4e)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, false,
+//                                                           ME_Signal_Spin0_SF);
+// 
+//             if (d.production == prod_no && da.fs == final_4eA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, true,
+//                                                           ME_Signal_Spin0_SFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_4e)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_SF);
+// 
+//             if (d.production == prod_gg && da.fs == final_4eA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_SFpA);
+// 
+//             // 			if (d.production == prod_qq && da.fs == final_4e)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, false, ME_Signal_qq_Spin0_DownType_SF,
+//             //                     ME_Signal_qq_Spin0_UpType_SF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_4eA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
+//             //                     ME_Signal_qq_Spin0_UpType_SFpA);
+//         }
+// 
+//         if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
+//             /// Common mass for the opposite-flavor leptons
+//             params_MG.set_block_entry("mass", 11, da.m.e);
+//             params_MG.set_block_entry("mass", 13, da.m.mu);
+// 
+//             if (d.production == prod_no && da.fs == final_2e2mu)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, false,
+//                                                           ME_Signal_Spin0_OF);
+// 
+//             if (d.production == prod_no && da.fs == final_2e2muA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, true,
+//                                                           ME_Signal_Spin0_OFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_2e2mu)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_OF);
+// 
+//             if (d.production == prod_gg && da.fs == final_2e2muA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_OFpA);
+// 
+//             //             if (d.production == prod_qq && da.fs == final_2e2mu)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, false, ME_Signal_qq_Spin0_DownType_OF,
+//             //                     ME_Signal_qq_Spin0_UpType_OF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_2e2muA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, true, ME_Signal_qq_Spin0_DownType_OFpA,
+//             //                     ME_Signal_qq_Spin0_UpType_OFpA);
+//         }
+// 
+//         if (da.fs == final_4mu || da.fs == final_4muA) {
+//             /// Common mass for the same-flavor leptons
+//             params_MG.set_block_entry("mass", 13, da.m.mu);
+// 
+//             if (d.production == prod_no && da.fs == final_4mu)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, false,
+//                                                           ME_Signal_Spin0_SF);
+// 
+//             if (d.production == prod_no && da.fs == final_4muA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(da, true,
+//                                                           ME_Signal_Spin0_SFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_4mu)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_SF);
+// 
+//             if (d.production == prod_gg && da.fs == final_4muA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_SFpA);
+// 
+//             // 			if (d.production == prod_qq && da.fs == final_4mu)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, false, ME_Signal_qq_Spin0_DownType_SF,
+//             //                     ME_Signal_qq_Spin0_UpType_SF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_4muA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             //                     da, true, ME_Signal_qq_Spin0_DownType_SFpA,
+//             //                     ME_Signal_qq_Spin0_UpType_SFpA);
+//         }
+//     }
+// 
+//     if (d.decay == decay_2f) {
+//         if (da.fs == final_4e || da.fs == final_4eA) {
+//             /// Common mass for the same-flavor leptons
+//             params_MG.set_block_entry("mass", 13, da.m.e);
+// 
+//             if (d.production == prod_no && da.fs == final_4e)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, false, ME_Signal_Spin0_2f_SF);
+// 
+//             if (d.production == prod_no && da.fs == final_4eA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, true, ME_Signal_Spin0_2f_SFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_4e)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_2f_SF);
+// 
+//             if (d.production == prod_gg && da.fs == final_4eA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_2f_SFpA);
+// 
+//             // 			if (d.production == prod_qq && da.fs == final_4e)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, false,
+//             // ME_Signal_qq_Spin0_2f_DownType_SF,
+//             // ME_Signal_qq_Spin0_2f_UpType_SF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_4eA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, true,
+//             // ME_Signal_qq_Spin0_2f_DownType_SFpA,
+//             // ME_Signal_qq_Spin0_2f_UpType_SFpA);
+//         }
+// 
+//         if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
+//             /// Common mass for the opposite-flavor leptons
+//             params_MG.set_block_entry("mass", 11, da.m.e);
+//             params_MG.set_block_entry("mass", 13, da.m.mu);
+// 
+//             if (d.production == prod_no && da.fs == final_2e2mu)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, false, ME_Signal_Spin0_2f_OF);
+// 
+//             if (d.production == prod_no && da.fs == final_2e2muA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, true, ME_Signal_Spin0_2f_OFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_2e2mu)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_2f_OF);
+// 
+//             if (d.production == prod_gg && da.fs == final_2e2muA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_2f_OFpA);
+// 
+//             // 			if (d.production == prod_qq && da.fs == final_2e2mu)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, false,
+//             // ME_Signal_qq_Spin0_2f_DownType_OF,
+//             // ME_Signal_qq_Spin0_2f_UpType_OF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_2e2muA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, true,
+//             // ME_Signal_qq_Spin0_2f_DownType_OFpA,
+//             // ME_Signal_qq_Spin0_2f_UpType_OFpA);
+//         }
+// 
+//         if (da.fs == final_4mu || da.fs == final_4muA) {
+//             /// Common mass for the same-flavor leptons
+//             params_MG.set_block_entry("mass", 13, da.m.mu);
+// 
+//             if (d.production == prod_no && da.fs == final_4mu)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, false, ME_Signal_Spin0_2f_SF);
+// 
+//             if (d.production == prod_no && da.fs == final_4muA)
+//                 return Run_MEs_Evaluator_Initial_State_NO(
+//                     da, true, ME_Signal_Spin0_2f_SFpA);
+// 
+//             if (d.production == prod_gg && da.fs == final_4mu)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, false, ME_Signal_gg_Spin0_2f_SF);
+// 
+//             if (d.production == prod_gg && da.fs == final_4muA)
+//                 return Run_MEs_Evaluator_Initial_State_gg(
+//                     da, true, ME_Signal_gg_Spin0_2f_SFpA);
+// 
+//             // 			if (d.production == prod_qq && da.fs == final_4mu)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, false,
+//             // ME_Signal_qq_Spin0_2f_DownType_SF,
+//             // ME_Signal_qq_Spin0_2f_UpType_SF);
+//             //
+//             // 			if (d.production == prod_qq && da.fs == final_4muA)
+//             // 				return Run_MEs_Evaluator_Initial_State_qqbar(
+//             // da, true,
+//             // ME_Signal_qq_Spin0_2f_DownType_SFpA,
+//             // ME_Signal_qq_Spin0_2f_UpType_SFpA);
+//         }
+//     }
+// 
+//     if (da.fs == final_2mu || da.fs == final_2muA) {
+//         /// Mass for the muons
+//         params_MG.set_block_entry("mass", 13, da.m.mu);
+// 
+//         if (d.production == prod_no && da.fs == final_2mu)
+//             return Run_MEs_Evaluator_Initial_State_NO(da, false,
+//                                                       ME_Signal_Spin0_2l);
+// 
+//         if (d.production == prod_no && da.fs == final_2muA)
+//             return Run_MEs_Evaluator_Initial_State_NO(da, true,
+//                                                       ME_Signal_Spin0_2lpA);
+// 
+//         if (d.production == prod_gg && da.fs == final_2mu)
+//             return Run_MEs_Evaluator_Initial_State_gg(da, false,
+//                                                       ME_Signal_gg_Spin0_2l);
+// 
+//         if (d.production == prod_gg && da.fs == final_2muA)
+//             return Run_MEs_Evaluator_Initial_State_gg(da, true,
+//                                                       ME_Signal_gg_Spin0_2lpA);
+// 
+//         // 		if (d.production == prod_qq && da.fs == final_2mu)
+//         // 			return Run_MEs_Evaluator_Initial_State_qqbar(da, false,
+//         // ME_Signal_qq_Spin0_DownType_2l, ME_Signal_qq_Spin0_UpType_2l);
+// 
+//         // 		if (d.production == prod_qq && da.fs == final_2muA)
+//         // 			return Run_MEs_Evaluator_Initial_State_qqbar(da, true,
+//         // ME_Signal_qq_Spin0_DownType_2lpA, ME_Signal_qq_Spin0_UpType_2lpA);
+//     }
 
     return 1;
 }
@@ -2431,7 +2431,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
     Signal_ME = 0;
 
     /// Down quark block. Down type (s-like)
-    if (flag.use_prod_d && !flag.use_prod_2013_convetion_for_4l) {
+    if (flag.use_prod_ddx && !flag.use_prod_2013_convetion_for_4l) {
         params_MG.set_block_entry("mass", 3, da.m.d);
         // 		params_MG.set_block_entry("heff", 15, da.c.rhod01);
         // 		params_MG.set_block_entry("heff", 16, da.c.rhod02);
@@ -2463,7 +2463,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
     }
 
     /// Strange quark block. Down type (s-like)
-    if (flag.use_prod_s && !flag.use_prod_2013_convetion_for_4l) {
+    if (flag.use_prod_ssx && !flag.use_prod_2013_convetion_for_4l) {
         params_MG.set_block_entry("mass", 3, da.m.s);
         // 		params_MG.set_block_entry("heff", 15, da.c.rhos01);
         // 		params_MG.set_block_entry("heff", 16, da.c.rhos02);
@@ -2495,7 +2495,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
     }
 
     /// Up quark block. Up type (c-like)
-    if (flag.use_prod_u || flag.use_prod_2013_convetion_for_4l) {
+    if (flag.use_prod_uux || flag.use_prod_2013_convetion_for_4l) {
         params_MG.set_block_entry("mass", 4, da.m.u);
         // 		params_MG.set_block_entry("heff", 11, da.c.rhou01);
         // 		params_MG.set_block_entry("heff", 12, da.c.rhou02);
@@ -2527,7 +2527,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
     }
 
     /// Charm quark block. Up type (c-like)
-    if (flag.use_prod_c && !flag.use_prod_2013_convetion_for_4l) {
+    if (flag.use_prod_ccx && !flag.use_prod_2013_convetion_for_4l) {
         params_MG.set_block_entry("mass", 4, da.m.c);
         // 		params_MG.set_block_entry("heff", 11, da.c.rhoc01);
         // 		params_MG.set_block_entry("heff", 12, da.c.rhoc02);

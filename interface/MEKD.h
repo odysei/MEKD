@@ -50,8 +50,7 @@ class MEKD;
 class ME_runner
 {
   public:
-    virtual double evaluate(MEKD &in_MEKD, const input &in) { return -1; }
-
+    // basic
     virtual const process_description my_type()
     {
         process_description empty;
@@ -63,13 +62,8 @@ class ME_runner
 
         return empty;
     }
-
+    
     virtual bool is_my_type(const process_description &in) { return false; }
-
-    virtual bool initialize() { return false; }
-    virtual bool initialize(const string &param_f) { return false; }
-
-    virtual void deinitialize() {}
 
     bool compare_types(const process_description &in,
                        const process_description &in2)
@@ -78,6 +72,15 @@ class ME_runner
                 in.production == in2.production && in.decay == in2.decay &&
                 in.final_state == in2.final_state);
     }
+    
+    // init
+    virtual bool initialize() { return false; }
+    virtual bool initialize(const string &param_f) { return false; }
+
+    virtual void deinitialize() {}
+    
+    // eval
+    virtual double evaluate(MEKD &in_MEKD, const input &in) { return -1; }
 };
 
 class MEKD
@@ -215,10 +218,10 @@ class MEKD
     qq_ZZ_UP_OFpA ME_qq_ZZ_UpType_OFpA;
     qq_ZZ_UP_SFpA ME_qq_ZZ_UpType_SFpA;
 
-    gg_Spin0_OF ME_Signal_gg_Spin0_OF;
-    gg_Spin0_SF ME_Signal_gg_Spin0_SF;
-    gg_Spin0_OFpA ME_Signal_gg_Spin0_OFpA;
-    gg_Spin0_SFpA ME_Signal_gg_Spin0_SFpA;
+//     gg_Spin0_OF ME_Signal_gg_Spin0_OF;
+//     gg_Spin0_SF ME_Signal_gg_Spin0_SF;
+//     gg_Spin0_OFpA ME_Signal_gg_Spin0_OFpA;
+//     gg_Spin0_SFpA ME_Signal_gg_Spin0_SFpA;
 
     // qq_Spin0_DN_OF ME_Signal_qq_Spin0_DownType_OF;
     // qq_Spin0_DN_SF ME_Signal_qq_Spin0_DownType_SF;
@@ -253,10 +256,10 @@ class MEKD
     qq_Spin2_UP_SFpA ME_Signal_qq_Spin2_UpType_SFpA;
 
     /// ZZ and two-fermion couplings. 4l final state (+photon)
-    gg_Spin0_2f_OF ME_Signal_gg_Spin0_2f_OF;
-    gg_Spin0_2f_SF ME_Signal_gg_Spin0_2f_SF;
-    gg_Spin0_2f_OFpA ME_Signal_gg_Spin0_2f_OFpA;
-    gg_Spin0_2f_SFpA ME_Signal_gg_Spin0_2f_SFpA;
+//     gg_Spin0_2f_OF ME_Signal_gg_Spin0_2f_OF;
+//     gg_Spin0_2f_SF ME_Signal_gg_Spin0_2f_SF;
+//     gg_Spin0_2f_OFpA ME_Signal_gg_Spin0_2f_OFpA;
+//     gg_Spin0_2f_SFpA ME_Signal_gg_Spin0_2f_SFpA;
 
     qq_Spin1_2f_DN_OF ME_Signal_qq_Spin1_2f_DownType_OF;
     qq_Spin1_2f_DN_SF ME_Signal_qq_Spin1_2f_DownType_SF;
@@ -285,16 +288,16 @@ class MEKD
     DY_2l ME_DY_2l;
     DY_2lpA ME_DY_2lpA;
 
-    Spin0_2l ME_Signal_Spin0_2l;
-    Spin0_OF ME_Signal_Spin0_OF;
-    Spin0_SF ME_Signal_Spin0_SF;
-    Spin0_2f_OF ME_Signal_Spin0_2f_OF;
-    Spin0_2f_SF ME_Signal_Spin0_2f_SF;
-    Spin0_2lpA ME_Signal_Spin0_2lpA;
-    Spin0_OFpA ME_Signal_Spin0_OFpA;
-    Spin0_SFpA ME_Signal_Spin0_SFpA;
-    Spin0_2f_OFpA ME_Signal_Spin0_2f_OFpA;
-    Spin0_2f_SFpA ME_Signal_Spin0_2f_SFpA;
+//     Spin0_2l ME_Signal_Spin0_2l;
+//     Spin0_OF ME_Signal_Spin0_OF;
+//     Spin0_SF ME_Signal_Spin0_SF;
+//     Spin0_2f_OF ME_Signal_Spin0_2f_OF;
+//     Spin0_2f_SF ME_Signal_Spin0_2f_SF;
+//     Spin0_2lpA ME_Signal_Spin0_2lpA;
+//     Spin0_OFpA ME_Signal_Spin0_OFpA;
+//     Spin0_SFpA ME_Signal_Spin0_SFpA;
+//     Spin0_2f_OFpA ME_Signal_Spin0_2f_OFpA;
+//     Spin0_2f_SFpA ME_Signal_Spin0_2f_SFpA;
 
     Spin1_2l ME_Signal_Spin1_2l;
     Spin1_OF ME_Signal_Spin1_OF;
@@ -324,8 +327,8 @@ class MEKD
     qq_DY_DN_2lpA ME_qq_DY_DownType_2lpA;
     qq_DY_UP_2lpA ME_qq_DY_UpType_2lpA;
 
-    gg_Spin0_2l ME_Signal_gg_Spin0_2l;
-    gg_Spin0_2lpA ME_Signal_gg_Spin0_2lpA;
+//     gg_Spin0_2l ME_Signal_gg_Spin0_2l;
+//     gg_Spin0_2lpA ME_Signal_gg_Spin0_2lpA;
 
     // qq_Spin0_DN_2l ME_Signal_qq_Spin0_DownType_2l;
     // qq_Spin0_UP_2l ME_Signal_qq_Spin0_UpType_2l;
