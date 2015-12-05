@@ -44,6 +44,18 @@ extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
 
 // #define PDTFILE "PDF_tables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L.
 // You can change PDF set as you want.
+    
+/// A generic spin-0 resonance configurator for Parameters_MEKD
+void Configurator_Spin0(const complex<double> *c, const data &da,
+                        const parameters &param, const flags &flag,
+                        Parameters_MEKD *update);
+void Configurator_Spin0_produ(const complex<double> *c, const bool fixed_prod,
+                              const double lgg,
+                              Parameters_MEKD *update);
+void Configurator_Spin0_decay(const complex<double> *c,
+                              const double mZ, const double Mi,
+                              const double hZZ,
+                              Parameters_MEKD *update);
 
 class MEKD;
 

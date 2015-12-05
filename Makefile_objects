@@ -13,6 +13,7 @@ $(INCDIR1)/MEKD_Load_ME_runners_Spin0_ttbb.o \
 $(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
 $(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o \
 $(INCDIR1)/MEKD_stuff.o \
+$(INCDIR1)/Parameters_configurators.o \
 $(INCDIR5)/MEKD_Supported_MEs_Other_4l.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_basic.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_eval.o \

@@ -16,6 +16,7 @@ src/MEKD_debug.o
 src/MEKD_defaults.o
 src/MEKD_sorter.o
 src/MEKD_stuff.o
+src/Parameters_configurators.o
 src/ME_runners/MEKD_Supported_MEs_Other_4l.o
 src/ME_runners/MEKD_Supported_MEs_Spin1_4l.o
 src/ME_runners/MEKD_Supported_MEs_Spin2_4l.o

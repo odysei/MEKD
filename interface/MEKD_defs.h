@@ -140,6 +140,7 @@ struct data {
     complex<double> *mix_coeffs_Spin0;
     complex<double> *mix_coeffs_Spin1;
     complex<double> *mix_coeffs_Spin2;
+    // Are not really needed for v3 and will be dropped:
     complex<double> mix_coeffs_Spin0_pred[4];
     complex<double> mix_coeffs_Spin1_pred[8];
     complex<double> mix_coeffs_SpinX_pred[20]; // should be max of all

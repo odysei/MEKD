@@ -2345,7 +2345,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da, const bool photon,
 
     /// No initial state block
     double buffer_p[4];
-    for (unsigned int count = 0; count < 4; count++)
+    for (unsigned int count = 0; count < 4; ++count)
         buffer_p[count] = da.p[0][count];
 
     if (!photon) {
@@ -2355,7 +2355,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da, const bool photon,
         da.p[0][3] = da.p[2][3] + da.p[3][3] + da.p[4][3] + da.p[5][3];
 
         double *buffer = da.p[1];
-        for (unsigned int count = 0; count < 4; count++)
+        for (unsigned int count = 0; count < 4; ++count)
             da.p[count + 1] = da.p[count + 2];
         da.p[5] = buffer;
     } else {
@@ -2369,7 +2369,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da, const bool photon,
             da.p[2][3] + da.p[3][3] + da.p[4][3] + da.p[5][3] + da.p[6][3];
 
         double *buffer = da.p[1];
-        for (unsigned int count = 0; count < 5; count++)
+        for (unsigned int count = 0; count < 5; ++count)
             da.p[count + 1] = da.p[count + 2];
         da.p[6] = buffer;
     }
@@ -2383,17 +2383,17 @@ int MEKD::Run_MEs_Evaluator_Initial_State_NO(data &da, const bool photon,
 
     if (!photon) {
         double *buffer = da.p[5];
-        for (unsigned int count = 4; count > 0; count--)
+        for (unsigned int count = 4; count > 0; --count)
             da.p[count + 1] = da.p[count];
         da.p[1] = buffer;
     } else {
         double *buffer = da.p[6];
-        for (unsigned int count = 5; count > 0; count--)
+        for (unsigned int count = 5; count > 0; --count)
             da.p[count + 1] = da.p[count];
         da.p[1] = buffer;
     }
 
-    for (unsigned int count = 0; count < 4; count++)
+    for (unsigned int count = 0; count < 4; ++count)
         da.p[0][count] = buffer_p[count];
 
     return 0;

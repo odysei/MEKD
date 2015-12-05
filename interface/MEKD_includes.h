@@ -45,4 +45,7 @@ extern "C" {
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "../src/MG5_aMCNLO/RAW/CPPProcess.h"	// ME_RAW
 
+/// Predefined mixings, i.e., models
+#include "Defined_models_Spin0.h"
+
 #endif
