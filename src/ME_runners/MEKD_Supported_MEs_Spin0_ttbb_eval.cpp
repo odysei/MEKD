@@ -8,6 +8,7 @@
 #define MEKD_Supported_MEs_Spin0_ttbb_eval_cpp
 
 #include "MEKD_Supported_MEs_Spin0_ttbb.h"
+#include "Parameters_configurators.h"
 #include "MEKD_Evaluators.h"
 
 namespace mekd

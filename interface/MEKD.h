@@ -45,38 +45,6 @@ extern "C" pdtStr pdtSg, pdtSd, pdtSu, pdtSs, pdtSc, pdtSad, pdtSau, pdtSas,
 // #define PDTFILE "PDF_tables/cteq6l.pdt" // CalCHEP reads a table for CTEQ6L.
 // You can change PDF set as you want.
 
-/*
- * HEF_MEKD configuration block
- */
-    
-/// A generic spin-0 resonance configurator for Parameters_MEKD
-void Configurator_Spin0(const complex<double> *c, const data &da,
-                        const parameters &param, const flags &flag,
-                        Parameters_MEKD *update);
-void Configurator_Spin0_produ(const complex<double> *c, const bool fixed_prod,
-                              const double lgg,
-                              Parameters_MEKD *update);
-void Configurator_Spin0_decay(const complex<double> *c,
-                              const double mZ, const double Mi,
-                              const double hZZ,
-                              Parameters_MEKD *update);
-
-/*
- * sm-full configuration block
- */
-
-void Configurator_Spin0(const data &da,
-                        const parameters &param, const flags &flag,
-                        Parameters_sm_full *update);
-
-/*
- * HEFTU (heft_updated-full) configuration block
- */
-
-void Configurator_Spin0(const data &da,
-                        const parameters &param, const flags &flag,
-                        Parameters_HEFTU *update);
-
 class MEKD;
 
 class ME_runner
@@ -122,48 +90,30 @@ class ME_runner
 class MEKD
 {
   public:
-    void eval_MEs(const input_c &, vector<double> &); // for custom coupl.
+    /*
+     * Constructors, destructors
+     */
+    MEKD();
+    MEKD(const vector<process_description> &desc) : MEKD()
+    {
+        Load_ME_runners(desc);
+    }
+    ~MEKD();
+    
+    /*
+     * Main methods for ME evaluation
+     */
+    void eval_MEs(const input_c &, vector<double> &);   // for custom coupl.
     void eval_MEs(const input &, vector<double> &);
 
-    // new&internal. Will go to private:
-    vector<ME_runner *> ME_runners;
-
-    void Load_ME_runners(const vector<process_description> &);
-    bool Load_ME_runners_try(const process_description &, ME_runner *,
-                             vector<ME_runner *> &);
-    bool Load_ME_runners_try_Misc_4l(const process_description &,
-                                     vector<ME_runner *> &);
-    bool Load_ME_runners_try_Misc_4lA(const process_description &,
-                                      vector<ME_runner *> &);
-    bool Load_ME_runners_try_Z_4l(const process_description &,
-                                  vector<ME_runner *> &);
-    bool Load_ME_runners_try_Z_4lA(const process_description &,
-                                   vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin0_4l(const process_description &,
-                                      vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin0_4lA(const process_description &,
-                                       vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin1_4l(const process_description &,
-                                      vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin1_4lA(const process_description &,
-                                       vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin2_4l(const process_description &,
-                                      vector<ME_runner *> &);
-    bool Load_ME_runners_try_Spin2_4lA(const process_description &,
-                                       vector<ME_runner *> &);
-
-    bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
-                                        vector<ME_runner *> &);
-
-    void Initialize_ME_runners(vector<ME_runner *> &);
-    void Initialize_ME_runners(const string &param_f, vector<ME_runner *> &);
-    // end
-
+    /*
+     * MEKD settings
+     */
     /// Flags
-    flags flag;
+    flags flag;         // see Defaults
 
     /// Parameters
-    parameters param;
+    parameters param;   // see Defaults
 
     /// Parameter container. For experts only
     SLHAReader_MEKD params_MG;
@@ -173,56 +123,6 @@ class MEKD
 
     /// Internal data
     data idata;
-
-    /// String flags and file locations: Version 2 and earlier
-    string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
-                       // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
-                       // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
-                       // qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
-                       // Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb,
-                       // qqZ4l_Signal, qqZ4l_Background
-    vector<string> Test_Models; // same names as for the Test_Model
-
-    /// Calculation results
-    double Background_ME; // may not be used if running RUN(string) is chosen
-    double Signal_ME;     // is filled after running RUN_XXXX(...)
-    vector<double> Signal_MEs; // is filled if Test_Models are set after running
-                               // RUN_XXXX(...)
-
-    /// Functions
-    // 	map<int, vector<double *>> Make_map(const vector<int> &,
-    //                                         const vector<double *> &);
-
-    void Set_default_params();
-
-    void Check_MEs();
-
-    /// Run-related functions
-    int Run(const input &); // main routine to evaluate matrix elements; updates
-                            // "Calculation results"
-    int Run(const input &, string Input_Model); // Calculates a ME ONLY for a
-    // chosen model; ignores automatic
-    // background calculation.
-    // Updates Signal_ME
-    void Run_make_p(data &);
-    void Run_make_p_boost(const int, data &); // int = 0: CM; 1: pT0
-    void Run_calculate(data &);
-    double Get_PDF_x1(const vector<double *> &p);
-    double Get_PDF_x2(const vector<double *> &p);
-
-    double Get_sys_m(const vector<double *> &p, const int p_range[2]);
-
-    void Zero_first_two(vector<double *> &);
-    void Approx_neg_z_parton(double *p, const double E);
-    void Approx_pos_z_parton(double *p, const double E);
-
-    /// Constructors, destructors
-    MEKD();
-    MEKD(const vector<process_description> &desc) : MEKD()
-    {
-        Load_ME_runners(desc);
-    }
-    ~MEKD();
 
     /*
      * Temporary ME place. Should become a part of ME_runners
@@ -392,11 +292,44 @@ class MEKD
      * END OF
      * Temporary ME place. Should become a part of ME_runners
      */
-    // private:
+  private:
+    vector<ME_runner *> ME_runners;
+
+    void Load_ME_runners(const vector<process_description> &);
+    bool Load_ME_runners_try(const process_description &, ME_runner *,
+                             vector<ME_runner *> &);
+    bool Load_ME_runners_try_Misc_4l(const process_description &,
+                                     vector<ME_runner *> &);
+    bool Load_ME_runners_try_Misc_4lA(const process_description &,
+                                      vector<ME_runner *> &);
+    bool Load_ME_runners_try_Z_4l(const process_description &,
+                                  vector<ME_runner *> &);
+    bool Load_ME_runners_try_Z_4lA(const process_description &,
+                                   vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin0_4l(const process_description &,
+                                      vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin0_4lA(const process_description &,
+                                       vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin1_4l(const process_description &,
+                                      vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin1_4lA(const process_description &,
+                                       vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin2_4l(const process_description &,
+                                      vector<ME_runner *> &);
+    bool Load_ME_runners_try_Spin2_4lA(const process_description &,
+                                       vector<ME_runner *> &);
+
+    bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
+                                        vector<ME_runner *> &);
+
+    void Initialize_ME_runners(vector<ME_runner *> &);
+    void Initialize_ME_runners(const string &param_f, vector<ME_runner *> &);
 
     /// Internal functions ///
     string Find_local_file(const string &input_f);
 
+    void Set_default_params();
+    void Check_MEs();
     int Load_parameters(parameters &, data &);
     void Load_parameters_MEs(const string &param_f);
     void Load_parameters_extract_params(const Parameters_MEKD *, data &);
@@ -412,7 +345,21 @@ class MEKD
     // int Arrange_Internal_pls(process_description &);	// updates description
     int Arrange_4momenta(vector<pair<int, double *>> &, vector<double *> &,
                          final_state_types_ &);
+    
+    void Run_make_p(data &);
+    void Run_make_p_boost(const int, data &); // int = 0: CM; 1: pT0
+    void Run_calculate(data &);
+    double Get_PDF_x1(const vector<double *> &p);
+    double Get_PDF_x2(const vector<double *> &p);
 
+    double Get_sys_m(const vector<double *> &p, const int p_range[2]);
+    
+    void Approx_neg_z_parton(double *p, const double E);
+    void Approx_pos_z_parton(double *p, const double E);
+
+    void Zero_first_two(vector<double *> &);
+
+  public:
     /// Sets up particular choices. Tier 3
     int Run_ME_Configurator_BKG_ZZ(const process_description &, data &);
     int Run_ME_Configurator_Custom(data &);
@@ -472,6 +419,7 @@ class MEKD
     int Run_ME_Configurator_Z4l_BKG(const process_description &, data &);
     int Run_ME_Configurator_Z4l_SIG(const process_description &, data &);
 
+  private:
     /// Dispatches MEs that have correct parameters. Tier 2
     // RAW MG5_aMC ME
     int Run_ME_Dispatcher_CPPProcess(const process_description &, data &);
@@ -496,11 +444,31 @@ class MEKD
     int Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
                                               Generic_MEKD_ME_s &Generic_ME_s,
                                               Generic_MEKD_ME_c &Generic_ME_c);
-
-  public:
+    
     /*
      * Version 2 and earlier methods: left for backwards compatibility.
      */
+  public:
+    /// String flags and file locations: Version 2 and earlier
+    string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
+                       // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
+                       // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
+                       // qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
+                       // Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb,
+                       // qqZ4l_Signal, qqZ4l_Background
+    vector<string> Test_Models; // same names as for the Test_Model
+
+    /// Calculation results
+    double Background_ME; // may not be used if running RUN(string) is chosen
+    double Signal_ME;     // is filled after running RUN_XXXX(...)
+    vector<double> Signal_MEs; // is filled if Test_Models are set after running
+                               // RUN_XXXX(...)
+
+    /// Run-related functions
+    int Run(const input &); // main routine to evaluate matrix elements; updates
+                            // "Calculation results"
+    int Run(const input &, string Input_Model); // Calculates a ME ONLY for a
+    // chosen model; ignores automatic background calculation. Updates Signal_ME
 
     /*
      * Unless otherwise specified:

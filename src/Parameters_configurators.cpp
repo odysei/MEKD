@@ -8,6 +8,7 @@
 #define Parameters_configurators_cpp
 
 #include "MEKD.h"
+#include "Parameters_configurators.h"
 
 namespace mekd
 {

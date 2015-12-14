@@ -4,8 +4,8 @@
 *  Contact:		odysei@cern.ch, mekd@phys.ufl.edu
 *  Info:		MEKD definitions are provided here.
 *************************************************************************/
-#ifndef MEKD_DEFS_h
-#define MEKD_DEFS_h
+#ifndef MEKD_Definitions_h
+#define MEKD_Definitions_h
 
 #include "MEKD.h"
 

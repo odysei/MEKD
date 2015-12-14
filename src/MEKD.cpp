@@ -201,9 +201,6 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
         idata.m.bbx = Get_sys_m(idata.p, range);
     }
 
-    const int range[2] = {2, 6};
-    idata.m.sys = Get_sys_m(idata.p, range);
-
     if (flag.Debug_Mode) {
         cout << "4-momenta entering ME(E px py px):\n";
         Print_4momenta(idata.p);
