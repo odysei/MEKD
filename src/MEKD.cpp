@@ -189,6 +189,15 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
 
     Run_make_p(idata);
 
+    {
+        const int range[2] = {2, 6};
+        idata.m.sys = Get_sys_m(idata.p, range);
+    }
+    if (idata.fs == final_ttbb_) {
+        const int range[2] = {4, 5};
+        idata.m.bbx = Get_sys_m(idata.p, range);
+    }
+
     const int range[2] = {2, 6};
     idata.m.sys = Get_sys_m(idata.p, range);
 
@@ -251,8 +260,14 @@ int MEKD::Run(const input &in)
 
     Run_make_p(idata);
 
-    const int range[2] = {2, 6};
-    idata.m.sys = Get_sys_m(idata.p, range);
+    {
+        const int range[2] = {2, 6};
+        idata.m.sys = Get_sys_m(idata.p, range);
+    }
+    if (idata.fs == final_ttbb_) {
+        const int range[2] = {4, 5};
+        idata.m.bbx = Get_sys_m(idata.p, range);
+    }
 
     if (flag.Debug_Mode) {
         cout << "4-momenta entering ME(E px py px):\n";
@@ -379,6 +394,22 @@ void MEKD::Run_make_p_boost(const int mode, data &da)
         }
         if (mode == 1) {
             Boost_5p_2_pT0(m, da.p[2], m, da.p[3], 0, da.p[4], 0, da.p[5], 0,
+                           da.p[6]);
+            return;
+        }
+    }
+
+    if (da.fs == final_ttbb_) {
+        const double m1 = da.m.b;
+        const double m2 = da.m.t;
+
+        if (mode == 0) {
+            Boost2CM(m2, da.p[2], m2, da.p[3], m1, da.p[4], m1, da.p[5], 0,
+                     da.p[6]);
+            return;
+        }
+        if (mode == 1) {
+            Boost_5p_2_pT0(m2, da.p[2], m2, da.p[3], m1, da.p[4], m1, da.p[5], 0,
                            da.p[6]);
             return;
         }

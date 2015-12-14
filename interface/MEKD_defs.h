@@ -18,6 +18,7 @@ enum process_types {
     proc_empty,
     proc_simple, // typically production couples to X
     proc_ttX,
+    proc_test,  // a place to put in new MEs for tests
     proc_RAW // an experimental setting
 };
 
@@ -68,6 +69,10 @@ enum final_state_types {
     final_ttbb
 };
 
+/*
+ * Internal descriptors below
+ */
+
 /// explicit final state types. Internal use.
 enum final_state_types_ {
     final_4e,
@@ -79,7 +84,8 @@ enum final_state_types_ {
     final_2e,
     final_2mu,
     final_2eA, // 2l plus photon
-    final_2muA
+    final_2muA,
+    final_ttbb_
 };
 
 enum exit_codes {
@@ -93,11 +99,14 @@ enum exit_codes {
 };
 
 struct masses {
-    // systems invariant mass
+    // system's invariant mass
     double sys;
+    
+    // subsystem's invariant mass
+    double bbx;
 
     // quarks
-    double d, u, s, c, b;
+    double d, u, s, c, b, t;
 
     // leptons
     double e, mu;

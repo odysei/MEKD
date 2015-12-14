@@ -5,7 +5,7 @@
 #ifndef MEKD_sorter_cpp
 #define MEKD_sorter_cpp
 
-#include "../interface/MEKD.h"
+#include "MEKD.h"
 
 namespace mekd
 {
@@ -30,9 +30,9 @@ int MEKD::Arrange_4momenta(vector<pair<int, double *>> &id_p,
     const int id3 = id_p[3].first;
     const int id4 = id_p[4].first;
 
-    ////////////////////////////
-    /// 2mu-decay-mode block ///
-    ////////////////////////////
+    /*
+    /* 2mu-decay-mode block
+    */
 
     /// Two-lepton final state block
     if (id0 == -13 && id1 == 13 && id2 == 10000 && id3 == 10000 &&
@@ -54,9 +54,9 @@ int MEKD::Arrange_4momenta(vector<pair<int, double *>> &id_p,
         return 0;
     }
 
-    ///////////////////////////
-    /// ZZ-decay-mode block ///
-    ///////////////////////////
+    /*
+    /* ZZ-decay-mode block
+    */
 
     /// Four-lepton final state block
     if (id0 == -13 && id1 == -11 && id2 == 11 && id3 == 13 && id4 == 10000) {
@@ -119,6 +119,20 @@ int MEKD::Arrange_4momenta(vector<pair<int, double *>> &id_p,
         p[5] = id_p[1].second;
         p[6] = id_p[4].second;
         fs = final_4eA;
+
+        return 0;
+    }
+
+    /*
+    /* ttbb, bb-decay-mode block
+    */
+
+    if (id0 == -6 && id1 == -5 && id2 == 5 && id3 == 6 && id4 == 10000) {
+        p[2] = id_p[3].second;
+        p[3] = id_p[0].second;
+        p[4] = id_p[2].second;
+        p[5] = id_p[1].second;
+        fs = final_ttbb_;
 
         return 0;
     }

@@ -24,7 +24,7 @@ struct flags {
     bool Overwrite_e_and_mu_masses; // switch for manual m_e, m_mu masses
                                     // parton contributions per event
     bool Use_Higgs_width;           // if false, width is fixed to =1
-    bool Use_mh_eq_m4l;             // Set mh to m4l for every event
+    bool use_mX_eq_Mdec;            // Set mX to decay products' inv. mass
     bool Use_mZ4l_eq_m4l;           // Set m_Z to m4l for Z4l events
     bool Use_PDF_w_pT0;             // Use PDFs in the pT=0 frame. If true,
                                     // Boost_To_CM is ignored
@@ -51,7 +51,7 @@ struct parameters {
 
     /// Physical parameters
     double Electron_mass; // 0.0005109989, for enabled overwriting
-    double Higgs_mass;    // Works only if flag.Use_mh_eq_m4l=false
+    double Higgs_mass;    // Works only if flag.use_mX_eq_Mdec=false
     double Higgs_width;   // Practically not used, for future implementations
     double Muon_mass;     // 0.10565837, for enabled overwriting
     double Proton_mass;   // Always used if needed

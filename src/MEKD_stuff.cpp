@@ -696,6 +696,7 @@ void MEKD::Load_parameters_extract_params(const Parameters_MEKD *pa, data &da)
     da.m.s = pa->mdl_MS;
     da.m.c = pa->mdl_MC;
     da.m.b = pa->mdl_MB;
+    da.m.t = pa->mdl_MT;
     da.m.e = pa->mdl_Me;
     da.m.mu = pa->mdl_MM;
     da.m.Z = pa->mdl_MZ;

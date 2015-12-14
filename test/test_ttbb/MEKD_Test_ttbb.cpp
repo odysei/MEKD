@@ -66,19 +66,23 @@ void test_block6(input &in)
 input Initialize_tester(input &in)
 {
     if (Show_Description) {
-        cout << "\n --------------------------------------- \n";
-        cout << " --------------------------------------- \n";
-        cout << " -- STARTING TESTs, using 2e2mu event -- \n";
-        cout << " --------------------------------------- \n";
-        cout << " --------------------------------------- \n";
+        cout << "\n ---------------------------------------- \n";
+        cout << " ---------------------------------------- \n";
+        cout << " -- STARTING TESTs, using ttxbbx event -- \n";
+        cout << " ---------------------------------------- \n";
+        cout << " ---------------------------------------- \n";
     }
 
     in.id = new vector<int>;
     in.id->reserve(4);
-    in.id->push_back(11);
-    in.id->push_back(-11);
-    in.id->push_back(13);
-    in.id->push_back(-13);
+//     in.id->push_back(11);
+//     in.id->push_back(-11);
+//     in.id->push_back(13);
+//     in.id->push_back(-13);
+    in.id->push_back(6);
+    in.id->push_back(-6);
+    in.id->push_back(5);
+    in.id->push_back(-5);
 
     in.p = new vector<double *>;
     in.p->reserve(4);

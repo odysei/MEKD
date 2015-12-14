@@ -20,7 +20,7 @@ void MEKD::Set_default_params()
     flag.Fix_Spin1_Production = false;
     // flag.Force_g3_running = false;
     flag.Overwrite_e_and_mu_masses = false;
-    flag.Use_mh_eq_m4l = true;
+    flag.use_mX_eq_Mdec = true;
     flag.Use_mZ4l_eq_m4l = true;
     flag.Use_Higgs_width = true;
     flag.Use_PDF_w_pT0 = false;
@@ -40,7 +40,7 @@ void MEKD::Set_default_params()
     param.sqrt_s = 8000; // Max energy, collision energy
 
     param.Electron_mass = 0;          // 0.0005109989, for enabled overwriting
-    param.Higgs_mass = 125.6;         // Works only if flag.Use_mh_eq_m4l=false
+    param.Higgs_mass = 125.6;         // Works only if flag.use_mX_eq_Mdec=false
     param.Higgs_width = 5.753088e-03; // Practically not used; for future
     param.Muon_mass = 0;              // 0.10565837, for enabled overwriting
     param.Proton_mass = 0.93827205;   // Always used if needed

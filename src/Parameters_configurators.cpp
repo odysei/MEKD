@@ -12,6 +12,10 @@
 namespace mekd
 {
 
+/*
+ * HEF_MEKD configuration block
+ */
+
 /// A generic spin-0 resonance configurator for Parameters_MEKD
 void Configurator_Spin0(const complex<double> *c, const data &da,
                         const parameters &param, const flags &flag,
@@ -25,7 +29,7 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     const double hZZ = param.hZZ_coupling;
     double lgg;         // lambda hgg
 
-    if (flag.Use_mh_eq_m4l) {
+    if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
 
         if (flag.Use_Higgs_width && flag.Vary_resonance_width)
@@ -51,7 +55,7 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     if (flag.Vary_signal_couplings) {
         Configurator_Spin0_produ(c, flag.Fix_Spin0_Production, lgg, update);
 
-        if (flag.Use_mh_eq_m4l)
+        if (flag.use_mX_eq_Mdec)
             Configurator_Spin0_decay(c, mZ, M, hZZ, update);
         else
             Configurator_Spin0_decay(c, mZ, mH, hZZ, update);
@@ -101,6 +105,40 @@ void Configurator_Spin0_decay(const complex<double> *c,
     // for Hee should be 2.075371e-06
     update->rhoe01 = c[0] * hmumu;
     update->rhoe02 = c[1] * hmumu;
+}
+
+/*
+ * sm-full configuration block
+ */
+
+/// A generic spin-0 resonance configurator for Parameters_sm_full
+void Configurator_Spin0(const data &da,
+                        const parameters &param, const flags &flag,
+                        Parameters_sm_full *update)
+{
+    // local copy for stack
+    const double mH = param.Higgs_mass;
+    const double M = da.m.bbx;  // subsystem's invariant mass
+    double wH;
+
+    if (flag.use_mX_eq_Mdec) {
+        update->mdl_MH = M;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M));
+    } else {
+        update->mdl_MH = mH;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(mH));
+    }
+
+    if (flag.Use_Higgs_width) {
+        if (!flag.Vary_resonance_width)
+            wH = param.Higgs_width;
+    } else
+        wH = 1;
+    update->mdl_WH = wH;
 }
 
 /// end of namespace

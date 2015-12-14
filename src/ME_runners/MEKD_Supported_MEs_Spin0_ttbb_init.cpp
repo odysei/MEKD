@@ -27,14 +27,13 @@ namespace mekd
  * Spin-0 resonances
  */
 
-/// ME_runner_all_bkg_Spin0Pm_2f_ttbb
+/// ME_runner_all_bkg_Spin0Pm_2f_ttbbTEST
 bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::initialize(const string &param_f)
 {
-    if (!ME_Initiator(param_f, "ME_ccx", 2, new MG5_sm_full::cc_ttbb(),
+    if (!ME_Initiator(param_f, "ME_ccx", 2, new MG5_sm_full::ccx_ttxbbx(),
                       ME_ccx))
         return false;
-    
-    if (!ME_Initiator(param_f, "ME_gg", 1, new MG5_sm_full::gg_ttbb(),
+    if (!ME_Initiator(param_f, "ME_gg", 1, new MG5_sm_full::gg_ttxbbx(),
                       ME_gg))
         return false;
     
@@ -49,7 +48,6 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb::initialize()
 void ME_runner_all_bkg_Spin0Pm_2f_ttbb::deinitialize()
 {
     delete ME_ccx;
-    delete ME_gg;
 }
 
 /*

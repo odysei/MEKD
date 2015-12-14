@@ -616,7 +616,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d, data &da,
     } else
         c = da.mix_coeffs_SpinX_pred;
 
-    if (flag.Use_mh_eq_m4l) {
+    if (flag.use_mX_eq_Mdec) {
         par_MG.set_block_entry("mass", 9000006, M);
 
         if (flag.Use_Higgs_width && flag.Vary_resonance_width)
@@ -642,7 +642,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d, data &da,
     if (flag.Vary_signal_couplings) {
         Run_ME_Configurator_Spin0_produ(c, lgg, da, par_MG);
 
-        if (flag.Use_mh_eq_m4l)
+        if (flag.use_mX_eq_Mdec)
             Run_ME_Configurator_Spin0_decay(c, mZ, M, hZZ, par_MG);
         else
             Run_ME_Configurator_Spin0_decay(c, mZ, mH, hZZ, par_MG);
@@ -729,7 +729,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d, data &da,
     } else
         c = da.mix_coeffs_SpinX_pred;
 
-    if (flag.Use_mh_eq_m4l) {
+    if (flag.use_mX_eq_Mdec) {
         par_MG.set_block_entry("mass", 300, M);
 
         if (flag.Use_Higgs_width && flag.Vary_resonance_width)
@@ -857,7 +857,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d, data &da,
     } else
         c = da.mix_coeffs_SpinX_pred;
 
-    if (flag.Use_mh_eq_m4l) {
+    if (flag.use_mX_eq_Mdec) {
         par_MG.set_block_entry("mass", 9000007, M);
 
         if (flag.Use_Higgs_width && flag.Vary_resonance_width)
@@ -881,7 +881,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d, data &da,
     par_MG.set_block_entry("decay", 9000007, wH);
 
     if (flag.Vary_signal_couplings) {
-        if (flag.Use_mh_eq_m4l) {
+        if (flag.use_mX_eq_Mdec) {
             Run_ME_Configurator_Spin2_produ(c, M, lgg, da, par_MG);
             Run_ME_Configurator_Spin2_decay(c, mZ, M, hZZ, par_MG);
         } else {

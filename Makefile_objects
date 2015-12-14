@@ -206,8 +206,8 @@ $(INCDIR4_3)/src/read_slha.o
 ###############################
 
 objects5_ttH_smfull=\
-$(INCDIR4_3)/ttbb_all/gg_ttbb.o \
-$(INCDIR4_3)/ttbb_all/cc_ttbb.o
+$(INCDIR4_3)/ttbb_all/ccx_ttxbbx.o \
+$(INCDIR4_3)/ttbb_all/gg_ttxbbx.o
 
 
 

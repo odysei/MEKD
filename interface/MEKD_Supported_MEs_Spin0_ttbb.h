@@ -38,8 +38,8 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb : public ME_runner
     };
 
     // Actual MEs
-    MG5_sm_full::cc_ttbb *ME_ccx;
-    MG5_sm_full::gg_ttbb *ME_gg;
+    MG5_sm_full::ccx_ttxbbx *ME_ccx;
+    MG5_sm_full::gg_ttxbbx *ME_gg;
 
     // basic
     const process_description my_type();

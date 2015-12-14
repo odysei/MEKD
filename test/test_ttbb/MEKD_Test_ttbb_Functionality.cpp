@@ -39,6 +39,7 @@ int MEKD_Test_ttbb_Functionality_Test1(input &in)
     // 	init_desc.push_back(bkg);
 
     MEKD test1(init_desc);
+    test1.flag.Use_PDF_w_pT0 = true;
     test1.eval_MEs(in, MEs);
 
     if (Show_Basic_Data) {
