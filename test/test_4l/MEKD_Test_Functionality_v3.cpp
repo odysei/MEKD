@@ -28,12 +28,14 @@ int MEKD_Test_Functionality_Test1(input &in)
     vector<process_description> init_desc;
     vector<double> MEs;
 
+    ggSpin0Pm.model = model_MEKD;
     ggSpin0Pm.process = proc_simple;
     ggSpin0Pm.resonance = reson_Spin0Pm;
     ggSpin0Pm.production = prod_gg;
     ggSpin0Pm.decay = decay_ZZ;
     ggSpin0Pm.final_state = final_4l;
 
+    ZZ.model = model_HEF_UFO;
     ZZ.process = proc_simple;
     ZZ.resonance = bkg_Z;
     ZZ.production = prod_qq;

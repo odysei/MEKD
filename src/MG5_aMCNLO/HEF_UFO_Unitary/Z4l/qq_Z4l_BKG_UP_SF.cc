@@ -6,7 +6,7 @@
 //==========================================================================
 
 #include "qq_Z4l_BKG_UP_SF.h"
-#include "../HelAmps_HEF_UFO_bkg.h"
+#include "HelAmps_HEF_UFO_bkg.h"
 
 using namespace MG5_HEF_UFO_bkg;
 

@@ -11,7 +11,7 @@
 #include <complex>
 #include <vector>
 
-#include "../../Commons/Parameters_MEKD.h"
+#include "Commons/Parameters_MEKD.h"
 
 using namespace std;
 

@@ -67,6 +67,7 @@ void MEKD::Initialize_ME_runners(vector<ME_runner *> &ME_runners)
     for (auto r : ME_runners) {
         if (!r->initialize()) {
             cerr << "ME runner not initializable:\n"
+                 << "model: " << r->my_type().model << endl
                  << "process: " << r->my_type().process << endl
                  << "resonance: " << r->my_type().resonance << endl
                  << "production: " << r->my_type().production << endl
@@ -82,6 +83,7 @@ void MEKD::Initialize_ME_runners(const string &param_f,
     for (auto r : ME_runners) {
         if (!r->initialize(param_f)) {
             cerr << "ME runner not initializable:\n"
+                 << "model: " << r->my_type().model << endl
                  << "process: " << r->my_type().process << endl
                  << "resonance: " << r->my_type().resonance << endl
                  << "production: " << r->my_type().production << endl

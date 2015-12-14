@@ -229,6 +229,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     process_description proc;
     models.reserve(17);
 
+    proc.model = model_HEF_UFO;
     proc.process = proc_simple;
     proc.resonance = bkg_Z;
     proc.production = prod_qq;
@@ -236,6 +237,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_gg;
@@ -243,6 +245,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_gg;
@@ -250,6 +253,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_gg;
@@ -257,6 +261,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_qq;
@@ -264,6 +269,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_qq;
@@ -271,6 +277,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -278,6 +285,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -285,6 +293,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -292,6 +301,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -299,6 +309,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc); // [9]
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_no;
@@ -306,6 +317,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_no;
@@ -313,6 +325,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_no;
@@ -320,6 +333,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_no;
@@ -327,6 +341,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_no;
@@ -334,6 +349,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -341,6 +357,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -357,6 +374,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     process_description proc;
     models.reserve(17);
 
+    proc.model = model_HEF_UFO;
     proc.process = proc_simple;
     proc.resonance = bkg_Z;
     proc.production = prod_qq;
@@ -364,6 +382,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_gg;
@@ -371,6 +390,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_gg;
@@ -378,6 +398,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_gg;
@@ -385,6 +406,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_qq;
@@ -392,6 +414,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_qq;
@@ -399,6 +422,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -406,6 +430,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -413,6 +438,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -420,6 +446,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -427,6 +454,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc); // [9]
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_no;
@@ -434,6 +462,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_no;
@@ -441,6 +470,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_no;
@@ -448,6 +478,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_no;
@@ -455,6 +486,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_no;
@@ -462,6 +494,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -469,6 +502,7 @@ vector<process_description> MEKD_Test_Check_Models_Test2_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -618,6 +652,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     process_description proc;
     models.reserve(17);
 
+    proc.model = model_HEF_UFO;
     proc.process = proc_simple;
     proc.resonance = bkg_Z;
     proc.production = prod_qq;
@@ -625,6 +660,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_gg;
@@ -632,6 +668,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_gg;
@@ -639,6 +676,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_gg;
@@ -646,6 +684,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_qq;
@@ -653,6 +692,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_qq;
@@ -660,6 +700,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -667,6 +708,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -674,6 +716,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_gg;
@@ -681,6 +724,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_qq;
@@ -688,6 +732,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_gg;
@@ -695,6 +740,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_qq;
@@ -702,6 +748,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_gg;
@@ -709,6 +756,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_qq;
@@ -716,6 +764,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_gg;
@@ -723,6 +772,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_qq;
@@ -730,6 +780,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_gg;
@@ -737,6 +788,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_qq;
@@ -744,6 +796,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_gg;
@@ -751,6 +804,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_qq;
@@ -758,6 +812,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_gg;
@@ -765,6 +820,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_qq;
@@ -772,6 +828,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_gg;
@@ -779,6 +836,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_qq;
@@ -786,6 +844,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_gg;
@@ -793,6 +852,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_qq;
@@ -800,6 +860,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -807,6 +868,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -814,6 +876,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_no;
@@ -821,6 +884,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_no;
@@ -828,6 +892,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_no;
@@ -835,6 +900,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_no;
@@ -842,6 +908,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_no;
@@ -849,6 +916,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -856,6 +924,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_no;
@@ -863,6 +932,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_no;
@@ -870,6 +940,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_no;
@@ -877,6 +948,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_no;
@@ -884,6 +956,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_no;
@@ -891,6 +964,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_no;
@@ -898,6 +972,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_no;
@@ -905,6 +980,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_no;
@@ -912,6 +988,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_no;
@@ -919,6 +996,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_list()
     proc.final_state = final_4l;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -935,6 +1013,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     process_description proc;
     models.reserve(17);
 
+    proc.model = model_HEF_UFO;
     proc.process = proc_simple;
     proc.resonance = bkg_Z;
     proc.production = prod_qq;
@@ -942,6 +1021,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_gg;
@@ -949,6 +1029,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_gg;
@@ -956,6 +1037,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_gg;
@@ -963,6 +1045,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_qq;
@@ -970,6 +1053,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_qq;
@@ -977,6 +1061,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -984,6 +1069,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -991,6 +1077,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_gg;
@@ -998,6 +1085,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_qq;
@@ -1005,6 +1093,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_gg;
@@ -1012,6 +1101,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_qq;
@@ -1019,6 +1109,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_gg;
@@ -1026,6 +1117,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_qq;
@@ -1033,6 +1125,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_gg;
@@ -1040,6 +1133,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_qq;
@@ -1047,6 +1141,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_gg;
@@ -1054,6 +1149,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_qq;
@@ -1061,6 +1157,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_gg;
@@ -1068,6 +1165,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_qq;
@@ -1075,6 +1173,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_gg;
@@ -1082,6 +1181,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_qq;
@@ -1089,6 +1189,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_gg;
@@ -1096,6 +1197,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_qq;
@@ -1103,6 +1205,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_gg;
@@ -1110,6 +1213,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_qq;
@@ -1117,6 +1221,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_gg;
@@ -1124,6 +1229,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_qq;
@@ -1131,6 +1237,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_no;
@@ -1138,6 +1245,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Ph;
     proc.production = prod_no;
@@ -1145,6 +1253,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin0M;
     proc.production = prod_no;
@@ -1152,6 +1261,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1M;
     proc.production = prod_no;
@@ -1159,6 +1269,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin1P;
     proc.production = prod_no;
@@ -1166,6 +1277,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;
@@ -1173,6 +1285,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph2;
     proc.production = prod_no;
@@ -1180,6 +1293,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph3;
     proc.production = prod_no;
@@ -1187,6 +1301,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph4;
     proc.production = prod_no;
@@ -1194,6 +1309,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph5;
     proc.production = prod_no;
@@ -1201,6 +1317,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph6;
     proc.production = prod_no;
@@ -1208,6 +1325,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Ph7;
     proc.production = prod_no;
@@ -1215,6 +1333,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh8;
     proc.production = prod_no;
@@ -1222,6 +1341,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh9;
     proc.production = prod_no;
@@ -1229,6 +1349,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Mh10;
     proc.production = prod_no;
@@ -1236,6 +1357,7 @@ vector<process_description> MEKD_Test_Check_Models_Test3_make_listA()
     proc.final_state = final_4lA;
     models.push_back(proc);
 
+    proc.model = model_MEKD;
     proc.process = proc_simple;
     proc.resonance = reson_Spin2Pm;
     proc.production = prod_no;

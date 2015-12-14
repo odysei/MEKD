@@ -11,7 +11,7 @@
 #define MEKD_TEST_V3_H
 
 /// ME calculator
-#include "../../interface/MEKD.h"
+#include "interface/MEKD.h"
 
 using namespace mekd;
 

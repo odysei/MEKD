@@ -6,7 +6,7 @@
 //==========================================================================
 
 #include "Spin1_2f_OF.h"
-#include "../HelAmps_HEF_MEKD2_1.h" // Changed by Convert_source 0.2
+#include "HelAmps_HEF_MEKD2_1.h" // Changed by Convert_source 0.2
 
 using namespace MG5_HEF_MEKD2_1;
 

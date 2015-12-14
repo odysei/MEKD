@@ -1,7 +1,7 @@
 #ifndef MEKD_stuff_cpp
 #define MEKD_stuff_cpp
 
-#include "../interface/MEKD.h"
+#include "MEKD.h"
 
 using namespace std;
 

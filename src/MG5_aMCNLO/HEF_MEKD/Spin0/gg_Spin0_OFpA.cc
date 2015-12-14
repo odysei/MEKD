@@ -6,7 +6,7 @@
 //==========================================================================
 
 #include "gg_Spin0_OFpA.h"
-#include "../HelAmps_HEF_MEKD.h"
+#include "HelAmps_HEF_MEKD.h"
 
 using namespace MG5_HEF_MEKD;
 

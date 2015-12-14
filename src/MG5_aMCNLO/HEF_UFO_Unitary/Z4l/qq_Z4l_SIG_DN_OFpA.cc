@@ -6,7 +6,7 @@
 //==========================================================================
 
 #include "qq_Z4l_SIG_DN_OFpA.h"
-#include "../HelAmps_HZZ_Unitary_bkgpA.h"
+#include "HelAmps_HZZ_Unitary_bkgpA.h"
 
 using namespace MG5_HZZ_Unitary_bkgpA;
 

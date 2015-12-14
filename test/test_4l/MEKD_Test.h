@@ -15,7 +15,7 @@
 #include <algorithm> // sort
 
 /// ME calculator
-#include "../src/MEKD.cpp"
+#include "src/MEKD.cpp"
 
 /// ROOT includes
 #if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) ||                     \

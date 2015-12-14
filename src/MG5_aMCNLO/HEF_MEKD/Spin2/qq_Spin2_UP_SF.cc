@@ -6,7 +6,7 @@
 //==========================================================================
 
 #include "qq_Spin2_UP_SF.h"
-#include "../HelAmps_HEF_MEKD.h"
+#include "HelAmps_HEF_MEKD.h"
 
 using namespace MG5_HEF_MEKD;
 
