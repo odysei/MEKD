@@ -141,6 +141,40 @@ void Configurator_Spin0(const data &da,
     update->mdl_WH = wH;
 }
 
+/*
+ * HEFTU (heft_updated-full) configuration block
+ */
+
+/// A generic spin-0 resonance configurator for Parameters_sm_full
+void Configurator_Spin0(const data &da,
+                        const parameters &param, const flags &flag,
+                        Parameters_HEFTU *update)
+{
+    // local copy for stack
+    const double mH = param.Higgs_mass;
+    const double M = da.m.bbx;  // subsystem's invariant mass
+    double wH;
+
+    if (flag.use_mX_eq_Mdec) {
+        update->mdl_MH = M;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M));
+    } else {
+        update->mdl_MH = mH;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(mH));
+    }
+
+    if (flag.Use_Higgs_width) {
+        if (!flag.Vary_resonance_width)
+            wH = param.Higgs_width;
+    } else
+        wH = 1;
+    update->mdl_WH = wH;
+}
+
 /// end of namespace
 }
 

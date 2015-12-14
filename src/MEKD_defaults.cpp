@@ -33,7 +33,7 @@ void MEKD::Set_default_params()
     flag.use_prod_uux = true;
     flag.use_prod_ssx = true;
     flag.use_prod_ccx = true;
-    flag.use_prod_bbx = true;
+    flag.use_prod_bbx = false;
     flag.use_prod_gg = true;
 
     // 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed

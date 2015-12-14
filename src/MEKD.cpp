@@ -27,8 +27,9 @@ namespace mekd
 MEKD::MEKD()
 {
     Set_default_params();   // loads mostly flag (s) and param (s)
-    params_sm_full = Parameters_sm_full::getInstance();
     params_MEKD = Parameters_MEKD::getInstance();
+    params_sm_full = Parameters_sm_full::getInstance();
+    params_HEFTU = Parameters_HEFTU::getInstance();
 
     Check_MEs();
 
@@ -107,6 +108,8 @@ int MEKD::Load_parameters(parameters &pa, data &da)
     params_MEKD->setIndependentCouplings();
     params_sm_full->setIndependentParameters(slha);
     params_sm_full->setIndependentCouplings();
+    params_HEFTU->setIndependentParameters(slha);
+    params_HEFTU->setIndependentCouplings();
 
     /// Initializing parameters
     if (!pa.loaded) {

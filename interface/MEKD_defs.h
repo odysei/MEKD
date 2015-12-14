@@ -14,12 +14,20 @@ using namespace std;
 namespace mekd
 {
 
+enum model_types {
+    model_empty,
+    model_MEKD,     // any HEF_MEKDn model
+    model_HEF_UFO,  // HEF_UFO or HEF_Unitary
+    model_SM,       // sm-full
+    model_HEFTU     // updated heft-full
+};
+
 enum process_types {
     proc_empty,
     proc_simple, // typically production couples to X
     proc_ttX,
     proc_test,  // a place to put in new MEs for tests
-    proc_RAW // an experimental setting
+    proc_RAW    // an experimental setting
 };
 
 enum resonance_types {
@@ -28,7 +36,7 @@ enum resonance_types {
     bkg_Zs, // Z -> 4l via s ch.
     bkg_Zt, // Z -> 4l via t ch.
     bkg_tt,
-    bkg_reson_Spin0Pm, // bkg + resonance
+    bkg_reson_Spin0Pm, // bkg + resonance (H)
     reson_Spin0,       // generic spin 0 resonance, many couplings
     reson_Spin0Pm,     // 0^+_m, Higgs
     reson_Spin0Ph,     // 0^+_h

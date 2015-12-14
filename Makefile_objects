@@ -196,8 +196,7 @@ $(INCDIR4_2)/Spin2/Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/Spin2_2f_SFpA.o
 
 objects5_C=\
 $(INCDIR4_3)/src/HelAmps_sm_full.o \
-$(INCDIR4_3)/src/Parameters_sm_full.o \
-$(INCDIR4_3)/src/read_slha.o
+$(INCDIR4_3)/src/Parameters_sm_full.o
 
 
 
@@ -206,8 +205,38 @@ $(INCDIR4_3)/src/read_slha.o
 ###############################
 
 objects5_ttH_smfull=\
+$(INCDIR4_3)/ttbb_all/ddx_ttxbbx.o \
+$(INCDIR4_3)/ttbb_all/uux_ttxbbx.o \
+$(INCDIR4_3)/ttbb_all/ssx_ttxbbx.o \
 $(INCDIR4_3)/ttbb_all/ccx_ttxbbx.o \
+$(INCDIR4_3)/ttbb_all/bbx_ttxbbx.o \
 $(INCDIR4_3)/ttbb_all/gg_ttxbbx.o
+
+
+
+################################
+###                          ###
+### Model: heft_updated-full ###
+###                          ###
+################################
+
+objects6_C=\
+$(INCDIR4_4)/src/HelAmps_heft_updated_full.o \
+$(INCDIR4_4)/src/Parameters_heft_updated_full.o
+
+
+
+#########################################
+### ttH (heft_updated-full) processes ###
+#########################################
+
+objects6_ttH_HEFTU=\
+$(INCDIR4_4)/ttbb_all/ddx_ttxbbx.o \
+$(INCDIR4_4)/ttbb_all/uux_ttxbbx.o \
+$(INCDIR4_4)/ttbb_all/ssx_ttxbbx.o \
+$(INCDIR4_4)/ttbb_all/ccx_ttxbbx.o \
+$(INCDIR4_4)/ttbb_all/bbx_ttxbbx.o \
+$(INCDIR4_4)/ttbb_all/gg_ttxbbx.o
 
 
 
@@ -227,4 +256,8 @@ $(objects4_spin2) $(objects4_spin2_2) $(objects4_spin2_3)
 objects5=$(objects5_C) \
 $(objects5_ttH_smfull)
 
-objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) $(objects5)
+objects6=$(objects6_C) \
+$(objects6_ttH_HEFTU)
+
+objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) \
+$(objects5) $(objects6)

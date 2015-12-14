@@ -41,6 +41,7 @@ extern "C" {
 #include "../src/MG5_aMCNLO/HEF_MEKD/Spin2/MEKD_MEs_Spin2.h"
 
 #include "ttbb_all/MEKD_MEs_ttbb_all.h"
+#include "ttbb_all/MEKD_MEs_ttbb_all_2.h"
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "../src/MG5_aMCNLO/RAW/CPPProcess.h"	// ME_RAW

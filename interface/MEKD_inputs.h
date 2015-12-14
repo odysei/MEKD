@@ -14,6 +14,29 @@
 namespace mekd
 {
 
+// See definitions for descriptions
+struct process_description {
+    model_types model;
+    process_types process;
+    resonance_types resonance;
+    production_types production;
+    resonance_decay_types decay;
+    final_state_types final_state;
+};
+
+// Standardized input to calculator
+struct input {
+    vector<double *> *p;    // {E, px, py, pz}
+    vector<int> *id;        // PDG ids
+};
+
+// Standardized input to calculator for custom coupling run
+struct input_c : input {
+    complex<double> mix_coeffs_Spin0[4];
+    complex<double> mix_coeffs_Spin1[8];
+    complex<double> mix_coeffs_Spin2[20];
+};
+
 /// Flags that are used in calculations
 struct flags {
     bool Boost_To_CM;          // for a boosted data
@@ -56,34 +79,12 @@ struct parameters {
     double Muon_mass;     // 0.10565837, for enabled overwriting
     double Proton_mass;   // Always used if needed
 
-    /// Constants; get updated in the code
+    /// Constants; gets updated in the code
     double vev; // Vacuum expectation value
     double hZZ_coupling;
 
     string params_MG_file; // Location where a parameter card is stored
     string PDF_file;       // PDF/PDT table file
-};
-
-// see definitions for descriptions
-struct process_description {
-    process_types process;
-    resonance_types resonance;
-    production_types production;
-    resonance_decay_types decay;
-    final_state_types final_state;
-};
-
-// standardized input to calculator
-struct input {
-    vector<double *> *p;    // {E, px, py, pz}
-    vector<int> *id;        // PDG ids
-};
-
-// standardized input to calculator for custom coupling run
-struct input_c : input {
-    complex<double> mix_coeffs_Spin0[4];
-    complex<double> mix_coeffs_Spin1[8];
-    complex<double> mix_coeffs_Spin2[20];
 };
 
 /// end of namespace

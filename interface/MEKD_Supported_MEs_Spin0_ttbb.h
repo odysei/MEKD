@@ -26,20 +26,58 @@ namespace mekd
  * Spin-0 resonances
  */
 
-class ME_runner_all_bkg_Spin0Pm_2f_ttbb : public ME_runner
+class ME_runner_all_bkg_Spin0Pm_2f_ttbb_1 : public ME_runner
 {
   public:
     const process_description me = {
-        proc_ttX,          // process
-        bkg_reson_Spin0Pm, // resonance
-        prod_all,          // production
-        decay_2f,          // decay
-        final_ttbb         // final_state
+        model_SM,           // model
+        proc_ttX,           // process
+        bkg_reson_Spin0Pm,  // resonance
+        prod_all,           // production
+        decay_2f,           // decay
+        final_ttbb          // final_state
     };
 
     // Actual MEs
+    MG5_sm_full::ddx_ttxbbx *ME_ddx;
+    MG5_sm_full::uux_ttxbbx *ME_uux;
+    MG5_sm_full::ssx_ttxbbx *ME_ssx;
     MG5_sm_full::ccx_ttxbbx *ME_ccx;
+    MG5_sm_full::bbx_ttxbbx *ME_bbx;
     MG5_sm_full::gg_ttxbbx *ME_gg;
+
+    // basic
+    const process_description my_type();
+    bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
+
+    // eval
+    double evaluate(MEKD &in_MEKD, const input &in);
+};
+
+class ME_runner_all_bkg_Spin0Pm_2f_ttbb_2 : public ME_runner
+{
+  public:
+    const process_description me = {
+        model_HEFTU,        // model
+        proc_ttX,           // process
+        bkg_reson_Spin0Pm,  // resonance
+        prod_all,           // production
+        decay_2f,           // decay
+        final_ttbb          // final_state
+    };
+
+    // Actual MEs
+    MG5_heft_updated_full::ddx_ttxbbx *ME_ddx;
+    MG5_heft_updated_full::uux_ttxbbx *ME_uux;
+    MG5_heft_updated_full::ssx_ttxbbx *ME_ssx;
+    MG5_heft_updated_full::ccx_ttxbbx *ME_ccx;
+    MG5_heft_updated_full::bbx_ttxbbx *ME_bbx;
+    MG5_heft_updated_full::gg_ttxbbx *ME_gg;
 
     // basic
     const process_description my_type();

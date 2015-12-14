@@ -69,6 +69,14 @@ void Configurator_Spin0(const data &da,
                         const parameters &param, const flags &flag,
                         Parameters_sm_full *update);
 
+/*
+ * HEFTU (heft_updated-full) configuration block
+ */
+
+void Configurator_Spin0(const data &da,
+                        const parameters &param, const flags &flag,
+                        Parameters_HEFTU *update);
+
 class MEKD;
 
 class ME_runner
@@ -78,6 +86,7 @@ class ME_runner
     virtual const process_description my_type()
     {
         process_description empty;
+        empty.model = model_empty;
         empty.process = proc_empty;
         empty.resonance = reson_empty;
         empty.production = prod_empty;
@@ -92,8 +101,11 @@ class ME_runner
     bool compare_types(const process_description &in,
                        const process_description &in2)
     {
-        return (in.process == in2.process && in.resonance == in2.resonance &&
-                in.production == in2.production && in.decay == in2.decay &&
+        return (in.model == in2.model &&
+                in.process == in2.process &&
+                in.resonance == in2.resonance &&
+                in.production == in2.production &&
+                in.decay == in2.decay &&
                 in.final_state == in2.final_state);
     }
     
@@ -155,8 +167,9 @@ class MEKD
 
     /// Parameter container. For experts only
     SLHAReader_MEKD params_MG;
-    Parameters_sm_full *params_sm_full;
     Parameters_MEKD *params_MEKD;
+    Parameters_sm_full *params_sm_full;
+    Parameters_HEFTU *params_HEFTU;
 
     /// Internal data
     data idata;
