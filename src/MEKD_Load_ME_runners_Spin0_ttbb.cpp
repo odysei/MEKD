@@ -8,7 +8,7 @@
 #define MEKD_Load_ME_runners_Spin0_ttbb_cpp
 
 #include "MEKD.h"
-#include "MEKD_Supported_MEs_Spin0_ttbb.h"
+#include "Supported_MEs_Spin0_ttbb.h"
 
 namespace mekd
 {

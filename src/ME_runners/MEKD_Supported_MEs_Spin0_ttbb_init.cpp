@@ -7,7 +7,7 @@
 #ifndef MEKD_Supported_MEs_Spin0_ttbb_init_cpp
 #define MEKD_Supported_MEs_Spin0_ttbb_init_cpp
 
-#include "MEKD_Supported_MEs_Spin0_ttbb.h"
+#include "Supported_MEs_Spin0_ttbb.h"
 #include "MEKD_Initiators.h"
 
 namespace mekd

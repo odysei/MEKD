@@ -1,8 +1,8 @@
 /*************************************************************************
-*  Authors:		MEKD fans
-*  More info:	http://mekd.ihepa.ufl.edu
-*  Contact:		odysei@cern.ch, mekd@phys.ufl.edu
-*  Info:		MEKD definitions are provided here.
+*  Authors:     MEKD fans
+*  More info:   http://mekd.ihepa.ufl.edu
+*  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
+*  Info:        MEKD definitions are provided here.
 *************************************************************************/
 #ifndef MEKD_Definitions_h
 #define MEKD_Definitions_h

@@ -1,30 +1,43 @@
-#ifndef MEKD_INCLUDES_h
-#define MEKD_INCLUDES_h
+#ifndef MEKD_Includes_h
+#define MEKD_Includes_h
 
 /// C++ libraries
-#include <algorithm> // for sorting
+#include <cstdlib>      // needed?
+#include <algorithm>    // for sorting
 #include <cmath>
 #include <complex>
-#include <fstream> // for checking file location
+#include <fstream>      // for checking file location
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
 
+/// ROOT includes
+#if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) ||                     \
+    !defined MEKD_STANDALONE
+#include "TFile.h"
+#include "TLorentzVector.h"
+#include "TMath.h"
+#include "TROOT.h"
+#include "TString.h"
+#include "TTree.h"
+#include "TTreeIndex.h"
+#endif
+
+/// CMSSW includes
+#ifndef MEKD_STANDALONE
+#include "FWCore/ParameterSet/interface/FileInPath.h"
+#endif
+
 /// MEKD core definitions
-#include "MEKD_defs.h"
-#include "MEKD_inputs.h"
+#include "Definitions.h"
+#include "Inputs.h"
 
 /// MEKD tools
 #include "Extra_code/MEKD_CalcHEP_Extra_functions.h"
 #include "Extra_code/MEKD_Boosts.h"
 #include "higgs_properties/hggeffective.h"
 #include "MG5_aMCNLO/Commons/Parameters_MEKD.h"
-
-/// CMSSW includes
-#ifndef MEKD_STANDALONE
-#include "FWCore/ParameterSet/interface/FileInPath.h"
-#endif
 
 extern "C" {
 #include "Extra_code/MEKD_CalcHEP_PDF.h"

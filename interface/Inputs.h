@@ -1,15 +1,14 @@
 /*************************************************************************
-*  Authors:		MEKD fans
-*  More info:	http://mekd.ihepa.ufl.edu
-*  Contact:		odysei@cern.ch, mekd@phys.ufl.edu
-*  Info:		MEKD standard containers/structs are defined here.
+*  Authors:     MEKD fans
+*  More info:   http://mekd.ihepa.ufl.edu
+*  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
+*  Info:        MEKD standard containers/structs are defined here.
 *************************************************************************/
-#ifndef MEKD_INPUTS_h
-#define MEKD_INPUTS_h
+#ifndef MEKD_Inputs_h
+#define MEKD_Inputs_h
 
-#include "MEKD_defs.h"
-#include "MEKD.h"
-#include "MEKD_includes.h"
+#include "Definitions.h"
+#include "Includes.h"
 
 namespace mekd
 {

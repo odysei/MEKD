@@ -6,23 +6,8 @@
 #ifndef MEKD_h
 #define MEKD_h
 
-// C++ includes
-#include <cstdlib>
-
-#if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) ||                     \
-    !defined MEKD_STANDALONE
-// ROOT includes
-#include "TFile.h"
-#include "TLorentzVector.h"
-#include "TMath.h"
-#include "TROOT.h"
-#include "TString.h"
-#include "TTree.h"
-#include "TTreeIndex.h"
-#endif
-
 // MEKD_MG merge
-#include "MEKD_includes.h"
+#include "Includes.h"
 
 /*
  *
