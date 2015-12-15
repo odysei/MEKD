@@ -26,7 +26,7 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     const double mH = param.Higgs_mass;
     const double mZ = da.m.Z;
     const double M = da.m.sys; // system's invariant mass
-    double wH;
+    double wH = 1;
     const double hZZ = param.hZZ_coupling;
     double lgg; // lambda hgg
 
@@ -49,8 +49,7 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     update->mdl_WH = wH;
 
     if (flag.Vary_signal_couplings) {
@@ -117,7 +116,7 @@ void Configurator_Spin0(const data &da, const parameters &param,
     // local copy for stack
     const double mH = param.Higgs_mass;
     const double M = da.m.bbx; // subsystem's invariant mass
-    double wH;
+    double wH = 1;
 
     if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
@@ -134,8 +133,7 @@ void Configurator_Spin0(const data &da, const parameters &param,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     update->mdl_WH = wH;
 }
 
@@ -150,7 +148,7 @@ void Configurator_Spin0(const data &da, const parameters &param,
     // local copy for stack
     const double mH = param.Higgs_mass;
     const double M = da.m.bbx; // subsystem's invariant mass
-    double wH;
+    double wH = 1;
 
     if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
@@ -167,8 +165,7 @@ void Configurator_Spin0(const data &da, const parameters &param,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     update->mdl_WH = wH;
 }
 

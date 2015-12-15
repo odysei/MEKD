@@ -604,7 +604,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d, data &da,
     const double mH = param.Higgs_mass;
     const double mZ = da.m.Z;
     const double M = da.m.sys; // system's invariant mass
-    double wH;
+    double wH = 1;
     const double hZZ = param.hZZ_coupling;
     double lgg;         // lambda hgg
     complex<double> *c; // mixing coefficients
@@ -635,8 +635,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d, data &da,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     par_MG.set_block_entry("decay", 9000006, wH);
 
     if (flag.Vary_signal_couplings) {
@@ -716,7 +715,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d, data &da,
     const double mH = param.Higgs_mass;
     const double mZ = da.m.Z;
     const double M = da.m.sys; // system's invariant mass
-    double wH;
+    double wH = 1;
     const double hZZ = param.hZZ_coupling;
     const double vev = param.vev;
     double lgg;         // lambda hgg
@@ -748,8 +747,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d, data &da,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     par_MG.set_block_entry("decay", 300, wH);
 
     if (flag.Vary_signal_couplings) {
@@ -845,7 +843,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d, data &da,
     const double mH = param.Higgs_mass;
     const double mZ = da.m.Z;
     const double M = da.m.sys; // system's invariant mass
-    double wH;
+    double wH = 1;
     const double hZZ = param.hZZ_coupling;
     double lgg;         // lambda hgg
     complex<double> *c; // mixing coefficients
@@ -876,8 +874,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d, data &da,
     if (flag.Use_Higgs_width) {
         if (!flag.Vary_resonance_width)
             wH = param.Higgs_width;
-    } else
-        wH = 1;
+    }
     par_MG.set_block_entry("decay", 9000007, wH);
 
     if (flag.Vary_signal_couplings) {

@@ -35,6 +35,8 @@ class MEKD;
 class ME_runner
 {
   public:
+    virtual ~ME_runner() {};
+    
     // basic
     virtual const process_description my_type()
     {

@@ -3,15 +3,18 @@
 ######################
 
 CXXFLAGS= -std=c++11 -pedantic -Wunused-variable -Werror=sign-compare \
--Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC -O \
+-Wunused-but-set-variable -Werror=return-type -Werror=missing-braces \
+-Werror=delete-non-virtual-dtor -Werror=maybe-uninitialized \
+-fPIC -O \
 -I $(PROJECT_DIR) \
 -I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR3) -I $(INCDIR4) \
 -I $(INCDIR4_0) -I $(INCDIR4_1) -I $(INCDIR4_2) \
 -I $(INCDIR4_3) -I $(INCDIR4_3_) \
 -I $(INCDIR4_4) -I $(INCDIR4_4_)
 CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare \
--Wunused-but-set-variable -Werror=return-type -Werror=missing-braces -fPIC \
--std=c99
+-Wunused-but-set-variable -Werror=return-type -Werror=missing-braces
+-Werror=delete-non-virtual-dtor -Werror=maybe-uninitialized \
+-fPIC -std=c99
 LIBFLAGS=-L $(LIBDIR)
 
 

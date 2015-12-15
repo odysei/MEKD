@@ -5,7 +5,7 @@
 #ifndef MEKD_debug_cpp
 #define MEKD_debug_cpp
 
-#include "interface/MEKD.h"
+#include "MEKD.h"
 
 namespace mekd
 {
