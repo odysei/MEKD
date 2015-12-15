@@ -56,8 +56,8 @@ $(INCDIR4_0)/Parameters_MEKD.o $(INCDIR4_0)/read_slha_MEKD.o
 ####################################
 
 objects3_C=\
-$(INCDIR4_1)/HelAmps_HEF_UFO_bkg.o \
-$(INCDIR4_1)/HelAmps_HZZ_Unitary_bkgpA.o
+$(INCDIR4_1)/src/HelAmps_HEF_UFO_bkg.o \
+$(INCDIR4_1)/src/HelAmps_HZZ_Unitary_bkgpA.o
 
 
 
@@ -90,7 +90,7 @@ $(INCDIR4_1)/ZZ/qq_ZZ_DN_SFpA.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_SFpA.o
 ########################
 
 objects4_C=\
-$(INCDIR4_2)/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/HelAmps_HEF_MEKD.o \
+$(INCDIR4_2)/src/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/src/HelAmps_HEF_MEKD.o
 
 
 

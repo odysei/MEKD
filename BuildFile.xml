@@ -4,6 +4,8 @@
 <flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/" />
 <flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/" />
 <flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/Commons" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/HEF_MEKD/src" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/HEF_UFO_Unitary/src" />
 <flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/HEFTU/src" />
 <flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/sm-full/src" />
 
