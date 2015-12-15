@@ -27,24 +27,24 @@ class qq_Spin2_2f_DN_SF
     qq_Spin2_2f_DN_SF() {}
 
     // Initialize process.
-    virtual void initProc(string param_card_name);
+    void initProc(string param_card_name);
 
     // Update process.
-    virtual void updateProc(SLHAReader_MEKD &slha);
+    void updateProc(SLHAReader_MEKD &slha);
 
     // Calculate flavour-independent parts of cross section.
-    virtual void sigmaKin();
+    void sigmaKin();
 
     // Evaluate sigmaHat(sHat).
-    virtual double sigmaHat();
+    double sigmaHat();
 
     // Info on the subprocess.
-    virtual string name() const
+    string name() const
     {
         return "s s~ > mu- mu+ mu- mu+ (HEF_MEKD2_1)";
     }
 
-    virtual int code() const { return 0; }
+    int code() const { return 0; }
 
     const vector<double> &getMasses() const { return mME; }
 

@@ -27,25 +27,25 @@ class Spin0_2f_SFpA
     Spin0_2f_SFpA() {}
 
     // Initialize process.
-    virtual void initProc(string param_card_name);
-    virtual void initProc();
+    void initProc(string param_card_name);
+    void initProc();
 
     // Update process.
-    virtual void updateProc();
+    void updateProc();
 
     // Calculate flavour-independent parts of cross section.
-    virtual void sigmaKin();
+    void sigmaKin();
 
     // Evaluate sigmaHat(sHat).
-    virtual double sigmaHat();
+    double sigmaHat();
 
     // Info on the subprocess.
-    virtual string name() const
+    string name() const
     {
         return "h > mu- mu+ mu- mu+ a (HEF_MEKD2_1)";
     }
 
-    virtual int code() const { return 0; }
+    int code() const { return 0; }
 
     const vector<double> &getMasses() const { return mME; }
 

@@ -29,25 +29,25 @@ class ddx_noh_ttxbbx
     ddx_noh_ttxbbx() {}
 
     // Initialize process.
-    virtual void initProc(string param_card_name);
-    virtual void initProc();
+    void initProc(string param_card_name);
+    void initProc();
 
     // Update process.
-    virtual void updateProc();
+    void updateProc();
 
     // Calculate flavour-independent parts of cross section.
-    virtual void sigmaKin();
+    void sigmaKin();
 
     // Evaluate sigmaHat(sHat).
-    virtual double sigmaHat();
+    double sigmaHat();
 
     // Info on the subprocess.
-    virtual string name() const
+    string name() const
     {
         return "d d~ > t t~ b b~ (heft_updated_full)";
     }
 
-    virtual int code() const { return 1; }
+    int code() const { return 1; }
 
     const vector<double> &getMasses() const { return mME; }
 

@@ -27,24 +27,24 @@ class qq_Z4l_SIG_UP_OFpA
     qq_Z4l_SIG_UP_OFpA() {}
 
     // Initialize process.
-    virtual void initProc(string param_card_name);
+    void initProc(string param_card_name);
 
     // Update process.
-    virtual void updateProc(SLHAReader_MEKD &slha);
+    void updateProc(SLHAReader_MEKD &slha);
 
     // Calculate flavour-independent parts of cross section.
-    virtual void sigmaKin();
+    void sigmaKin();
 
     // Evaluate sigmaHat(sHat).
-    virtual double sigmaHat();
+    double sigmaHat();
 
     // Info on the subprocess.
-    virtual string name() const
+    string name() const
     {
         return "c c~ > e- e+ mu- mu+ a (HZZ_Unitary)";
     }
 
-    virtual int code() const { return 0; }
+    int code() const { return 0; }
 
     const vector<double> &getMasses() const { return mME; }
 

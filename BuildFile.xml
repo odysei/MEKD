@@ -1,5 +1,12 @@
 <flags ADD_SUBDIR="1" />
 
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/interface/" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/Commons" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/HEFTU/src" />
+<flags CXXFLAGS="-I ${CMSSW_BASE}/src/MEKD/MEKD/src/MG5_aMCNLO/sm-full/src" />
+
 <use name="FWCore/ParameterSet"/>
 <use name="root"/>
 <use name="rootmath"/>
