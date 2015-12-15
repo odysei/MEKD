@@ -30,12 +30,12 @@ class ME_runner_qq_Spin1M_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_qq,      // production
+        decay_ZZ,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -50,12 +50,12 @@ class ME_runner_no_Spin1M_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_no,      // production
+        decay_ZZ,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -70,12 +70,12 @@ class ME_runner_qq_Spin1P_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_qq,      // production
+        decay_ZZ,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -90,12 +90,12 @@ class ME_runner_no_Spin1P_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_no,      // production
+        decay_ZZ,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -110,12 +110,12 @@ class ME_runner_qq_Spin1_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_qq,     // production
+        decay_ZZ,    // decay
+        final_4l     // final_state
     };
 
     // Actual MEs
@@ -130,12 +130,12 @@ class ME_runner_no_Spin1_ZZ_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4l        // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_no,     // production
+        decay_ZZ,    // decay
+        final_4l     // final_state
     };
 
     // Actual MEs
@@ -154,12 +154,12 @@ class ME_runner_qq_Spin1M_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_qq,      // production
+        decay_ZZ,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -174,12 +174,12 @@ class ME_runner_no_Spin1M_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_no,      // production
+        decay_ZZ,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -194,12 +194,12 @@ class ME_runner_qq_Spin1P_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_qq,      // production
+        decay_ZZ,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -214,12 +214,12 @@ class ME_runner_no_Spin1P_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_no,      // production
+        decay_ZZ,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -234,12 +234,12 @@ class ME_runner_qq_Spin1_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_qq,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_qq,     // production
+        decay_ZZ,    // decay
+        final_4lA    // final_state
     };
 
     // Actual MEs
@@ -254,12 +254,12 @@ class ME_runner_no_Spin1_ZZ_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_no,        // production
-        decay_ZZ,       // decay
-        final_4lA       // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_no,     // production
+        decay_ZZ,    // decay
+        final_4lA    // final_state
     };
 
     // Actual MEs
@@ -284,12 +284,12 @@ class ME_runner_qq_Spin1M_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_qq,      // production
+        decay_2f,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -304,12 +304,12 @@ class ME_runner_no_Spin1M_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_no,      // production
+        decay_2f,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -324,12 +324,12 @@ class ME_runner_qq_Spin1P_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_qq,      // production
+        decay_2f,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -344,12 +344,12 @@ class ME_runner_no_Spin1P_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_no,      // production
+        decay_2f,     // decay
+        final_4l      // final_state
     };
 
     // Actual MEs
@@ -364,12 +364,12 @@ class ME_runner_qq_Spin1_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_qq,     // production
+        decay_2f,    // decay
+        final_4l     // final_state
     };
 
     // Actual MEs
@@ -384,12 +384,12 @@ class ME_runner_no_Spin1_2f_4l : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4l        // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_no,     // production
+        decay_2f,    // decay
+        final_4l     // final_state
     };
 
     // Actual MEs
@@ -408,12 +408,12 @@ class ME_runner_qq_Spin1M_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_qq,      // production
+        decay_2f,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -428,12 +428,12 @@ class ME_runner_no_Spin1M_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1M,   // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1M, // resonance
+        prod_no,      // production
+        decay_2f,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -448,12 +448,12 @@ class ME_runner_qq_Spin1P_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_qq,      // production
+        decay_2f,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -468,12 +468,12 @@ class ME_runner_no_Spin1P_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1P,   // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,   // model
+        proc_simple,  // process
+        reson_Spin1P, // resonance
+        prod_no,      // production
+        decay_2f,     // decay
+        final_4lA     // final_state
     };
 
     // Actual MEs
@@ -488,12 +488,12 @@ class ME_runner_qq_Spin1_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_qq,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_qq,     // production
+        decay_2f,    // decay
+        final_4lA    // final_state
     };
 
     // Actual MEs
@@ -508,12 +508,12 @@ class ME_runner_no_Spin1_2f_4lA : public ME_runner
 {
   public:
     const process_description me = {
-        model_MEKD,     // model
-        proc_simple,    // process
-        reson_Spin1,    // resonance
-        prod_no,        // production
-        decay_2f,       // decay
-        final_4lA       // final_state
+        model_MEKD,  // model
+        proc_simple, // process
+        reson_Spin1, // resonance
+        prod_no,     // production
+        decay_2f,    // decay
+        final_4lA    // final_state
     };
 
     // Actual MEs

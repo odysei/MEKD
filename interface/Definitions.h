@@ -16,18 +16,18 @@ namespace mekd
 
 enum model_types {
     model_empty,
-    model_MEKD,     // any HEF_MEKDn model
-    model_HEF_UFO,  // HEF_UFO or HEF_Unitary
-    model_SM,       // sm-full
-    model_HEFTU     // updated heft-full
+    model_MEKD,    // any HEF_MEKDn model
+    model_HEF_UFO, // HEF_UFO or HEF_Unitary
+    model_SM,      // sm-full
+    model_HEFTU    // updated heft-full
 };
 
 enum process_types {
     proc_empty,
     proc_simple, // typically production couples to X
     proc_ttX,
-    proc_test,  // a place to put in new MEs for tests
-    proc_RAW    // an experimental setting
+    proc_test, // a place to put in new MEs for tests
+    proc_RAW   // an experimental setting
 };
 
 enum resonance_types {
@@ -109,7 +109,7 @@ enum exit_codes {
 struct masses {
     // system's invariant mass
     double sys;
-    
+
     // subsystem's invariant mass
     double bbx;
 
@@ -147,7 +147,7 @@ struct data {
     vector<pair<int, double *>> id_p;
 
     final_state_types_ fs; // final_state_types_ final_state_;
-    vector<double *> p; // with initial state partons
+    vector<double *> p;    // with initial state partons
 
     double PDFx1, PDFx2;
 

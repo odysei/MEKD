@@ -2,11 +2,11 @@
 #define MEKD_Includes_h
 
 /// C++ libraries
-#include <cstdlib>      // needed?
-#include <algorithm>    // for sorting
+#include <cstdlib>   // needed?
+#include <algorithm> // for sorting
 #include <cmath>
 #include <complex>
-#include <fstream>      // for checking file location
+#include <fstream> // for checking file location
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -53,8 +53,11 @@ extern "C" {
 #include "MG5_aMCNLO/HEF_MEKD/Spin1/MEKD_MEs_Spin1.h"
 #include "MG5_aMCNLO/HEF_MEKD/Spin2/MEKD_MEs_Spin2.h"
 
-#include "ttbb_all/MEKD_MEs_ttbb_all.h"
-#include "ttbb_all/MEKD_MEs_ttbb_all_2.h"
+#include "MG5_aMCNLO/sm-full/ttbb_all/MEKD_MEs_ttbb_all.h"
+
+#include "MG5_aMCNLO/HEFTU/h_ttbb/MEKD_MEs_h_ttbb_2.h"
+#include "MG5_aMCNLO/HEFTU/noh_ttbb/MEKD_MEs_noh_ttbb_2.h"
+#include "MG5_aMCNLO/HEFTU/ttbb_all/MEKD_MEs_ttbb_all_2.h"
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "MG5_aMCNLO/RAW/CPPProcess.h"   // ME_RAW

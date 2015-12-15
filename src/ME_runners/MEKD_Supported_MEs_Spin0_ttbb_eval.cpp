@@ -80,6 +80,15 @@ double ME_runner_all_bkg_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD,
                                    ME_ccx, ME_bbx, ME_gg);
 }
 
+/// ME_runner_all_bkg_Spin0Pm_2f_ttbb_2
+double ME_runner_all_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD,
+                                                 const input &in)
+{
+    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_HEFTU,
+                                   ME_ddx, ME_uux, ME_ssx,
+                                   ME_ccx, ME_bbx, ME_gg);
+}
+
 /*
  * End of ME_runner classes
  */

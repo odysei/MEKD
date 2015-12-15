@@ -9,17 +9,16 @@
 namespace mekd
 {
 
-template <class cME>
-double ME_Evaluator_IS_no(const data &da, cME *ME)
+template <class cME> double ME_Evaluator_IS_no(const data &da, cME *ME)
 {
     /// No initial state block
     if (ME != NULL) {
-        vector<double *> p(da.p.size() - 1);    // local "copy" for 1->N
+        vector<double *> p(da.p.size() - 1); // local "copy" for 1->N
         double p_X[4] = {0, 0, 0, 0};
         p[0] = p_X;
         for (unsigned int i = 2; i < da.p.size(); ++i)
             p[i - 1] = da.p[i];
-        
+
         for (unsigned int i = 1; i < p.size(); ++i) {
             p[0][0] += da.p[i][0];
             p[0][1] += da.p[i][1];

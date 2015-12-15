@@ -12,8 +12,7 @@ namespace mekd
 // true: initialized successfully
 template <class cME>
 bool ME_Initiator(const string &param_f, const string &name,
-                  const int nprocesses_,
-                  cME *i_ME, cME *&o_ME)
+                  const int nprocesses_, cME *i_ME, cME *&o_ME)
 {
     // o_ME consumes i_ME
     o_ME = i_ME;
@@ -21,15 +20,15 @@ bool ME_Initiator(const string &param_f, const string &name,
         cerr << "Problem in " << name << " class detected.\n";
         delete o_ME;
         o_ME = NULL;
-        
+
         return false;
     }
-    
+
     if (param_f == "")
         o_ME->initProc();
     else
         o_ME->initProc(param_f);
-    
+
     return true;
 }
 

@@ -8,6 +8,7 @@ src/MEKD.o
 src/MEKD_Load_ME_runners.o
 src/MEKD_Load_ME_runners_Other_4l.o
 src/MEKD_Load_ME_runners_Spin0_4l.o
+src/Load_ME_runners_Other_ttbb.o
 src/MEKD_Load_ME_runners_Spin0_ttbb.o
 src/MEKD_Load_ME_runners_Spin1_4l.o
 src/MEKD_Load_ME_runners_Spin2_4l.o
@@ -23,6 +24,9 @@ src/ME_runners/MEKD_Supported_MEs_Spin2_4l.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_4l_basic.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_4l_eval.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_4l_init.o
+src/ME_runners/MEKD_Supported_MEs_Other_ttbb_basic.o
+src/ME_runners/MEKD_Supported_MEs_Other_ttbb_eval.o
+src/ME_runners/MEKD_Supported_MEs_Other_ttbb_init.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_basic.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_eval.o
 src/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_init.o
@@ -154,6 +158,18 @@ src/MG5_aMCNLO/HEF_UFO_Unitary/ZZ/qq_ZZ_UP_SF.o
 src/MG5_aMCNLO/HEF_UFO_Unitary/ZZ/qq_ZZ_UP_SFpA.o
 src/MG5_aMCNLO/HEFTU/src/HelAmps_heft_updated_full.o
 src/MG5_aMCNLO/HEFTU/src/Parameters_heft_updated_full.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/bbx_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/ccx_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/ddx_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/gg_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/ssx_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/h_ttbb/uux_h_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/bbx_noh_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/ccx_noh_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/ddx_noh_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/gg_noh_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/ssx_noh_ttxbbx.o
+src/MG5_aMCNLO/HEFTU/noh_ttbb/uux_noh_ttxbbx.o
 src/MG5_aMCNLO/HEFTU/ttbb_all/bbx_ttxbbx.o
 src/MG5_aMCNLO/HEFTU/ttbb_all/ccx_ttxbbx.o
 src/MG5_aMCNLO/HEFTU/ttbb_all/ddx_ttxbbx.o

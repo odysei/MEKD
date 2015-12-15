@@ -48,26 +48,24 @@ class ME_runner
 
         return empty;
     }
-    
+
     virtual bool is_my_type(const process_description &in) { return false; }
 
     bool compare_types(const process_description &in,
                        const process_description &in2)
     {
-        return (in.model == in2.model &&
-                in.process == in2.process &&
+        return (in.model == in2.model && in.process == in2.process &&
                 in.resonance == in2.resonance &&
-                in.production == in2.production &&
-                in.decay == in2.decay &&
+                in.production == in2.production && in.decay == in2.decay &&
                 in.final_state == in2.final_state);
     }
-    
+
     // init
     virtual bool initialize() { return false; }
     virtual bool initialize(const string &param_f) { return false; }
 
     virtual void deinitialize() {}
-    
+
     // eval
     virtual double evaluate(MEKD &in_MEKD, const input &in) { return -1; }
 };
@@ -84,21 +82,21 @@ class MEKD
         Load_ME_runners(desc);
     }
     ~MEKD();
-    
+
     /*
      * Main methods for ME evaluation
      */
-    void eval_MEs(const input_c &, vector<double> &);   // for custom coupl.
+    void eval_MEs(const input_c &, vector<double> &); // for custom coupl.
     void eval_MEs(const input &, vector<double> &);
 
     /*
      * MEKD settings
      */
     /// Flags
-    flags flag;         // see Defaults
+    flags flag; // see Defaults
 
     /// Parameters
-    parameters param;   // see Defaults
+    parameters param; // see Defaults
 
     /// Parameter container. For experts only
     SLHAReader_MEKD params_MG;
@@ -140,10 +138,10 @@ class MEKD
     qq_ZZ_UP_OFpA ME_qq_ZZ_UpType_OFpA;
     qq_ZZ_UP_SFpA ME_qq_ZZ_UpType_SFpA;
 
-//     gg_Spin0_OF ME_Signal_gg_Spin0_OF;
-//     gg_Spin0_SF ME_Signal_gg_Spin0_SF;
-//     gg_Spin0_OFpA ME_Signal_gg_Spin0_OFpA;
-//     gg_Spin0_SFpA ME_Signal_gg_Spin0_SFpA;
+    //     gg_Spin0_OF ME_Signal_gg_Spin0_OF;
+    //     gg_Spin0_SF ME_Signal_gg_Spin0_SF;
+    //     gg_Spin0_OFpA ME_Signal_gg_Spin0_OFpA;
+    //     gg_Spin0_SFpA ME_Signal_gg_Spin0_SFpA;
 
     // qq_Spin0_DN_OF ME_Signal_qq_Spin0_DownType_OF;
     // qq_Spin0_DN_SF ME_Signal_qq_Spin0_DownType_SF;
@@ -178,10 +176,10 @@ class MEKD
     qq_Spin2_UP_SFpA ME_Signal_qq_Spin2_UpType_SFpA;
 
     /// ZZ and two-fermion couplings. 4l final state (+photon)
-//     gg_Spin0_2f_OF ME_Signal_gg_Spin0_2f_OF;
-//     gg_Spin0_2f_SF ME_Signal_gg_Spin0_2f_SF;
-//     gg_Spin0_2f_OFpA ME_Signal_gg_Spin0_2f_OFpA;
-//     gg_Spin0_2f_SFpA ME_Signal_gg_Spin0_2f_SFpA;
+    //     gg_Spin0_2f_OF ME_Signal_gg_Spin0_2f_OF;
+    //     gg_Spin0_2f_SF ME_Signal_gg_Spin0_2f_SF;
+    //     gg_Spin0_2f_OFpA ME_Signal_gg_Spin0_2f_OFpA;
+    //     gg_Spin0_2f_SFpA ME_Signal_gg_Spin0_2f_SFpA;
 
     qq_Spin1_2f_DN_OF ME_Signal_qq_Spin1_2f_DownType_OF;
     qq_Spin1_2f_DN_SF ME_Signal_qq_Spin1_2f_DownType_SF;
@@ -210,16 +208,16 @@ class MEKD
     DY_2l ME_DY_2l;
     DY_2lpA ME_DY_2lpA;
 
-//     Spin0_2l ME_Signal_Spin0_2l;
-//     Spin0_OF ME_Signal_Spin0_OF;
-//     Spin0_SF ME_Signal_Spin0_SF;
-//     Spin0_2f_OF ME_Signal_Spin0_2f_OF;
-//     Spin0_2f_SF ME_Signal_Spin0_2f_SF;
-//     Spin0_2lpA ME_Signal_Spin0_2lpA;
-//     Spin0_OFpA ME_Signal_Spin0_OFpA;
-//     Spin0_SFpA ME_Signal_Spin0_SFpA;
-//     Spin0_2f_OFpA ME_Signal_Spin0_2f_OFpA;
-//     Spin0_2f_SFpA ME_Signal_Spin0_2f_SFpA;
+    //     Spin0_2l ME_Signal_Spin0_2l;
+    //     Spin0_OF ME_Signal_Spin0_OF;
+    //     Spin0_SF ME_Signal_Spin0_SF;
+    //     Spin0_2f_OF ME_Signal_Spin0_2f_OF;
+    //     Spin0_2f_SF ME_Signal_Spin0_2f_SF;
+    //     Spin0_2lpA ME_Signal_Spin0_2lpA;
+    //     Spin0_OFpA ME_Signal_Spin0_OFpA;
+    //     Spin0_SFpA ME_Signal_Spin0_SFpA;
+    //     Spin0_2f_OFpA ME_Signal_Spin0_2f_OFpA;
+    //     Spin0_2f_SFpA ME_Signal_Spin0_2f_SFpA;
 
     Spin1_2l ME_Signal_Spin1_2l;
     Spin1_OF ME_Signal_Spin1_OF;
@@ -249,8 +247,8 @@ class MEKD
     qq_DY_DN_2lpA ME_qq_DY_DownType_2lpA;
     qq_DY_UP_2lpA ME_qq_DY_UpType_2lpA;
 
-//     gg_Spin0_2l ME_Signal_gg_Spin0_2l;
-//     gg_Spin0_2lpA ME_Signal_gg_Spin0_2lpA;
+    //     gg_Spin0_2l ME_Signal_gg_Spin0_2l;
+    //     gg_Spin0_2lpA ME_Signal_gg_Spin0_2lpA;
 
     // qq_Spin0_DN_2l ME_Signal_qq_Spin0_DownType_2l;
     // qq_Spin0_UP_2l ME_Signal_qq_Spin0_UpType_2l;
@@ -304,6 +302,8 @@ class MEKD
     bool Load_ME_runners_try_Spin2_4lA(const process_description &,
                                        vector<ME_runner *> &);
 
+    bool Load_ME_runners_try_Other_ttbb(const process_description &,
+                                        vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
                                         vector<ME_runner *> &);
 
@@ -318,8 +318,7 @@ class MEKD
     int Load_parameters(parameters &, data &);
     void Load_parameters_MEs(const string &param_f);
     void Load_parameters_extract_params(const Parameters_MEKD *, data &);
-    void Load_parameters_eval_params(const Parameters_MEKD *,
-                                     const data &,
+    void Load_parameters_eval_params(const Parameters_MEKD *, const data &,
                                      parameters &);
     // reloads parameter set and updates PDF file reader
     int Reload_params(parameters &, data &);
@@ -330,7 +329,7 @@ class MEKD
     // int Arrange_Internal_pls(process_description &);	// updates description
     int Arrange_4momenta(vector<pair<int, double *>> &, vector<double *> &,
                          final_state_types_ &);
-    
+
     void Run_make_p(data &);
     void Run_make_p_boost(const int, data &); // int = 0: CM; 1: pT0
     void Run_calculate(data &);
@@ -338,7 +337,7 @@ class MEKD
     double Get_PDF_x2(const vector<double *> &p);
 
     double Get_sys_m(const vector<double *> &p, const int p_range[2]);
-    
+
     void Approx_neg_z_parton(double *p, const double E);
     void Approx_pos_z_parton(double *p, const double E);
 
@@ -429,7 +428,7 @@ class MEKD
     int Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
                                               Generic_MEKD_ME_s &Generic_ME_s,
                                               Generic_MEKD_ME_c &Generic_ME_c);
-    
+
     /*
      * Version 2 and earlier methods: left for backwards compatibility.
      */

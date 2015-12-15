@@ -10,6 +10,7 @@ $(INCDIR1)/MEKD_Load_ME_runners_Spin0_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin1_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin2_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin0_ttbb.o \
+$(INCDIR1)/Load_ME_runners_Other_ttbb.o \
 $(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
 $(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o \
 $(INCDIR1)/MEKD_stuff.o \
@@ -20,6 +21,9 @@ $(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_eval.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_init.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin1_4l.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin2_4l.o \
+$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_basic.o \
+$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_eval.o \
+$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_init.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_basic.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_eval.o \
 $(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_init.o
@@ -230,13 +234,41 @@ $(INCDIR4_4)/src/Parameters_heft_updated_full.o
 ### ttH (heft_updated-full) processes ###
 #########################################
 
-objects6_ttH_HEFTU=\
+objects6_ttH_bkg=\
 $(INCDIR4_4)/ttbb_all/ddx_ttxbbx.o \
 $(INCDIR4_4)/ttbb_all/uux_ttxbbx.o \
 $(INCDIR4_4)/ttbb_all/ssx_ttxbbx.o \
 $(INCDIR4_4)/ttbb_all/ccx_ttxbbx.o \
 $(INCDIR4_4)/ttbb_all/bbx_ttxbbx.o \
 $(INCDIR4_4)/ttbb_all/gg_ttxbbx.o
+
+
+
+#########################################
+### ttH (heft_updated-full) processes ###
+#########################################
+
+objects6_ttH=\
+$(INCDIR4_4)/h_ttbb/ddx_h_ttxbbx.o \
+$(INCDIR4_4)/h_ttbb/uux_h_ttxbbx.o \
+$(INCDIR4_4)/h_ttbb/ssx_h_ttxbbx.o \
+$(INCDIR4_4)/h_ttbb/ccx_h_ttxbbx.o \
+$(INCDIR4_4)/h_ttbb/bbx_h_ttxbbx.o \
+$(INCDIR4_4)/h_ttbb/gg_h_ttxbbx.o
+
+
+
+#########################################
+### ttH (heft_updated-full) processes ###
+#########################################
+
+objects6_bkg=\
+$(INCDIR4_4)/noh_ttbb/ddx_noh_ttxbbx.o \
+$(INCDIR4_4)/noh_ttbb/uux_noh_ttxbbx.o \
+$(INCDIR4_4)/noh_ttbb/ssx_noh_ttxbbx.o \
+$(INCDIR4_4)/noh_ttbb/ccx_noh_ttxbbx.o \
+$(INCDIR4_4)/noh_ttbb/bbx_noh_ttxbbx.o \
+$(INCDIR4_4)/noh_ttbb/gg_noh_ttxbbx.o
 
 
 
@@ -257,7 +289,7 @@ objects5=$(objects5_C) \
 $(objects5_ttH_smfull)
 
 objects6=$(objects6_C) \
-$(objects6_ttH_HEFTU)
+$(objects6_ttH_bkg) $(objects6_ttH) $(objects6_bkg)
 
 objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) \
 $(objects5) $(objects6)

@@ -50,6 +50,18 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb_2::is_my_type(
     return compare_types(in, me);
 }
 
+/// ME_runner_all_Spin0Pm_2f_ttbb_2
+const process_description ME_runner_all_Spin0Pm_2f_ttbb_2::my_type()
+{
+    return me;
+}
+
+bool ME_runner_all_Spin0Pm_2f_ttbb_2::is_my_type(
+    const process_description &in)
+{
+    return compare_types(in, me);
+}
+
 /*
  * End of ME_runner classes
  */

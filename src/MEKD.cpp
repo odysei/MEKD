@@ -23,10 +23,13 @@ namespace mekd
  *
  */
 
+/*
+ * Constructors, destructors
+ */
 // idata.p(7, new double[4]), => some problems ???
 MEKD::MEKD()
 {
-    Set_default_params();   // loads mostly flag (s) and param (s)
+    Set_default_params(); // loads mostly flag (s) and param (s)
     params_MEKD = Parameters_MEKD::getInstance();
     params_sm_full = Parameters_sm_full::getInstance();
     params_HEFTU = Parameters_HEFTU::getInstance();
@@ -90,19 +93,18 @@ MEKD::~MEKD()
     idata.id_p.clear();
 
     for (auto runner : ME_runners) {
-        runner->deinitialize();
-        delete runner;
+        if (runner != NULL) {
+            runner->deinitialize();
+            delete runner;
+        }
     }
     ME_runners.clear();
-    
-//     delete params_MEKD;
-//     delete params_sm_full;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)
 {
     params_MG.read_slha_file(pa.params_MG_file);
-    
+
     SLHAReader_MEKD slha(pa.params_MG_file);
     params_MEKD->setIndependentParameters(slha);
     params_MEKD->setIndependentCouplings();
@@ -409,8 +411,8 @@ void MEKD::Run_make_p_boost(const int mode, data &da)
             return;
         }
         if (mode == 1) {
-            Boost_5p_2_pT0(m2, da.p[2], m2, da.p[3], m1, da.p[4], m1, da.p[5], 0,
-                           da.p[6]);
+            Boost_5p_2_pT0(m2, da.p[2], m2, da.p[3], m1, da.p[4], m1, da.p[5],
+                           0, da.p[6]);
             return;
         }
     }

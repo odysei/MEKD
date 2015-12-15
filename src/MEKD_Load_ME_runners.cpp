@@ -37,6 +37,8 @@ void MEKD::Load_ME_runners(const vector<process_description> &desc)
         if (Load_ME_runners_try_Spin2_4lA(d, ME_runners))
             continue;
 
+        if (Load_ME_runners_try_Other_ttbb(d, ME_runners))
+            continue;
         if (Load_ME_runners_try_Spin0_ttbb(d, ME_runners))
             continue;
 
@@ -65,6 +67,8 @@ bool MEKD::Load_ME_runners_try(const process_description &desc,
 void MEKD::Initialize_ME_runners(vector<ME_runner *> &ME_runners)
 {
     for (auto r : ME_runners) {
+        if (r == NULL)
+            continue;
         if (!r->initialize()) {
             cerr << "ME runner not initializable:\n"
                  << "model: " << r->my_type().model << endl
@@ -81,6 +85,8 @@ void MEKD::Initialize_ME_runners(const string &param_f,
                                  vector<ME_runner *> &ME_runners)
 {
     for (auto r : ME_runners) {
+        if (r == NULL)
+            continue;
         if (!r->initialize(param_f)) {
             cerr << "ME runner not initializable:\n"
                  << "model: " << r->my_type().model << endl

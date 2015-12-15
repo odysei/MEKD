@@ -25,8 +25,8 @@ struct process_description {
 
 // Standardized input to calculator
 struct input {
-    vector<double *> *p;    // {E, px, py, pz}
-    vector<int> *id;        // PDG ids
+    vector<double *> *p; // {E, px, py, pz}
+    vector<int> *id;     // PDG ids
 };
 
 // Standardized input to calculator for custom coupling run

@@ -23,19 +23,19 @@ namespace mekd
  */
 
 /*
- * Spin-0 resonances
+ * Spin-0 resonances with background
  */
 
 class ME_runner_all_bkg_Spin0Pm_2f_ttbb_1 : public ME_runner
 {
   public:
     const process_description me = {
-        model_SM,           // model
-        proc_ttX,           // process
-        bkg_reson_Spin0Pm,  // resonance
-        prod_all,           // production
-        decay_2f,           // decay
-        final_ttbb          // final_state
+        model_SM,          // model
+        proc_ttX,          // process
+        bkg_reson_Spin0Pm, // resonance
+        prod_all,          // production
+        decay_2f,          // decay
+        final_ttbb         // final_state
     };
 
     // Actual MEs
@@ -63,12 +63,12 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb_2 : public ME_runner
 {
   public:
     const process_description me = {
-        model_HEFTU,        // model
-        proc_ttX,           // process
-        bkg_reson_Spin0Pm,  // resonance
-        prod_all,           // production
-        decay_2f,           // decay
-        final_ttbb          // final_state
+        model_HEFTU,       // model
+        proc_ttX,          // process
+        bkg_reson_Spin0Pm, // resonance
+        prod_all,          // production
+        decay_2f,          // decay
+        final_ttbb         // final_state
     };
 
     // Actual MEs
@@ -78,6 +78,39 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb_2 : public ME_runner
     MG5_heft_updated_full::ccx_ttxbbx *ME_ccx;
     MG5_heft_updated_full::bbx_ttxbbx *ME_bbx;
     MG5_heft_updated_full::gg_ttxbbx *ME_gg;
+
+    // basic
+    const process_description my_type();
+    bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
+
+    // eval
+    double evaluate(MEKD &in_MEKD, const input &in);
+};
+
+class ME_runner_all_Spin0Pm_2f_ttbb_2 : public ME_runner
+{
+  public:
+    const process_description me = {
+        model_HEFTU,   // model
+        proc_ttX,      // process
+        reson_Spin0Pm, // resonance
+        prod_all,      // production
+        decay_2f,      // decay
+        final_ttbb     // final_state
+    };
+
+    // Actual MEs
+    MG5_heft_updated_full::ddx_h_ttxbbx *ME_ddx;
+    MG5_heft_updated_full::uux_h_ttxbbx *ME_uux;
+    MG5_heft_updated_full::ssx_h_ttxbbx *ME_ssx;
+    MG5_heft_updated_full::ccx_h_ttxbbx *ME_ccx;
+    MG5_heft_updated_full::bbx_h_ttxbbx *ME_bbx;
+    MG5_heft_updated_full::gg_h_ttxbbx *ME_gg;
 
     // basic
     const process_description my_type();

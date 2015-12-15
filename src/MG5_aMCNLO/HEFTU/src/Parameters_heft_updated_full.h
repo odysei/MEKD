@@ -8,18 +8,18 @@
 #ifndef Parameters_heft_updated_full_H
 #define Parameters_heft_updated_full_H
 
-#include <complex> 
+#include <complex>
 
 #include "read_slha_MEKD.h"
-using namespace std; 
+using namespace std;
 
 class Parameters_HEFTU
 {
   public:
-    static Parameters_HEFTU * getInstance(); 
+    static Parameters_HEFTU *getInstance();
 
     // Define "zero"
-    double zero, ZERO; 
+    double zero, ZERO;
     // Model parameters independent of aS
     double mdl_WH1, mdl_WH, mdl_WW, mdl_WZ, mdl_WTau, mdl_WT, mdl_ymtau,
         mdl_ymt, mdl_ymb, mdl_etaWS, mdl_rhoWS, mdl_AWS, mdl_lamWS, aS, mdl_Gf,
@@ -28,8 +28,8 @@ class Parameters_HEFTU
         mdl_MZ__exp__2, mdl_MZ__exp__4, mdl_sqrt__2, mdl_MH__exp__4,
         mdl_MT__exp__4, mdl_MH__exp__2, mdl_MT__exp__2, mdl_MH__exp__12,
         mdl_MH__exp__10, mdl_MH__exp__8, mdl_MH__exp__6, mdl_MT__exp__6,
-        mdl_aEW, mdl_MW, mdl_sqrt__aEW, mdl_ee, mdl_MW__exp__2, mdl_sw2,
-        mdl_cw, mdl_sqrt__sw2, mdl_sw, mdl_g1, mdl_gw, mdl_v, mdl_ee__exp__2,
+        mdl_aEW, mdl_MW, mdl_sqrt__aEW, mdl_ee, mdl_MW__exp__2, mdl_sw2, mdl_cw,
+        mdl_sqrt__sw2, mdl_sw, mdl_g1, mdl_gw, mdl_v, mdl_ee__exp__2,
         mdl_MW__exp__12, mdl_MW__exp__10, mdl_MW__exp__8, mdl_MW__exp__6,
         mdl_MW__exp__4, mdl_AH, mdl_v__exp__2, mdl_lam, mdl_yb, mdl_yt,
         mdl_ytau, mdl_muH, mdl_gw__exp__2, mdl_cw__exp__2, mdl_sw__exp__2,
@@ -40,35 +40,33 @@ class Parameters_HEFTU
         mdl_conjg__CKM2x1, mdl_conjg__CKM2x2, mdl_conjg__CKM2x3,
         mdl_conjg__CKM3x1, mdl_conjg__CKM3x2, mdl_conjg__CKM3x3;
     // Model parameters dependent on aS
-    double mdl_sqrt__aS, G, mdl_G__exp__2, mdl_GH, mdl_Gphi; 
+    double mdl_sqrt__aS, G, mdl_G__exp__2, mdl_GH, mdl_Gphi;
     // Model couplings independent of aS
     std::complex<double> GC_1, GC_2, GC_3, GC_33, GC_36, GC_37, GC_38, GC_39,
         GC_40, GC_41, GC_53, GC_74, GC_80, GC_90, GC_94, GC_96, GC_98, GC_100;
     // Model couplings dependent on aS
-    std::complex<double> GC_14, GC_13, GC_12, GC_11, GC_10; 
+    std::complex<double> GC_14, GC_13, GC_12, GC_11, GC_10;
 
     // Set parameters that are unchanged during the run
-    void setIndependentParameters(SLHAReader_MEKD& slha); 
+    void setIndependentParameters(SLHAReader_MEKD &slha);
     // Set couplings that are unchanged during the run
-    void setIndependentCouplings(); 
+    void setIndependentCouplings();
     // Set parameters that are changed event by event
-    void setDependentParameters(); 
+    void setDependentParameters();
     // Set couplings that are changed event by event
-    void setDependentCouplings(); 
+    void setDependentCouplings();
 
     // Print parameters that are unchanged during the run
-    void printIndependentParameters(); 
+    void printIndependentParameters();
     // Print couplings that are unchanged during the run
-    void printIndependentCouplings(); 
+    void printIndependentCouplings();
     // Print parameters that are changed event by event
-    void printDependentParameters(); 
+    void printDependentParameters();
     // Print couplings that are changed event by event
-    void printDependentCouplings(); 
-
+    void printDependentCouplings();
 
   private:
-    static Parameters_HEFTU * instance; 
-}; 
+    static Parameters_HEFTU *instance;
+};
 
-#endif  // Parameters_heft_updated_full_H
-
+#endif // Parameters_heft_updated_full_H
