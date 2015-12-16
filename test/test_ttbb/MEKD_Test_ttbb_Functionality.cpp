@@ -78,10 +78,10 @@ int MEKD_Test_ttbb_Functionality_Test1(input &in)
 
     MEKD test1(init_desc);
     test1.flag.Use_PDF_w_pT0 = true;
-    test1.flag.use_prod_ddx = false;
-    test1.flag.use_prod_uux = false;
-    test1.flag.use_prod_ssx = false;
-    test1.flag.use_prod_ccx = false;
+//     test1.flag.use_prod_ddx = false;
+//     test1.flag.use_prod_uux = false;
+//     test1.flag.use_prod_ssx = false;
+//     test1.flag.use_prod_ccx = false;
     test1.flag.use_prod_bbx = false;
 //     test1.flag.use_prod_gg = false;  
     test1.eval_MEs(in, MEs);
