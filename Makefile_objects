@@ -15,18 +15,18 @@ $(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
 $(INCDIR1)/MEKD_debug.o $(INCDIR1)/MEKD_defaults.o \
 $(INCDIR1)/MEKD_stuff.o \
 $(INCDIR1)/Parameters_configurators.o \
-$(INCDIR5)/MEKD_Supported_MEs_Other_4l.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_basic.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_eval.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_4l_init.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin1_4l.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin2_4l.o \
-$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_basic.o \
-$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_eval.o \
-$(INCDIR5)/MEKD_Supported_MEs_Other_ttbb_init.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_basic.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_eval.o \
-$(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_init.o
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_4l.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_basic.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_eval.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_init.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin1_4l.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin2_4l.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_basic.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_eval.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_init.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_basic.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_eval.o \
+$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_init.o
 
 
 
@@ -35,8 +35,11 @@ $(INCDIR5)/MEKD_Supported_MEs_Spin0_ttbb_init.o
 #####################
 
 objects1=\
-$(INCDIR2)/MEKD_CalcHEP_PDF.o $(INCDIR2)/MEKD_CalcHEP_Extra_functions.o \
-$(INCDIR2)/MEKD_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
+$(INCDIR1)/Extra_code/MEKD_CalcHEP_PDF.o \
+$(INCDIR1)/Extra_code/MEKD_CalcHEP_Extra_functions.o \
+$(INCDIR1)/Extra_code/MEKD_Boosts.o \
+$(INCDIR1)/higgs_properties/hggeffective.o \
+$(PDF_DIR)/pdt.o
 
 
 
@@ -45,7 +48,7 @@ $(INCDIR2)/MEKD_Boosts.o $(INCDIR3)/hggeffective.o $(PDF_DIR)/pdt.o
 ################################
 
 objects2=\
-$(INCDIR4_0)/Parameters_MEKD.o $(INCDIR4_0)/read_slha_MEKD.o
+$(INCDIR2_0)/Parameters_MEKD.o $(INCDIR2_0)/read_slha_MEKD.o
 
 
 
@@ -56,8 +59,8 @@ $(INCDIR4_0)/Parameters_MEKD.o $(INCDIR4_0)/read_slha_MEKD.o
 ####################################
 
 objects3_C=\
-$(INCDIR4_1)/src/HelAmps_HEF_UFO_bkg.o \
-$(INCDIR4_1)/src/HelAmps_HZZ_Unitary_bkgpA.o
+$(INCDIR2_2_src)/HelAmps_HEF_UFO_bkg.o \
+$(INCDIR2_2_src)/HelAmps_HZZ_Unitary_bkgpA.o
 
 
 
@@ -66,20 +69,20 @@ $(INCDIR4_1)/src/HelAmps_HZZ_Unitary_bkgpA.o
 ############################
 
 objects3_Z4l=\
-$(INCDIR4_1)/Z4l/qq_Z4l_BKG_DN_OF.o $(INCDIR4_1)/Z4l/qq_Z4l_BKG_DN_OFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_BKG_DN_SF.o $(INCDIR4_1)/Z4l/qq_Z4l_BKG_DN_SFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_BKG_UP_OF.o $(INCDIR4_1)/Z4l/qq_Z4l_BKG_UP_OFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_BKG_UP_SF.o $(INCDIR4_1)/Z4l/qq_Z4l_BKG_UP_SFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_SIG_DN_OF.o $(INCDIR4_1)/Z4l/qq_Z4l_SIG_DN_OFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_SIG_DN_SF.o $(INCDIR4_1)/Z4l/qq_Z4l_SIG_DN_SFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_SIG_UP_OF.o $(INCDIR4_1)/Z4l/qq_Z4l_SIG_UP_OFpA.o \
-$(INCDIR4_1)/Z4l/qq_Z4l_SIG_UP_SF.o $(INCDIR4_1)/Z4l/qq_Z4l_SIG_UP_SFpA.o
+$(INCDIR2_2)/Z4l/qq_Z4l_BKG_DN_OF.o $(INCDIR2_2)/Z4l/qq_Z4l_BKG_DN_OFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_BKG_DN_SF.o $(INCDIR2_2)/Z4l/qq_Z4l_BKG_DN_SFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_BKG_UP_OF.o $(INCDIR2_2)/Z4l/qq_Z4l_BKG_UP_OFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_BKG_UP_SF.o $(INCDIR2_2)/Z4l/qq_Z4l_BKG_UP_SFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_SIG_DN_OF.o $(INCDIR2_2)/Z4l/qq_Z4l_SIG_DN_OFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_SIG_DN_SF.o $(INCDIR2_2)/Z4l/qq_Z4l_SIG_DN_SFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_SIG_UP_OF.o $(INCDIR2_2)/Z4l/qq_Z4l_SIG_UP_OFpA.o \
+$(INCDIR2_2)/Z4l/qq_Z4l_SIG_UP_SF.o $(INCDIR2_2)/Z4l/qq_Z4l_SIG_UP_SFpA.o
 
 objects3_ZZ=\
-$(INCDIR4_1)/ZZ/qq_ZZ_DN_OF.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_OF.o \
-$(INCDIR4_1)/ZZ/qq_ZZ_DN_SF.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_SF.o \
-$(INCDIR4_1)/ZZ/qq_ZZ_DN_OFpA.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_OFpA.o \
-$(INCDIR4_1)/ZZ/qq_ZZ_DN_SFpA.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_SFpA.o
+$(INCDIR2_2)/ZZ/qq_ZZ_DN_OF.o $(INCDIR2_2)/ZZ/qq_ZZ_UP_OF.o \
+$(INCDIR2_2)/ZZ/qq_ZZ_DN_SF.o $(INCDIR2_2)/ZZ/qq_ZZ_UP_SF.o \
+$(INCDIR2_2)/ZZ/qq_ZZ_DN_OFpA.o $(INCDIR2_2)/ZZ/qq_ZZ_UP_OFpA.o \
+$(INCDIR2_2)/ZZ/qq_ZZ_DN_SFpA.o $(INCDIR2_2)/ZZ/qq_ZZ_UP_SFpA.o
 
 
 
@@ -90,7 +93,7 @@ $(INCDIR4_1)/ZZ/qq_ZZ_DN_SFpA.o $(INCDIR4_1)/ZZ/qq_ZZ_UP_SFpA.o
 ########################
 
 objects4_C=\
-$(INCDIR4_2)/src/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/src/HelAmps_HEF_MEKD.o
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1.o $(INCDIR2_1_src)/HelAmps_HEF_MEKD.o
 
 
 
@@ -99,9 +102,9 @@ $(INCDIR4_2)/src/HelAmps_HEF_MEKD2_1.o $(INCDIR4_2)/src/HelAmps_HEF_MEKD.o
 ############################
 
 objects4_DY=\
-$(INCDIR4_2)/DY/qq_DY_DN_2l.o $(INCDIR4_2)/DY/qq_DY_UP_2l.o \
-$(INCDIR4_2)/DY/qq_DY_DN_2lpA.o $(INCDIR4_2)/DY/qq_DY_UP_2lpA.o \
-$(INCDIR4_2)/DY/DY_2l.o $(INCDIR4_2)/DY/DY_2lpA.o
+$(INCDIR2_1)/DY/qq_DY_DN_2l.o $(INCDIR2_1)/DY/qq_DY_UP_2l.o \
+$(INCDIR2_1)/DY/qq_DY_DN_2lpA.o $(INCDIR2_1)/DY/qq_DY_UP_2lpA.o \
+$(INCDIR2_1)/DY/DY_2l.o $(INCDIR2_1)/DY/DY_2lpA.o
 
 
 
@@ -110,26 +113,26 @@ $(INCDIR4_2)/DY/DY_2l.o $(INCDIR4_2)/DY/DY_2lpA.o
 ##################################
 
 objects4_spin0=\
-$(INCDIR4_2)/Spin0/gg_Spin0_OF.o $(INCDIR4_2)/Spin0/gg_Spin0_SF.o \
-$(INCDIR4_2)/Spin0/gg_Spin0_OFpA.o $(INCDIR4_2)/Spin0/gg_Spin0_SFpA.o \
-$(INCDIR4_2)/Spin0/Spin0_OF.o $(INCDIR4_2)/Spin0/Spin0_SF.o \
-$(INCDIR4_2)/Spin0/Spin0_OFpA.o $(INCDIR4_2)/Spin0/Spin0_SFpA.o
-# $(INCDIR4_2)/Spin0/qq_Spin0_DN_OF.o $(INCDIR4_2)/Spin0/qq_Spin0_UP_OF.o \
-# $(INCDIR4_2)/Spin0/qq_Spin0_DN_SF.o $(INCDIR4_2)/Spin0/qq_Spin0_UP_SF.o \
-# $(INCDIR4_2)/Spin0/qq_Spin0_DN_OFpA.o $(INCDIR4_2)/Spin0/qq_Spin0_UP_OFpA.o \
-# $(INCDIR4_2)/Spin0/qq_Spin0_DN_SFpA.o $(INCDIR4_2)/Spin0/qq_Spin0_UP_SFpA.o
+$(INCDIR2_1)/Spin0/gg_Spin0_OF.o $(INCDIR2_1)/Spin0/gg_Spin0_SF.o \
+$(INCDIR2_1)/Spin0/gg_Spin0_OFpA.o $(INCDIR2_1)/Spin0/gg_Spin0_SFpA.o \
+$(INCDIR2_1)/Spin0/Spin0_OF.o $(INCDIR2_1)/Spin0/Spin0_SF.o \
+$(INCDIR2_1)/Spin0/Spin0_OFpA.o $(INCDIR2_1)/Spin0/Spin0_SFpA.o
+# $(INCDIR2_1)/Spin0/qq_Spin0_DN_OF.o $(INCDIR2_1)/Spin0/qq_Spin0_UP_OF.o \
+# $(INCDIR2_1)/Spin0/qq_Spin0_DN_SF.o $(INCDIR2_1)/Spin0/qq_Spin0_UP_SF.o \
+# $(INCDIR2_1)/Spin0/qq_Spin0_DN_OFpA.o $(INCDIR2_1)/Spin0/qq_Spin0_UP_OFpA.o \
+# $(INCDIR2_1)/Spin0/qq_Spin0_DN_SFpA.o $(INCDIR2_1)/Spin0/qq_Spin0_UP_SFpA.o
 
 objects4_spin0_2=\
-$(INCDIR4_2)/Spin0/gg_Spin0_2l.o $(INCDIR4_2)/Spin0/gg_Spin0_2lpA.o \
-$(INCDIR4_2)/Spin0/Spin0_2l.o $(INCDIR4_2)/Spin0/Spin0_2lpA.o
-# $(INCDIR4_2)/Spin0/qq_Spin0_DN_2l.o $(INCDIR4_2)/Spin0/qq_Spin0_DN_2lpA.o \
-# $(INCDIR4_2)/Spin0/qq_Spin0_UP_2l.o $(INCDIR4_2)/Spin0/qq_Spin0_UP_2lpA.o
+$(INCDIR2_1)/Spin0/gg_Spin0_2l.o $(INCDIR2_1)/Spin0/gg_Spin0_2lpA.o \
+$(INCDIR2_1)/Spin0/Spin0_2l.o $(INCDIR2_1)/Spin0/Spin0_2lpA.o
+# $(INCDIR2_1)/Spin0/qq_Spin0_DN_2l.o $(INCDIR2_1)/Spin0/qq_Spin0_DN_2lpA.o \
+# $(INCDIR2_1)/Spin0/qq_Spin0_UP_2l.o $(INCDIR2_1)/Spin0/qq_Spin0_UP_2lpA.o
 
 objects4_spin0_3=\
-$(INCDIR4_2)/Spin0/gg_Spin0_2f_OF.o $(INCDIR4_2)/Spin0/gg_Spin0_2f_SF.o \
-$(INCDIR4_2)/Spin0/gg_Spin0_2f_OFpA.o $(INCDIR4_2)/Spin0/gg_Spin0_2f_SFpA.o \
-$(INCDIR4_2)/Spin0/Spin0_2f_OF.o $(INCDIR4_2)/Spin0/Spin0_2f_SF.o \
-$(INCDIR4_2)/Spin0/Spin0_2f_OFpA.o $(INCDIR4_2)/Spin0/Spin0_2f_SFpA.o
+$(INCDIR2_1)/Spin0/gg_Spin0_2f_OF.o $(INCDIR2_1)/Spin0/gg_Spin0_2f_SF.o \
+$(INCDIR2_1)/Spin0/gg_Spin0_2f_OFpA.o $(INCDIR2_1)/Spin0/gg_Spin0_2f_SFpA.o \
+$(INCDIR2_1)/Spin0/Spin0_2f_OF.o $(INCDIR2_1)/Spin0/Spin0_2f_SF.o \
+$(INCDIR2_1)/Spin0/Spin0_2f_OFpA.o $(INCDIR2_1)/Spin0/Spin0_2f_SFpA.o
 
 
 
@@ -138,25 +141,25 @@ $(INCDIR4_2)/Spin0/Spin0_2f_OFpA.o $(INCDIR4_2)/Spin0/Spin0_2f_SFpA.o
 ##################################
 
 objects4_spin1=\
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_OF.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_OF.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_SF.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_SF.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_OFpA.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_OFpA.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_SFpA.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_SFpA.o \
-$(INCDIR4_2)/Spin1/Spin1_OF.o $(INCDIR4_2)/Spin1/Spin1_SF.o \
-$(INCDIR4_2)/Spin1/Spin1_OFpA.o $(INCDIR4_2)/Spin1/Spin1_SFpA.o
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_OF.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_OF.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_SF.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_SF.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_OFpA.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_OFpA.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_SFpA.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_SFpA.o \
+$(INCDIR2_1)/Spin1/Spin1_OF.o $(INCDIR2_1)/Spin1/Spin1_SF.o \
+$(INCDIR2_1)/Spin1/Spin1_OFpA.o $(INCDIR2_1)/Spin1/Spin1_SFpA.o
 
 objects4_spin1_2=\
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_2l.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_2l.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_DN_2lpA.o $(INCDIR4_2)/Spin1/qq_Spin1_UP_2lpA.o \
-$(INCDIR4_2)/Spin1/Spin1_2l.o $(INCDIR4_2)/Spin1/Spin1_2lpA.o
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_2l.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_2l.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_DN_2lpA.o $(INCDIR2_1)/Spin1/qq_Spin1_UP_2lpA.o \
+$(INCDIR2_1)/Spin1/Spin1_2l.o $(INCDIR2_1)/Spin1/Spin1_2lpA.o
 
 objects4_spin1_3=\
-$(INCDIR4_2)/Spin1/qq_Spin1_2f_DN_OF.o $(INCDIR4_2)/Spin1/qq_Spin1_2f_UP_OF.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_2f_DN_SF.o $(INCDIR4_2)/Spin1/qq_Spin1_2f_UP_SF.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_2f_DN_OFpA.o $(INCDIR4_2)/Spin1/qq_Spin1_2f_UP_OFpA.o \
-$(INCDIR4_2)/Spin1/qq_Spin1_2f_DN_SFpA.o $(INCDIR4_2)/Spin1/qq_Spin1_2f_UP_SFpA.o \
-$(INCDIR4_2)/Spin1/Spin1_2f_OF.o $(INCDIR4_2)/Spin1/Spin1_2f_SF.o \
-$(INCDIR4_2)/Spin1/Spin1_2f_OFpA.o $(INCDIR4_2)/Spin1/Spin1_2f_SFpA.o
+$(INCDIR2_1)/Spin1/qq_Spin1_2f_DN_OF.o $(INCDIR2_1)/Spin1/qq_Spin1_2f_UP_OF.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_2f_DN_SF.o $(INCDIR2_1)/Spin1/qq_Spin1_2f_UP_SF.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_2f_DN_OFpA.o $(INCDIR2_1)/Spin1/qq_Spin1_2f_UP_OFpA.o \
+$(INCDIR2_1)/Spin1/qq_Spin1_2f_DN_SFpA.o $(INCDIR2_1)/Spin1/qq_Spin1_2f_UP_SFpA.o \
+$(INCDIR2_1)/Spin1/Spin1_2f_OF.o $(INCDIR2_1)/Spin1/Spin1_2f_SF.o \
+$(INCDIR2_1)/Spin1/Spin1_2f_OFpA.o $(INCDIR2_1)/Spin1/Spin1_2f_SFpA.o
 
 
 
@@ -165,30 +168,30 @@ $(INCDIR4_2)/Spin1/Spin1_2f_OFpA.o $(INCDIR4_2)/Spin1/Spin1_2f_SFpA.o
 ##################################
 
 objects4_spin2=\
-$(INCDIR4_2)/Spin2/gg_Spin2_OF.o $(INCDIR4_2)/Spin2/gg_Spin2_SF.o \
-$(INCDIR4_2)/Spin2/gg_Spin2_OFpA.o $(INCDIR4_2)/Spin2/gg_Spin2_SFpA.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_DN_OF.o $(INCDIR4_2)/Spin2/qq_Spin2_UP_OF.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_DN_SF.o $(INCDIR4_2)/Spin2/qq_Spin2_UP_SF.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_DN_OFpA.o $(INCDIR4_2)/Spin2/qq_Spin2_UP_OFpA.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_DN_SFpA.o $(INCDIR4_2)/Spin2/qq_Spin2_UP_SFpA.o \
-$(INCDIR4_2)/Spin2/Spin2_OF.o $(INCDIR4_2)/Spin2/Spin2_SF.o \
-$(INCDIR4_2)/Spin2/Spin2_OFpA.o $(INCDIR4_2)/Spin2/Spin2_SFpA.o
+$(INCDIR2_1)/Spin2/gg_Spin2_OF.o $(INCDIR2_1)/Spin2/gg_Spin2_SF.o \
+$(INCDIR2_1)/Spin2/gg_Spin2_OFpA.o $(INCDIR2_1)/Spin2/gg_Spin2_SFpA.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_DN_OF.o $(INCDIR2_1)/Spin2/qq_Spin2_UP_OF.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_DN_SF.o $(INCDIR2_1)/Spin2/qq_Spin2_UP_SF.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_DN_OFpA.o $(INCDIR2_1)/Spin2/qq_Spin2_UP_OFpA.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_DN_SFpA.o $(INCDIR2_1)/Spin2/qq_Spin2_UP_SFpA.o \
+$(INCDIR2_1)/Spin2/Spin2_OF.o $(INCDIR2_1)/Spin2/Spin2_SF.o \
+$(INCDIR2_1)/Spin2/Spin2_OFpA.o $(INCDIR2_1)/Spin2/Spin2_SFpA.o
 
 objects4_spin2_2=\
-$(INCDIR4_2)/Spin2/gg_Spin2_2l.o $(INCDIR4_2)/Spin2/qq_Spin2_DN_2l.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_UP_2l.o $(INCDIR4_2)/Spin2/gg_Spin2_2lpA.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_DN_2lpA.o $(INCDIR4_2)/Spin2/qq_Spin2_UP_2lpA.o \
-$(INCDIR4_2)/Spin2/Spin2_2l.o $(INCDIR4_2)/Spin2/Spin2_2lpA.o 
+$(INCDIR2_1)/Spin2/gg_Spin2_2l.o $(INCDIR2_1)/Spin2/qq_Spin2_DN_2l.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_UP_2l.o $(INCDIR2_1)/Spin2/gg_Spin2_2lpA.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_DN_2lpA.o $(INCDIR2_1)/Spin2/qq_Spin2_UP_2lpA.o \
+$(INCDIR2_1)/Spin2/Spin2_2l.o $(INCDIR2_1)/Spin2/Spin2_2lpA.o 
 
 objects4_spin2_3=\
-$(INCDIR4_2)/Spin2/gg_Spin2_2f_OF.o $(INCDIR4_2)/Spin2/gg_Spin2_2f_SF.o \
-$(INCDIR4_2)/Spin2/gg_Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/gg_Spin2_2f_SFpA.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_2f_DN_OF.o $(INCDIR4_2)/Spin2/qq_Spin2_2f_UP_OF.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_2f_DN_SF.o $(INCDIR4_2)/Spin2/qq_Spin2_2f_UP_SF.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_2f_DN_OFpA.o $(INCDIR4_2)/Spin2/qq_Spin2_2f_UP_OFpA.o \
-$(INCDIR4_2)/Spin2/qq_Spin2_2f_DN_SFpA.o $(INCDIR4_2)/Spin2/qq_Spin2_2f_UP_SFpA.o \
-$(INCDIR4_2)/Spin2/Spin2_2f_OF.o $(INCDIR4_2)/Spin2/Spin2_2f_SF.o \
-$(INCDIR4_2)/Spin2/Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/Spin2_2f_SFpA.o
+$(INCDIR2_1)/Spin2/gg_Spin2_2f_OF.o $(INCDIR2_1)/Spin2/gg_Spin2_2f_SF.o \
+$(INCDIR2_1)/Spin2/gg_Spin2_2f_OFpA.o $(INCDIR2_1)/Spin2/gg_Spin2_2f_SFpA.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_2f_DN_OF.o $(INCDIR2_1)/Spin2/qq_Spin2_2f_UP_OF.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_2f_DN_SF.o $(INCDIR2_1)/Spin2/qq_Spin2_2f_UP_SF.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_2f_DN_OFpA.o $(INCDIR2_1)/Spin2/qq_Spin2_2f_UP_OFpA.o \
+$(INCDIR2_1)/Spin2/qq_Spin2_2f_DN_SFpA.o $(INCDIR2_1)/Spin2/qq_Spin2_2f_UP_SFpA.o \
+$(INCDIR2_1)/Spin2/Spin2_2f_OF.o $(INCDIR2_1)/Spin2/Spin2_2f_SF.o \
+$(INCDIR2_1)/Spin2/Spin2_2f_OFpA.o $(INCDIR2_1)/Spin2/Spin2_2f_SFpA.o
 
 
 
@@ -199,8 +202,8 @@ $(INCDIR4_2)/Spin2/Spin2_2f_OFpA.o $(INCDIR4_2)/Spin2/Spin2_2f_SFpA.o
 ######################
 
 objects5_C=\
-$(INCDIR4_3)/src/HelAmps_sm_full.o \
-$(INCDIR4_3)/src/Parameters_sm_full.o
+$(INCDIR2_4_src)/HelAmps_sm_full.o \
+$(INCDIR2_4_src)/Parameters_sm_full.o
 
 
 
@@ -209,12 +212,12 @@ $(INCDIR4_3)/src/Parameters_sm_full.o
 ###############################
 
 objects5_ttH_smfull=\
-$(INCDIR4_3)/ttbb_all/ddx_ttxbbx.o \
-$(INCDIR4_3)/ttbb_all/uux_ttxbbx.o \
-$(INCDIR4_3)/ttbb_all/ssx_ttxbbx.o \
-$(INCDIR4_3)/ttbb_all/ccx_ttxbbx.o \
-$(INCDIR4_3)/ttbb_all/bbx_ttxbbx.o \
-$(INCDIR4_3)/ttbb_all/gg_ttxbbx.o
+$(INCDIR2_4)/ttbb_all/ddx_ttxbbx.o \
+$(INCDIR2_4)/ttbb_all/uux_ttxbbx.o \
+$(INCDIR2_4)/ttbb_all/ssx_ttxbbx.o \
+$(INCDIR2_4)/ttbb_all/ccx_ttxbbx.o \
+$(INCDIR2_4)/ttbb_all/bbx_ttxbbx.o \
+$(INCDIR2_4)/ttbb_all/gg_ttxbbx.o
 
 
 
@@ -225,8 +228,8 @@ $(INCDIR4_3)/ttbb_all/gg_ttxbbx.o
 ################################
 
 objects6_C=\
-$(INCDIR4_4)/src/HelAmps_heft_updated_full.o \
-$(INCDIR4_4)/src/Parameters_heft_updated_full.o
+$(INCDIR2_3)/src/HelAmps_heft_updated_full.o \
+$(INCDIR2_3)/src/Parameters_heft_updated_full.o
 
 
 
@@ -235,12 +238,12 @@ $(INCDIR4_4)/src/Parameters_heft_updated_full.o
 #########################################
 
 objects6_ttH_bkg=\
-$(INCDIR4_4)/ttbb_all/ddx_ttxbbx.o \
-$(INCDIR4_4)/ttbb_all/uux_ttxbbx.o \
-$(INCDIR4_4)/ttbb_all/ssx_ttxbbx.o \
-$(INCDIR4_4)/ttbb_all/ccx_ttxbbx.o \
-$(INCDIR4_4)/ttbb_all/bbx_ttxbbx.o \
-$(INCDIR4_4)/ttbb_all/gg_ttxbbx.o
+$(INCDIR2_3)/ttbb_all/ddx_ttxbbx.o \
+$(INCDIR2_3)/ttbb_all/uux_ttxbbx.o \
+$(INCDIR2_3)/ttbb_all/ssx_ttxbbx.o \
+$(INCDIR2_3)/ttbb_all/ccx_ttxbbx.o \
+$(INCDIR2_3)/ttbb_all/bbx_ttxbbx.o \
+$(INCDIR2_3)/ttbb_all/gg_ttxbbx.o
 
 
 
@@ -249,12 +252,12 @@ $(INCDIR4_4)/ttbb_all/gg_ttxbbx.o
 #########################################
 
 objects6_ttH=\
-$(INCDIR4_4)/h_ttbb/ddx_h_ttxbbx.o \
-$(INCDIR4_4)/h_ttbb/uux_h_ttxbbx.o \
-$(INCDIR4_4)/h_ttbb/ssx_h_ttxbbx.o \
-$(INCDIR4_4)/h_ttbb/ccx_h_ttxbbx.o \
-$(INCDIR4_4)/h_ttbb/bbx_h_ttxbbx.o \
-$(INCDIR4_4)/h_ttbb/gg_h_ttxbbx.o
+$(INCDIR2_3)/h_ttbb/ddx_h_ttxbbx.o \
+$(INCDIR2_3)/h_ttbb/uux_h_ttxbbx.o \
+$(INCDIR2_3)/h_ttbb/ssx_h_ttxbbx.o \
+$(INCDIR2_3)/h_ttbb/ccx_h_ttxbbx.o \
+$(INCDIR2_3)/h_ttbb/bbx_h_ttxbbx.o \
+$(INCDIR2_3)/h_ttbb/gg_h_ttxbbx.o
 
 
 
@@ -263,12 +266,12 @@ $(INCDIR4_4)/h_ttbb/gg_h_ttxbbx.o
 #########################################
 
 objects6_bkg=\
-$(INCDIR4_4)/noh_ttbb/ddx_noh_ttxbbx.o \
-$(INCDIR4_4)/noh_ttbb/uux_noh_ttxbbx.o \
-$(INCDIR4_4)/noh_ttbb/ssx_noh_ttxbbx.o \
-$(INCDIR4_4)/noh_ttbb/ccx_noh_ttxbbx.o \
-$(INCDIR4_4)/noh_ttbb/bbx_noh_ttxbbx.o \
-$(INCDIR4_4)/noh_ttbb/gg_noh_ttxbbx.o
+$(INCDIR2_3)/noh_ttbb/ddx_noh_ttxbbx.o \
+$(INCDIR2_3)/noh_ttbb/uux_noh_ttxbbx.o \
+$(INCDIR2_3)/noh_ttbb/ssx_noh_ttxbbx.o \
+$(INCDIR2_3)/noh_ttbb/ccx_noh_ttxbbx.o \
+$(INCDIR2_3)/noh_ttbb/bbx_noh_ttxbbx.o \
+$(INCDIR2_3)/noh_ttbb/gg_noh_ttxbbx.o
 
 
 

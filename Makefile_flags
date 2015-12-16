@@ -7,12 +7,10 @@ CXXFLAGS= -std=c++11 -pedantic -Wunused-variable -Werror=sign-compare \
 -Werror=delete-non-virtual-dtor -Werror=maybe-uninitialized \
 -fPIC -O \
 -I $(PROJECT_DIR) \
--I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR3) -I $(INCDIR4) \
--I $(INCDIR4_0) -I $(INCDIR4_1) -I $(INCDIR4_2) \
--I $(INCDIR4_3) -I $(INCDIR4_3_) \
--I $(INCDIR4_4) -I $(INCDIR4_4_)
+-I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR2_0) \
+-I $(INCDIR2_1_src) -I $(INCDIR2_2_src) -I $(INCDIR2_3_src) -I $(INCDIR2_4_src)
 CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare \
--Wunused-but-set-variable -Werror=return-type -Werror=missing-braces
+-Wunused-but-set-variable -Werror=return-type -Werror=missing-braces \
 -Werror=delete-non-virtual-dtor -Werror=maybe-uninitialized \
 -fPIC -std=c99
 LIBFLAGS=-L $(LIBDIR)
