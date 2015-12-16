@@ -79,6 +79,7 @@ eval_MEs(my_input, my_results);
 Internal computation sequence is the following:
 
 **HEF_MEKD (4 leptons)** for **v2** and earlier:
+
 1. eval_MEs(...) (user runs this)
 2. ME_runners[i]->evaluate(...)
 3. Run_ME_Configurator_HYPOTHESIS(...) (turn on/off couplings)
@@ -86,7 +87,9 @@ Internal computation sequence is the following:
 5. Run_ME_Dispatcher_SPIN(...) (find and dispatch correct ME)
 6. Run_MEs_Evaluator_Initial_State_TYPE(..., ME)
 
+
 **v3**:
+
 1. eval_MEs(...) (user runs this)
 2. ME_runners[i]->evaluate(...)
 3. template<> evaluate_PROCESS(...)
