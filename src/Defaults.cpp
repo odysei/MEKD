@@ -1,9 +1,14 @@
-///////////////////////////////////
-///  Helper functions useful for///
-///  debugging                  ///
-///////////////////////////////////
-#ifndef MEKD_defaults_cpp
-#define MEKD_defaults_cpp
+/*
+ *
+ * MEKD defaults. These are typically loaded when initializing MEKD.
+ * 
+ * NOTE: you are free to fiddle with parameters, but no need to replace values
+ * here.
+ *
+ *
+ */
+#ifndef MEKD_Defaults_cpp
+#define MEKD_Defaults_cpp
 
 #include "MEKD.h"
 
@@ -37,10 +42,10 @@ void MEKD::Set_default_params()
     flag.use_prod_gg = true;
 
     // 	param.GG = 0;	// Assign QCD coupling, force g3 running if needed
-    param.sqrt_s = 8000; // Max energy, collision energy
+    param.sqrt_s = 13000; // Max energy, collision energy
 
     param.Electron_mass = 0;          // 0.0005109989, for enabled overwriting
-    param.Higgs_mass = 125.6;         // Works only if flag.use_mX_eq_Mdec=false
+    param.Higgs_mass = 125.0;         // Works only if flag.use_mX_eq_Mdec=false
     param.Higgs_width = 5.753088e-03; // Practically not used; for future
     param.Muon_mass = 0;              // 0.10565837, for enabled overwriting
     param.Proton_mass = 0.93827205;   // Always used if needed
@@ -114,6 +119,3 @@ string MEKD::Find_local_file(const string &input_f)
 }
 
 #endif
-///////////////////////////////
-/// END OF MEKD_debug.cpp   ///
-///////////////////////////////

@@ -4,6 +4,7 @@ src/Extra_code/MEKD_Boosts.o
 src/Extra_code/MEKD_CalcHEP_Extra_functions.o
 src/Extra_code/MEKD_CalcHEP_PDF.o
 src/Extra_code/MEKD_MG_Boosts.o
+src/Defaults.o
 src/MEKD.o
 src/MEKD_Load_ME_runners.o
 src/MEKD_Load_ME_runners_Other_4l.o
@@ -14,7 +15,6 @@ src/MEKD_Load_ME_runners_Spin1_4l.o
 src/MEKD_Load_ME_runners_Spin2_4l.o
 src/MEKD_RunMEs.o
 src/MEKD_debug.o
-src/MEKD_defaults.o
 src/MEKD_sorter.o
 src/MEKD_stuff.o
 src/Parameters_configurators.o
