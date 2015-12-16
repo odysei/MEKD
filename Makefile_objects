@@ -4,6 +4,7 @@
 
 objects0=\
 $(INCDIR1)/MEKD.o \
+$(INCDIR1)/MEKD_v2.o \
 $(INCDIR1)/MEKD_Load_ME_runners.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Other_4l.o \
 $(INCDIR1)/MEKD_Load_ME_runners_Spin0_4l.o \

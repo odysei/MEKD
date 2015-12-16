@@ -6,6 +6,7 @@ src/Extra_code/MEKD_CalcHEP_PDF.o
 src/Extra_code/MEKD_MG_Boosts.o
 src/Defaults.o
 src/MEKD.o
+src/MEKD_v2.o
 src/MEKD_Load_ME_runners.o
 src/MEKD_Load_ME_runners_Other_4l.o
 src/MEKD_Load_ME_runners_Spin0_4l.o
