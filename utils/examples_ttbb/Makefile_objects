@@ -1,0 +1,5 @@
+#####################
+### Local objects ###
+#####################
+
+objects=produce_lgKDs_io.o

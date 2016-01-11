@@ -25,13 +25,22 @@ endif
 
 
 
+
+################################
+### Include objects to build ###
+################################
+
+include Makefile_objects
+
+
+
 ###################
 ### All targets ###
 ###################
 
-target=runKD_MAD
+example=produce_lgKDs
 
-all: $(target)
+all: $(example)
 
 
 
@@ -40,13 +49,14 @@ all: $(target)
 ### Building block ###
 ######################
 
-$(target):
-	$(CXX) $(CXXFLAGS) $(target).cpp -o $(BIN_DIRL)/$(target) -L. $(LIBFLAGS) \
--l MEKD
+$(example): $(objects)
+	$(CXX) $(CXXFLAGS) $(example).cpp -o $(BIN_DIRL)/$(example) $(objects) \
+	-L. $(LIBFLAGS) -l MEKD
 
 
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN_DIRL)/$(target)
+	rm -f $(objects); \
+	rm -f $(BIN_DIRL)/$(example)

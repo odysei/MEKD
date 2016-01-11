@@ -1,4 +1,7 @@
 bin/
+data/examples_ttbb/Events/ttbb_all.lhe_proc
+data/examples_ttbb/Events/ttbb_h.lhe_proc
+data/examples_ttbb/Events/ttbb_noh.lhe_proc
 lib/
 src/Extra_code/MEKD_Boosts.o
 src/Extra_code/MEKD_CalcHEP_Extra_functions.o
@@ -187,3 +190,4 @@ src/MG5_aMCNLO/sm-full/ttbb_all/bbx_ttxbbx.o
 src/MG5_aMCNLO/sm-full/ttbb_all/gg_ttxbbx.o
 src/PDF_tables/pdt.o
 src/higgs_properties/hggeffective.o
+utils/examples_ttbb/produce_lgKDs_io.o

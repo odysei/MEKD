@@ -92,16 +92,18 @@ void MEKD::Set_default_params()
 string MEKD::Find_local_file(const string &input_f)
 {
     vector<string> lookup;
-    lookup.reserve(9);
+    lookup.reserve(10);
     lookup.push_back("./");
     lookup.push_back("Cards/");
     lookup.push_back("PDF_tables/");
     lookup.push_back("../Cards/");
     lookup.push_back("../PDF_tables/"); // [4]
+    lookup.push_back("data/Cards/");
+    lookup.push_back("data/PDF_tables/");
     lookup.push_back("../data/Cards/");
     lookup.push_back("../data/PDF_tables/");
     lookup.push_back("../../data/Cards/");
-    lookup.push_back("../../data/PDF_tables/");
+    lookup.push_back("../../data/PDF_tables/"); // [10]
 
     for (auto path : lookup) {
         string file_in_path = path + input_f;

@@ -12,8 +12,9 @@ export BIN_DIR=../bin
 ###################################
 
 UTILS_1=examples_4l
+UTILS_2=examples_ttbb
 
-UTILS=$(UTILS_1)
+UTILS=$(UTILS_1) $(UTILS_2)
 
 # Otherwise make is not happy if such names exist in PWD
 .PHONY: $(UTILS)
@@ -42,6 +43,10 @@ $(UTILS_1):
 	$(MAKE) -C $(UTILS_1)
 
 
+$(UTILS_2):
+	$(MAKE) -C $(UTILS_2)
+
+
 
 
 #####################
@@ -52,3 +57,4 @@ $(UTILS_1):
 
 clean:
 	$(MAKE) -C $(UTILS_1) clean
+	$(MAKE) -C $(UTILS_2) clean

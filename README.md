@@ -117,3 +117,10 @@ clang-format. Use it! Run:
 	$ clang-format -style=file -i *.cpp
 
 to update all files in a current directory.
+
+
+### Notes
+
+Inherently from MadGraph code has some of its parameters as statics, which is,
+in general, dangerous. Will likely have some problems if running multithreaded
+or/with several objects with "similar" calculations, i.e., unwanted xtalk.
