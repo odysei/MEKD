@@ -20,11 +20,13 @@ namespace mekd
 void Configurator_Spin0(const complex<double> *c, const data &da,
                         const parameters &param, const flags &flag,
                         Parameters_MEKD *update);
-void Configurator_Spin0_produ(const complex<double> *c, const bool fixed_prod,
-                              const double lgg, Parameters_MEKD *update);
-void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
-                              const double Mi, const double hZZ,
-                              Parameters_MEKD *update);
+inline void Configurator_Spin0_lep_m(const data &da, Parameters_MEKD *update);
+inline void Configurator_Spin0_produ(const complex<double> *c,
+                                     const bool fixed_prod, const double lgg,
+                                     Parameters_MEKD *update);
+inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
+                                     const double Mi, const double hZZ,
+                                     Parameters_MEKD *update);
 
 /*
  * sm-full configuration block

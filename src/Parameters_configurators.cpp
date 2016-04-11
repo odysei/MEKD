@@ -30,6 +30,8 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     const double hZZ = param.hZZ_coupling;
     double lgg; // lambda hgg
 
+    Configurator_Spin0_lep_m(da, update);
+
     if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
 
@@ -62,8 +64,31 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     }
 }
 
-void Configurator_Spin0_produ(const complex<double> *c, const bool fixed_prod,
-                              const double lgg, Parameters_MEKD *update)
+inline void Configurator_Spin0_lep_m(const data &da, Parameters_MEKD *update)
+{
+    if (da.fs == final_4e || da.fs == final_4eA) {
+        /// Common mass for the same-flavor leptons
+        update->mdl_MM = da.m.e;
+        return;
+    }
+
+    if (da.fs == final_4mu || da.fs == final_4muA) {
+        /// Common mass for the same-flavor leptons
+        update->mdl_MM = da.m.mu;
+        return;
+    }
+
+    if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
+        /// Masses for the opposite-flavor leptons
+        update->mdl_Me = da.m.e;
+        update->mdl_MM = da.m.mu;
+        return;
+    }
+}
+
+inline void Configurator_Spin0_produ(const complex<double> *c,
+                                     const bool fixed_prod, const double lgg,
+                                     Parameters_MEKD *update)
 {
     // gg
     const complex<double> common_coupl = complex<double>(4 * lgg, 0);
@@ -80,9 +105,9 @@ void Configurator_Spin0_produ(const complex<double> *c, const bool fixed_prod,
     }
 }
 
-void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
-                              const double Mi, const double hZZ,
-                              Parameters_MEKD *update)
+inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
+                                     const double Mi, const double hZZ,
+                                     Parameters_MEKD *update)
 {
     // Decay to ZZ
     const complex<double> chZZ = complex<double>(hZZ, 0);

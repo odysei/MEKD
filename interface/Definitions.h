@@ -19,7 +19,8 @@ enum model_types {
     model_MEKD,    // any HEF_MEKDn model
     model_HEF_UFO, // HEF_UFO or HEF_Unitary
     model_SM,      // sm-full
-    model_HEFTU    // updated heft-full
+    model_HEFTU,   // updated heft-full
+    model_HiggsPO  // Higgs pseudoobservables
 };
 
 enum process_types {

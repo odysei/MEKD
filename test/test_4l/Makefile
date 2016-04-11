@@ -31,8 +31,9 @@ endif
 
 test=MEKD_Test
 test2=MEKD_Test_v3
+test3=MEKD_Test_HiggsPO
 
-all: $(test) $(test2)
+all: $(test) $(test2) $(test3)
 
 
 
@@ -55,8 +56,13 @@ endif
 
 
 $(test2):
-	$(CXX) $(CXXFLAGS) $(test2).cpp -o $(BIN_DIRL)/$(test2) -L. $(LIBFLAGS) \
--l MEKD
+	$(CXX) $(CXXFLAGS) $(test2).cpp -o $(BIN_DIRL)/$(test2) -L. \
+$(LIBFLAGS) -l MEKD
+
+
+$(test3):
+	$(CXX) $(CXXFLAGS) $(test3).cpp -o $(BIN_DIRL)/$(test3) -L. \
+$(LIBFLAGS) -l MEKD
 
 
 

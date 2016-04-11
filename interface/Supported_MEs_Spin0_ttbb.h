@@ -92,6 +92,10 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb_2 : public ME_runner
     double evaluate(MEKD &in_MEKD, const input &in);
 };
 
+/*
+ * Spin-0 resonances
+ */
+
 class ME_runner_all_Spin0Pm_2f_ttbb_2 : public ME_runner
 {
   public:

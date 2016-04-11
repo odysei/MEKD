@@ -53,6 +53,35 @@ class ME_runner_gg_Spin0Pm_ZZ_4l : public ME_runner
     double evaluate(MEKD &in_MEKD, const input &in);
 };
 
+class ME_runner_gg_Spin0Pm_ZZ_4l_2 : public ME_runner
+{
+  public:
+    const process_description me = {
+        model_HiggsPO, // model
+        proc_simple,   // process
+        reson_Spin0Pm, // resonance
+        prod_gg,       // production
+        decay_ZZ,      // decay
+        final_4l       // final_state
+    };
+
+    // Actual MEs
+    MG5_heft_updated_full::gg_h_ttxbbx *ME_gg_OF;
+    MG5_heft_updated_full::gg_h_ttxbbx *ME_gg_SF;
+
+    // basic
+    const process_description my_type();
+    bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
+
+    // eval
+    double evaluate(MEKD &in_MEKD, const input &in);
+};
+
 class ME_runner_no_Spin0Pm_ZZ_4l : public ME_runner
 {
   public:

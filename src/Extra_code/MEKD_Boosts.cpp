@@ -3,7 +3,8 @@
 
 #include "MEKD_Boosts.h"
 
-double Boost_trigger_gamma = 1e-10; // min. value of 1-gamma to trigger boost
+const double Boost_trigger_gamma = 1e-10; // min. value of 1-gamma to trigger
+                                          // boost
 
 bool debug = false; // debugging flag
 
