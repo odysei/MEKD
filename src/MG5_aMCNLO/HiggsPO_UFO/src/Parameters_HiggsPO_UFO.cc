@@ -122,9 +122,16 @@ void Parameters_HiggsPO_UFO::setIndependentParameters(SLHAReader_MEKD &slha)
 void Parameters_HiggsPO_UFO::setIndependentCouplings()
 {
     GC_3 = -(mdl_ee * mdl_complexi);
+    GC_9 = (-2. * mdl_eggSM * mdl_complexi) / mdl_vev;
+}
+void Parameters_HiggsPO_UFO::setDependentParameters()
+{
+    mdl_sqrt__aS = sqrt(aS);
+    G = 2. * mdl_sqrt__aS * sqrt(M_PI);
+    mdl_G__exp__2 = pow(G, 2.);
+    
     GC_8 = (2. * mdl_complexi * mdl_kZZ * mdl_MZ__exp__2) / mdl_vev +
            (2. * mdl_complexi * mdl_MZ__exp__2 * mdl_noise) / mdl_vev;
-    GC_9 = (-2. * mdl_eggSM * mdl_complexi) / mdl_vev;
     GC_12 = (2. * mdl_eZeL * mdl_complexi) / mdl_vev;
     GC_13 = (2. * mdl_eZeR * mdl_complexi) / mdl_vev;
     GC_14 = (2. * mdl_eZmuL * mdl_complexi) / mdl_vev;
@@ -139,12 +146,6 @@ void Parameters_HiggsPO_UFO::setIndependentCouplings()
     GC_31 = (2. * mdl_complexi * mdl_gZeR * mdl_MZ) / mdl_vev;
     GC_32 = (2. * mdl_complexi * mdl_gZmuL * mdl_MZ) / mdl_vev;
     GC_33 = (2. * mdl_complexi * mdl_gZmuR * mdl_MZ) / mdl_vev;
-}
-void Parameters_HiggsPO_UFO::setDependentParameters()
-{
-    mdl_sqrt__aS = sqrt(aS);
-    G = 2. * mdl_sqrt__aS * sqrt(M_PI);
-    mdl_G__exp__2 = pow(G, 2.);
 }
 void Parameters_HiggsPO_UFO::setDependentCouplings() {}
 

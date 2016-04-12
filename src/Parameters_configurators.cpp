@@ -64,7 +64,8 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     }
 }
 
-inline void Configurator_Spin0_lep_m(const data &da, Parameters_MEKD *update)
+template <class Parameters>
+inline void Configurator_Spin0_lep_m(const data &da, Parameters *update)
 {
     if (da.fs == final_4e || da.fs == final_4eA) {
         /// Common mass for the same-flavor leptons
@@ -128,6 +129,61 @@ inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
     // for Hee should be 2.075371e-06
     update->rhoe01 = c[0] * hmumu;
     update->rhoe02 = c[1] * hmumu;
+}
+
+/*
+ * HiggsPO_UFO configuration block
+ */
+
+/// A generic spin-0 resonance configurator for Parameters_MEKD
+void Configurator_Spin0(const data &da, const parameters &param,
+                        const flags &flag, Parameters_HiggsPO_UFO *update)
+{
+    // local copy for stack
+    const double mH = param.Higgs_mass;
+    const double M = da.m.sys; // system's invariant mass
+    double wH = 1;
+    double lgg; // lambda hgg
+
+    Configurator_Spin0_lep_m(da, update);
+
+    if (flag.use_mX_eq_Mdec) {
+        update->mdl_MH = M;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(M));
+
+        lgg = LmbdGG(M);
+    } else {
+        update->mdl_MH = mH;
+
+        if (flag.Use_Higgs_width && flag.Vary_resonance_width)
+            wH = static_cast<double>(MEKD_CalcHEP_Extra::Higgs_width(mH));
+
+        lgg = LmbdGG(mH);
+    }
+
+    if (flag.Use_Higgs_width) {
+        if (!flag.Vary_resonance_width)
+            wH = param.Higgs_width;
+    }
+    update->mdl_WH = wH;
+
+    if (flag.Vary_signal_couplings) {
+        Configurator_Spin0_produ(lgg, update);
+// 
+//         if (flag.use_mX_eq_Mdec)
+//             Configurator_Spin0_decay(c, mZ, M, hZZ, update);
+//         else
+//             Configurator_Spin0_decay(c, mZ, mH, hZZ, update);
+    }
+}
+
+inline void Configurator_Spin0_produ(const double lgg,
+                                     Parameters_HiggsPO_UFO *update)
+{
+    // gg. * -i WRT HEF_MEKD
+    update->GC_9  = complex<double>(0, -4 * lgg);
 }
 
 /*

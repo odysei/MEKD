@@ -35,18 +35,39 @@ double evaluate_gg_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
     Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag,
                        in_MEKD.params_MEKD);
 
+    const auto fs = in_MEKD.idata.fs;
+    const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
     if (in_MEKD.flag.use_prod_gg) {
-        if (in_MEKD.idata.fs == final_4e || in_MEKD.idata.fs == final_4eA)
-            return ME_Evaluator_IS_gg(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                      SF);
+        if (fs == final_4e || fs == final_4eA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, SF);
 
-        if (in_MEKD.idata.fs == final_4mu || in_MEKD.idata.fs == final_4muA)
-            return ME_Evaluator_IS_gg(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                      SF);
+        if (fs == final_4mu || fs == final_4muA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, SF);
 
-        if (in_MEKD.idata.fs == final_2e2mu || in_MEKD.idata.fs == final_2e2muA)
-            return ME_Evaluator_IS_gg(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                      OF);
+        if (fs == final_2e2mu || fs == final_2e2muA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, OF);
+    }
+
+    return 0;
+}
+
+template <class Parameters, class cME_OF, class cME_SF>
+double evaluate_gg_Spin0_4l(MEKD &in_MEKD, Parameters *pa, cME_OF *OF,
+                            cME_SF *SF)
+{
+    Configurator_Spin0(in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
+
+    const auto fs = in_MEKD.idata.fs;
+    const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
+    if (in_MEKD.flag.use_prod_gg) {
+        if (fs == final_4e || fs == final_4eA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, SF);
+
+        if (fs == final_4mu || fs == final_4muA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, SF);
+
+        if (fs == final_2e2mu || fs == final_2e2muA)
+            return ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, OF);
     }
 
     return 0;
@@ -59,14 +80,15 @@ double evaluate_no_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
     Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag,
                        in_MEKD.params_MEKD);
 
+    const auto fs = in_MEKD.idata.fs;
     if (in_MEKD.flag.use_prod_gg) {
-        if (in_MEKD.idata.fs == final_4e || in_MEKD.idata.fs == final_4eA)
+        if (fs == final_4e || fs == final_4eA)
             return ME_Evaluator_IS_no(in_MEKD.idata, SF);
 
-        if (in_MEKD.idata.fs == final_4mu || in_MEKD.idata.fs == final_4muA)
+        if (fs == final_4mu || fs == final_4muA)
             return ME_Evaluator_IS_no(in_MEKD.idata, SF);
 
-        if (in_MEKD.idata.fs == final_2e2mu || in_MEKD.idata.fs == final_2e2muA)
+        if (fs == final_2e2mu || fs == final_2e2muA)
             return ME_Evaluator_IS_no(in_MEKD.idata, OF);
     }
 
@@ -83,8 +105,8 @@ double ME_runner_gg_Spin0Pm_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 /// ME_runner_gg_Spin0Pm_ZZ_4l_2
 double ME_runner_gg_Spin0Pm_ZZ_4l_2::evaluate(MEKD &in_MEKD, const input &in)
 {
-    return evaluate_gg_Spin0_4l(MG5_HEF_MEKD::definition_Spin0Pm, in_MEKD,
-                                ME_gg_OF, ME_gg_SF);
+    return evaluate_gg_Spin0_4l(in_MEKD, in_MEKD.params_HPO, ME_gg_OF, 
+                                ME_gg_SF);
 }
 
 /// ME_runner_no_Spin0Pm_ZZ_4l

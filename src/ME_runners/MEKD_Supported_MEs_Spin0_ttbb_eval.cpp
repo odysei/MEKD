@@ -35,29 +35,22 @@ double evaluate_all_Spin0_ttbb(MEKD &in_MEKD, Parameters *pa,
                                cME_ddx *ddx, cME_uux *uux, cME_ssx *ssx,
                                cME_ccx *ccx, cME_bbx *bbx, cME_gg *gg)
 {
-    Configurator_Spin0(in_MEKD.idata,
-                       in_MEKD.param, in_MEKD.flag,
-                       pa);
+    Configurator_Spin0(in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
     double ME2 = 0;
     
+    const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
     if (in_MEKD.flag.use_prod_ddx)
-        ME2 += ME_Evaluator_IS_ddx(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                   ddx);
+        ME2 += ME_Evaluator_IS_ddx(use_PDF, in_MEKD.idata, ddx);
     if (in_MEKD.flag.use_prod_uux)
-        ME2 += ME_Evaluator_IS_uux(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                   uux);
+        ME2 += ME_Evaluator_IS_uux(use_PDF, in_MEKD.idata, uux);
     if (in_MEKD.flag.use_prod_ssx)
-        ME2 += ME_Evaluator_IS_ssx(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                   ssx);
+        ME2 += ME_Evaluator_IS_ssx(use_PDF, in_MEKD.idata, ssx);
     if (in_MEKD.flag.use_prod_ccx)
-        ME2 += ME_Evaluator_IS_ccx(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                   ccx);
+        ME2 += ME_Evaluator_IS_ccx(use_PDF, in_MEKD.idata, ccx);
     if (in_MEKD.flag.use_prod_bbx)
-        ME2 += ME_Evaluator_IS_bbx(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                   bbx);
+        ME2 += ME_Evaluator_IS_bbx(use_PDF, in_MEKD.idata, bbx);
     if (in_MEKD.flag.use_prod_gg)
-        ME2 += ME_Evaluator_IS_gg(in_MEKD.flag.Use_PDF_w_pT0, in_MEKD.idata,
-                                  gg);
+        ME2 += ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, gg);
     
     return ME2;
 }

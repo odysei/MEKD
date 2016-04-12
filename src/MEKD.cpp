@@ -82,11 +82,6 @@ MEKD::~MEKD()
         }
     }
     ME_runners.clear();
-    
-    delete params_MEKD;
-    delete params_sm_full;
-    delete params_HEFTU;
-    delete params_HPO;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)
@@ -127,7 +122,7 @@ int MEKD::Reload_params(parameters &pa, data &da)
     return Load_parameters(pa, da);
 }
 
-void MEKD::eval_MEs(const input_c &in, vector<double> &ME2)
+void MEKD::eval_MEs(const MG5_HEF_MEKD::input_c &in, vector<double> &ME2)
 {
     input trimmed_in;
     trimmed_in.p = in.p;
@@ -141,9 +136,24 @@ void MEKD::eval_MEs(const input_c &in, vector<double> &ME2)
     eval_MEs(trimmed_in, ME2);
 
     // clearing links
-    idata.mix_coeffs_Spin0 = NULL;
-    idata.mix_coeffs_Spin1 = NULL;
-    idata.mix_coeffs_Spin2 = NULL;
+    idata.mix_coeffs_Spin0 = nullptr;
+    idata.mix_coeffs_Spin1 = nullptr;
+    idata.mix_coeffs_Spin2 = nullptr;
+}
+
+void MEKD::eval_MEs(const MG5_HiggsPO_UFO::input_c &in, vector<double> &ME2)
+{
+    input trimmed_in;
+    trimmed_in.p = in.p;
+    trimmed_in.id = in.id;
+
+    // linking pointers
+    idata.mix_c_HPO = const_cast<MG5_HiggsPO_UFO::couplings *>(&(in.c));
+
+    eval_MEs(trimmed_in, ME2);
+
+    // clearing links
+    idata.mix_c_HPO = nullptr;
 }
 
 void MEKD::eval_MEs(const input &in, vector<double> &ME2)

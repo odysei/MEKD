@@ -66,8 +66,8 @@ class ME_runner_gg_Spin0Pm_ZZ_4l_2 : public ME_runner
     };
 
     // Actual MEs
-    MG5_heft_updated_full::gg_h_ttxbbx *ME_gg_OF;
-    MG5_heft_updated_full::gg_h_ttxbbx *ME_gg_SF;
+    MG5_HiggsPO_UFO::gg_Spin0_OF *ME_gg_OF;
+    MG5_HiggsPO_UFO::gg_Spin0_SF *ME_gg_SF;
 
     // basic
     const process_description my_type();

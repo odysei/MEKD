@@ -51,11 +51,11 @@ void ME_runner_gg_Spin0Pm_ZZ_4l::deinitialize()
 bool ME_runner_gg_Spin0Pm_ZZ_4l_2::initialize(const string &param_f)
 {
     if (!ME_Initiator(param_f, "ME_gg_OF", 1,
-                      new MG5_heft_updated_full::gg_h_ttxbbx(), ME_gg_OF))
+                      new MG5_HiggsPO_UFO::gg_Spin0_OF(), ME_gg_OF))
         return false;
 
     if (!ME_Initiator(param_f, "ME_gg_SF", 1,
-                      new MG5_heft_updated_full::gg_h_ttxbbx(), ME_gg_SF))
+                      new MG5_HiggsPO_UFO::gg_Spin0_SF(), ME_gg_SF))
         return false;
 
     return true;

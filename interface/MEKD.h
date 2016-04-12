@@ -88,8 +88,11 @@ class MEKD
     /*
      * Main methods for ME evaluation
      */
-    void eval_MEs(const input_c &, vector<double> &); // for custom coupl.
+    // standard couplings
     void eval_MEs(const input &, vector<double> &);
+    // for custom couplings and their mixing
+    void eval_MEs(const MG5_HEF_MEKD::input_c &, vector<double> &);
+    void eval_MEs(const MG5_HiggsPO_UFO::input_c &, vector<double> &);
 
     /*
      * MEKD settings

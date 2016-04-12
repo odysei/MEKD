@@ -29,13 +29,33 @@ struct input {
     vector<int> *id;     // PDG ids
 };
 
-// Standardized input to calculator for custom coupling run
-struct input_c : input {
+}
+
+namespace MG5_HEF_MEKD
+{
+
+// Standardized input to the calculator for a custom-coupling run
+struct input_c : mekd::input {
     complex<double> mix_coeffs_Spin0[4];
     complex<double> mix_coeffs_Spin1[8];
     complex<double> mix_coeffs_Spin2[20];
 };
 
+}
+
+namespace MG5_HiggsPO_UFO
+{
+
+// Standardized input to the calculator for a custom-coupling run
+struct input_c : mekd::input {
+    couplings c;
+};
+
+}
+
+
+namespace mekd
+{
 /// Flags that are used in calculations
 struct flags {
     bool Boost_To_CM;          // for a boosted data

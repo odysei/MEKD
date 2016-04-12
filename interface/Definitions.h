@@ -107,22 +107,42 @@ enum exit_codes {
     EXIT_ERROR_CONFIG
 };
 
-struct masses {
-    // system's invariant mass
-    double sys;
+}
 
-    // subsystem's invariant mass
-    double bbx;
+namespace MG5_HiggsPO_UFO
+{
 
-    // quarks
-    double d, u, s, c, b, t;
-
-    // leptons
-    double e, mu;
-
-    // vectors
-    double Z;
+struct couplings {
+    // Zff
+    double gZeL;
+    double gZeR;
+    double gZmuL;
+    double gZmuR;
+    
+    // XZZ
+    double kZZ;
+    double eZZ;
+    double eZZCP;
+    
+    // XZA
+    double kZA;
+    double lZACP;
+    
+    // XAA
+    double kAA;
+    double lAACP;
+    
+    // Z'll
+    double eZeL;
+    double eZeR;
+    double eZmuL;
+    double eZmuR;
 };
+
+}
+
+namespace mekd
+{
 
 struct couplings {
     // spin 0
@@ -140,6 +160,23 @@ struct couplings {
         rhob21, rhob22, rhob23, rhob24;
 };
 
+struct masses {
+    // system's invariant mass
+    double sys;
+
+    // subsystem's invariant mass
+    double bbx;
+
+    // quarks
+    double d, u, s, c, b, t;
+
+    // leptons
+    double e, mu;
+
+    // vectors
+    double Z;
+};
+
 struct data {
     // delete
     //     vector<int> id;
@@ -152,9 +189,13 @@ struct data {
 
     double PDFx1, PDFx2;
 
+    // various parameter storage
     masses m;
     couplings c;
+    MG5_HiggsPO_UFO::couplings c_HPO;
 
+    // custom and mixing couplings
+    MG5_HiggsPO_UFO::couplings *mix_c_HPO;
     complex<double> *mix_coeffs_Spin0;
     complex<double> *mix_coeffs_Spin1;
     complex<double> *mix_coeffs_Spin2;

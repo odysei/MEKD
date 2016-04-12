@@ -12,11 +12,13 @@
 
 #include "MEKD_Test_HiggsPO.h"
 #include "MEKD_Test_Functionality_HiggsPO.cpp"
+#include "MEKD_Test_Compatibility.cpp"
 // #include "MEKD_Test_Check_Models_HiggsPO.cpp"
 
 input Initialize_tester(input &);
 void test_block1(input &);
 // void test_block6(input &);
+void test_block7(input &);
 
 int main()
 {
@@ -28,6 +30,7 @@ int main()
 
     test_block1(test);
     //     test_block6(test);
+    test_block7(test);
 
     return 0;
 }
@@ -74,6 +77,22 @@ void test_block1(input &in)
 //     else
 //         cout << "TEST 3: \"FAILED\"\n";
 // }
+
+void test_block7(input &in)
+{
+
+    if (Show_Description) {
+        cout << "\n --------------------------------------------------- \n";
+        cout << " -- Testing HEF_MEKD and HiggPO_UFO compatibility -- \n";
+        cout << " --------------------------------------------------- \n";
+    }
+
+    int error_value = MEKD_Test_Compatibility_Test1(in);
+    if (error_value == 0)
+        cout << "TEST 1: PASSED\n";
+    else
+        cout << "TEST 1: FAILED\n";
+}
 
 input Initialize_tester(input &in)
 {

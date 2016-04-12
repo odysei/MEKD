@@ -37,4 +37,9 @@ const complex<double> definition_Spin0M_2f[4] = {
     complex<double>(0, 0)}; // placeholder
 }
 
+namespace MG5_HiggsPO_UFO
+{
+    
+}
+
 #endif
