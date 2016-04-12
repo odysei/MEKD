@@ -28,7 +28,7 @@ int MEKD_Test_Compatibility_Test1(input &in)
     ggSpin0Pm_HPO.process = proc_simple;
     ggSpin0Pm_HPO.resonance = reson_Spin0Pm;
     ggSpin0Pm_HPO.production = prod_gg;
-    ggSpin0Pm_HPO.decay = decay_ZZ;
+    ggSpin0Pm_HPO.decay = decay_VV;
     ggSpin0Pm_HPO.final_state = final_4l;
 
     ggSpin0Pm_MEKD.model = model_MEKD;
@@ -55,7 +55,7 @@ int MEKD_Test_Compatibility_Test1(input &in)
     
     if (MEs.size() == 2) {
         const double ratio = MEs[0] / MEs[1];
-        const double error = 0.01;
+        const double error = 0.02;
         if (ratio < (1.0 + error) && ratio > (1.0 - error))
             return 0;
     }

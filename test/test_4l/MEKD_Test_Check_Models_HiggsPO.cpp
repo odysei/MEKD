@@ -125,7 +125,7 @@ vector<process_description> MEKD_Test_Check_Models_Test1_make_list()
     proc.process = proc_simple;
     proc.resonance = reson_Spin0Pm;
     proc.production = prod_gg;
-    proc.decay = decay_ZZ;
+    proc.decay = decay_VV;
     proc.final_state = final_4l;
     models.push_back(proc);
 

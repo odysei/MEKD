@@ -136,8 +136,9 @@ inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
  */
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
-void Configurator_Spin0(const data &da, const parameters &param,
-                        const flags &flag, Parameters_HiggsPO_UFO *update)
+void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da, 
+                        const parameters &param, const flags &flag, 
+                        Parameters_HiggsPO_UFO *update)
 {
     // local copy for stack
     const double mH = param.Higgs_mass;
@@ -171,11 +172,7 @@ void Configurator_Spin0(const data &da, const parameters &param,
 
     if (flag.Vary_signal_couplings) {
         Configurator_Spin0_produ(lgg, update);
-// 
-//         if (flag.use_mX_eq_Mdec)
-//             Configurator_Spin0_decay(c, mZ, M, hZZ, update);
-//         else
-//             Configurator_Spin0_decay(c, mZ, mH, hZZ, update);
+        Configurator_Spin0_decay(c, update);
     }
 }
 
@@ -184,6 +181,29 @@ inline void Configurator_Spin0_produ(const double lgg,
 {
     // gg. * -i WRT HEF_MEKD
     update->GC_9  = complex<double>(0, -4 * lgg);
+}
+
+inline void Configurator_Spin0_decay(const MG5_HiggsPO_UFO::couplings &c,
+                                     Parameters_HiggsPO_UFO *update)
+{
+    // XZZ
+    update->mdl_kZZ = c.kZZ;
+    update->mdl_eZZ = c.eZZ;
+    update->mdl_eZZCP = c.eZZCP;
+    
+    // XZA
+    update->mdl_kZA = c.kZA;
+    update->mdl_lZACP = c.lZACP;
+    
+    // XAA
+    update->mdl_kAA = c.kAA;
+    update->mdl_lAACP = c.lAACP;
+    
+    // Z'll
+    update->mdl_eZeL = c.eZeL;
+    update->mdl_eZeR = c.eZeR;
+    update->mdl_eZmuL = c.eZmuL;
+    update->mdl_eZmuR = c.eZmuR;
 }
 
 /*

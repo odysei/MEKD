@@ -67,7 +67,7 @@ enum production_types {
     prod_no
 };
 
-enum resonance_decay_types { decay_empty, decay_ZZ, decay_2f };
+enum resonance_decay_types { decay_empty, decay_ZZ, decay_VV, decay_2f };
 
 enum final_state_types {
     final_empty,
@@ -113,12 +113,6 @@ namespace MG5_HiggsPO_UFO
 {
 
 struct couplings {
-    // Zff
-    double gZeL;
-    double gZeR;
-    double gZmuL;
-    double gZmuR;
-    
     // XZZ
     double kZZ;
     double eZZ;
@@ -137,6 +131,14 @@ struct couplings {
     double eZeR;
     double eZmuL;
     double eZmuR;
+};
+
+struct couplings_ex : couplings {
+    // Zff
+    double gZeL;
+    double gZeR;
+    double gZmuL;
+    double gZmuR;
 };
 
 }
@@ -192,7 +194,7 @@ struct data {
     // various parameter storage
     masses m;
     couplings c;
-    MG5_HiggsPO_UFO::couplings c_HPO;
+    MG5_HiggsPO_UFO::couplings_ex c_HPO;
 
     // custom and mixing couplings
     MG5_HiggsPO_UFO::couplings *mix_c_HPO;

@@ -52,10 +52,10 @@ double evaluate_gg_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
 }
 
 template <class Parameters, class cME_OF, class cME_SF>
-double evaluate_gg_Spin0_4l(MEKD &in_MEKD, Parameters *pa, cME_OF *OF,
-                            cME_SF *SF)
+double evaluate_gg_Spin0_4l(const MG5_HiggsPO_UFO::couplings &c, MEKD &in_MEKD, 
+                            Parameters *pa, cME_OF *OF, cME_SF *SF)
 {
-    Configurator_Spin0(in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
+    Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
 
     const auto fs = in_MEKD.idata.fs;
     const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
@@ -105,8 +105,8 @@ double ME_runner_gg_Spin0Pm_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 /// ME_runner_gg_Spin0Pm_ZZ_4l_2
 double ME_runner_gg_Spin0Pm_ZZ_4l_2::evaluate(MEKD &in_MEKD, const input &in)
 {
-    return evaluate_gg_Spin0_4l(in_MEKD, in_MEKD.params_HPO, ME_gg_OF, 
-                                ME_gg_SF);
+    return evaluate_gg_Spin0_4l(MG5_HiggsPO_UFO::definition_Spin0Pm, in_MEKD, 
+                                in_MEKD.params_HPO, ME_gg_OF, ME_gg_SF);
 }
 
 /// ME_runner_no_Spin0Pm_ZZ_4l

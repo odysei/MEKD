@@ -27,7 +27,7 @@ int MEKD_Test_Functionality_Test1(input &in)
     ggSpin0Pm.process = proc_simple;
     ggSpin0Pm.resonance = reson_Spin0Pm;
     ggSpin0Pm.production = prod_gg;
-    ggSpin0Pm.decay = decay_ZZ;
+    ggSpin0Pm.decay = decay_VV;
     ggSpin0Pm.final_state = final_4l;
 
     init_desc.push_back(ggSpin0Pm);

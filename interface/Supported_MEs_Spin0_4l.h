@@ -61,7 +61,7 @@ class ME_runner_gg_Spin0Pm_ZZ_4l_2 : public ME_runner
         proc_simple,   // process
         reson_Spin0Pm, // resonance
         prod_gg,       // production
-        decay_ZZ,      // decay
+        decay_VV,      // decay
         final_4l       // final_state
     };
 
