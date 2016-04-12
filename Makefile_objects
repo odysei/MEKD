@@ -262,9 +262,9 @@ $(INCDIR2_3)/h_ttbb/gg_h_ttxbbx.o
 
 
 
-#########################################
-### ttH (heft_updated-full) processes ###
-#########################################
+###########################################
+### ttbar (heft_updated-full) processes ###
+###########################################
 
 objects6_bkg=\
 $(INCDIR2_3)/noh_ttbb/ddx_noh_ttxbbx.o \
@@ -273,6 +273,30 @@ $(INCDIR2_3)/noh_ttbb/ssx_noh_ttxbbx.o \
 $(INCDIR2_3)/noh_ttbb/ccx_noh_ttxbbx.o \
 $(INCDIR2_3)/noh_ttbb/bbx_noh_ttxbbx.o \
 $(INCDIR2_3)/noh_ttbb/gg_noh_ttxbbx.o
+
+
+
+##########################
+###                    ###
+### Model: HiggsPO_UFO ###
+###                    ###
+##########################
+
+objects7_C=\
+$(INCDIR2_5)/src/HelAmps_HiggsPO_UFO.o \
+$(INCDIR2_5)/src/Parameters_HiggsPO_UFO.o
+
+
+
+#################################################
+### Spin-0-resonance (HiggsPO_UFO)  processes ###
+#################################################
+
+objects7_spin0=\
+$(INCDIR2_5)/Spin0_4l/gg_Spin0_OF.o \
+$(INCDIR2_5)/Spin0_4l/gg_Spin0_SF.o \
+$(INCDIR2_5)/Spin0_4l/Spin0_OF.o \
+$(INCDIR2_5)/Spin0_4l/Spin0_SF.o
 
 
 
@@ -295,5 +319,8 @@ $(objects5_ttH_smfull)
 objects6=$(objects6_C) \
 $(objects6_ttH_bkg) $(objects6_ttH) $(objects6_bkg)
 
+objects7=$(objects7_C) \
+$(objects7_spin0)
+
 objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) \
-$(objects5) $(objects6)
+$(objects5) $(objects6) $(objects7)

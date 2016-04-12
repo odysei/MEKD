@@ -105,6 +105,7 @@ class MEKD
     Parameters_MEKD *params_MEKD;
     Parameters_sm_full *params_sm_full;
     Parameters_HEFTU *params_HEFTU;
+    Parameters_HiggsPO_UFO *params_HPO;
 
     /// Internal data
     data idata;

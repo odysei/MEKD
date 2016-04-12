@@ -33,6 +33,7 @@ MEKD::MEKD()
     params_MEKD = Parameters_MEKD::getInstance();
     params_sm_full = Parameters_sm_full::getInstance();
     params_HEFTU = Parameters_HEFTU::getInstance();
+    params_HPO = Parameters_HiggsPO_UFO::getInstance();
 
     Check_MEs();
 
@@ -81,6 +82,11 @@ MEKD::~MEKD()
         }
     }
     ME_runners.clear();
+    
+    delete params_MEKD;
+    delete params_sm_full;
+    delete params_HEFTU;
+    delete params_HPO;
 }
 
 int MEKD::Load_parameters(parameters &pa, data &da)
@@ -94,6 +100,8 @@ int MEKD::Load_parameters(parameters &pa, data &da)
     params_sm_full->setIndependentCouplings();
     params_HEFTU->setIndependentParameters(slha);
     params_HEFTU->setIndependentCouplings();
+    params_HPO->setIndependentParameters(slha);
+    params_HPO->setIndependentCouplings();
 
     /// Initializing parameters
     if (!pa.loaded) {

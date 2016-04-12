@@ -10,12 +10,12 @@
 #include "Parameters_heft_updated_full.h"
 
 // Initialize static instance
-Parameters_HEFTU *Parameters_HEFTU::instance = NULL;
+Parameters_HEFTU *Parameters_HEFTU::instance = nullptr;
 
 // Function to get static instance - only one instance per program
 Parameters_HEFTU *Parameters_HEFTU::getInstance()
 {
-    if (instance == NULL)
+    if (instance == nullptr)
         instance = new Parameters_HEFTU();
 
     return instance;

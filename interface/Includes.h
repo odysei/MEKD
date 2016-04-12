@@ -59,6 +59,8 @@ extern "C" {
 #include "MG5_aMCNLO/HEFTU/noh_ttbb/MEKD_MEs_noh_ttbb_2.h"
 #include "MG5_aMCNLO/HEFTU/ttbb_all/MEKD_MEs_ttbb_all_2.h"
 
+#include "MG5_aMCNLO/HiggsPO_UFO/Spin0_4l/MEKD_MEs.h"
+
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "MG5_aMCNLO/RAW/CPPProcess.h"   // ME_RAW
 
