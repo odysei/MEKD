@@ -244,6 +244,35 @@ class ME_runner_gg_Spin0_ZZ_4l : public ME_runner
     double evaluate(MEKD &in_MEKD, const input &in);
 };
 
+class ME_runner_gg_Spin0_ZZ_4l_2 : public ME_runner
+{
+  public:
+    const process_description me = {
+        model_HiggsPO, // model
+        proc_simple,   // process
+        reson_Spin0,   // resonance
+        prod_gg,       // production
+        decay_VV,      // decay
+        final_4l       // final_state
+    };
+
+    // Actual MEs
+    MG5_HiggsPO_UFO::gg_Spin0_OF *ME_gg_OF;
+    MG5_HiggsPO_UFO::gg_Spin0_SF *ME_gg_SF;
+
+    // basic
+    const process_description my_type();
+    bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
+
+    // eval
+    double evaluate(MEKD &in_MEKD, const input &in);
+};
+
 class ME_runner_no_Spin0_ZZ_4l : public ME_runner
 {
   public:

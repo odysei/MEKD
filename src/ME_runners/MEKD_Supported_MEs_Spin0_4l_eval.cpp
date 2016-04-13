@@ -32,6 +32,10 @@ template <class cME_OF, class cME_SF>
 double evaluate_gg_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
                             cME_SF *SF)
 {
+    if (c == nullptr) {
+        cerr << "Empty couplings provided.\n";
+        return 0;
+    }
     Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag,
                        in_MEKD.params_MEKD);
 
@@ -52,9 +56,13 @@ double evaluate_gg_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
 }
 
 template <class Parameters, class cME_OF, class cME_SF>
-double evaluate_gg_Spin0_4l(const MG5_HiggsPO_UFO::couplings &c, MEKD &in_MEKD, 
+double evaluate_gg_Spin0_4l(const MG5_HiggsPO_UFO::couplings &c, MEKD &in_MEKD,
                             Parameters *pa, cME_OF *OF, cME_SF *SF)
 {
+    if (&c == nullptr) {
+        cerr << "Empty couplings provided.\n";
+        return 0;
+    }
     Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
 
     const auto fs = in_MEKD.idata.fs;
@@ -77,6 +85,10 @@ template <class cME_OF, class cME_SF>
 double evaluate_no_Spin0_4l(const complex<double> *c, MEKD &in_MEKD, cME_OF *OF,
                             cME_SF *SF)
 {
+    if (c == nullptr) {
+        cerr << "Empty couplings provided.\n";
+        return 0;
+    }
     Configurator_Spin0(c, in_MEKD.idata, in_MEKD.param, in_MEKD.flag,
                        in_MEKD.params_MEKD);
 
@@ -105,7 +117,7 @@ double ME_runner_gg_Spin0Pm_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 /// ME_runner_gg_Spin0Pm_ZZ_4l_2
 double ME_runner_gg_Spin0Pm_ZZ_4l_2::evaluate(MEKD &in_MEKD, const input &in)
 {
-    return evaluate_gg_Spin0_4l(MG5_HiggsPO_UFO::definition_Spin0Pm, in_MEKD, 
+    return evaluate_gg_Spin0_4l(MG5_HiggsPO_UFO::definition_Spin0Pm, in_MEKD,
                                 in_MEKD.params_HPO, ME_gg_OF, ME_gg_SF);
 }
 
@@ -149,6 +161,13 @@ double ME_runner_gg_Spin0_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 {
     return evaluate_gg_Spin0_4l(in_MEKD.idata.mix_coeffs_Spin0, in_MEKD,
                                 ME_gg_OF, ME_gg_SF);
+}
+
+/// ME_runner_gg_Spin0_ZZ_4l_2
+double ME_runner_gg_Spin0_ZZ_4l_2::evaluate(MEKD &in_MEKD, const input &in)
+{
+    return evaluate_gg_Spin0_4l(*in_MEKD.idata.mix_c_HPO, in_MEKD,
+                                in_MEKD.params_HPO, ME_gg_OF, ME_gg_SF);
 }
 
 /// ME_runner_no_Spin0_ZZ_4l

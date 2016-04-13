@@ -92,6 +92,12 @@ void test_block7(input &in)
         cout << "TEST 1: PASSED\n";
     else
         cout << "TEST 1: FAILED\n";
+
+    error_value = MEKD_Test_Compatibility_Test2(in);
+    if (error_value == 0)
+        cout << "TEST 2: PASSED\n";
+    else
+        cout << "TEST 2: FAILED\n";
 }
 
 input Initialize_tester(input &in)

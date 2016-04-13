@@ -181,6 +181,28 @@ bool ME_runner_gg_Spin0_ZZ_4l::initialize(const string &param_f)
     return true;
 }
 
+/// ME_runner_gg_Spin0_ZZ_4l_2
+bool ME_runner_gg_Spin0_ZZ_4l_2::initialize(const string &param_f)
+{
+    if (!ME_Initiator(param_f, "ME_gg_OF", 1,
+                      new MG5_HiggsPO_UFO::gg_Spin0_OF(), ME_gg_OF))
+        return false;
+
+    if (!ME_Initiator(param_f, "ME_gg_SF", 1,
+                      new MG5_HiggsPO_UFO::gg_Spin0_SF(), ME_gg_SF))
+        return false;
+
+    return true;
+}
+
+bool ME_runner_gg_Spin0_ZZ_4l_2::initialize() { return initialize(""); }
+
+void ME_runner_gg_Spin0_ZZ_4l_2::deinitialize()
+{
+    delete ME_gg_OF;
+    delete ME_gg_SF;
+}
+
 bool ME_runner_gg_Spin0_ZZ_4l::initialize() { return initialize(""); }
 
 void ME_runner_gg_Spin0_ZZ_4l::deinitialize()

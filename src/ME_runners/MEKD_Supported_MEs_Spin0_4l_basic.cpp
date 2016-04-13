@@ -89,6 +89,14 @@ bool ME_runner_gg_Spin0_ZZ_4l::is_my_type(const process_description &in)
     return compare_types(in, me);
 }
 
+/// ME_runner_gg_Spin0_ZZ_4l_2
+const process_description ME_runner_gg_Spin0_ZZ_4l_2::my_type() { return me; }
+
+bool ME_runner_gg_Spin0_ZZ_4l_2::is_my_type(const process_description &in)
+{
+    return compare_types(in, me);
+}
+
 /// ME_runner_no_Spin0_ZZ_4l
 const process_description ME_runner_no_Spin0_ZZ_4l::my_type() { return me; }
 
