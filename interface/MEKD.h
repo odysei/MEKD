@@ -35,8 +35,8 @@ class MEKD;
 class ME_runner
 {
   public:
-    virtual ~ME_runner() {};
-    
+    virtual ~ME_runner(){};
+
     // basic
     virtual const process_description my_type()
     {
@@ -324,6 +324,7 @@ class MEKD
     int Load_parameters(parameters &, data &);
     void Load_parameters_MEs(const string &param_f);
     void Load_parameters_extract_params(const Parameters_MEKD *, data &);
+    void Load_parameters_extract_params(const Parameters_HiggsPO_UFO *, data &);
     void Load_parameters_eval_params(const Parameters_MEKD *, const data &,
                                      parameters &);
     // reloads parameter set and updates PDF file reader

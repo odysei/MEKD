@@ -106,7 +106,6 @@ enum exit_codes {
     EXIT_ERROR_INPUT,
     EXIT_ERROR_CONFIG
 };
-
 }
 
 namespace MG5_HiggsPO_UFO
@@ -117,15 +116,15 @@ struct couplings {
     double kZZ;
     double eZZ;
     double eZZCP;
-    
+
     // XZA
     double kZA;
     double lZACP;
-    
+
     // XAA
     double kAA;
     double lAACP;
-    
+
     // Z'll
     double eZeL;
     double eZeR;
@@ -133,14 +132,13 @@ struct couplings {
     double eZmuR;
 };
 
-struct couplings_ex : couplings {
+struct couplings_ex {
     // Zff
     double gZeL;
     double gZeR;
     double gZmuL;
     double gZmuR;
 };
-
 }
 
 namespace mekd

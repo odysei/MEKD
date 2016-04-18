@@ -755,6 +755,15 @@ void MEKD::Load_parameters_extract_params(const Parameters_MEKD *pa, data &da)
     da.c.rhob24 = pa->rhob24;
 }
 
+void MEKD::Load_parameters_extract_params(const Parameters_HiggsPO_UFO *pa,
+                                          data &da)
+{
+    da.c_HPO.gZeL = pa->mdl_gZeL;
+    da.c_HPO.gZeR = pa->mdl_gZeR;
+    da.c_HPO.gZmuL = pa->mdl_gZmuL;
+    da.c_HPO.gZmuR = pa->mdl_gZmuR;
+}
+
 void MEKD::Load_parameters_eval_params(const Parameters_MEKD *paM,
                                        const data &da, parameters &pa)
 {

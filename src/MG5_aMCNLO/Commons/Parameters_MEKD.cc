@@ -14,12 +14,12 @@
 #include "Parameters_MEKD.h"
 
 // Initialize static instance
-Parameters_MEKD *Parameters_MEKD::instance = NULL;
+Parameters_MEKD *Parameters_MEKD::instance = nullptr;
 
 // Function to get static instance - only one instance per program
 Parameters_MEKD *Parameters_MEKD::getInstance()
 {
-    if (instance == NULL)
+    if (instance == nullptr)
         instance = new Parameters_MEKD();
 
     return instance;
@@ -207,7 +207,7 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_MZ__exp__2 = pow(mdl_MZ, 2.);
     mdl_MZ__exp__4 = pow(mdl_MZ, 4.);
     mdl_sqrt__2 = sqrt(2.);
-    mdl_MH__exp__2 = pow(mdl_MH, 2.);   // dependent
+    mdl_MH__exp__2 = pow(mdl_MH, 2.); // dependent
     mdl_aEW = 1. / aEWM1;
     mdl_MW = sqrt(mdl_MZ__exp__2 / 2. + sqrt(mdl_MZ__exp__4 / 4. -
                                              (mdl_aEW * M_PI * mdl_MZ__exp__2) /
@@ -223,7 +223,7 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_gw = mdl_ee / mdl_sw;
     mdl_vev = (2. * mdl_MW * mdl_sw) / mdl_ee;
     mdl_vev__exp__2 = pow(mdl_vev, 2.);
-    mdl_lam = mdl_MH__exp__2 / (2. * mdl_vev__exp__2);  // dependent
+    mdl_lam = mdl_MH__exp__2 / (2. * mdl_vev__exp__2); // dependent
     mdl_yb = (mdl_ymb * mdl_sqrt__2) / mdl_vev;
     mdl_yc = (mdl_ymc * mdl_sqrt__2) / mdl_vev;
     mdl_ydo = (mdl_ymdo * mdl_sqrt__2) / mdl_vev;
@@ -233,7 +233,7 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_yt = (mdl_ymt * mdl_sqrt__2) / mdl_vev;
     mdl_ytau = (mdl_ymtau * mdl_sqrt__2) / mdl_vev;
     mdl_yup = (mdl_ymup * mdl_sqrt__2) / mdl_vev;
-    mdl_muH = sqrt(mdl_lam * mdl_vev__exp__2);  // dependent
+    mdl_muH = sqrt(mdl_lam * mdl_vev__exp__2); // dependent
     mdl_I1x11 = mdl_ydo * mdl_conjg__CKM1x1;
     mdl_I1x12 = mdl_ydo * mdl_conjg__CKM2x1;
     mdl_I1x13 = mdl_ydo * mdl_conjg__CKM3x1;
@@ -297,22 +297,22 @@ void Parameters_MEKD::setIndependentCouplings()
     HEF_MEKD_GC_3 = -(mdl_ee * mdl_complexi) / 3.;
     HEF_MEKD_GC_4 = (2. * mdl_ee * mdl_complexi) / 3.;
     HEF_MEKD_GC_5 = -(mdl_ee * mdl_complexi);
-    HEF_MEKD_GC_13 = -(mdl_complexi * g1g); // dependent
-    HEF_MEKD_GC_14 = -(mdl_complexi * g1z); // dependent
-    HEF_MEKD_GC_15 = -(mdl_complexi * g2g); // dependent
-    HEF_MEKD_GC_18 = -(mdl_complexi * g2z); // dependent
-    HEF_MEKD_GC_19 = -(mdl_complexi * g3g); // dependent
-    HEF_MEKD_GC_22 = -(mdl_complexi * g3z); // dependent
+    HEF_MEKD_GC_13 = -(mdl_complexi * g1g);     // dependent
+    HEF_MEKD_GC_14 = -(mdl_complexi * g1z);     // dependent
+    HEF_MEKD_GC_15 = -(mdl_complexi * g2g);     // dependent
+    HEF_MEKD_GC_18 = -(mdl_complexi * g2z);     // dependent
+    HEF_MEKD_GC_19 = -(mdl_complexi * g3g);     // dependent
+    HEF_MEKD_GC_22 = -(mdl_complexi * g3z);     // dependent
     HEF_MEKD_GC_23 = (mdl_complexi * g4g) / 8.; // dependent
     HEF_MEKD_GC_25 = (mdl_complexi * g4z) / 2.; // dependent
     HEF_MEKD_GC_106 = mdl_complexi * rhoc01;    // dependent
-    HEF_MEKD_GC_107 = -rhoc02;  // dependent
+    HEF_MEKD_GC_107 = -rhoc02;                  // dependent
     HEF_MEKD_GC_116 = mdl_complexi * rhod01;    // dependent
-    HEF_MEKD_GC_117 = -rhod02;  // dependent
+    HEF_MEKD_GC_117 = -rhod02;                  // dependent
     HEF_MEKD_GC_126 = mdl_complexi * rhos01;    // dependent
-    HEF_MEKD_GC_127 = -rhos02;  // dependent
+    HEF_MEKD_GC_127 = -rhos02;                  // dependent
     HEF_MEKD_GC_136 = mdl_complexi * rhou01;    // dependent
-    HEF_MEKD_GC_137 = -rhou02;  // dependent
+    HEF_MEKD_GC_137 = -rhou02;                  // dependent
     HEF_MEKD_GC_161 = -(mdl_cw * mdl_ee * mdl_complexi) / (2. * mdl_sw);
     HEF_MEKD_GC_168 = (mdl_ee * mdl_complexi * mdl_sw) / (2. * mdl_cw);
 
@@ -396,18 +396,18 @@ void Parameters_MEKD::setIndependentCouplings()
 
     // Coming extra from spin 0
     // 	HEF_MEKD2_1_GC_5 = -(mdl_ee * mdl_complexi);
-    HEF_MEKD2_1_GC_13 = -(mdl_complexi * g1g);  // dependent
-    HEF_MEKD2_1_GC_14 = -(mdl_complexi * g1z);  // dependent
-    HEF_MEKD2_1_GC_15 = -(mdl_complexi * g2g);  // dependent
-    HEF_MEKD2_1_GC_18 = -(mdl_complexi * g2z);  // dependent
-    HEF_MEKD2_1_GC_19 = -(mdl_complexi * g3g);  // dependent
-    HEF_MEKD2_1_GC_22 = -(mdl_complexi * g3z);  // dependent
-    HEF_MEKD2_1_GC_23 = (mdl_complexi * g4g) / 8.;  // dependent
-    HEF_MEKD2_1_GC_25 = (mdl_complexi * g4z) / 2.;  // dependent
-    HEF_MEKD2_1_GC_126 = mdl_complexi * rhoe01; // dependent
-    HEF_MEKD2_1_GC_127 = -rhoe02;   // dependent
-    HEF_MEKD2_1_GC_136 = mdl_complexi * rhomu01;    // dependent
-    HEF_MEKD2_1_GC_137 = -rhomu02;  // dependent
+    HEF_MEKD2_1_GC_13 = -(mdl_complexi * g1g);     // dependent
+    HEF_MEKD2_1_GC_14 = -(mdl_complexi * g1z);     // dependent
+    HEF_MEKD2_1_GC_15 = -(mdl_complexi * g2g);     // dependent
+    HEF_MEKD2_1_GC_18 = -(mdl_complexi * g2z);     // dependent
+    HEF_MEKD2_1_GC_19 = -(mdl_complexi * g3g);     // dependent
+    HEF_MEKD2_1_GC_22 = -(mdl_complexi * g3z);     // dependent
+    HEF_MEKD2_1_GC_23 = (mdl_complexi * g4g) / 8.; // dependent
+    HEF_MEKD2_1_GC_25 = (mdl_complexi * g4z) / 2.; // dependent
+    HEF_MEKD2_1_GC_126 = mdl_complexi * rhoe01;    // dependent
+    HEF_MEKD2_1_GC_127 = -rhoe02;                  // dependent
+    HEF_MEKD2_1_GC_136 = mdl_complexi * rhomu01;   // dependent
+    HEF_MEKD2_1_GC_137 = -rhomu02;                 // dependent
     // 	HEF_MEKD2_1_GC_181 = -(mdl_cw * mdl_ee * mdl_complexi)/(2. * mdl_sw);
     // 	HEF_MEKD2_1_GC_188 = (mdl_ee * mdl_complexi * mdl_sw)/(2. * mdl_cw);
 
@@ -485,7 +485,7 @@ void Parameters_MEKD::setDependentParameters()
     mdl_sqrt__aS = sqrt(aS);
     G = 2. * mdl_sqrt__aS * sqrt(M_PI);
     mdl_G__exp__2 = pow(G, 2.);
-    
+
     // changes because variations in couplings and particles
     mdl_MH__exp__2 = pow(mdl_MH, 2.);
     mdl_lam = mdl_MH__exp__2 / (2. * mdl_vev__exp__2);
@@ -511,7 +511,7 @@ void Parameters_MEKD::setDependentCouplings()
     HEF_MEKD_GC_127 = -rhos02;
     HEF_MEKD_GC_136 = mdl_complexi * rhou01;
     HEF_MEKD_GC_137 = -rhou02;
-    
+
     /// Model HEF_MEKD2_1 with 2l couplings
     // Coming extra from spin 0
     HEF_MEKD2_1_GC_13 = -(mdl_complexi * g1g);

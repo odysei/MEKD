@@ -22,6 +22,8 @@ bool MEKD::Load_ME_runners_try_Spin0_4l(const process_description &d,
         return true;
     if (Load_ME_runners_try(d, new ME_runner_no_Spin0Pm_ZZ_4l(), v))
         return true;
+    if (Load_ME_runners_try(d, new ME_runner_no_Spin0Pm_ZZ_4l_2(), v))
+        return true;
     if (Load_ME_runners_try(d, new ME_runner_gg_Spin0Ph_ZZ_4l(), v))
         return true;
     if (Load_ME_runners_try(d, new ME_runner_no_Spin0Ph_ZZ_4l(), v))
@@ -35,6 +37,8 @@ bool MEKD::Load_ME_runners_try_Spin0_4l(const process_description &d,
     if (Load_ME_runners_try(d, new ME_runner_gg_Spin0_ZZ_4l_2(), v))
         return true;
     if (Load_ME_runners_try(d, new ME_runner_no_Spin0_ZZ_4l(), v))
+        return true;
+    if (Load_ME_runners_try(d, new ME_runner_no_Spin0_ZZ_4l_2(), v))
         return true;
 
     if (Load_ME_runners_try(d, new ME_runner_gg_Spin0Pm_2f_4l(), v))

@@ -50,9 +50,9 @@ MEKD::MEKD()
     for (auto i : idata.id_p)
         idata.p.push_back(i.second);
 
-    idata.mix_coeffs_Spin0 = NULL;
-    idata.mix_coeffs_Spin1 = NULL;
-    idata.mix_coeffs_Spin2 = NULL;
+    idata.mix_coeffs_Spin0 = nullptr;
+    idata.mix_coeffs_Spin1 = nullptr;
+    idata.mix_coeffs_Spin2 = nullptr;
 
     // 	p1 = new double[4];
     // 	p2 = new double[4];
@@ -76,7 +76,7 @@ MEKD::~MEKD()
     idata.id_p.clear();
 
     for (auto runner : ME_runners) {
-        if (runner != NULL) {
+        if (runner != nullptr) {
             runner->deinitialize();
             delete runner;
         }
@@ -104,6 +104,7 @@ int MEKD::Load_parameters(parameters &pa, data &da)
         Initialize_ME_runners(ME_runners);
     }
     Load_parameters_extract_params(params_MEKD, da);
+    Load_parameters_extract_params(params_HPO, da);
     Load_parameters_eval_params(params_MEKD, da, pa);
 
     if (pa.loaded)
@@ -209,7 +210,7 @@ void MEKD::eval_MEs(const input &in, vector<double> &ME2)
     }
 
     for (unsigned int i = 0; i < ME_runners.size(); ++i) {
-        if (ME_runners[i] != NULL) {
+        if (ME_runners[i] != nullptr) {
             Signal_ME = ME_runners[i]->evaluate(*this, in);
             ME2[i] = Signal_ME;
         } else

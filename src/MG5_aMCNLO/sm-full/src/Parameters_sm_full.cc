@@ -10,12 +10,12 @@
 #include "Parameters_sm_full.h"
 
 // Initialize static instance
-Parameters_sm_full *Parameters_sm_full::instance = NULL;
+Parameters_sm_full *Parameters_sm_full::instance = nullptr;
 
 // Function to get static instance - only one instance per program
 Parameters_sm_full *Parameters_sm_full::getInstance()
 {
-    if (instance == NULL)
+    if (instance == nullptr)
         instance = new Parameters_sm_full();
 
     return instance;
@@ -34,11 +34,11 @@ void Parameters_sm_full::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_WTau = slha.get_block_entry("decay", 15, 2.270000e-12).real();
     mdl_WT = slha.get_block_entry("decay", 6, 1.508336e+00).real();
     mdl_ymtau = slha.get_block_entry("yukawa", 15, 1.777000e+00).real();
-    mdl_ymm = slha.get_block_entry("yukawa", 13, 1.056600e-01).real();  // added
-    mdl_yme = slha.get_block_entry("yukawa", 11, 5.110000e-04).real();  // added
+    mdl_ymm = slha.get_block_entry("yukawa", 13, 1.056600e-01).real(); // added
+    mdl_yme = slha.get_block_entry("yukawa", 11, 5.110000e-04).real(); // added
     mdl_ymt = slha.get_block_entry("yukawa", 6, 1.645000e+02).real();
     mdl_ymb = slha.get_block_entry("yukawa", 5, 4.200000e+00).real();
-    mdl_ymc = slha.get_block_entry("yukawa", 4, 1.270000e+00).real();   // added
+    mdl_ymc = slha.get_block_entry("yukawa", 4, 1.270000e+00).real(); // added
     mdl_etaWS = slha.get_block_entry("wolfenstein", 4, 3.410000e-01).real();
     mdl_rhoWS = slha.get_block_entry("wolfenstein", 3, 1.320000e-01).real();
     mdl_AWS = slha.get_block_entry("wolfenstein", 2, 8.080000e-01).real();

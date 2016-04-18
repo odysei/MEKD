@@ -34,12 +34,14 @@ inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
  */
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
-void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da, 
-                        const parameters &param, const flags &flag, 
+void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da,
+                        const parameters &param, const flags &flag,
                         Parameters_HiggsPO_UFO *update);
 inline void Configurator_Spin0_produ(const double lgg,
                                      Parameters_HiggsPO_UFO *update);
 inline void Configurator_Spin0_decay(const MG5_HiggsPO_UFO::couplings &c,
+                                     const MG5_HiggsPO_UFO::couplings_ex &ci,
+                                     const final_state_types_ fs,
                                      Parameters_HiggsPO_UFO *update);
 
 /*

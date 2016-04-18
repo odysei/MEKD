@@ -12,7 +12,7 @@ namespace mekd
 template <class cME> double ME_Evaluator_IS_no(const data &da, cME *ME)
 {
     /// No initial state block
-    if (ME != NULL) {
+    if (ME != nullptr) {
         vector<double *> p(da.p.size() - 1); // local "copy" for 1->N
         double p_X[4] = {0, 0, 0, 0};
         p[0] = p_X;
@@ -41,7 +41,7 @@ template <class cME_gg>
 double ME_Evaluator_IS_gg(const bool use_PDFs, data &da, cME_gg *ME_gg)
 {
     /// gg block
-    if (ME_gg != NULL) {
+    if (ME_gg != nullptr) {
         da.p[0][3] = da.p[0][0];
         da.p[1][3] = -da.p[1][0];
 
@@ -65,7 +65,7 @@ double ME_Evaluator_IS_qqx(const bool use_PDFs, data &da, cME_qqx *ME_qqx,
                            const double &m_q, const long &PDG_q)
 {
     /// Generic quark block.
-    if (ME_qqx != NULL) {
+    if (ME_qqx != nullptr) {
         const double m_q2 = m_q * m_q;
         da.p[0][3] = sqrt(da.p[0][0] * da.p[0][0] - m_q2);
         da.p[1][3] = -sqrt(da.p[1][0] * da.p[1][0] - m_q2);

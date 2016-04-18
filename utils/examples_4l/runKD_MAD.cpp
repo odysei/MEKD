@@ -198,7 +198,7 @@ int redirectAndSaveStdout(fpos_t &pos, string logName)
     fgetpos(stdout, &pos);
     int fd = dup(fileno(stdout));
     const char *nullDevName = "/dev/null"; // set the name of nul device
-    if (fopen(nullDevName, "w") == NULL)
+    if (fopen(nullDevName, "w") == nullptr)
         nullDevName = "nul"; // change the name if WIN (just simple check)
     if (logName == "")
         freopen(nullDevName, "w", stdout);
@@ -411,7 +411,7 @@ int calculateKD_Madgraph(string file, string tree, string resonanceName,
     /////////////////////////////////////////////////////////////
 
     TFile *sigFile = new TFile(inputFile, "UPDATE");
-    TTree *sigTree = NULL;
+    TTree *sigTree = nullptr;
     if (sigFile)
         sigTree = (TTree *)sigFile->Get(treeName);
     if (!sigTree) {

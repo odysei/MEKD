@@ -610,7 +610,7 @@ int MEKD::Run_ME_Configurator_Spin0(const process_description &d, data &da,
     complex<double> *c; // mixing coefficients
 
     if (d.resonance == reson_Spin0) {
-        if (da.mix_coeffs_Spin0 == NULL)
+        if (da.mix_coeffs_Spin0 == nullptr)
             throw(EXIT_ERROR_CONFIG);
         c = da.mix_coeffs_Spin0;
     } else
@@ -722,7 +722,7 @@ int MEKD::Run_ME_Configurator_Spin1(const process_description &d, data &da,
     complex<double> *c; // mixing coefficients
 
     if (d.resonance == reson_Spin1) {
-        if (da.mix_coeffs_Spin1 == NULL)
+        if (da.mix_coeffs_Spin1 == nullptr)
             throw(EXIT_ERROR_CONFIG);
         c = da.mix_coeffs_Spin1;
     } else
@@ -849,7 +849,7 @@ int MEKD::Run_ME_Configurator_Spin2(const process_description &d, data &da,
     complex<double> *c; // mixing coefficients
 
     if (d.resonance == reson_Spin2) {
-        if (da.mix_coeffs_Spin2 == NULL)
+        if (da.mix_coeffs_Spin2 == nullptr)
             throw(EXIT_ERROR_CONFIG);
         c = da.mix_coeffs_Spin2;
     } else

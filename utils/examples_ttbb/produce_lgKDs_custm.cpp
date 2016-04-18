@@ -32,7 +32,7 @@ int main()
         vector<int> event_id;
         vector<double *> event_p;
         event_id.resize(4, 0);
-        event_p.resize(4, NULL);
+        event_p.resize(4, nullptr);
         for (auto i = event_p.begin(); i != event_p.end(); ++i)
             (*i) = new double[4];
 

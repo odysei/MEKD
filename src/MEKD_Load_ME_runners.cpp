@@ -48,7 +48,7 @@ void MEKD::Load_ME_runners(const vector<process_description> &desc)
              << "production: " << d.production << endl
              << "decay: " << d.decay << endl
              << "final_state: " << d.final_state << endl;
-        ME_runners.push_back(NULL);
+        ME_runners.push_back(nullptr);
     }
 }
 
@@ -67,7 +67,7 @@ bool MEKD::Load_ME_runners_try(const process_description &desc,
 void MEKD::Initialize_ME_runners(vector<ME_runner *> &ME_runners)
 {
     for (auto r : ME_runners) {
-        if (r == NULL)
+        if (r == nullptr)
             continue;
         if (!r->initialize()) {
             cerr << "ME runner not initializable:\n"
@@ -85,7 +85,7 @@ void MEKD::Initialize_ME_runners(const string &param_f,
                                  vector<ME_runner *> &ME_runners)
 {
     for (auto r : ME_runners) {
-        if (r == NULL)
+        if (r == nullptr)
             continue;
         if (!r->initialize(param_f)) {
             cerr << "ME runner not initializable:\n"

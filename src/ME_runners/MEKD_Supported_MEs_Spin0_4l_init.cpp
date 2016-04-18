@@ -89,6 +89,28 @@ void ME_runner_no_Spin0Pm_ZZ_4l::deinitialize()
     delete ME_SF;
 }
 
+/// ME_runner_no_Spin0Pm_ZZ_4l_2
+bool ME_runner_no_Spin0Pm_ZZ_4l_2::initialize(const string &param_f)
+{
+    if (!ME_Initiator(param_f, "ME_OF", 1, new MG5_HiggsPO_UFO::Spin0_OF(),
+                      ME_OF))
+        return false;
+
+    if (!ME_Initiator(param_f, "ME_SF", 1, new MG5_HiggsPO_UFO::Spin0_SF(),
+                      ME_SF))
+        return false;
+
+    return true;
+}
+
+bool ME_runner_no_Spin0Pm_ZZ_4l_2::initialize() { return initialize(""); }
+
+void ME_runner_no_Spin0Pm_ZZ_4l_2::deinitialize()
+{
+    delete ME_OF;
+    delete ME_SF;
+}
+
 /// ME_runner_gg_Spin0Ph_ZZ_4l
 bool ME_runner_gg_Spin0Ph_ZZ_4l::initialize(const string &param_f)
 {
@@ -169,18 +191,6 @@ void ME_runner_no_Spin0M_ZZ_4l::deinitialize()
     delete ME_SF;
 }
 
-/// ME_runner_gg_Spin0_ZZ_4l
-bool ME_runner_gg_Spin0_ZZ_4l::initialize(const string &param_f)
-{
-    if (!ME_Initiator(param_f, "ME_gg_OF", 1, new gg_Spin0_OF(), ME_gg_OF))
-        return false;
-
-    if (!ME_Initiator(param_f, "ME_gg_SF", 1, new gg_Spin0_SF(), ME_gg_SF))
-        return false;
-
-    return true;
-}
-
 /// ME_runner_gg_Spin0_ZZ_4l_2
 bool ME_runner_gg_Spin0_ZZ_4l_2::initialize(const string &param_f)
 {
@@ -201,6 +211,18 @@ void ME_runner_gg_Spin0_ZZ_4l_2::deinitialize()
 {
     delete ME_gg_OF;
     delete ME_gg_SF;
+}
+
+/// ME_runner_gg_Spin0_ZZ_4l
+bool ME_runner_gg_Spin0_ZZ_4l::initialize(const string &param_f)
+{
+    if (!ME_Initiator(param_f, "ME_gg_OF", 1, new gg_Spin0_OF(), ME_gg_OF))
+        return false;
+
+    if (!ME_Initiator(param_f, "ME_gg_SF", 1, new gg_Spin0_SF(), ME_gg_SF))
+        return false;
+
+    return true;
 }
 
 bool ME_runner_gg_Spin0_ZZ_4l::initialize() { return initialize(""); }
@@ -226,6 +248,28 @@ bool ME_runner_no_Spin0_ZZ_4l::initialize(const string &param_f)
 bool ME_runner_no_Spin0_ZZ_4l::initialize() { return initialize(""); }
 
 void ME_runner_no_Spin0_ZZ_4l::deinitialize()
+{
+    delete ME_OF;
+    delete ME_SF;
+}
+
+/// ME_runner_no_Spin0_ZZ_4l_2
+bool ME_runner_no_Spin0_ZZ_4l_2::initialize(const string &param_f)
+{
+    if (!ME_Initiator(param_f, "ME_OF", 1, new MG5_HiggsPO_UFO::Spin0_OF(),
+                      ME_OF))
+        return false;
+
+    if (!ME_Initiator(param_f, "ME_SF", 1, new MG5_HiggsPO_UFO::Spin0_SF(),
+                      ME_SF))
+        return false;
+
+    return true;
+}
+
+bool ME_runner_no_Spin0_ZZ_4l_2::initialize() { return initialize(""); }
+
+void ME_runner_no_Spin0_ZZ_4l_2::deinitialize()
 {
     delete ME_OF;
     delete ME_SF;

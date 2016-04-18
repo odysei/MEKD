@@ -18,10 +18,12 @@ int MEKD_Test_Compatibility_Test1(input &in)
 
     if (Show_Description)
         cout << "Testing model_HiggsPO (XVV) vs. model_MEKD (XZZ) with "
-                "reson_Spin0Pm\n";
+                "reson_Spin0Pm: prod_gg, prod_no\n";
 
     process_description ggSpin0Pm_HPO;
     process_description ggSpin0Pm_MEKD;
+    process_description Spin0Pm_HPO;
+    process_description Spin0Pm_MEKD;
     vector<process_description> init_desc;
     vector<double> MEs;
 
@@ -39,8 +41,24 @@ int MEKD_Test_Compatibility_Test1(input &in)
     ggSpin0Pm_MEKD.decay = decay_ZZ;
     ggSpin0Pm_MEKD.final_state = final_4l;
 
+    Spin0Pm_HPO.model = model_HiggsPO;
+    Spin0Pm_HPO.process = proc_simple;
+    Spin0Pm_HPO.resonance = reson_Spin0Pm;
+    Spin0Pm_HPO.production = prod_no;
+    Spin0Pm_HPO.decay = decay_VV;
+    Spin0Pm_HPO.final_state = final_4l;
+
+    Spin0Pm_MEKD.model = model_MEKD;
+    Spin0Pm_MEKD.process = proc_simple;
+    Spin0Pm_MEKD.resonance = reson_Spin0Pm;
+    Spin0Pm_MEKD.production = prod_no;
+    Spin0Pm_MEKD.decay = decay_ZZ;
+    Spin0Pm_MEKD.final_state = final_4l;
+
     init_desc.push_back(ggSpin0Pm_HPO);
     init_desc.push_back(ggSpin0Pm_MEKD);
+    init_desc.push_back(Spin0Pm_HPO);
+    init_desc.push_back(Spin0Pm_MEKD);
 
     MEKD test1(init_desc);
     test1.eval_MEs(in, MEs);
@@ -54,10 +72,15 @@ int MEKD_Test_Compatibility_Test1(input &in)
         }
     }
 
-    if (MEs.size() == 2) {
-        const double ratio = MEs[0] / MEs[1];
+    if (MEs.size() == 4) {
         const double error = 0.02;
-        if (ratio < (1.0 + error) && ratio > (1.0 - error))
+        const double ratio1 = MEs[0] / MEs[1];
+        const bool pass1 = ratio1 < (1.0 + error) && ratio1 > (1.0 - error);
+
+        const double ratio2 = MEs[2] / MEs[3];
+        const bool pass2 = ratio2 < (1.0 + error) && ratio2 > (1.0 - error);
+
+        if (pass1 && pass2)
             return 0;
     }
 
@@ -73,10 +96,12 @@ int MEKD_Test_Compatibility_Test2(input &in)
 
     if (Show_Description)
         cout << "Testing model_HiggsPO (XZZ custom) with reson_Spin0 vs. "
-                "model_MEKD (XZZ) with reson_Spin0Pm\n";
+                "model_MEKD (XZZ) with reson_Spin0Pm: prod_gg, prod_no\n";
 
     process_description ggSpin0Pm_HPO;
     process_description ggSpin0Pm_MEKD;
+    process_description Spin0Pm_HPO;
+    process_description Spin0Pm_MEKD;
     vector<process_description> init_desc;
     vector<double> MEs;
 
@@ -94,8 +119,24 @@ int MEKD_Test_Compatibility_Test2(input &in)
     ggSpin0Pm_MEKD.decay = decay_ZZ;
     ggSpin0Pm_MEKD.final_state = final_4l;
 
+    Spin0Pm_HPO.model = model_HiggsPO;
+    Spin0Pm_HPO.process = proc_simple;
+    Spin0Pm_HPO.resonance = reson_Spin0;
+    Spin0Pm_HPO.production = prod_no;
+    Spin0Pm_HPO.decay = decay_VV;
+    Spin0Pm_HPO.final_state = final_4l;
+
+    Spin0Pm_MEKD.model = model_MEKD;
+    Spin0Pm_MEKD.process = proc_simple;
+    Spin0Pm_MEKD.resonance = reson_Spin0Pm;
+    Spin0Pm_MEKD.production = prod_no;
+    Spin0Pm_MEKD.decay = decay_ZZ;
+    Spin0Pm_MEKD.final_state = final_4l;
+
     init_desc.push_back(ggSpin0Pm_HPO);
     init_desc.push_back(ggSpin0Pm_MEKD);
+    init_desc.push_back(Spin0Pm_HPO);
+    init_desc.push_back(Spin0Pm_MEKD);
 
     MG5_HiggsPO_UFO::input_c in_c;
     in_c.p = in.p;
@@ -127,10 +168,15 @@ int MEKD_Test_Compatibility_Test2(input &in)
         }
     }
 
-    if (MEs.size() == 2) {
-        const double ratio = MEs[0] / MEs[1];
+    if (MEs.size() == 4) {
         const double error = 0.01;
-        if (ratio < (1.0 + error) && ratio > (1.0 - error))
+        const double ratio1 = MEs[0] / MEs[1];
+        const bool pass1 = ratio1 < (1.0 + error) && ratio1 > (1.0 - error);
+
+        const double ratio2 = MEs[2] / MEs[3];
+        const bool pass2 = ratio2 < (1.0 + error) && ratio2 > (1.0 - error);
+
+        if (pass1 && pass2)
             return 0;
     }
 

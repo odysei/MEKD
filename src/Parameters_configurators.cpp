@@ -136,8 +136,8 @@ inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
  */
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
-void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da, 
-                        const parameters &param, const flags &flag, 
+void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da,
+                        const parameters &param, const flags &flag,
                         Parameters_HiggsPO_UFO *update)
 {
     // local copy for stack
@@ -172,7 +172,7 @@ void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da,
 
     if (flag.Vary_signal_couplings) {
         Configurator_Spin0_produ(lgg, update);
-        Configurator_Spin0_decay(c, update);
+        Configurator_Spin0_decay(c, da.c_HPO, da.fs, update);
     }
 }
 
@@ -180,30 +180,42 @@ inline void Configurator_Spin0_produ(const double lgg,
                                      Parameters_HiggsPO_UFO *update)
 {
     // gg. * -i WRT HEF_MEKD
-    update->GC_9  = complex<double>(0, -4 * lgg);
+    update->GC_9 = complex<double>(0, -4 * lgg);
 }
 
 inline void Configurator_Spin0_decay(const MG5_HiggsPO_UFO::couplings &c,
+                                     const MG5_HiggsPO_UFO::couplings_ex &ci,
+                                     const final_state_types_ fs,
                                      Parameters_HiggsPO_UFO *update)
 {
     // XZZ
     update->mdl_kZZ = c.kZZ;
     update->mdl_eZZ = c.eZZ;
     update->mdl_eZZCP = c.eZZCP;
-    
+
     // XZA
     update->mdl_kZA = c.kZA;
     update->mdl_lZACP = c.lZACP;
-    
+
     // XAA
     update->mdl_kAA = c.kAA;
     update->mdl_lAACP = c.lAACP;
-    
+
     // Z'll
     update->mdl_eZeL = c.eZeL;
     update->mdl_eZeR = c.eZeR;
     update->mdl_eZmuL = c.eZmuL;
     update->mdl_eZmuR = c.eZmuR;
+
+    if (fs == final_4e || fs == final_4eA) {
+        update->mdl_gZmuL = ci.gZeL;
+        update->mdl_gZmuR = ci.gZeR;
+    } else {
+        update->mdl_gZeL = ci.gZeL;
+        update->mdl_gZeR = ci.gZeR;
+        update->mdl_gZmuL = ci.gZeL;
+        update->mdl_gZmuR = ci.gZeR;
+    }
 }
 
 /*

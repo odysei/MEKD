@@ -107,9 +107,9 @@ int MEKD::Run(const input &in)
     }
 
     // clearing links. Version 2 or earlier compatibility hack
-    idata.mix_coeffs_Spin0 = NULL;
-    idata.mix_coeffs_Spin1 = NULL;
-    idata.mix_coeffs_Spin2 = NULL;
+    idata.mix_coeffs_Spin0 = nullptr;
+    idata.mix_coeffs_Spin1 = nullptr;
+    idata.mix_coeffs_Spin2 = nullptr;
 
     return 0;
 }
@@ -143,21 +143,21 @@ void MEKD::Run_calculate(data &da)
         }
     }
 
-    string *model = NULL;
+    string *model = nullptr;
     /// Signal ME(s) is(are) chosen here
     if (Test_Models.size() > 0 && Test_Model[0] != '!') {
         if (Signal_MEs.size() != Test_Models.size())
             Signal_MEs.resize(Test_Models.size());
         fill(Signal_MEs.begin(), Signal_MEs.end(), 0);
-        model = &(Test_Models[0]); // Should be NULL or undefined
+        model = &(Test_Models[0]); // Should be nullptr or undefined
                                    // before this point; works as
                                    // counter=0
     } else
-        model = &Test_Model; // Should be NULL or undefined
+        model = &Test_Model; // Should be nullptr or undefined
                              // before this point
 
     unsigned int counter = 1;
-    while (model != NULL) {
+    while (model != nullptr) {
         // Is it a parameter card defined?
         if ((*model) == "Custom" || (*model) == "!Custom")
             Run_ME_Configurator_Custom(da);
@@ -473,9 +473,9 @@ void MEKD::Run_calculate(data &da)
             if (counter < Test_Models.size())
                 model = &(Test_Models[counter]);
             else
-                model = NULL;
+                model = nullptr;
         } else
-            model = NULL;
+            model = nullptr;
 
         ++counter;
     }
@@ -1432,9 +1432,9 @@ int MEKD::computeKD(const TString &processA, const TString &processB,
     if (input_Ps_i.size() != input_Ps.size()) {
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             delete input_Ps_i[i];
-            input_Ps_i[i] = NULL;
+            input_Ps_i[i] = nullptr;
         }
-        input_Ps_i.resize(input_Ps.size(), NULL);
+        input_Ps_i.resize(input_Ps.size(), nullptr);
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             input_Ps_i[i] = new double[4];
         }
@@ -1463,9 +1463,9 @@ int MEKD::computeME(const TString &processName,
     if (input_Ps_i.size() != input_Ps.size()) {
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             delete input_Ps_i[i];
-            input_Ps_i[i] = NULL;
+            input_Ps_i[i] = nullptr;
         }
-        input_Ps_i.resize(input_Ps.size(), NULL);
+        input_Ps_i.resize(input_Ps.size(), nullptr);
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             input_Ps_i[i] = new double[4];
         }
@@ -1539,9 +1539,9 @@ int MEKD::computeMEs(const vector<TLorentzVector> &input_Ps,
     if (input_Ps_i.size() != input_Ps.size()) {
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             delete input_Ps_i[i];
-            input_Ps_i[i] = NULL;
+            input_Ps_i[i] = nullptr;
         }
-        input_Ps_i.resize(input_Ps.size(), NULL);
+        input_Ps_i.resize(input_Ps.size(), nullptr);
         for (unsigned int i = 0; i < input_Ps_i.size(); ++i) {
             input_Ps_i[i] = new double[4];
         }

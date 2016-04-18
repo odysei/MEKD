@@ -19,7 +19,7 @@ bool ME_Initiator(const string &param_f, const string &name,
     if (o_ME->nprocesses != nprocesses_) {
         cerr << "Problem in " << name << " class detected.\n";
         delete o_ME;
-        o_ME = NULL;
+        o_ME = nullptr;
 
         return false;
     }
