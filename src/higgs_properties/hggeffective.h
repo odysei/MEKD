@@ -6,8 +6,8 @@
 //
 //  Modified by Aurelijus Rinkevicius on 2013-05-06
 //
-#ifndef _hggeffective_h
-#define _hggeffective_h
+#ifndef hggeffective_h
+#define hggeffective_h
 
 #include <cstdio>
 #include <cmath>
@@ -16,16 +16,16 @@
 using namespace std;
 
 /// Definition
-#define M_NPI 3.14159265358979323846
+#define PI acos(-1.0)
 
 /// Functions
-double fiRe(double tau);
-double fiIm(double tau);
-double HggFr(double tau);
-double HggFi(double tau);
+double LmbdGG(const double Mh);
 
-double LmbdGG(double Mh);
+inline double fiRe(const double tau);
+inline double fiIm(const double tau);
+inline double HggFr(const double tau);
+inline double HggFi(const double tau);
 
-complex<double> HggF(double tau);
+inline complex<double> HggF(const double tau);
 
 #endif

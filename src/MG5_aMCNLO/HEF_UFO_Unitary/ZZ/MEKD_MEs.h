@@ -1,5 +1,5 @@
-#ifndef MEKD_MEs_ZZ_H
-#define MEKD_MEs_ZZ_H
+#ifndef HEF_UFO_Unitary__ZZ__MEKD_MEs_h
+#define HEF_UFO_Unitary__ZZ__MEKD_MEs_h
 
 #include "qq_ZZ_DN_OF.h"
 #include "qq_ZZ_DN_OFpA.h"

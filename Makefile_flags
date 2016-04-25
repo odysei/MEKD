@@ -9,7 +9,7 @@ CXXFLAGS= -std=c++11 -pedantic -Wunused-variable -Werror=sign-compare \
 -I $(PROJECT_DIR) \
 -I $(INCDIR0) -I $(INCDIR1) -I $(INCDIR2) -I $(INCDIR2_0) \
 -I $(INCDIR2_1_src) -I $(INCDIR2_2_src) -I $(INCDIR2_3_src) \
--I $(INCDIR2_4_src) -I $(INCDIR2_5_src)
+-I $(INCDIR2_4_src) -I $(INCDIR2_5_src) -I $(INCDIR3)
 CFLAGS= -pedantic -Wunused-variable -Werror=sign-compare \
 -Wunused-but-set-variable -Werror=return-type -Werror=missing-braces \
 -Werror=delete-non-virtual-dtor -Werror=maybe-uninitialized \

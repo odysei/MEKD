@@ -1,5 +1,5 @@
-#ifndef MEKD_MEs_ttbb_all_2_h
-#define MEKD_MEs_ttbb_all_2_h
+#ifndef HEFTU__ttbb_all__MEKD_MEs_h
+#define HEFTU__ttbb_all__MEKD_MEs_h
 
 #include "ddx_ttxbbx.h"
 #include "uux_ttxbbx.h"

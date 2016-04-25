@@ -1,5 +1,5 @@
-#ifndef MEKD_MEs_Spin0_H
-#define MEKD_MEs_Spin0_H
+#ifndef HEF_MEKD__Spin0__MEKD_MEs_h
+#define HEF_MEKD__Spin0__MEKD_MEs_h
 
 #include "gg_Spin0_2l.h"
 #include "gg_Spin0_2lpA.h"

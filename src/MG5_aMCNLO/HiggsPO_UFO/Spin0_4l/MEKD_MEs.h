@@ -6,5 +6,4 @@
 #include "Spin0_OF.h"
 #include "Spin0_SF.h"
 
-
 #endif

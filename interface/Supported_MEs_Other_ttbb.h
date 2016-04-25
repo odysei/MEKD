@@ -10,6 +10,7 @@
 #define MEKD_Supported_MEs_Other_ttbb_h
 
 #include "MEKD.h"
+#include "MG5_aMCNLO/HEFTU/noh_ttbb/MEKD_MEs.h"
 
 namespace mekd
 {

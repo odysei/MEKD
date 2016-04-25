@@ -34,32 +34,24 @@
 #include "Inputs.h"
 
 /// MEKD tools
-#include "Extra_code/MEKD_CalcHEP_Extra_functions.h"
-#include "Extra_code/MEKD_Boosts.h"
-#include "higgs_properties/hggeffective.h"
-#include "MG5_aMCNLO/Commons/Parameters_MEKD.h"
-
 extern "C" {
 #include "Extra_code/MEKD_CalcHEP_PDF.h"
 #include "PDF_tables/pdt.h"
 }
 
 /// MEs.
-#include "MG5_aMCNLO/HEF_UFO_Unitary/Z4l/MEKD_MEs_Z4l.h"
-#include "MG5_aMCNLO/HEF_UFO_Unitary/ZZ/MEKD_MEs_ZZ.h"
+/// ME parameters
+#include "MG5_aMCNLO/Commons/Parameters_MEKD.h"
+#include "MG5_aMCNLO/HEFTU/src/Parameters_heft_updated_full.h"
+#include "MG5_aMCNLO/HiggsPO_UFO/src/Parameters_HiggsPO_UFO.h"
+#include "MG5_aMCNLO/sm-full/src/Parameters_sm_full.h"
 
-#include "MG5_aMCNLO/HEF_MEKD/DY/MEKD_MEs_DY.h"
-#include "MG5_aMCNLO/HEF_MEKD/Spin0/MEKD_MEs_Spin0.h"
-#include "MG5_aMCNLO/HEF_MEKD/Spin1/MEKD_MEs_Spin1.h"
-#include "MG5_aMCNLO/HEF_MEKD/Spin2/MEKD_MEs_Spin2.h"
+#include "MG5_aMCNLO/HEF_UFO_Unitary/Z4l/MEKD_MEs.h"
+#include "MG5_aMCNLO/HEF_UFO_Unitary/ZZ/MEKD_MEs.h"
 
-#include "MG5_aMCNLO/sm-full/ttbb_all/MEKD_MEs_ttbb_all.h"
-
-#include "MG5_aMCNLO/HEFTU/h_ttbb/MEKD_MEs_h_ttbb_2.h"
-#include "MG5_aMCNLO/HEFTU/noh_ttbb/MEKD_MEs_noh_ttbb_2.h"
-#include "MG5_aMCNLO/HEFTU/ttbb_all/MEKD_MEs_ttbb_all_2.h"
-
-#include "MG5_aMCNLO/HiggsPO_UFO/Spin0_4l/MEKD_MEs.h"
+#include "MG5_aMCNLO/HEF_MEKD/DY/MEKD_MEs.h"
+#include "MG5_aMCNLO/HEF_MEKD/Spin1/MEKD_MEs.h"
+#include "MG5_aMCNLO/HEF_MEKD/Spin2/MEKD_MEs.h"
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "MG5_aMCNLO/RAW/CPPProcess.h"   // ME_RAW

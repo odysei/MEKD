@@ -8,6 +8,8 @@
 #define MEKD_Supported_MEs_Spin0_4l_h
 
 #include "MEKD.h"
+#include "MG5_aMCNLO/HEF_MEKD/Spin0/MEKD_MEs.h"
+#include "MG5_aMCNLO/HiggsPO_UFO/Spin0_4l/MEKD_MEs.h"
 
 namespace mekd
 {

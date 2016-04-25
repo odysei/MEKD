@@ -6,85 +6,85 @@
 //
 //  Modified by Aurelijus Rinkevicius on 2013-05-06
 //
-#ifndef _hggeffective_cpp
-#define _hggeffective_cpp
+#ifndef hggeffective_cpp
+#define hggeffective_cpp
 
 #include "hggeffective.h"
 
 using namespace std;
 
 /// Variables
-
-double EE = 3.12300000000e-1, SW = 4.80800000000e-1, Me = 5.109989e-4,
-       Mm = 1.056584e-1, Mcp = 1.40000000000e0, Mtp = 1.77500000000e2,
-       MZ = 9.118760e1, wZ = 2.495200e0;
-double Mbp = 4.891000e0;
-double CW = sqrt(1 - SW * SW);
-double MW = MZ * sqrt(1 - SW * SW);
-double alphaQh = 0.1184;
-double nfh = 5.0;
+const double EE = 3.123E-1;
+const double SW = 4.808E-1;
+const double Me = 5.109989E-4;
+const double Mm = 1.056584E-1;
+const double Mcp = 1.4E+0;
+const double Mtp = 1.775E+2;
+const double MZ = 9.11876E+1;
+const double wZ = 2.4952E+0;
+const double Mbp = 4.891E+0;
+const double CW = sqrt(1 - SW * SW);
+const double MW = MZ * sqrt(1 - SW * SW);
+const double alphaQh = 0.1184;
+const double nfh = 5.0;
 
 /// Functions
-
-double fiRe(double tau)
+double LmbdGG(const double Mh)
 {
-    double x;
+    const double FFeven =
+        1 + alphaQh / PI * (95.0 / 4.0 - 7.0 / 6.0 * nfh) +
+        alphaQh * alphaQh / pow(PI, 2) *
+            (370.0 - 47.0 * nfh + 0.9 * pow(nfh, 2) -
+             (19.0 / 8.0 + 2.0 * nfh / 3.0) * 2.0 * log(Mtp / Mh));
 
+    const complex<double> loops = HggF(pow(Mh / 2.0 / Mcp, 2)) +
+                                  HggF(pow(Mh / 2.0 / Mbp, 2)) +
+                                  HggF(pow(Mh / 2.0 / Mtp, 2));
+
+    return (alphaQh / (8 * PI) * 1 / 2 * (-EE) / (2 * MW * SW) * abs(loops) *
+            sqrt(FFeven));
+}
+
+inline double fiRe(const double tau)
+{
     if (tau < 1) {
-        x = asin(sqrt(tau));
+        const double x = asin(sqrt(tau));
 
         return x * x;
-    } else if (tau == 1)
-        return 0;
-    else {
-        x = sqrt(1 - 1 / tau);
-        x = log((1 + x) / (1 - x));
-
-        return -0.25 * (x * x - M_NPI * M_NPI);
     }
+    if (tau == 1)
+        return 0;
+
+    const double x = sqrt(1 - 1 / tau);
+    const double y = log((1 + x) / (1 - x));
+
+    return -0.25 * (y * y - PI * PI);
 }
 
-double fiIm(double tau)
+inline double fiIm(const double tau)
 {
-    double x;
-
     if (tau <= 1)
         return 0;
-    else {
-        x = sqrt(1 - 1 / tau);
-        x = log((1 + x) / (1 - x));
 
-        return (0.5 * x * M_NPI);
-    }
+    const double x = sqrt(1 - 1 / tau);
+    const double y = log((1 + x) / (1 - x));
+
+    return (0.5 * y * PI);
 }
 
-double HggFr(double tau)
+inline double HggFr(const double tau)
 {
     return 2.0 * (tau + (tau - 1) * fiRe(tau)) / (tau * tau);
 }
 
-double HggFi(double tau) { return 2.0 * (tau - 1) * fiIm(tau) / (tau * tau); }
-
-double LmbdGG(double Mh)
+inline double HggFi(double const tau)
 {
-    double FFeven = 1 + alphaQh / M_NPI * (95.0 / 4.0 - 7.0 / 6.0 * nfh) +
-                    alphaQh * alphaQh / pow(M_NPI, 2) *
-                        (370.0 - 47.0 * nfh + 0.9 * pow(nfh, 2) -
-                         (19.0 / 8.0 + 2.0 * nfh / 3.0) * 2.0 * log(Mtp / Mh));
-
-    complex<double> loops = HggF(pow(Mh / 2.0 / Mcp, 2)) +
-                            HggF(pow(Mh / 2.0 / Mbp, 2)) +
-                            HggF(pow(Mh / 2.0 / Mtp, 2));
-
-    return (alphaQh / (8 * M_NPI) * 1 / 2 * (-EE) / (2 * MW * SW) * abs(loops) *
-            sqrt(FFeven));
+    return 2.0 * (tau - 1) * fiIm(tau) / (tau * tau);
 }
 
-complex<double> HggF(double tau)
+inline complex<double> HggF(const double tau)
 {
-    complex<double> value(HggFr(tau), HggFi(tau));
-
-    return value;
+    return complex<double>(HggFr(tau), HggFi(tau));
 }
 
 #endif

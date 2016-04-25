@@ -6,6 +6,9 @@
 #define MEKD_RunMEs_cpp
 
 #include "MEKD.h"
+/// MEKD tools
+#include "MEKD_CalcHEP_Extra_functions.h"
+#include "higgs_properties/hggeffective.h"
 
 namespace mekd
 {

@@ -20,6 +20,8 @@ INCDIR2_3_src=$(INCDIR2_3)/src
 INCDIR2_4_src=$(INCDIR2_4)/src
 INCDIR2_5_src=$(INCDIR2_5)/src
 
+INCDIR3=$(PROJECT_DIR)/src/Extra_code
+
 PDF_DIR=$(PROJECT_DIR)/src/PDF_tables
 
 
