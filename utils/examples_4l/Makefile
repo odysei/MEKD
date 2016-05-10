@@ -12,6 +12,7 @@ include $(PROJECT_DIR)/Makefile_flags
 
 
 
+
 #######################
 ### Target location ###
 #######################
@@ -25,13 +26,24 @@ endif
 
 
 
+
+################################
+### Include objects to build ###
+################################
+
+include Makefile_objects
+
+
+
+
 ###################
 ### All targets ###
 ###################
 
-target=runKD_MAD
+example1=runKD_MAD
+example2=eval_MEs_model_HiggsPO
 
-all: $(target)
+all: $(example1) $(example2)
 
 
 
@@ -40,13 +52,20 @@ all: $(target)
 ### Building block ###
 ######################
 
-$(target):
-	$(CXX) $(CXXFLAGS) $(target).cpp -o $(BIN_DIRL)/$(target) -L. $(LIBFLAGS) \
--l MEKD
+$(example1): $(example1).o
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIRL)/$(example1) $(example1).o \
+	-L. $(LIBFLAGS) -l MEKD
 
+$(example2): $(example2).o $(objects2)
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIRL)/$(example2) $(example2).o \
+	$(objects2) -L. $(LIBFLAGS) -l MEKD
 
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN_DIRL)/$(target)
+	rm -f $(objects2); \
+	rm -f $(BIN_DIRL)/$(example1).o; \
+	rm -f $(BIN_DIRL)/$(example1); \
+	rm -f $(BIN_DIRL)/$(example2).o; \
+	rm -f $(BIN_DIRL)/$(example2)

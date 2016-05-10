@@ -132,6 +132,7 @@ struct couplings {
     double eZmuR;
 };
 
+// extra couplings: 'SM' Z
 struct couplings_ex {
     // Zff
     double gZeL;

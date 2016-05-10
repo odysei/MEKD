@@ -63,6 +63,7 @@ void Parameters_HiggsPO_UFO::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_ybeff = slha.get_block_entry("hposm", 3, 1.770000e-02).real();
     mdl_eZASM = slha.get_block_entry("hposm", 2, 6.900000e-03).real();
     mdl_eAASM = slha.get_block_entry("hposm", 1, 3.800000e-03).real();
+    mdl_noise = slha.get_block_entry("hpo4f", 24, 9.96300008259327e-11).real();
     mdl_phiWtau = slha.get_block_entry("hpo4f", 23, 0.000000e+00).real();
     mdl_phiWmu = slha.get_block_entry("hpo4f", 22, 0.000000e+00).real();
     mdl_phiWe = slha.get_block_entry("hpo4f", 21, 0.000000e+00).real();
@@ -95,7 +96,6 @@ void Parameters_HiggsPO_UFO::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_kc = slha.get_block_entry("hpo2f", 2, 1.000000e+00).real();
     mdl_kb = slha.get_block_entry("hpo2f", 1, 1.000000e+00).real();
     mdl_eggSM = -0.0065;
-    mdl_noise = 9.96300008259327e-11;
     mdl_complexi = std::complex<double>(0., 1.);
     mdl_MZ__exp__2 = pow(mdl_MZ, 2.);
     const double mdl_MZ__exp__4 = pow(mdl_MZ, 4.);

@@ -12,6 +12,7 @@ include $(PROJECT_DIR)/Makefile_flags
 
 
 
+
 #######################
 ### Target location ###
 #######################
@@ -34,6 +35,7 @@ include Makefile_objects
 
 
 
+
 ###################
 ### All targets ###
 ###################
@@ -49,14 +51,14 @@ all: $(example)
 ### Building block ###
 ######################
 
-$(example): $(objects)
-	$(CXX) $(CXXFLAGS) $(example).cpp -o $(BIN_DIRL)/$(example) $(objects) \
+$(example): $(example).o $(objects)
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIRL)/$(example) $(example).o $(objects) \
 	-L. $(LIBFLAGS) -l MEKD
-
 
 
 .PHONY: clean
 
 clean:
 	rm -f $(objects); \
+	rm -f $(example).o; \
 	rm -f $(BIN_DIRL)/$(example)

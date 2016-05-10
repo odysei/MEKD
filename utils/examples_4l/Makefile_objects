@@ -2,4 +2,4 @@
 ### Local objects ###
 #####################
 
-objects=../examples_IO/examples_io.o
+objects2=../examples_IO/examples_io.o

@@ -63,6 +63,7 @@ Block hpo4f
    21 0.000000e+00 # phiWe 
    22 0.000000e+00 # phiWmu 
    23 0.000000e+00 # phiWtau 
+   24 9.96300008259327e-11 # kZZ noise 
 
 ###################################
 ## INFORMATION FOR HPOSM

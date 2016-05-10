@@ -179,7 +179,6 @@ double Spin0_OF::sigmaHat()
 
 //--------------------------------------------------------------------------
 // Evaluate |M|^2 for each subprocess
-
 void Spin0_OF::calculate_wavefunctions(const int perm[], const int hel[])
 {
     // Calculate wavefunctions for all processes

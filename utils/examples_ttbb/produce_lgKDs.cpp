@@ -2,16 +2,6 @@
 #define MEKD_example_produce_lgKDs_cpp
 #include "produce_lgKDs.h"
 
-using namespace std;
-
-int Choice();
-
-vector<string> Pick_filenames(int);
-
-vector<mekd::process_description> Make_desc();
-
-void My_flags(mekd::flags &);
-
 int main()
 {
     vector<string> filenames = Pick_filenames(Choice());

@@ -1,4 +1,5 @@
 bin/
+data/examples_4l/Events/ID_exyz_eemm.dat
 data/examples_ttbb/Events/ttbb_all.lhe_proc
 data/examples_ttbb/Events/ttbb_h.lhe_proc
 data/examples_ttbb/Events/ttbb_noh.lhe_proc
@@ -196,4 +197,7 @@ src/MG5_aMCNLO/sm-full/ttbb_all/bbx_ttxbbx.o
 src/MG5_aMCNLO/sm-full/ttbb_all/gg_ttxbbx.o
 src/PDF_tables/pdt.o
 src/higgs_properties/hggeffective.o
-utils/examples_ttbb/produce_lgKDs_io.o
+utils/examples_4l/eval_MEs_model_HiggsPO.o
+utils/examples_4l/runKD_MAD.o
+utils/examples_IO/examples_io.o
+utils/examples_ttbb/produce_lgKDs.o

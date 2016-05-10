@@ -1,19 +1,23 @@
-#ifndef MEKD_example_produce_lgKDs_io_cpp
-#define MEKD_example_produce_lgKDs_io_cpp
-#include "produce_lgKDs.h"
-
-using namespace std;
+#ifndef MEKD_examples_io_cpp
+#define MEKD_examples_io_cpp
+#include "examples_io.h"
 
 string Find_local_file(const string &input_f)
 {
     vector<string> lookup;
-    lookup.reserve(5);
+    lookup.reserve(10);
     lookup.push_back("./");
     lookup.push_back("Events/");
+
     lookup.push_back("examples_ttbb/Events/");
     lookup.push_back("data/examples_ttbb/Events/");
-    lookup.push_back("../data/examples_ttbb/Events/"); // [4]
-    lookup.push_back("../../data/examples_ttbb/Events/");
+    lookup.push_back("../data/examples_ttbb/Events/");
+    lookup.push_back("../../data/examples_ttbb/Events/"); // [5]
+
+    lookup.push_back("examples_4l/Events/");
+    lookup.push_back("data/examples_4l/Events/");
+    lookup.push_back("../data/examples_4l/Events/");
+    lookup.push_back("../../data/examples_4l/Events/"); // [9]
 
     for (auto path : lookup) {
         string file_in_path = path + input_f;
