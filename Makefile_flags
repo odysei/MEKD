@@ -29,4 +29,8 @@ endif
 
 ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
 CXXFLAGS+= -D MEKD_with_ROOT
+#CXXFLAGS+= -I $(shell root-config --incdir)
+CXXFLAGS+= $(shell root-config --cflags)
+CXXFLAGS+= $(shell root-config --ldflags)
+LIBFLAGS+= $(shell root-config --libs --glibs)
 endif

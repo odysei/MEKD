@@ -42,8 +42,9 @@ include Makefile_objects
 
 example1=runKD_MAD
 example2=eval_MEs_model_HiggsPO
+example3=eval_rew_MEs_model_HiggsPO
 
-all: $(example1) $(example2)
+all: $(example1) $(example2) $(example3)
 
 
 
@@ -58,6 +59,10 @@ $(example1): $(example1).o
 
 $(example2): $(example2).o $(objects2)
 	$(CXX) $(CXXFLAGS) -o $(BIN_DIRL)/$(example2) $(example2).o \
+	$(objects2) -L. $(LIBFLAGS) -l MEKD
+
+$(example3): $(example3).o $(objects2)
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIRL)/$(example3) $(example3).o \
 	$(objects2) -L. $(LIBFLAGS) -l MEKD
 
 

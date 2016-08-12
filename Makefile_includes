@@ -26,6 +26,11 @@ PDF_DIR=$(PROJECT_DIR)/src/PDF_tables
 
 
 ########## ROOT PART ##########
-ROOTLIB=$(ROOTSYS)/lib
-ROOTINCLUDES=$(ROOTSYS)/include
+# Makefile_flags does the job now
+#ROOTLIB=$(ROOTSYS)/lib
+# OR
+# root-config --libs
+#ROOTINCLUDES=$(ROOTSYS)/include
+# OR
+# root-config --incdir
 ###############################

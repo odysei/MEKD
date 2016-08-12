@@ -198,6 +198,7 @@ src/MG5_aMCNLO/sm-full/ttbb_all/gg_ttxbbx.o
 src/PDF_tables/pdt.o
 src/higgs_properties/hggeffective.o
 utils/examples_4l/eval_MEs_model_HiggsPO.o
+utils/examples_4l/eval_rew_MEs_model_HiggsPO.o
 utils/examples_4l/runKD_MAD.o
 utils/examples_IO/examples_io.o
 utils/examples_ttbb/produce_lgKDs.o
