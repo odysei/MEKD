@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Load_ME_runners_Other_ttbb_cpp
-#define MEKD_Load_ME_runners_Other_ttbb_cpp
+#ifndef MEKD__Load_ME_runners_Other_ttbb_cpp
+#define MEKD__Load_ME_runners_Other_ttbb_cpp
 
 #include "MEKD.h"
 #include "Supported_MEs_Other_ttbb.h"

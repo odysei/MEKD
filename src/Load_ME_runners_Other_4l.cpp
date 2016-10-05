@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Load_ME_runners_Other_4l_cpp
-#define MEKD_Load_ME_runners_Other_4l_cpp
+#ifndef MEKD__Load_ME_runners_Other_4l_cpp
+#define MEKD__Load_ME_runners_Other_4l_cpp
 
 #include "MEKD.h"
 #include "Supported_MEs_Other_4l.h"
@@ -69,5 +69,5 @@ bool MEKD::Load_ME_runners_try_Z_4lA(const process_description &d,
 
 #endif
 /*
- * End of MEKD_Load_ME_runners_Other_4l_cpp
+ * End of MEKD__Load_ME_runners_Other_4l_cpp
  */

@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Load_ME_runners_cpp
-#define MEKD_Load_ME_runners_cpp
+#ifndef MEKD__Load_ME_runners_cpp
+#define MEKD__Load_ME_runners_cpp
 
 #include "MEKD.h"
 
@@ -104,5 +104,5 @@ void MEKD::Initialize_ME_runners(const string &param_f,
 
 #endif
 /*
- * End of MEKD_Load_ME_runners.cpp
+ * End of MEKD__Load_ME_runners.cpp
  */
