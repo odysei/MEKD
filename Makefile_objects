@@ -16,18 +16,18 @@ $(INCDIR1)/MEKD_sorter.o $(INCDIR1)/MEKD_RunMEs.o \
 $(INCDIR1)/MEKD_debug.o $(INCDIR1)/Defaults.o \
 $(INCDIR1)/MEKD_stuff.o \
 $(INCDIR1)/Parameters_configurators.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_4l.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_basic.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_eval.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_4l_init.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin1_4l.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin2_4l.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_basic.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_eval.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Other_ttbb_init.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_basic.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_eval.o \
-$(INCDIR1)/ME_runners/MEKD_Supported_MEs_Spin0_ttbb_init.o
+$(INCDIR1)/ME_runners/Other_4l.o \
+$(INCDIR1)/ME_runners/Spin0_4l_basic.o \
+$(INCDIR1)/ME_runners/Spin0_4l_eval.o \
+$(INCDIR1)/ME_runners/Spin0_4l_init.o \
+$(INCDIR1)/ME_runners/Spin1_4l.o \
+$(INCDIR1)/ME_runners/Spin2_4l.o \
+$(INCDIR1)/ME_runners/Other_ttbb_basic.o \
+$(INCDIR1)/ME_runners/Other_ttbb_eval.o \
+$(INCDIR1)/ME_runners/Other_ttbb_init.o \
+$(INCDIR1)/ME_runners/Spin0_ttbb_basic.o \
+$(INCDIR1)/ME_runners/Spin0_ttbb_eval.o \
+$(INCDIR1)/ME_runners/Spin0_ttbb_init.o
 
 
 

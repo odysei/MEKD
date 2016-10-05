@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Supported_MEs_Spin0_4l_eval_cpp
-#define MEKD_Supported_MEs_Spin0_4l_eval_cpp
+#ifndef MEKD__ME_runners__Spin0_4l_eval_cpp
+#define MEKD__ME_runners__Spin0_4l_eval_cpp
 
 #include "Supported_MEs_Spin0_4l.h"
 #include "Parameters_configurators.h"
@@ -384,5 +384,5 @@ double ME_runner_no_Spin0_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 #endif
 
 /////////////////////////////////////
-/// END OF MEKD_Supported_MEs_h   ///
+/// END OF MEKD__ME_runners__h   ///
 /////////////////////////////////////
