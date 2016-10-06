@@ -17,8 +17,39 @@ namespace mekd
 {
 
 /*
- * HEF_MEKD configuration block
+ * HEF_MEKD (HEF_UFO, HZZ_Unitary) configuration block
  */
+
+/// A ZZ background configurators for Parameters_MEKD
+void Configurator_ZZ_ddx(const data &da, Parameters_MEKD *update)
+{
+    Configurator_Spin0_lep_m(da, update);   // compatible here
+    update->mdl_MS = da.m.s;
+}
+
+void Configurator_ZZ_uux(const data &da, Parameters_MEKD *update)
+{
+    Configurator_Spin0_lep_m(da, update);   // compatible here
+    update->mdl_MC = da.m.u;
+}
+
+void Configurator_ZZ_ssx(const data &da, Parameters_MEKD *update)
+{
+    Configurator_Spin0_lep_m(da, update);   // compatible here
+    update->mdl_MS = da.m.s;
+}
+
+void Configurator_ZZ_ccx(const data &da, Parameters_MEKD *update)
+{
+    Configurator_Spin0_lep_m(da, update);   // compatible here
+    update->mdl_MC = da.m.c;
+}
+
+void Configurator_ZZ_bbx(const data &da, Parameters_MEKD *update)
+{
+    Configurator_Spin0_lep_m(da, update);   // compatible here
+    update->mdl_MS = da.m.b;
+}
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
 void Configurator_Spin0(const complex<double> *c, const data &da,
@@ -70,19 +101,20 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
 template <class Parameters>
 inline void Configurator_Spin0_lep_m(const data &da, Parameters *update)
 {
-    if (da.fs == final_4e || da.fs == final_4eA) {
+    const auto fs = da.fs;
+    if (fs == final_4e || fs == final_4eA) {
         /// Common mass for the same-flavor leptons
         update->mdl_MM = da.m.e;
         return;
     }
 
-    if (da.fs == final_4mu || da.fs == final_4muA) {
+    if (fs == final_4mu || fs == final_4muA) {
         /// Common mass for the same-flavor leptons
         update->mdl_MM = da.m.mu;
         return;
     }
 
-    if (da.fs == final_2e2mu || da.fs == final_2e2muA) {
+    if (fs == final_2e2mu || fs == final_2e2muA) {
         /// Masses for the opposite-flavor leptons
         update->mdl_Me = da.m.e;
         update->mdl_MM = da.m.mu;

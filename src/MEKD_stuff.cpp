@@ -11,22 +11,22 @@ namespace mekd
 void MEKD::Check_MEs()
 {
     /// Cross-cheking MEs for consistency. ZZ
-    if (ME_qq_ZZ_DownType_SF.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_DownType_OF.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_UpType_SF.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_UpType_OF.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
+//     if (ME_qq_ZZ_DownType_SF.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_DownType_OF.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_UpType_SF.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_UpType_OF.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
     if (ME_qq_ZZ_DownType_SFpA.nprocesses != 2) {
         cerr << "Problem in ME class detected. Exiting.\n";
         exit(1);
@@ -528,10 +528,10 @@ void MEKD::Check_MEs()
 void MEKD::Load_parameters_MEs(const string &param_f)
 {
     // ZZ
-    ME_qq_ZZ_UpType_SF.initProc(param_f);
-    ME_qq_ZZ_UpType_OF.initProc(param_f);
-    ME_qq_ZZ_DownType_SF.initProc(param_f);
-    ME_qq_ZZ_DownType_OF.initProc(param_f);
+    // ME_qq_ZZ_UpType_SF.initProc(param_f);
+    // ME_qq_ZZ_UpType_OF.initProc(param_f);
+    // ME_qq_ZZ_DownType_SF.initProc(param_f);
+    // ME_qq_ZZ_DownType_OF.initProc(param_f);
     ME_qq_ZZ_UpType_SFpA.initProc(param_f);
     ME_qq_ZZ_UpType_OFpA.initProc(param_f);
     ME_qq_ZZ_DownType_SFpA.initProc(param_f);

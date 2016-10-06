@@ -13,8 +13,15 @@ namespace mekd
 {
 
 /*
- * HEF_MEKD configuration block
+ * HEF_MEKD (HEF_UFO, HZZ_Unitary) configuration block
  */
+
+/// A ZZ background configurators for Parameters_MEKD
+void Configurator_ZZ_ddx(const data &da, Parameters_MEKD *update);
+void Configurator_ZZ_uux(const data &da, Parameters_MEKD *update);
+void Configurator_ZZ_ssx(const data &da, Parameters_MEKD *update);
+void Configurator_ZZ_ccx(const data &da, Parameters_MEKD *update);
+void Configurator_ZZ_bbx(const data &da, Parameters_MEKD *update);
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
 void Configurator_Spin0(const complex<double> *c, const data &da,

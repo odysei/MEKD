@@ -100,9 +100,18 @@ class ME_runner_qq_bkg_Z_ZZ_4l : public ME_runner
     };
 
     // Actual MEs
+    MG5_HEF_UFO_bkg::qq_ZZ_DN_OF *ME_ssx_OF;
+    MG5_HEF_UFO_bkg::qq_ZZ_DN_SF *ME_ssx_SF;
+    MG5_HEF_UFO_bkg::qq_ZZ_UP_OF *ME_ccx_OF;
+    MG5_HEF_UFO_bkg::qq_ZZ_UP_SF *ME_ccx_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };

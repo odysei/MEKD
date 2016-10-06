@@ -8,7 +8,8 @@
 #include "qq_ZZ_DN_OF.h"
 #include "HelAmps_HEF_UFO_bkg.h"
 
-using namespace MG5_HEF_UFO_bkg;
+namespace MG5_HEF_UFO_bkg
+{
 
 //==========================================================================
 // Class member functions for calculating the matrix elements for
@@ -35,15 +36,27 @@ void qq_ZZ_DN_OF::initProc(string param_card_name)
     jamp2[0] = new double[1];
 }
 
+void qq_ZZ_DN_OF::initProc()
+{
+    // Instantiate the model class and set parameters that stay fixed during run
+    pars = Parameters_MEKD::getInstance();
+    ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
+    // Set external particle masses for this matrix element
+    mME.push_back(pars->mdl_MS);
+    mME.push_back(pars->mdl_MS);
+    mME.push_back(pars->mdl_Me);
+    mME.push_back(pars->mdl_Me);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    jamp2[0] = new double[1];
+}
+
 //--------------------------------------------------------------------------
 // Update process.
 
-void qq_ZZ_DN_OF::updateProc(SLHAReader_MEKD &slha)
+void qq_ZZ_DN_OF::updateProc()
 {
-    pars->setIndependentParameters(slha);
-    pars->setIndependentCouplings();
     ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
-
     // Set external particle masses for this matrix element
     mME[0] = (pars->mdl_MS);
     mME[1] = (pars->mdl_MS);
@@ -308,4 +321,5 @@ double qq_ZZ_DN_OF::matrix_ssx_emepmummup_no_hxg()
         jamp2[0][i] += real(jamp[i] * conj(jamp[i]));
 
     return matrix;
+}
 }
