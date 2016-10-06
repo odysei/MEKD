@@ -151,21 +151,21 @@ double ME_runner_qq_bkg_Zt_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// ME_runner_qq_bkg_Z_ZZ_4lA
-const process_description ME_runner_qq_bkg_Z_ZZ_4lA::my_type()
-{
-    return me;
-}
-
-bool ME_runner_qq_bkg_Z_ZZ_4lA::is_my_type(const process_description &in)
-{
-    return compare_types(in, me);
-}
-
-double ME_runner_qq_bkg_Z_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
-{
-    in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
-    return in_MEKD.Signal_ME;
-}
+// const process_description ME_runner_qq_bkg_Z_ZZ_4lA::my_type()
+// {
+//     return me;
+// }
+// 
+// bool ME_runner_qq_bkg_Z_ZZ_4lA::is_my_type(const process_description &in)
+// {
+//     return compare_types(in, me);
+// }
+// 
+// double ME_runner_qq_bkg_Z_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
+// {
+//     in_MEKD.Run_ME_Configurator_BKG_ZZ(me, in_MEKD.idata);
+//     return in_MEKD.Signal_ME;
+// }
 
 /// ME_runner_qq_bkg_Z_2f_4lA
 const process_description ME_runner_qq_bkg_Z_2f_4lA::my_type()

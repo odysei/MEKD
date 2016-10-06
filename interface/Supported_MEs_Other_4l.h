@@ -193,9 +193,18 @@ class ME_runner_qq_bkg_Z_ZZ_4lA : public ME_runner
     };
 
     // Actual MEs
+    MG5_HZZ_Unitary_bkgpA::qq_ZZ_DN_OFpA *ME_ssx_OF;
+    MG5_HZZ_Unitary_bkgpA::qq_ZZ_DN_SFpA *ME_ssx_SF;
+    MG5_HZZ_Unitary_bkgpA::qq_ZZ_UP_OFpA *ME_ccx_OF;
+    MG5_HZZ_Unitary_bkgpA::qq_ZZ_UP_SFpA *ME_ccx_SF;
 
     const process_description my_type();
     bool is_my_type(const process_description &in);
+
+    // init
+    bool initialize();
+    bool initialize(const string &param_f);
+    void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
 };

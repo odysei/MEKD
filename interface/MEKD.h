@@ -139,10 +139,10 @@ class MEKD
     // qq_ZZ_DN_SF ME_qq_ZZ_DownType_SF;
     // qq_ZZ_UP_OF ME_qq_ZZ_UpType_OF;
     // qq_ZZ_UP_SF ME_qq_ZZ_UpType_SF;
-    qq_ZZ_DN_OFpA ME_qq_ZZ_DownType_OFpA;
-    qq_ZZ_DN_SFpA ME_qq_ZZ_DownType_SFpA;
-    qq_ZZ_UP_OFpA ME_qq_ZZ_UpType_OFpA;
-    qq_ZZ_UP_SFpA ME_qq_ZZ_UpType_SFpA;
+    // qq_ZZ_DN_OFpA ME_qq_ZZ_DownType_OFpA;
+    // qq_ZZ_DN_SFpA ME_qq_ZZ_DownType_SFpA;
+    // qq_ZZ_UP_OFpA ME_qq_ZZ_UpType_OFpA;
+    // qq_ZZ_UP_SFpA ME_qq_ZZ_UpType_SFpA;
 
     //     gg_Spin0_OF ME_Signal_gg_Spin0_OF;
     //     gg_Spin0_SF ME_Signal_gg_Spin0_SF;

@@ -14,6 +14,8 @@
 #include "Commons/Parameters_MEKD.h"
 
 using namespace std;
+namespace MG5_HZZ_Unitary_bkgpA
+{
 
 //==========================================================================
 // A class for calculating the matrix elements for
@@ -28,9 +30,10 @@ class qq_ZZ_UP_SFpA
 
     // Initialize process.
     void initProc(string param_card_name);
+    void initProc();
 
     // Update process.
-    void updateProc(SLHAReader_MEKD &slha);
+    void updateProc();
 
     // Calculate flavour-independent parts of cross section.
     void sigmaKin();
@@ -93,5 +96,6 @@ class qq_ZZ_UP_SFpA
     // Initial particle ids
     int id1, id2;
 };
+}
 
 #endif // MG5_Sigma_HZZ_Unitary_ccx_mummupmummupa_H

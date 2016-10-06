@@ -27,22 +27,22 @@ void MEKD::Check_MEs()
 //         cerr << "Problem in ME class detected. Exiting.\n";
 //         exit(1);
 //     }
-    if (ME_qq_ZZ_DownType_SFpA.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_DownType_OFpA.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_UpType_SFpA.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
-    if (ME_qq_ZZ_UpType_OFpA.nprocesses != 2) {
-        cerr << "Problem in ME class detected. Exiting.\n";
-        exit(1);
-    }
+//     if (ME_qq_ZZ_DownType_SFpA.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_DownType_OFpA.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_UpType_SFpA.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
+//     if (ME_qq_ZZ_UpType_OFpA.nprocesses != 2) {
+//         cerr << "Problem in ME class detected. Exiting.\n";
+//         exit(1);
+//     }
 
     if (ME_qq_Z4l_BKG_DownType_SF.nprocesses != 2) {
         cerr << "Problem in ME class detected. Exiting.\n";
@@ -532,10 +532,10 @@ void MEKD::Load_parameters_MEs(const string &param_f)
     // ME_qq_ZZ_UpType_OF.initProc(param_f);
     // ME_qq_ZZ_DownType_SF.initProc(param_f);
     // ME_qq_ZZ_DownType_OF.initProc(param_f);
-    ME_qq_ZZ_UpType_SFpA.initProc(param_f);
-    ME_qq_ZZ_UpType_OFpA.initProc(param_f);
-    ME_qq_ZZ_DownType_SFpA.initProc(param_f);
-    ME_qq_ZZ_DownType_OFpA.initProc(param_f);
+    // ME_qq_ZZ_UpType_SFpA.initProc(param_f);
+    // ME_qq_ZZ_UpType_OFpA.initProc(param_f);
+    // ME_qq_ZZ_DownType_SFpA.initProc(param_f);
+    // ME_qq_ZZ_DownType_OFpA.initProc(param_f);
 
     ME_qq_Z4l_BKG_UpType_SF.initProc(param_f);
     ME_qq_Z4l_BKG_UpType_OF.initProc(param_f);

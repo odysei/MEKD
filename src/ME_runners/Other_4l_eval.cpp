@@ -2,6 +2,8 @@
  *
  * ME_runners. See defined processes below.
  *
+ * Mostly: ZZ, Z backgrounds, Z s/t channels, some custom
+ *
  *
  */
 #ifndef MEKD__ME_runners__Other_4l_eval_cpp
@@ -19,13 +21,7 @@ namespace mekd
  */
 
 /*
- * Resonance to 2f decay modes.
- *
- * Final states: t tbar b bbar
- */
-
-/*
- * Spin-0 resonances
+ * Z/ZZ EWK processes go below AKA backgrounds
  */
 
 template <class Parameters, class cME_ssx_OF, class cME_ssx_SF,
@@ -93,8 +89,19 @@ double evaluate_qqx_Spin0_4l(MEKD &in_MEKD, Parameters *pa,
     return ME2;
 }
 
-/// ME_runner_all_bkg_Spin0Pm_2f_ttbb_1
+/// ME_runner_qq_bkg_Z_ZZ_4l
 double ME_runner_qq_bkg_Z_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
+{
+    return evaluate_qqx_Spin0_4l(in_MEKD, in_MEKD.params_MEKD, ME_ssx_OF,
+                                 ME_ssx_SF, ME_ccx_OF, ME_ccx_SF);
+}
+
+/*
+ * with photons
+ */
+
+/// ME_runner_qq_bkg_Z_ZZ_4lA
+double ME_runner_qq_bkg_Z_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 {
     return evaluate_qqx_Spin0_4l(in_MEKD, in_MEKD.params_MEKD, ME_ssx_OF,
                                  ME_ssx_SF, ME_ccx_OF, ME_ccx_SF);

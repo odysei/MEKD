@@ -8,7 +8,8 @@
 #include "qq_ZZ_DN_SFpA.h"
 #include "HelAmps_HZZ_Unitary_bkgpA.h"
 
-using namespace MG5_HZZ_Unitary_bkgpA;
+namespace MG5_HZZ_Unitary_bkgpA
+{
 
 //==========================================================================
 // Class member functions for calculating the matrix elements for
@@ -36,15 +37,28 @@ void qq_ZZ_DN_SFpA::initProc(string param_card_name)
     jamp2[0] = new double[1];
 }
 
+void qq_ZZ_DN_SFpA::initProc()
+{
+    // Instantiate the model class and set parameters that stay fixed during run
+    pars = Parameters_MEKD::getInstance();
+    ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
+    // Set external particle masses for this matrix element
+    mME.push_back(pars->mdl_MS);
+    mME.push_back(pars->mdl_MS);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->mdl_MM);
+    mME.push_back(pars->ZERO);
+    jamp2[0] = new double[1];
+}
+
 //--------------------------------------------------------------------------
 // Update process.
 
-void qq_ZZ_DN_SFpA::updateProc(SLHAReader_MEKD &slha)
+void qq_ZZ_DN_SFpA::updateProc()
 {
-    pars->setIndependentParameters(slha);
-    pars->setIndependentCouplings();
     ntry = 0, sum_hel = 0, ngood = 0; // moved here by Ghost remover v. 0.1
-
     // Set external particle masses for this matrix element
     mME[0] = (pars->mdl_MS);
     mME[1] = (pars->mdl_MS);
@@ -958,4 +972,5 @@ double qq_ZZ_DN_SFpA::matrix_ssx_mummupmummupa_no_hzpxg()
         jamp2[0][i] += real(jamp[i] * conj(jamp[i]));
 
     return matrix;
+}
 }

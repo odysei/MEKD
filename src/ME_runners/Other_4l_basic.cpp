@@ -31,6 +31,18 @@ bool ME_runner_qq_bkg_Z_ZZ_4l::is_my_type(const process_description &in)
 }
 
 /*
+ * with photons
+ */
+
+/// ME_runner_qq_bkg_Z_ZZ_4lA
+const process_description ME_runner_qq_bkg_Z_ZZ_4lA::my_type() { return me; }
+
+bool ME_runner_qq_bkg_Z_ZZ_4lA::is_my_type(const process_description &in)
+{
+    return compare_types(in, me);
+}
+
+/*
  * End of ME_runner classes
  */
 
