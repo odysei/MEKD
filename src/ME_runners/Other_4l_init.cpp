@@ -33,7 +33,7 @@ bool ME_runner_qq_bkg_Z_ZZ_4l::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_ssx_SF", 2,
                       new MG5_HEF_UFO_bkg::qq_ZZ_DN_SF(), ME_ssx_SF))
         return false;
-    
+
     if (!ME_Initiator(param_f, "ME_ccx_OF", 2,
                       new MG5_HEF_UFO_bkg::qq_ZZ_UP_OF(), ME_ccx_OF))
         return false;
@@ -41,7 +41,7 @@ bool ME_runner_qq_bkg_Z_ZZ_4l::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_ccx_SF", 2,
                       new MG5_HEF_UFO_bkg::qq_ZZ_UP_SF(), ME_ccx_SF))
         return false;
-    
+
     return true;
 }
 
@@ -69,7 +69,7 @@ bool ME_runner_qq_bkg_Z_ZZ_4lA::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_ssx_SF", 2,
                       new MG5_HZZ_Unitary_bkgpA::qq_ZZ_DN_SFpA(), ME_ssx_SF))
         return false;
-    
+
     if (!ME_Initiator(param_f, "ME_ccx_OF", 2,
                       new MG5_HZZ_Unitary_bkgpA::qq_ZZ_UP_OFpA(), ME_ccx_OF))
         return false;
@@ -77,7 +77,7 @@ bool ME_runner_qq_bkg_Z_ZZ_4lA::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_ccx_SF", 2,
                       new MG5_HZZ_Unitary_bkgpA::qq_ZZ_UP_SFpA(), ME_ccx_SF))
         return false;
-    
+
     return true;
 }
 

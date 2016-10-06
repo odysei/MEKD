@@ -1,7 +1,7 @@
 /*
  *
  * MEKD defaults. These are typically loaded when initializing MEKD.
- * 
+ *
  * NOTE: you are free to fiddle with parameters, but no need to replace values
  * here.
  *

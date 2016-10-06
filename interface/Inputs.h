@@ -28,7 +28,6 @@ struct input {
     vector<double *> *p; // {E, px, py, pz}
     vector<int> *id;     // PDG ids
 };
-
 }
 
 namespace MG5_HEF_MEKD
@@ -40,7 +39,6 @@ struct input_c : mekd::input {
     complex<double> mix_coeffs_Spin1[8];
     complex<double> mix_coeffs_Spin2[20];
 };
-
 }
 
 namespace MG5_HiggsPO_UFO
@@ -50,9 +48,7 @@ namespace MG5_HiggsPO_UFO
 struct input_c : mekd::input {
     couplings c;
 };
-
 }
-
 
 namespace mekd
 {

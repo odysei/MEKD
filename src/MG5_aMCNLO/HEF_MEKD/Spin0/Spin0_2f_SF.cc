@@ -40,7 +40,7 @@ void Spin0_2f_SF::initProc()
 {
     // Instantiate the model class and set parameters that stay fixed during run
     pars = Parameters_MEKD::getInstance(); // Changed by Convert_source 0.2
-    ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
+    ntry = 0, sum_hel = 0, ngood = 0;      // Moved here by Convert_source 0.2
     // Set external particle masses for this matrix element
     mME.push_back(pars->mdl_MH);
     mME.push_back(pars->mdl_MM);
@@ -86,7 +86,7 @@ void Spin0_2f_SF::sigmaKin()
     const int ncomb = 16;
     static bool goodhel[ncomb] = {ncomb * false};
     //	static int ntry = 0, sum_hel = 0, ngood = 0;	// Moved by
-    //Convert_source
+    // Convert_source
     // 0.2
     static int igood[ncomb];
     static int jhel;

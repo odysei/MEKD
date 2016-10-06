@@ -45,10 +45,9 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb_1::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_bbx", 2, new MG5_sm_full::bbx_ttxbbx(),
                       ME_bbx))
         return false;
-    if (!ME_Initiator(param_f, "ME_gg", 1, new MG5_sm_full::gg_ttxbbx(),
-                      ME_gg))
+    if (!ME_Initiator(param_f, "ME_gg", 1, new MG5_sm_full::gg_ttxbbx(), ME_gg))
         return false;
-    
+
     return true;
 }
 
@@ -88,7 +87,7 @@ bool ME_runner_all_bkg_Spin0Pm_2f_ttbb_2::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_gg", 1,
                       new MG5_heft_updated_full::gg_ttxbbx(), ME_gg))
         return false;
-    
+
     return true;
 }
 
@@ -128,14 +127,11 @@ bool ME_runner_all_Spin0Pm_2f_ttbb_2::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_gg", 1,
                       new MG5_heft_updated_full::gg_h_ttxbbx(), ME_gg))
         return false;
-    
+
     return true;
 }
 
-bool ME_runner_all_Spin0Pm_2f_ttbb_2::initialize()
-{
-    return initialize("");
-}
+bool ME_runner_all_Spin0Pm_2f_ttbb_2::initialize() { return initialize(""); }
 
 void ME_runner_all_Spin0Pm_2f_ttbb_2::deinitialize()
 {

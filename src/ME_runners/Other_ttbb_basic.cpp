@@ -1,7 +1,7 @@
 /*
  *
  * ME_runners. See defined processes below.
- * 
+ *
  * Mostly backgrounds for ttbb resonance processes
  *
  *
@@ -29,13 +29,9 @@ namespace mekd
  */
 
 /// ME_runner_all_bkg_2f_ttbb_2
-const process_description ME_runner_all_bkg_2f_ttbb_2::my_type()
-{
-    return me;
-}
+const process_description ME_runner_all_bkg_2f_ttbb_2::my_type() { return me; }
 
-bool ME_runner_all_bkg_2f_ttbb_2::is_my_type(
-    const process_description &in)
+bool ME_runner_all_bkg_2f_ttbb_2::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
 }

@@ -11,38 +11,38 @@ namespace mekd
 void MEKD::Check_MEs()
 {
     /// Cross-cheking MEs for consistency. ZZ
-//     if (ME_qq_ZZ_DownType_SF.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_DownType_OF.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_UpType_SF.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_UpType_OF.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_DownType_SFpA.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_DownType_OFpA.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_UpType_SFpA.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
-//     if (ME_qq_ZZ_UpType_OFpA.nprocesses != 2) {
-//         cerr << "Problem in ME class detected. Exiting.\n";
-//         exit(1);
-//     }
+    //     if (ME_qq_ZZ_DownType_SF.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_DownType_OF.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_UpType_SF.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_UpType_OF.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_DownType_SFpA.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_DownType_OFpA.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_UpType_SFpA.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
+    //     if (ME_qq_ZZ_UpType_OFpA.nprocesses != 2) {
+    //         cerr << "Problem in ME class detected. Exiting.\n";
+    //         exit(1);
+    //     }
 
     if (ME_qq_Z4l_BKG_DownType_SF.nprocesses != 2) {
         cerr << "Problem in ME class detected. Exiting.\n";

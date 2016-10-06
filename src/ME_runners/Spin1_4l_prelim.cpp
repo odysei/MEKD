@@ -27,10 +27,7 @@ namespace mekd
  */
 
 /// ME_runner_qq_Spin1M_ZZ_4l
-const process_description ME_runner_qq_Spin1M_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1M_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1M_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -44,10 +41,7 @@ double ME_runner_qq_Spin1M_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1M_ZZ_4l
-const process_description ME_runner_no_Spin1M_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1M_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1M_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -61,10 +55,7 @@ double ME_runner_no_Spin1M_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1P_ZZ_4l
-const process_description ME_runner_qq_Spin1P_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1P_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1P_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -78,10 +69,7 @@ double ME_runner_qq_Spin1P_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1P_ZZ_4l
-const process_description ME_runner_no_Spin1P_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1P_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1P_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -95,10 +83,7 @@ double ME_runner_no_Spin1P_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1_ZZ_4l
-const process_description ME_runner_qq_Spin1_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -112,10 +97,7 @@ double ME_runner_qq_Spin1_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1_ZZ_4l
-const process_description ME_runner_no_Spin1_ZZ_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1_ZZ_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1_ZZ_4l::is_my_type(const process_description &in)
 {
@@ -133,10 +115,7 @@ double ME_runner_no_Spin1_ZZ_4l::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// ME_runner_qq_Spin1M_ZZ_4lA
-const process_description ME_runner_qq_Spin1M_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1M_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1M_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -150,10 +129,7 @@ double ME_runner_qq_Spin1M_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1M_ZZ_4lA
-const process_description ME_runner_no_Spin1M_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1M_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1M_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -167,10 +143,7 @@ double ME_runner_no_Spin1M_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1P_ZZ_4lA
-const process_description ME_runner_qq_Spin1P_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1P_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1P_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -184,10 +157,7 @@ double ME_runner_qq_Spin1P_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1P_ZZ_4lA
-const process_description ME_runner_no_Spin1P_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1P_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1P_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -201,10 +171,7 @@ double ME_runner_no_Spin1P_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1_ZZ_4lA
-const process_description ME_runner_qq_Spin1_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -218,10 +185,7 @@ double ME_runner_qq_Spin1_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1_ZZ_4lA
-const process_description ME_runner_no_Spin1_ZZ_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1_ZZ_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1_ZZ_4lA::is_my_type(const process_description &in)
 {
@@ -245,10 +209,7 @@ double ME_runner_no_Spin1_ZZ_4lA::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// ME_runner_qq_Spin1M_2f_4l
-const process_description ME_runner_qq_Spin1M_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1M_2f_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1M_2f_4l::is_my_type(const process_description &in)
 {
@@ -262,10 +223,7 @@ double ME_runner_qq_Spin1M_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1M_2f_4l
-const process_description ME_runner_no_Spin1M_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1M_2f_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1M_2f_4l::is_my_type(const process_description &in)
 {
@@ -279,10 +237,7 @@ double ME_runner_no_Spin1M_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1P_2f_4l
-const process_description ME_runner_qq_Spin1P_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1P_2f_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1P_2f_4l::is_my_type(const process_description &in)
 {
@@ -296,10 +251,7 @@ double ME_runner_qq_Spin1P_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1P_2f_4l
-const process_description ME_runner_no_Spin1P_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1P_2f_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1P_2f_4l::is_my_type(const process_description &in)
 {
@@ -313,10 +265,7 @@ double ME_runner_no_Spin1P_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1_2f_4l
-const process_description ME_runner_qq_Spin1_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1_2f_4l::my_type() { return me; }
 
 bool ME_runner_qq_Spin1_2f_4l::is_my_type(const process_description &in)
 {
@@ -330,10 +279,7 @@ double ME_runner_qq_Spin1_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1_2f_4l
-const process_description ME_runner_no_Spin1_2f_4l::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1_2f_4l::my_type() { return me; }
 
 bool ME_runner_no_Spin1_2f_4l::is_my_type(const process_description &in)
 {
@@ -351,10 +297,7 @@ double ME_runner_no_Spin1_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// ME_runner_qq_Spin1M_2f_4lA
-const process_description ME_runner_qq_Spin1M_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1M_2f_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1M_2f_4lA::is_my_type(const process_description &in)
 {
@@ -368,10 +311,7 @@ double ME_runner_qq_Spin1M_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1M_2f_4lA
-const process_description ME_runner_no_Spin1M_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1M_2f_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1M_2f_4lA::is_my_type(const process_description &in)
 {
@@ -385,10 +325,7 @@ double ME_runner_no_Spin1M_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1P_2f_4lA
-const process_description ME_runner_qq_Spin1P_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1P_2f_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1P_2f_4lA::is_my_type(const process_description &in)
 {
@@ -402,10 +339,7 @@ double ME_runner_qq_Spin1P_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1P_2f_4lA
-const process_description ME_runner_no_Spin1P_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1P_2f_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1P_2f_4lA::is_my_type(const process_description &in)
 {
@@ -419,10 +353,7 @@ double ME_runner_no_Spin1P_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_qq_Spin1_2f_4lA
-const process_description ME_runner_qq_Spin1_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_qq_Spin1_2f_4lA::my_type() { return me; }
 
 bool ME_runner_qq_Spin1_2f_4lA::is_my_type(const process_description &in)
 {
@@ -436,10 +367,7 @@ double ME_runner_qq_Spin1_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
 }
 
 /// ME_runner_no_Spin1_2f_4lA
-const process_description ME_runner_no_Spin1_2f_4lA::my_type()
-{
-    return me;
-}
+const process_description ME_runner_no_Spin1_2f_4lA::my_type() { return me; }
 
 bool ME_runner_no_Spin1_2f_4lA::is_my_type(const process_description &in)
 {

@@ -43,10 +43,7 @@ class gg_Spin0_SF
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "g g > mu- mu+ mu- mu+ (HiggsPO_UFO)";
-    }
+    string name() const { return "g g > mu- mu+ mu- mu+ (HiggsPO_UFO)"; }
 
     int code() const { return 2; }
 

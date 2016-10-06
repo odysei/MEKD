@@ -26,12 +26,12 @@ namespace mekd
 
 template <class Parameters, class cME_ssx_OF, class cME_ssx_SF,
           class cME_ccx_OF, class cME_ccx_SF>
-double evaluate_qqx_Spin0_4l(MEKD &in_MEKD, Parameters *pa,
-                             cME_ssx_OF *ssx_OF, cME_ssx_SF *ssx_SF,
-                             cME_ccx_OF *ccx_OF, cME_ccx_SF *ccx_SF)
+double evaluate_qqx_Spin0_4l(MEKD &in_MEKD, Parameters *pa, cME_ssx_OF *ssx_OF,
+                             cME_ssx_SF *ssx_SF, cME_ccx_OF *ccx_OF,
+                             cME_ccx_SF *ccx_SF)
 {
     double ME2 = 0;
-    
+
     const auto fs = in_MEKD.idata.fs;
     const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
     const bool convention_2013 = in_MEKD.flag.use_prod_2013_convetion_for_4l;
@@ -56,10 +56,10 @@ double evaluate_qqx_Spin0_4l(MEKD &in_MEKD, Parameters *pa,
             Configurator_ZZ_bbx(in_MEKD.idata, pa);
             ME2 += ME_Evaluator_IS_bbx(use_PDF, in_MEKD.idata, ccx_OF);
         }
-        
+
         return ME2;
     }
-    
+
     if (fs == final_4mu || fs == final_4muA || fs == final_4e ||
         fs == final_4eA) {
         if (in_MEKD.flag.use_prod_ddx && !convention_2013) {
@@ -82,10 +82,10 @@ double evaluate_qqx_Spin0_4l(MEKD &in_MEKD, Parameters *pa,
             Configurator_ZZ_bbx(in_MEKD.idata, pa);
             ME2 += ME_Evaluator_IS_bbx(use_PDF, in_MEKD.idata, ccx_SF);
         }
-        
+
         return ME2;
     }
-    
+
     return ME2;
 }
 

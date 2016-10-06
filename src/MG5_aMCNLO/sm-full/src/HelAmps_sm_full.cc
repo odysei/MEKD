@@ -541,7 +541,7 @@ void FFV2_5_0(complex<double> F1[], complex<double> F2[], complex<double> V3[],
               complex<double> COUP1, complex<double> COUP2,
               complex<double> &vertex)
 {
-//     complex<double> cI = complex<double>(0., 1.);
+    //     complex<double> cI = complex<double>(0., 1.);
     complex<double> tmp;
     FFV2_0(F1, F2, V3, COUP1, vertex);
     FFV5_0(F1, F2, V3, COUP2, tmp);
@@ -551,7 +551,7 @@ void FFV2_3_0(complex<double> F1[], complex<double> F2[], complex<double> V3[],
               complex<double> COUP1, complex<double> COUP2,
               complex<double> &vertex)
 {
-//     complex<double> cI = complex<double>(0., 1.);
+    //     complex<double> cI = complex<double>(0., 1.);
     complex<double> tmp;
     FFV2_0(F1, F2, V3, COUP1, vertex);
     FFV3_0(F1, F2, V3, COUP2, tmp);
@@ -778,9 +778,9 @@ void FFV2_2(complex<double> F1[], complex<double> V3[], complex<double> COUP,
 void FFV2_5_2(complex<double> F1[], complex<double> V3[], complex<double> COUP1,
               complex<double> COUP2, double M2, double W2, complex<double> F2[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
+    //     complex<double> cI = complex<double>(0., 1.);
     complex<double> Ftmp[6];
-//     double P2[4];
+    //     double P2[4];
     complex<double> denom;
     int i;
     FFV2_2(F1, V3, COUP1, M2, W2, F2);
@@ -794,9 +794,9 @@ void FFV2_5_2(complex<double> F1[], complex<double> V3[], complex<double> COUP1,
 void FFV2_3_2(complex<double> F1[], complex<double> V3[], complex<double> COUP1,
               complex<double> COUP2, double M2, double W2, complex<double> F2[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
+    //     complex<double> cI = complex<double>(0., 1.);
     complex<double> Ftmp[6];
-//     double P2[4];
+    //     double P2[4];
     complex<double> denom;
     int i;
     FFV2_2(F1, V3, COUP1, M2, W2, F2);
@@ -868,9 +868,9 @@ void FFV2_3(complex<double> F1[], complex<double> F2[], complex<double> COUP,
 void FFV2_5_3(complex<double> F1[], complex<double> F2[], complex<double> COUP1,
               complex<double> COUP2, double M3, double W3, complex<double> V3[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
-//     double P3[4];
-//     double OM3;
+    //     complex<double> cI = complex<double>(0., 1.);
+    //     double P3[4];
+    //     double OM3;
     int i;
     complex<double> denom;
     complex<double> Vtmp[6];
@@ -885,9 +885,9 @@ void FFV2_5_3(complex<double> F1[], complex<double> F2[], complex<double> COUP1,
 void FFV2_3_3(complex<double> F1[], complex<double> F2[], complex<double> COUP1,
               complex<double> COUP2, double M3, double W3, complex<double> V3[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
-//     double P3[4];
-//     double OM3;
+    //     complex<double> cI = complex<double>(0., 1.);
+    //     double P3[4];
+    //     double OM3;
     int i;
     complex<double> denom;
     complex<double> Vtmp[6];
@@ -1055,8 +1055,8 @@ void FFV2_1(complex<double> F2[], complex<double> V3[], complex<double> COUP,
 void FFV2_5_1(complex<double> F2[], complex<double> V3[], complex<double> COUP1,
               complex<double> COUP2, double M1, double W1, complex<double> F1[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
-//     double P1[4];
+    //     complex<double> cI = complex<double>(0., 1.);
+    //     double P1[4];
     complex<double> denom;
     int i;
     complex<double> Ftmp[6];
@@ -1071,8 +1071,8 @@ void FFV2_5_1(complex<double> F2[], complex<double> V3[], complex<double> COUP1,
 void FFV2_3_1(complex<double> F2[], complex<double> V3[], complex<double> COUP1,
               complex<double> COUP2, double M1, double W1, complex<double> F1[])
 {
-//     complex<double> cI = complex<double>(0., 1.);
-//     double P1[4];
+    //     complex<double> cI = complex<double>(0., 1.);
+    //     double P1[4];
     complex<double> denom;
     int i;
     complex<double> Ftmp[6];

@@ -38,7 +38,7 @@ void gg_Spin0_2lpA::initProc()
 {
     // Instantiate the model class and set parameters that stay fixed during run
     pars = Parameters_MEKD::getInstance(); // Changed by Convert_source 0.2
-    ntry = 0, sum_hel = 0, ngood = 0; // Moved here by Convert_source 0.2
+    ntry = 0, sum_hel = 0, ngood = 0;      // Moved here by Convert_source 0.2
     // Set external particle masses for this matrix element
     mME.push_back(pars->ZERO);
     mME.push_back(pars->ZERO);
@@ -82,7 +82,7 @@ void gg_Spin0_2lpA::sigmaKin()
     const int ncomb = 32;
     static bool goodhel[ncomb] = {ncomb * false};
     //	static int ntry = 0, sum_hel = 0, ngood = 0;	// Moved by
-    //Convert_source
+    // Convert_source
     // 0.2
     static int igood[ncomb];
     static int jhel;

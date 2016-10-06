@@ -39,10 +39,7 @@ class Spin1_2f_SFpA
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "zp > mu- mu+ mu- mu+ a (HEF_MEKD2_1)";
-    }
+    string name() const { return "zp > mu- mu+ mu- mu+ a (HEF_MEKD2_1)"; }
 
     int code() const { return 0; }
 

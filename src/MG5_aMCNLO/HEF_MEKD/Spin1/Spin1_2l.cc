@@ -66,7 +66,7 @@ void Spin1_2l::sigmaKin()
     const int ncomb = 12;
     static bool goodhel[ncomb] = {ncomb * false};
     //	static int ntry = 0, sum_hel = 0, ngood = 0;	// Moved by
-    //Convert_source
+    // Convert_source
     // 0.2
     static int igood[ncomb];
     static int jhel;

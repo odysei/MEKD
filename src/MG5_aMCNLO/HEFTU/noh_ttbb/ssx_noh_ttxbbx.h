@@ -42,10 +42,7 @@ class ssx_noh_ttxbbx
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "s s~ > t t~ b b~ (heft_updated_full)";
-    }
+    string name() const { return "s s~ > t t~ b b~ (heft_updated_full)"; }
 
     int code() const { return 1; }
 

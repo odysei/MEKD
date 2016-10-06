@@ -40,11 +40,10 @@ const complex<double> definition_Spin0M_2f[4] = {
 namespace MG5_HiggsPO_UFO
 {
 // XZZ[3], XZA[2], XAA[2], Zll[4]
-const couplings definition_Spin0Pm = {1, 0, 0,  // XZZ[3]
-                                      1, 0,     // XZA[2]
-                                      1, 0,     // XAA[2]
+const couplings definition_Spin0Pm = {1, 0, 0, // XZZ[3]
+                                      1, 0,    // XZA[2]
+                                      1, 0,    // XAA[2]
                                       0, 0, 0, 0};
-    
 }
 
 #endif

@@ -39,10 +39,7 @@ class qq_Z4l_SIG_DN_SFpA
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "s s~ > mu- mu+ mu- mu+ a (HZZ_Unitary)";
-    }
+    string name() const { return "s s~ > mu- mu+ mu- mu+ a (HZZ_Unitary)"; }
 
     int code() const { return 0; }
 

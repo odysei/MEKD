@@ -28,16 +28,15 @@ namespace mekd
  * Spin-0 resonances
  */
 
-template <class Parameters,
-          class cME_ddx, class cME_uux, class cME_ssx,
+template <class Parameters, class cME_ddx, class cME_uux, class cME_ssx,
           class cME_ccx, class cME_bbx, class cME_gg>
-double evaluate_all_Spin0_ttbb(MEKD &in_MEKD, Parameters *pa,
-                               cME_ddx *ddx, cME_uux *uux, cME_ssx *ssx,
-                               cME_ccx *ccx, cME_bbx *bbx, cME_gg *gg)
+double evaluate_all_Spin0_ttbb(MEKD &in_MEKD, Parameters *pa, cME_ddx *ddx,
+                               cME_uux *uux, cME_ssx *ssx, cME_ccx *ccx,
+                               cME_bbx *bbx, cME_gg *gg)
 {
     Configurator_Spin0(in_MEKD.idata, in_MEKD.param, in_MEKD.flag, pa);
     double ME2 = 0;
-    
+
     const bool use_PDF = in_MEKD.flag.Use_PDF_w_pT0;
     if (in_MEKD.flag.use_prod_ddx)
         ME2 += ME_Evaluator_IS_ddx(use_PDF, in_MEKD.idata, ddx);
@@ -51,7 +50,7 @@ double evaluate_all_Spin0_ttbb(MEKD &in_MEKD, Parameters *pa,
         ME2 += ME_Evaluator_IS_bbx(use_PDF, in_MEKD.idata, bbx);
     if (in_MEKD.flag.use_prod_gg)
         ME2 += ME_Evaluator_IS_gg(use_PDF, in_MEKD.idata, gg);
-    
+
     return ME2;
 }
 
@@ -59,27 +58,23 @@ double evaluate_all_Spin0_ttbb(MEKD &in_MEKD, Parameters *pa,
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb_1::evaluate(MEKD &in_MEKD,
                                                      const input &in)
 {
-    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_sm_full,
-                                   ME_ddx, ME_uux, ME_ssx,
-                                   ME_ccx, ME_bbx, ME_gg);
+    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_sm_full, ME_ddx,
+                                   ME_uux, ME_ssx, ME_ccx, ME_bbx, ME_gg);
 }
 
 /// ME_runner_all_bkg_Spin0Pm_2f_ttbb_2
 double ME_runner_all_bkg_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD,
                                                      const input &in)
 {
-    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_HEFTU,
-                                   ME_ddx, ME_uux, ME_ssx,
-                                   ME_ccx, ME_bbx, ME_gg);
+    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_HEFTU, ME_ddx,
+                                   ME_uux, ME_ssx, ME_ccx, ME_bbx, ME_gg);
 }
 
 /// ME_runner_all_bkg_Spin0Pm_2f_ttbb_2
-double ME_runner_all_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD,
-                                                 const input &in)
+double ME_runner_all_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD, const input &in)
 {
-    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_HEFTU,
-                                   ME_ddx, ME_uux, ME_ssx,
-                                   ME_ccx, ME_bbx, ME_gg);
+    return evaluate_all_Spin0_ttbb(in_MEKD, in_MEKD.params_HEFTU, ME_ddx,
+                                   ME_uux, ME_ssx, ME_ccx, ME_bbx, ME_gg);
 }
 
 /*

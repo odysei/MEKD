@@ -1,7 +1,7 @@
 /*
  *
  * ME_runners. See defined processes below.
- * 
+ *
  * Mostly backgrounds for ttbb resonance processes
  *
  *
@@ -50,14 +50,11 @@ bool ME_runner_all_bkg_2f_ttbb_2::initialize(const string &param_f)
     if (!ME_Initiator(param_f, "ME_gg", 1,
                       new MG5_heft_updated_full::gg_noh_ttxbbx(), ME_gg))
         return false;
-    
+
     return true;
 }
 
-bool ME_runner_all_bkg_2f_ttbb_2::initialize()
-{
-    return initialize("");
-}
+bool ME_runner_all_bkg_2f_ttbb_2::initialize() { return initialize(""); }
 
 void ME_runner_all_bkg_2f_ttbb_2::deinitialize()
 {

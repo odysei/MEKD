@@ -129,7 +129,7 @@ void Parameters_HiggsPO_UFO::setDependentParameters()
     mdl_sqrt__aS = sqrt(aS);
     G = 2. * mdl_sqrt__aS * sqrt(M_PI);
     mdl_G__exp__2 = pow(G, 2.);
-    
+
     GC_8 = (2. * mdl_complexi * mdl_kZZ * mdl_MZ__exp__2) / mdl_vev +
            (2. * mdl_complexi * mdl_MZ__exp__2 * mdl_noise) / mdl_vev;
     GC_12 = (2. * mdl_eZeL * mdl_complexi) / mdl_vev;

@@ -41,10 +41,7 @@ class gg_Spin0_2f_OFpA
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "g g > e- e+ mu- mu+ a (HEF_MEKD2_1)";
-    }
+    string name() const { return "g g > e- e+ mu- mu+ a (HEF_MEKD2_1)"; }
 
     int code() const { return 0; }
 

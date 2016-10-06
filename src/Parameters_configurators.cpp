@@ -23,31 +23,31 @@ namespace mekd
 /// A ZZ background configurators for Parameters_MEKD
 void Configurator_ZZ_ddx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update);   // compatible here
+    Configurator_Spin0_lep_m(da, update); // compatible here
     update->mdl_MS = da.m.s;
 }
 
 void Configurator_ZZ_uux(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update);   // compatible here
+    Configurator_Spin0_lep_m(da, update); // compatible here
     update->mdl_MC = da.m.u;
 }
 
 void Configurator_ZZ_ssx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update);   // compatible here
+    Configurator_Spin0_lep_m(da, update); // compatible here
     update->mdl_MS = da.m.s;
 }
 
 void Configurator_ZZ_ccx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update);   // compatible here
+    Configurator_Spin0_lep_m(da, update); // compatible here
     update->mdl_MC = da.m.c;
 }
 
 void Configurator_ZZ_bbx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update);   // compatible here
+    Configurator_Spin0_lep_m(da, update); // compatible here
     update->mdl_MS = da.m.b;
 }
 

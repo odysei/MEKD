@@ -39,10 +39,7 @@ class qq_Spin2_UP_SFpA
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
-    {
-        return "c c~ > mu- mu+ mu- mu+ a (HEF_MEKD)";
-    }
+    string name() const { return "c c~ > mu- mu+ mu- mu+ a (HEF_MEKD)"; }
 
     int code() const { return 0; }
 

@@ -76,7 +76,7 @@ void qq_Spin1_2f_UP_OFpA::sigmaKin()
     const int ncomb = 128;
     static bool goodhel[ncomb] = {ncomb * false};
     //	static int ntry = 0, sum_hel = 0, ngood = 0;	// Moved by
-    //Convert_source
+    // Convert_source
     // 0.2
     static int igood[ncomb];
     static int jhel;

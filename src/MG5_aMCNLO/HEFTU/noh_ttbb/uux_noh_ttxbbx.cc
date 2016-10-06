@@ -252,7 +252,7 @@ void uux_noh_ttxbbx::calculate_wavefunctions(const int perm[], const int hel[])
     FFV1P0_3(w[3], w[2], pars->GC_3, pars->ZERO, pars->ZERO, w[11]);
     FFV1_1(w[4], w[10], pars->GC_11, pars->mdl_MB, pars->ZERO, w[12]);
     FFV1_2(w[5], w[10], pars->GC_11, pars->mdl_MB, pars->ZERO, w[13]);
-//     FFS2_3(w[3], w[2], pars->GC_80, pars->mdl_MH, pars->mdl_WH, w[14]);
+    //     FFS2_3(w[3], w[2], pars->GC_80, pars->mdl_MH, pars->mdl_WH, w[14]);
     FFV2_5_3(w[3], w[2], pars->GC_41, pars->GC_53, pars->mdl_MZ, pars->mdl_WZ,
              w[15]);
     FFV2_5_3(w[0], w[1], pars->GC_41, pars->GC_53, pars->mdl_MZ, pars->mdl_WZ,
@@ -262,7 +262,7 @@ void uux_noh_ttxbbx::calculate_wavefunctions(const int perm[], const int hel[])
     FFV2_3_2(w[5], w[16], pars->GC_40, pars->GC_53, pars->mdl_MB, pars->ZERO,
              w[18]);
     FFV1P0_3(w[5], w[4], pars->GC_11, pars->ZERO, pars->ZERO, w[19]);
-//     FFS2_3(w[5], w[4], pars->GC_74, pars->mdl_MH, pars->mdl_WH, w[20]);
+    //     FFS2_3(w[5], w[4], pars->GC_74, pars->mdl_MH, pars->mdl_WH, w[20]);
     FFV2_3(w[5], w[2], pars->GC_39, pars->mdl_MW, pars->mdl_WW, w[21]);
     FFV1_2(w[3], w[10], pars->GC_11, pars->mdl_MT, pars->mdl_WT, w[22]);
     FFV2_3(w[3], w[4], pars->GC_100, pars->mdl_MW, pars->mdl_WW, w[23]);
@@ -298,15 +298,15 @@ void uux_noh_ttxbbx::calculate_wavefunctions(const int perm[], const int hel[])
     FFV1_0(w[13], w[4], w[11], pars->GC_2, amp[3]);
     FFV1_0(w[5], w[12], w[7], pars->GC_11, amp[4]);
     FFV1_0(w[13], w[4], w[7], pars->GC_11, amp[5]);
-//     FFS2_0(w[5], w[12], w[14], pars->GC_74, amp[6]);
-//     FFS2_0(w[13], w[4], w[14], pars->GC_74, amp[7]);
+    //     FFS2_0(w[5], w[12], w[14], pars->GC_74, amp[6]);
+    //     FFS2_0(w[13], w[4], w[14], pars->GC_74, amp[7]);
     FFV2_3_0(w[5], w[12], w[15], pars->GC_40, pars->GC_53, amp[8]);
     FFV2_3_0(w[13], w[4], w[15], pars->GC_40, pars->GC_53, amp[9]);
     FFV1_0(w[5], w[17], w[7], pars->GC_11, amp[10]);
     FFV1_0(w[18], w[4], w[7], pars->GC_11, amp[11]);
     VVV1_0(w[10], w[7], w[19], pars->GC_10, amp[12]);
-//     VVS3_0(w[10], w[7], w[20], pars->GC_13, amp[13]);
-//     VVS3_0(w[10], w[19], w[14], pars->GC_13, amp[14]);
+    //     VVS3_0(w[10], w[7], w[20], pars->GC_13, amp[13]);
+    //     VVS3_0(w[10], w[19], w[14], pars->GC_13, amp[14]);
     FFV2_0(w[22], w[4], w[21], pars->GC_100, amp[15]);
     FFV2_0(w[3], w[12], w[21], pars->GC_100, amp[16]);
     FFV2_0(w[5], w[24], w[23], pars->GC_39, amp[17]);
@@ -317,8 +317,8 @@ void uux_noh_ttxbbx::calculate_wavefunctions(const int perm[], const int hel[])
     FFV1_0(w[22], w[2], w[27], pars->GC_3, amp[22]);
     FFV1_0(w[3], w[24], w[19], pars->GC_11, amp[23]);
     FFV1_0(w[22], w[2], w[19], pars->GC_11, amp[24]);
-//     FFS2_0(w[3], w[24], w[20], pars->GC_80, amp[25]);
-//     FFS2_0(w[22], w[2], w[20], pars->GC_80, amp[26]);
+    //     FFS2_0(w[3], w[24], w[20], pars->GC_80, amp[25]);
+    //     FFS2_0(w[22], w[2], w[20], pars->GC_80, amp[26]);
     FFV2_5_0(w[3], w[24], w[28], pars->GC_41, pars->GC_53, amp[27]);
     FFV2_5_0(w[22], w[2], w[28], pars->GC_41, pars->GC_53, amp[28]);
     FFV1_0(w[3], w[29], w[19], pars->GC_11, amp[29]);
