@@ -10,6 +10,7 @@
 #define MEKD_Supported_MEs_Other_4l_h
 
 #include "MEKD.h"
+#include "MG5_aMCNLO/HEF_UFO_Unitary/ZZ/MEKD_MEs.h"
 
 namespace mekd
 {

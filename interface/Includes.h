@@ -47,7 +47,6 @@ extern "C" {
 #include "MG5_aMCNLO/sm-full/src/Parameters_sm_full.h"
 
 #include "MG5_aMCNLO/HEF_UFO_Unitary/Z4l/MEKD_MEs.h"
-#include "MG5_aMCNLO/HEF_UFO_Unitary/ZZ/MEKD_MEs.h"
 
 #include "MG5_aMCNLO/HEF_MEKD/DY/MEKD_MEs.h"
 #include "MG5_aMCNLO/HEF_MEKD/Spin1/MEKD_MEs.h"
