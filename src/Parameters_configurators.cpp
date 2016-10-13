@@ -239,17 +239,23 @@ inline void Configurator_Spin0_decay(const MG5_HiggsPO_UFO::couplings &c,
     // Z'll
     update->mdl_eZeL = c.eZeL;
     update->mdl_eZeR = c.eZeR;
-    update->mdl_eZmuL = c.eZmuL;
-    update->mdl_eZmuR = c.eZmuR;
+    if (fs == final_4e || fs == final_4eA) {
+        update->mdl_eZmuL = c.eZeL;
+        update->mdl_eZmuR = c.eZeR;
+    } else {
+        update->mdl_eZmuL = c.eZmuL;
+        update->mdl_eZmuR = c.eZmuR;
+    }
 
+    // 'SM' Z
+    update->mdl_gZeL = ci.gZeL;
+    update->mdl_gZeR = ci.gZeR;
     if (fs == final_4e || fs == final_4eA) {
         update->mdl_gZmuL = ci.gZeL;
         update->mdl_gZmuR = ci.gZeR;
     } else {
-        update->mdl_gZeL = ci.gZeL;
-        update->mdl_gZeR = ci.gZeR;
-        update->mdl_gZmuL = ci.gZeL;
-        update->mdl_gZmuR = ci.gZeR;
+        update->mdl_gZmuL = ci.gZmuL;
+        update->mdl_gZmuR = ci.gZmuR;
     }
 }
 
