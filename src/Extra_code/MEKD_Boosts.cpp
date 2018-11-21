@@ -493,6 +493,14 @@ void Boost_5p_and_2p_2_pT0(double mass0, double *pi0, double mass1, double *pi1,
 /// Two particles
 void Boost2CM(double mass0, double *pi0, double mass1, double *pi1)
 {
+    /// For debugging
+    if (debug) {
+        printf("m(01) = %.10E\n", sqrt((pi0[0] + pi1[0]) * (pi0[0] + pi1[0]) -
+                                       (pi0[1] + pi1[1]) * (pi0[1] + pi1[1]) -
+                                       (pi0[2] + pi1[2]) * (pi0[2] + pi1[2]) -
+                                       (pi0[3] + pi1[3]) * (pi0[3] + pi1[3])));
+    }
+
     long double p0[4], p1[4];
     p0[1] = (long double)pi0[1];
     p0[2] = (long double)pi0[2];
@@ -500,14 +508,6 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1)
     p1[1] = (long double)pi1[1];
     p1[2] = (long double)pi1[2];
     p1[3] = (long double)pi1[3];
-
-    /// For debugging
-    if (debug) {
-        printf("m(01) = %.10E\n", sqrt((p0[0] + p1[0]) * (p0[0] + p1[0]) -
-                                       (p0[1] + p1[1]) * (p0[1] + p1[1]) -
-                                       (p0[2] + p1[2]) * (p0[2] + p1[2]) -
-                                       (p0[3] + p1[3]) * (p0[3] + p1[3])));
-    }
 
     p0[0] = sqrt(mass0 * mass0 + p0[1] * p0[1] + p0[2] * p0[2] + p0[3] * p0[3]);
     p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);
@@ -556,6 +556,14 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1)
 void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
               double mass2, double *pi2)
 {
+    /// For debugging
+    if (debug) {
+        printf("m(01) = %.10E\n", sqrt((pi0[0] + pi1[0]) * (pi0[0] + pi1[0]) -
+                                       (pi0[1] + pi1[1]) * (pi0[1] + pi1[1]) -
+                                       (pi0[2] + pi1[2]) * (pi0[2] + pi1[2]) -
+                                       (pi0[3] + pi1[3]) * (pi0[3] + pi1[3])));
+    }
+
     long double p0[4], p1[4], p2[4];
     p0[1] = (long double)pi0[1];
     p0[2] = (long double)pi0[2];
@@ -566,14 +574,6 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
     p2[1] = (long double)pi2[1];
     p2[2] = (long double)pi2[2];
     p2[3] = (long double)pi2[3];
-
-    /// For debugging
-    if (debug) {
-        printf("m(01) = %.10E\n", sqrt((p0[0] + p1[0]) * (p0[0] + p1[0]) -
-                                       (p0[1] + p1[1]) * (p0[1] + p1[1]) -
-                                       (p0[2] + p1[2]) * (p0[2] + p1[2]) -
-                                       (p0[3] + p1[3]) * (p0[3] + p1[3])));
-    }
 
     p0[0] = sqrt(mass0 * mass0 + p0[1] * p0[1] + p0[2] * p0[2] + p0[3] * p0[3]);
     p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);
@@ -629,6 +629,19 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
 void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
               double mass2, double *pi2, double mass3, double *pi3)
 {
+    /// For debugging
+    if (debug) {
+        printf("m(01) = %.10E; m(23) = %.10E\n",
+               sqrt((pi0[0] + pi1[0]) * (pi0[0] + pi1[0]) -
+                    (pi0[1] + pi1[1]) * (pi0[1] + pi1[1]) -
+                    (pi0[2] + pi1[2]) * (pi0[2] + pi1[2]) -
+                    (pi0[3] + pi1[3]) * (pi0[3] + pi1[3])),
+               sqrt((pi2[0] + pi3[0]) * (pi2[0] + pi3[0]) -
+                    (pi2[1] + pi3[1]) * (pi2[1] + pi3[1]) -
+                    (pi2[2] + pi3[2]) * (pi2[2] + pi3[2]) -
+                    (pi2[3] + pi3[3]) * (pi2[3] + pi3[3])));
+    }
+
     long double p0[4], p1[4], p2[4], p3[4];
     p0[1] = (long double)pi0[1];
     p0[2] = (long double)pi0[2];
@@ -642,19 +655,6 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
     p3[1] = (long double)pi3[1];
     p3[2] = (long double)pi3[2];
     p3[3] = (long double)pi3[3];
-
-    /// For debugging
-    if (debug) {
-        printf("m(01) = %.10E; m(23) = %.10E\n",
-               sqrt((p0[0] + p1[0]) * (p0[0] + p1[0]) -
-                    (p0[1] + p1[1]) * (p0[1] + p1[1]) -
-                    (p0[2] + p1[2]) * (p0[2] + p1[2]) -
-                    (p0[3] + p1[3]) * (p0[3] + p1[3])),
-               sqrt((p2[0] + p3[0]) * (p2[0] + p3[0]) -
-                    (p2[1] + p3[1]) * (p2[1] + p3[1]) -
-                    (p2[2] + p3[2]) * (p2[2] + p3[2]) -
-                    (p2[3] + p3[3]) * (p2[3] + p3[3])));
-    }
 
     p0[0] = sqrt(mass0 * mass0 + p0[1] * p0[1] + p0[2] * p0[2] + p0[3] * p0[3]);
     p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);
@@ -722,6 +722,19 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
               double mass2, double *pi2, double mass3, double *pi3,
               double mass4, double *pi4)
 {
+    /// For debugging
+    if (debug) {
+        printf("m(01) = %.10E; m(23) = %.10E\n",
+               sqrt((pi0[0] + pi1[0]) * (pi0[0] + pi1[0]) -
+                    (pi0[1] + pi1[1]) * (pi0[1] + pi1[1]) -
+                    (pi0[2] + pi1[2]) * (pi0[2] + pi1[2]) -
+                    (pi0[3] + pi1[3]) * (pi0[3] + pi1[3])),
+               sqrt((pi2[0] + pi3[0]) * (pi2[0] + pi3[0]) -
+                    (pi2[1] + pi3[1]) * (pi2[1] + pi3[1]) -
+                    (pi2[2] + pi3[2]) * (pi2[2] + pi3[2]) -
+                    (pi2[3] + pi3[3]) * (pi2[3] + pi3[3])));
+    }
+
     long double p0[4], p1[4], p2[4], p3[4], p4[4];
     p0[1] = (long double)pi0[1];
     p0[2] = (long double)pi0[2];
@@ -738,19 +751,6 @@ void Boost2CM(double mass0, double *pi0, double mass1, double *pi1,
     p4[1] = (long double)pi4[1];
     p4[2] = (long double)pi4[2];
     p4[3] = (long double)pi4[3];
-
-    /// For debugging
-    if (debug) {
-        printf("m(01) = %.10E; m(23) = %.10E\n",
-               sqrt((p0[0] + p1[0]) * (p0[0] + p1[0]) -
-                    (p0[1] + p1[1]) * (p0[1] + p1[1]) -
-                    (p0[2] + p1[2]) * (p0[2] + p1[2]) -
-                    (p0[3] + p1[3]) * (p0[3] + p1[3])),
-               sqrt((p2[0] + p3[0]) * (p2[0] + p3[0]) -
-                    (p2[1] + p3[1]) * (p2[1] + p3[1]) -
-                    (p2[2] + p3[2]) * (p2[2] + p3[2]) -
-                    (p2[3] + p3[3]) * (p2[3] + p3[3])));
-    }
 
     p0[0] = sqrt(mass0 * mass0 + p0[1] * p0[1] + p0[2] * p0[2] + p0[3] * p0[3]);
     p1[0] = sqrt(mass1 * mass1 + p1[1] * p1[1] + p1[2] * p1[2] + p1[3] * p1[3]);

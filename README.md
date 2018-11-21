@@ -7,7 +7,7 @@
 
 get with
 
-	$ git clone https://github.com/odysei/MEKD
+    $ git clone https://github.com/odysei/MEKD
 
 
 ### Build (standalone)
@@ -23,7 +23,7 @@ Bash procedure follows below.
 
 * Buil the library: libMEKD.so
 
-	$ make -j N
+    $ make -j N
 
 
 ### Directory structure
@@ -110,11 +110,11 @@ https://www.kernel.org/doc/Documentation/CodingStyle
 * **RUN clang-format**: some automatization for C++ is available through
 clang-format. Use it! Run:
 
-	$ clang-format -style=file -i *.h
+    $ clang-format -style=file -i *.h
 
-	$ clang-format -style=file -i *.cc
+    $ clang-format -style=file -i *.cc
 
-	$ clang-format -style=file -i *.cpp
+    $ clang-format -style=file -i *.cpp
 
 to update all files in a current directory.
 
