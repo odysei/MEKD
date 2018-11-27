@@ -2,7 +2,7 @@
 ### Src and build locations ###
 ###############################
 
-export BIN_DIR=../bin
+export BIN_DIR=bin
 
 
 
@@ -39,13 +39,16 @@ MEKD:
 	$(MAKE) -C ../
 
 
-$(TEST_1):
+$(TEST_1): $(BIN_DIR)
 	$(MAKE) -C $(TEST_1)
 
 
-$(TEST_2):
+$(TEST_2): $(BIN_DIR)
 	$(MAKE) -C $(TEST_2)
 
+
+$(BIN_DIR):
+	mkdir -p ${BIN_DIR}
 
 
 

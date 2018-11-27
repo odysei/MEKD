@@ -39,14 +39,16 @@ MEKD:
 	$(MAKE) -C ../
 
 
-$(UTILS_1):
+$(UTILS_1): $(BIN_DIR)
 	$(MAKE) -C $(UTILS_1)
 
 
-$(UTILS_2):
+$(UTILS_2): $(BIN_DIR)
 	$(MAKE) -C $(UTILS_2)
 
 
+$(BIN_DIR):
+	mkdir -p ${BIN_DIR}
 
 
 #####################

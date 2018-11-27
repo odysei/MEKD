@@ -7,8 +7,8 @@ UNAME := $(shell uname)
 
 PROJECT_DIR=../../
 
-include $(PROJECT_DIR)/Makefile_includes
-include $(PROJECT_DIR)/Makefile_flags
+include $(PROJECT_DIR)/makefiles/include.mk
+include $(PROJECT_DIR)/makefiles/flags.mk
 
 
 
