@@ -8,9 +8,9 @@
 #define MEKD_Supported_MEs_Spin0_ttbb_h
 
 #include "MEKD.h"
-#include "MG5_aMCNLO/sm-full/ttbb_all/MEKD_MEs.h"
 #include "MG5_aMCNLO/HEFTU/h_ttbb/MEKD_MEs.h"
 #include "MG5_aMCNLO/HEFTU/ttbb_all/MEKD_MEs.h"
+#include "MG5_aMCNLO/sm-full/ttbb_all/MEKD_MEs.h"
 
 namespace mekd
 {
@@ -137,7 +137,7 @@ class ME_runner_all_Spin0Pm_2f_ttbb_2 : public ME_runner
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

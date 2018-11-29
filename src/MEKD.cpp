@@ -1,8 +1,8 @@
 /*************************************************************************
-*  Authors:   MEKD fans
-*  More info: http://mekd.ihepa.ufl.edu
-*  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
-*************************************************************************/
+ *  Authors:   MEKD fans
+ *  More info: http://mekd.ihepa.ufl.edu
+ *  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
+ *************************************************************************/
 #ifndef MEKD_cpp
 #define MEKD_cpp
 
@@ -33,9 +33,10 @@ MEKD::MEKD()
 {
     Set_default_params(); // loads mostly flag (s) and param (s)
     params_MEKD = Parameters_MEKD::getInstance();
-    params_sm_full = Parameters_sm_full::getInstance();
     params_HEFTU = Parameters_HEFTU::getInstance();
     params_HPO = Parameters_HiggsPO_UFO::getInstance();
+    params_Leptophilic = Parameters_Leptophilic_UFO::getInstance();
+    params_sm_full = Parameters_sm_full::getInstance();
 
     Check_MEs();
 
@@ -93,12 +94,14 @@ int MEKD::Load_parameters(parameters &pa, data &da)
     SLHAReader_MEKD slha(pa.params_MG_file);
     params_MEKD->setIndependentParameters(slha);
     params_MEKD->setIndependentCouplings();
-    params_sm_full->setIndependentParameters(slha);
-    params_sm_full->setIndependentCouplings();
     params_HEFTU->setIndependentParameters(slha);
     params_HEFTU->setIndependentCouplings();
     params_HPO->setIndependentParameters(slha);
     params_HPO->setIndependentCouplings();
+    params_Leptophilic->setIndependentParameters(slha);
+    params_Leptophilic->setIndependentCouplings();
+    params_sm_full->setIndependentParameters(slha);
+    params_sm_full->setIndependentCouplings();
 
     /// Initializing parameters
     if (!pa.loaded) {
@@ -410,6 +413,6 @@ void MEKD::Approx_pos_z_parton(double *p, const double E)
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif // end of MEKD_MEKD_cpp

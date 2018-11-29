@@ -1609,7 +1609,7 @@ class ME_runner_no_Spin2_2f_4lA : public ME_runner
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

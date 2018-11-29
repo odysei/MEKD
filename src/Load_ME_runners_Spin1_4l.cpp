@@ -42,6 +42,9 @@ bool MEKD::Load_ME_runners_try_Spin1_4l(const process_description &d,
     if (Load_ME_runners_try(d, new ME_runner_no_Spin1_2f_4l(), v))
         return true;
 
+    if (Load_ME_runners_try(d, new ME_runner_qq_Z_Zp_Spin1M_2f_4l(), v))
+        return true;
+
     return false;
 }
 
@@ -78,7 +81,7 @@ bool MEKD::Load_ME_runners_try_Spin1_4lA(const process_description &d,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 /*

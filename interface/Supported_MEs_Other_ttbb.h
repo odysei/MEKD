@@ -67,7 +67,7 @@ class ME_runner_all_bkg_2f_ttbb_2 : public ME_runner
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

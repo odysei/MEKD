@@ -1,31 +1,31 @@
 /*************************************************************************
-*  Authors:     MEKD fans
-*  More info:   http://mekd.ihepa.ufl.edu
-*  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
-*  Info:        MEKD definitions are provided here.
-*************************************************************************/
+ *  Authors:     MEKD fans
+ *  More info:   http://mekd.ihepa.ufl.edu
+ *  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
+ *  Info:        MEKD definitions are provided here.
+ *************************************************************************/
 #ifndef MEKD_Definitions_h
 #define MEKD_Definitions_h
 
 #include "MEKD.h"
-
-using namespace std;
 
 namespace mekd
 {
 
 enum model_types {
     model_empty,
-    model_MEKD,    // any HEF_MEKDn model
-    model_HEF_UFO, // HEF_UFO or HEF_Unitary
-    model_SM,      // sm-full
-    model_HEFTU,   // updated heft-full
-    model_HiggsPO  // Higgs pseudoobservables
+    model_MEKD,          // any HEF_MEKDn model
+    model_HEF_UFO,       // HEF_UFO or HEF_Unitary
+    model_SM,            // sm-full
+    model_HEFTU,         // updated heft-full
+    model_HiggsPO,       // Higgs pseudoobservables
+    model_Leptophilic_Zp // Leptophilic Zprime UFO
 };
 
 enum process_types {
     proc_empty,
-    proc_simple, // typically production couples to X
+    proc_simple,  // typically production couples to X
+    proc_cascade, // X particle further down the road, like q qbar -> Z -> X
     proc_ttX,
     proc_test, // a place to put in new MEs for tests
     proc_RAW   // an experimental setting
@@ -106,7 +106,7 @@ enum exit_codes {
     EXIT_ERROR_INPUT,
     EXIT_ERROR_CONFIG
 };
-}
+} // namespace mekd
 
 namespace MG5_HiggsPO_UFO
 {
@@ -140,23 +140,23 @@ struct couplings_ex {
     double gZmuL;
     double gZmuR;
 };
-}
+} // namespace MG5_HiggsPO_UFO
 
 namespace mekd
 {
 
 struct couplings {
     // spin 0
-    complex<double> rhou01, rhou02, rhoc01, rhoc02, rhod01, rhod02, rhos01,
+    std::complex<double> rhou01, rhou02, rhoc01, rhoc02, rhod01, rhod02, rhos01,
         rhos02, rhob01, rhob02;
 
     // spin 1
-    complex<double> rhou11, rhou12, rhou13, rhou14, rhoc11, rhoc12, rhoc13,
+    std::complex<double> rhou11, rhou12, rhou13, rhou14, rhoc11, rhoc12, rhoc13,
         rhoc14, rhod11, rhod12, rhod13, rhod14, rhos11, rhos12, rhos13, rhos14,
         rhob11, rhob12, rhob13, rhob14;
 
     // spin 2
-    complex<double> rhou21, rhou22, rhou23, rhou24, rhoc21, rhoc22, rhoc23,
+    std::complex<double> rhou21, rhou22, rhou23, rhou24, rhoc21, rhoc22, rhoc23,
         rhoc24, rhod21, rhod22, rhod23, rhod24, rhos21, rhos22, rhos23, rhos24,
         rhob21, rhob22, rhob23, rhob24;
 };
@@ -183,10 +183,10 @@ struct data {
     //     vector<int> id;
     // 	vector<double *> fp;  // final state p
 
-    vector<pair<int, double *>> id_p;
+    std::vector<std::pair<int, double *>> id_p;
 
-    final_state_types_ fs; // final_state_types_ final_state_;
-    vector<double *> p;    // with initial state partons
+    final_state_types_ fs;   // final_state_types_ final_state_;
+    std::vector<double *> p; // with initial state partons
 
     double PDFx1, PDFx2;
 
@@ -197,14 +197,14 @@ struct data {
 
     // custom and mixing couplings
     MG5_HiggsPO_UFO::couplings *mix_c_HPO;
-    complex<double> *mix_coeffs_Spin0;
-    complex<double> *mix_coeffs_Spin1;
-    complex<double> *mix_coeffs_Spin2;
+    std::complex<double> *mix_coeffs_Spin0;
+    std::complex<double> *mix_coeffs_Spin1;
+    std::complex<double> *mix_coeffs_Spin2;
     // Are not really needed for v3 and will be dropped:
-    complex<double> mix_coeffs_Spin0_pred[4];
-    complex<double> mix_coeffs_Spin1_pred[8];
-    complex<double> mix_coeffs_SpinX_pred[20]; // should be max of all
+    std::complex<double> mix_coeffs_Spin0_pred[4];
+    std::complex<double> mix_coeffs_Spin1_pred[8];
+    std::complex<double> mix_coeffs_SpinX_pred[20]; // should be max of all
 };
-}
+} // namespace mekd
 
 #endif

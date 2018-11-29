@@ -24,6 +24,9 @@ $(INCDIR1)/ME_runners/Spin0_4l_basic.o \
 $(INCDIR1)/ME_runners/Spin0_4l_eval.o \
 $(INCDIR1)/ME_runners/Spin0_4l_init.o \
 $(INCDIR1)/ME_runners/Spin1_4l_prelim.o \
+$(INCDIR1)/ME_runners/Spin1_4l_basic.o \
+$(INCDIR1)/ME_runners/Spin1_4l_eval.o \
+$(INCDIR1)/ME_runners/Spin1_4l_init.o \
 $(INCDIR1)/ME_runners/Spin2_4l_prelim.o \
 $(INCDIR1)/ME_runners/Other_ttbb_basic.o \
 $(INCDIR1)/ME_runners/Other_ttbb_eval.o \
@@ -303,6 +306,34 @@ $(INCDIR2_5)/Spin0_4l/Spin0_SF.o
 
 
 
+##############################
+###                        ###
+### Model: Leptophilic_UFO ###
+###                        ###
+##############################
+
+objects8_C=\
+$(INCDIR2_6)/src/HelAmps_Leptophilic_UFO.o \
+$(INCDIR2_6)/src/Parameters_Leptophilic_UFO.o
+
+
+
+#########################################
+### z_zp (Leptophilic_UFO)  processes ###
+#########################################
+
+objects8_z_zp=\
+$(INCDIR2_6)/z_zp/qq_z_zp_DN_OF.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_DN_SF.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_UP_OF.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_UP_SF.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_DN_OFpA.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_DN_SFpA.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_UP_OFpA.o \
+$(INCDIR2_6)/z_zp/qq_z_zp_UP_SFpA.o
+
+
+
 ########################
 ### Combined objects ###
 ########################
@@ -325,5 +356,8 @@ $(objects6_ttH_bkg) $(objects6_ttH) $(objects6_bkg)
 objects7=$(objects7_C) \
 $(objects7_spin0)
 
+objects8=$(objects8_C) \
+$(objects8_z_zp)
+
 objects=$(objects0) $(objects1) $(objects2) $(objects3) $(objects4) \
-$(objects5) $(objects6) $(objects7)
+$(objects5) $(objects6) $(objects7) $(objects8)

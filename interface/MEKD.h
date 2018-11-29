@@ -1,8 +1,8 @@
 /*************************************************************************
-*  Authors:   MEKD fans
-*  More info: http://mekd.ihepa.ufl.edu
-*  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
-*************************************************************************/
+ *  Authors:   MEKD fans
+ *  More info: http://mekd.ihepa.ufl.edu
+ *  Contact:   odysei@cern.ch, mekd@phys.ufl.edu
+ *************************************************************************/
 #ifndef MEKD_h
 #define MEKD_h
 
@@ -106,9 +106,10 @@ class MEKD
     /// Parameter container. For experts only
     SLHAReader_MEKD params_MG;
     Parameters_MEKD *params_MEKD;
-    Parameters_sm_full *params_sm_full;
     Parameters_HEFTU *params_HEFTU;
     Parameters_HiggsPO_UFO *params_HPO;
+    Parameters_Leptophilic_UFO *params_Leptophilic;
+    Parameters_sm_full *params_sm_full;
 
     /// Internal data
     data idata;
@@ -844,6 +845,6 @@ class MEKD
 };
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif

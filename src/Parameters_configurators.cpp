@@ -7,14 +7,61 @@
 #ifndef Parameters_configurators_cpp
 #define Parameters_configurators_cpp
 
-#include "MEKD.h"
 #include "Parameters_configurators.h"
+#include "MEKD.h"
 /// MEKD tools
 #include "MEKD_CalcHEP_Extra_functions.h"
 #include "higgs_properties/hggeffective.h"
 
 namespace mekd
 {
+
+template <class Parameters>
+inline void Configurator_lep_m(const data &da, Parameters *update)
+{
+    const auto fs = da.fs;
+    if (fs == final_4e || fs == final_4eA) {
+        /// Common mass for the same-flavor leptons
+        update->mdl_MM = da.m.e;
+        return;
+    }
+
+    if (fs == final_4mu || fs == final_4muA) {
+        /// Common mass for the same-flavor leptons
+        update->mdl_MM = da.m.mu;
+        return;
+    }
+
+    if (fs == final_2e2mu || fs == final_2e2muA) {
+        /// Masses for the opposite-flavor leptons
+        update->mdl_Me = da.m.e;
+        update->mdl_MM = da.m.mu;
+        return;
+    }
+}
+
+inline void Configurator_lep_m(const data &da, double &m_e, double &m_mu)
+{
+    const auto fs = da.fs;
+    if (fs == final_4e || fs == final_4eA) {
+        /// Common mass for the same-flavor leptons
+        m_mu = da.m.e;
+        return;
+    }
+
+    if (fs == final_4mu || fs == final_4muA) {
+        /// Common mass for the same-flavor leptons
+        m_mu = da.m.mu;
+        return;
+    }
+
+    if (fs == final_2e2mu || fs == final_2e2muA) {
+        /// Masses for the opposite-flavor leptons
+        m_e = da.m.e;
+        m_mu = da.m.mu;
+        return;
+    }
+}
 
 /*
  * HEF_MEKD (HEF_UFO, HZZ_Unitary) configuration block
@@ -23,31 +70,31 @@ namespace mekd
 /// A ZZ background configurators for Parameters_MEKD
 void Configurator_ZZ_ddx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update); // compatible here
+    Configurator_lep_m(da, update);
     update->mdl_MS = da.m.s;
 }
 
 void Configurator_ZZ_uux(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update); // compatible here
+    Configurator_lep_m(da, update);
     update->mdl_MC = da.m.u;
 }
 
 void Configurator_ZZ_ssx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update); // compatible here
+    Configurator_lep_m(da, update);
     update->mdl_MS = da.m.s;
 }
 
 void Configurator_ZZ_ccx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update); // compatible here
+    Configurator_lep_m(da, update);
     update->mdl_MC = da.m.c;
 }
 
 void Configurator_ZZ_bbx(const data &da, Parameters_MEKD *update)
 {
-    Configurator_Spin0_lep_m(da, update); // compatible here
+    Configurator_lep_m(da, update);
     update->mdl_MS = da.m.b;
 }
 
@@ -64,7 +111,7 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
     const double hZZ = param.hZZ_coupling;
     double lgg; // lambda hgg
 
-    Configurator_Spin0_lep_m(da, update);
+    Configurator_lep_m(da, update);
 
     if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
@@ -95,30 +142,6 @@ void Configurator_Spin0(const complex<double> *c, const data &da,
             Configurator_Spin0_decay(c, mZ, M, hZZ, update);
         else
             Configurator_Spin0_decay(c, mZ, mH, hZZ, update);
-    }
-}
-
-template <class Parameters>
-inline void Configurator_Spin0_lep_m(const data &da, Parameters *update)
-{
-    const auto fs = da.fs;
-    if (fs == final_4e || fs == final_4eA) {
-        /// Common mass for the same-flavor leptons
-        update->mdl_MM = da.m.e;
-        return;
-    }
-
-    if (fs == final_4mu || fs == final_4muA) {
-        /// Common mass for the same-flavor leptons
-        update->mdl_MM = da.m.mu;
-        return;
-    }
-
-    if (fs == final_2e2mu || fs == final_2e2muA) {
-        /// Masses for the opposite-flavor leptons
-        update->mdl_Me = da.m.e;
-        update->mdl_MM = da.m.mu;
-        return;
     }
 }
 
@@ -181,7 +204,7 @@ void Configurator_Spin0(const MG5_HiggsPO_UFO::couplings &c, const data &da,
     double wH = 1;
     double lgg; // lambda hgg
 
-    Configurator_Spin0_lep_m(da, update);
+    Configurator_lep_m(da, update);
 
     if (flag.use_mX_eq_Mdec) {
         update->mdl_MH = M;
@@ -323,7 +346,42 @@ void Configurator_Spin0(const data &da, const parameters &param,
     update->mdl_WH = wH;
 }
 
-/// end of namespace
+/*
+ * Leptophilic_UFO configuration block
+ */
+
+/// Spin-1 configurators for Parameters_Leptophilic_UFO
+void Configurator_Spin1_ddx(const data &da, Parameters_Leptophilic_UFO *update)
+{
+    Configurator_lep_m(da, update->mdl_Me, update->mdl_MMU);
+    update->mdl_MS = da.m.s;
 }
+
+void Configurator_Spin1_uux(const data &da, Parameters_Leptophilic_UFO *update)
+{
+    Configurator_lep_m(da, update->mdl_Me, update->mdl_MMU);
+    update->mdl_MC = da.m.u;
+}
+
+void Configurator_Spin1_ssx(const data &da, Parameters_Leptophilic_UFO *update)
+{
+    Configurator_lep_m(da, update->mdl_Me, update->mdl_MMU);
+    update->mdl_MS = da.m.s;
+}
+
+void Configurator_Spin1_ccx(const data &da, Parameters_Leptophilic_UFO *update)
+{
+    Configurator_lep_m(da, update->mdl_Me, update->mdl_MMU);
+    update->mdl_MC = da.m.c;
+}
+
+void Configurator_Spin1_bbx(const data &da, Parameters_Leptophilic_UFO *update)
+{
+    Configurator_lep_m(da, update->mdl_Me, update->mdl_MMU);
+    update->mdl_MS = da.m.b;
+}
+
+/// end of namespace
+} // namespace mekd
 
 #endif

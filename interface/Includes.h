@@ -2,10 +2,10 @@
 #define MEKD_Includes_h
 
 /// C++ libraries
-#include <cstdlib>   // needed?
 #include <algorithm> // for sorting
 #include <cmath>
 #include <complex>
+#include <cstdlib> // needed?
 #include <fstream> // for checking file location
 #include <iostream>
 #include <sstream>
@@ -44,6 +44,7 @@ extern "C" {
 #include "MG5_aMCNLO/Commons/Parameters_MEKD.h"
 #include "MG5_aMCNLO/HEFTU/src/Parameters_heft_updated_full.h"
 #include "MG5_aMCNLO/HiggsPO_UFO/src/Parameters_HiggsPO_UFO.h"
+#include "MG5_aMCNLO/Leptophilic_UFO/src/Parameters_Leptophilic_UFO.h"
 #include "MG5_aMCNLO/sm-full/src/Parameters_sm_full.h"
 
 #include "MG5_aMCNLO/HEF_UFO_Unitary/Z4l/MEKD_MEs.h"

@@ -275,7 +275,7 @@ class ME_runner_qq_bkg_Zt_2f_4lA : public ME_runner
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

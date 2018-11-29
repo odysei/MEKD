@@ -1,9 +1,9 @@
 /*************************************************************************
-*  Authors:     MEKD fans
-*  More info:   http://mekd.ihepa.ufl.edu
-*  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
-*  Info:        MEKD standard containers/structs are defined here.
-*************************************************************************/
+ *  Authors:     MEKD fans
+ *  More info:   http://mekd.ihepa.ufl.edu
+ *  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
+ *  Info:        MEKD standard containers/structs are defined here.
+ *************************************************************************/
 #ifndef MEKD_Inputs_h
 #define MEKD_Inputs_h
 
@@ -25,21 +25,21 @@ struct process_description {
 
 // Standardized input to calculator
 struct input {
-    vector<double *> *p; // {E, px, py, pz}
-    vector<int> *id;     // PDG ids
+    std::vector<double *> *p; // {E, px, py, pz}
+    std::vector<int> *id;     // PDG ids
 };
-}
+} // namespace mekd
 
 namespace MG5_HEF_MEKD
 {
 
 // Standardized input to the calculator for a custom-coupling run
 struct input_c : mekd::input {
-    complex<double> mix_coeffs_Spin0[4];
-    complex<double> mix_coeffs_Spin1[8];
-    complex<double> mix_coeffs_Spin2[20];
+    std::complex<double> mix_coeffs_Spin0[4];
+    std::complex<double> mix_coeffs_Spin1[8];
+    std::complex<double> mix_coeffs_Spin2[20];
 };
-}
+} // namespace MG5_HEF_MEKD
 
 namespace MG5_HiggsPO_UFO
 {
@@ -48,7 +48,7 @@ namespace MG5_HiggsPO_UFO
 struct input_c : mekd::input {
     couplings c;
 };
-}
+} // namespace MG5_HiggsPO_UFO
 
 namespace mekd
 {
@@ -98,11 +98,11 @@ struct parameters {
     double vev; // Vacuum expectation value
     double hZZ_coupling;
 
-    string params_MG_file; // Location where a parameter card is stored
-    string PDF_file;       // PDF/PDT table file
+    std::string params_MG_file; // Location where a parameter card is stored
+    std::string PDF_file;       // PDF/PDT table file
 };
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif

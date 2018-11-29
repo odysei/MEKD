@@ -35,7 +35,7 @@ const complex<double> definition_Spin0M_2f[4] = {
     complex<double>(0, 0), complex<double>(1, 0),
     complex<double>(0, 0),  // placeholder
     complex<double>(0, 0)}; // placeholder
-}
+} // namespace MG5_HEF_MEKD
 
 namespace MG5_HiggsPO_UFO
 {
@@ -44,6 +44,6 @@ const couplings definition_Spin0Pm = {1, 0, 0, // XZZ[3]
                                       1, 0,    // XZA[2]
                                       1, 0,    // XAA[2]
                                       0, 0, 0, 0};
-}
+} // namespace MG5_HiggsPO_UFO
 
 #endif

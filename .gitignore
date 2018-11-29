@@ -1,7 +1,7 @@
 *.o
+*.so
 bin/
 data/examples_4l/Events/ID_exyz_eemm.dat
 data/examples_ttbb/Events/ttbb_all.lhe_proc
 data/examples_ttbb/Events/ttbb_h.lhe_proc
 data/examples_ttbb/Events/ttbb_noh.lhe_proc
-lib/
