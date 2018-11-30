@@ -1,6 +1,6 @@
 //==========================================================================
 // This file has been automatically generated for C++ Standalone by
-// MadGraph5_aMC@NLO v. 2.6.3.2, 2018-06-22
+// MadGraph5_aMC@NLO v. 2.6.4, 2018-11-09
 // By the MadGraph5_aMC@NLO Development Team
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
@@ -18,7 +18,7 @@ namespace MG5_Leptophilic_UFO
 
 //==========================================================================
 // A class for calculating the matrix elements for
-// Process: c c~ > e- e+ mu- mu+ a WEIGHTED<=10 / h @8
+// Process: c c~ > e- e+ mu- mu+ a WEIGHTED<=10 / h @3
 //--------------------------------------------------------------------------
 
 class qq_z_zp_UP_OFpA
@@ -46,7 +46,7 @@ class qq_z_zp_UP_OFpA
         return "c c~ > e- e+ mu- mu+ a (Leptophilic_UFO)";
     }
 
-    int code() const { return 8; }
+    int code() const { return 3; }
 
     const vector<double> &getMasses() const { return mME; }
 
@@ -65,7 +65,7 @@ class qq_z_zp_UP_OFpA
     // Constants for array limits
     static const int ninitial = 2;
     static const int nexternal = 7;
-    static const int nprocesses = 1;
+    static const int nprocesses = 2;
 
   private:
     // Private functions to calculate the matrix element for all subprocesses
@@ -76,7 +76,7 @@ class qq_z_zp_UP_OFpA
     static const int namplitudes = 224;
     std::complex<double> amp[namplitudes];
     int ntry, sum_hel, ngood;
-    double matrix_8_ccx_emepmummupa_no_h();
+    double matrix_3_ccx_emepmummupa_no_h();
 
     // Store the matrix element value from sigmaKin
     double matrix_element[nprocesses];

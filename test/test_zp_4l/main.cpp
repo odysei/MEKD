@@ -10,10 +10,10 @@
 #ifndef MEKD__test__zp_4l__main_cpp
 #define MEKD__test__zp_4l__main_cpp
 
-#include "test.h"
+#include "MEKD.h"
 #include "check_models.h"
 #include "functionality.h"
-#include "MEKD.h"
+#include "test.h"
 
 using namespace mekd;
 
@@ -85,17 +85,17 @@ input Initialize_tester(input &in)
 
     in.p = new vector<double *>;
     in.p->reserve(4);
-    in.p->push_back(new double[4] {15.256290484000001, 8.6394505145000000,
-                                   8.4375424780999992, 9.3232060364000002});
-        
-    in.p->push_back(new double[4] {24.535694836000001, 10.740685492000001,
-                                   0.10512935225000000, 22.059622477000001});
-        
-    in.p->push_back(new double[4] {96.282168608999996, -40.605831017000000,
-                                   -34.322569567000002, 80.270620613000006});
-        
-    in.p->push_back(new double[4] {144.24476946999999, 21.225695010999999,
-                                   25.779897736999999, 140.32608132999999});
+    in.p->push_back(new double[4]{4.2621653039e+01, 2.9619065864e+01,
+                                  2.9236670684e+01, -9.1942010082});
+
+    in.p->push_back(new double[4]{5.0850757806e+01, -2.3851305751e+01,
+                                  -3.6426902287e+01, 2.6267766806e+01});
+
+    in.p->push_back(
+        new double[4]{5.5643996058, 4.1393213289, -3.2198530106, 1.8574026123});
+
+    in.p->push_back(new double[4]{1.4650444330e+01, -9.9070814421,
+                                  1.0410084614e+01, 2.8467930522});
 
     return in;
 }

@@ -1,6 +1,6 @@
 //==========================================================================
 // This file has been automatically generated for C++ Standalone by
-// MadGraph5_aMC@NLO v. 2.6.3.2, 2018-06-22
+// MadGraph5_aMC@NLO v. 2.6.4, 2018-11-09
 // By the MadGraph5_aMC@NLO Development Team
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
@@ -13,7 +13,7 @@ namespace MG5_Leptophilic_UFO
 
 //==========================================================================
 // Class member functions for calculating the matrix elements for
-// Process: s s~ > mu- mu+ mu- mu+ WEIGHTED<=8 / h @1
+// Process: s s~ > mu- mu+ mu- mu+ WEIGHTED<=8 / h @2
 
 //--------------------------------------------------------------------------
 // Initialize process.
@@ -131,7 +131,7 @@ void qq_z_zp_DN_SF::sigmaKin()
         {1, 1, 1, 1, -1, -1},     {1, 1, 1, 1, -1, 1},
         {1, 1, 1, 1, 1, -1},      {1, 1, 1, 1, 1, 1}};
     // Denominators: spins, colors and identical particles
-    const int denominators[nprocesses] = {144};
+    const int denominators[nprocesses] = {144, 144};
 
     ntry = ntry + 1;
 
@@ -150,8 +150,17 @@ void qq_z_zp_DN_SF::sigmaKin()
         for (int ihel = 0; ihel < ncomb; ihel++) {
             if (goodhel[ihel] || ntry < 2) {
                 calculate_wavefunctions(perm, helicities[ihel]);
-                t[0] = matrix_1_ssx_mummupmummup_no_h();
-
+                t[0] = matrix_2_ssx_mummupmummup_no_h();
+                // Mirror initial state momenta for mirror process
+                perm[0] = 1;
+                perm[1] = 0;
+                // Calculate wavefunctions
+                calculate_wavefunctions(perm, helicities[ihel]);
+                // Mirror back
+                perm[0] = 0;
+                perm[1] = 1;
+                // Calculate matrix elements
+                t[1] = matrix_2_ssx_mummupmummup_no_h();
                 double tsum = 0;
                 for (int iproc = 0; iproc < nprocesses; iproc++) {
                     matrix_element[iproc] += t[iproc];
@@ -176,8 +185,17 @@ void qq_z_zp_DN_SF::sigmaKin()
             double hwgt = double(ngood) / double(sum_hel);
             int ihel = igood[jhel];
             calculate_wavefunctions(perm, helicities[ihel]);
-            t[0] = matrix_1_ssx_mummupmummup_no_h();
-
+            t[0] = matrix_2_ssx_mummupmummup_no_h();
+            // Mirror initial state momenta for mirror process
+            perm[0] = 1;
+            perm[1] = 0;
+            // Calculate wavefunctions
+            calculate_wavefunctions(perm, helicities[ihel]);
+            // Mirror back
+            perm[0] = 0;
+            perm[1] = 1;
+            // Calculate matrix elements
+            t[1] = matrix_2_ssx_mummupmummup_no_h();
             for (int iproc = 0; iproc < nprocesses; iproc++) {
                 matrix_element[iproc] += t[iproc] * hwgt;
             }
@@ -194,7 +212,10 @@ void qq_z_zp_DN_SF::sigmaKin()
 double qq_z_zp_DN_SF::sigmaHat()
 {
     // Select between the different processes
-    if (id1 == 3 && id2 == -3) {
+    if (id1 == -3 && id2 == 3) {
+        // Add matrix elements for processes with beams (-3, 3)
+        return matrix_element[1];
+    } else if (id1 == 3 && id2 == -3) {
         // Add matrix elements for processes with beams (3, -3)
         return matrix_element[0];
     } else {
@@ -336,7 +357,7 @@ void qq_z_zp_DN_SF::calculate_wavefunctions(const int perm[], const int hel[])
     FFV2_4_0(w[35], w[1], w[23], pars->GC_29, pars->GC_33, amp[62]);
     FFV2_4_0(w[34], w[1], w[18], pars->GC_29, pars->GC_33, amp[63]);
 }
-double qq_z_zp_DN_SF::matrix_1_ssx_mummupmummup_no_h()
+double qq_z_zp_DN_SF::matrix_2_ssx_mummupmummup_no_h()
 {
     int i, j;
     // Local variables

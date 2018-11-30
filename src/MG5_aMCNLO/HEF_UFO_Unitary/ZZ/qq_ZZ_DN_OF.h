@@ -13,7 +13,6 @@
 
 #include "Commons/Parameters_MEKD.h"
 
-using namespace std;
 namespace MG5_HEF_UFO_bkg
 {
 

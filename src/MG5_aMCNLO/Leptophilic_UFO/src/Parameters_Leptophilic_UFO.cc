@@ -63,7 +63,7 @@ void Parameters_Leptophilic_UFO::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_MS = slha.get_block_entry("mass", 3, 1.010000e-01).real();
     mdl_MU = slha.get_block_entry("mass", 2, 2.550000e-03).real();
     mdl_MD = slha.get_block_entry("mass", 1, 5.040000e-03).real();
-    mdl_cabi = slha.get_block_entry("ckmblock", 1, 2.277360e-01).real();
+    // mdl_cabi = slha.get_block_entry("ckmblock", 1, 2.277360e-01).real();
     // mdl_cos__cabi = cos(mdl_cabi);
     // mdl_CKM1x1 = mdl_cos__cabi;
     // mdl_sin__cabi = sin(mdl_cabi);
@@ -225,9 +225,9 @@ void Parameters_Leptophilic_UFO::printIndependentParameters()
          << "= " << setiosflags(ios::scientific) << setw(10) << mdl_MU << endl;
     cout << setw(20) << "mdl_MD "
          << "= " << setiosflags(ios::scientific) << setw(10) << mdl_MD << endl;
-    cout << setw(20) << "mdl_cabi "
-         << "= " << setiosflags(ios::scientific) << setw(10) << mdl_cabi
-         << endl;
+    //     cout << setw(20) << "mdl_cabi "
+    //          << "= " << setiosflags(ios::scientific) << setw(10) << mdl_cabi
+    //          << endl;
     //     cout << setw(20) << "mdl_cos__cabi "
     //          << "= " << setiosflags(ios::scientific) << setw(10) <<
     //          mdl_cos__cabi

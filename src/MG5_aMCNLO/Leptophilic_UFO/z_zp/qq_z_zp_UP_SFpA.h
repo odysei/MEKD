@@ -1,6 +1,6 @@
 //==========================================================================
 // This file has been automatically generated for C++ Standalone by
-// MadGraph5_aMC@NLO v. 2.6.3.2, 2018-06-22
+// MadGraph5_aMC@NLO v. 2.6.4, 2018-11-09
 // By the MadGraph5_aMC@NLO Development Team
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
@@ -65,7 +65,7 @@ class qq_z_zp_UP_SFpA
     // Constants for array limits
     static const int ninitial = 2;
     static const int nexternal = 7;
-    static const int nprocesses = 1;
+    static const int nprocesses = 2;
 
   private:
     // Private functions to calculate the matrix element for all subprocesses

@@ -31,19 +31,19 @@ namespace mekd
 /// ME_runner_qq_Z_Zp_Spin1M_2f_4l
 bool ME_runner_qq_Z_Zp_Spin1M_2f_4l::initialize(const string &param_f)
 {
-    if (!ME_Initiator(param_f, "ME_ssx_OF", 1,
+    if (!ME_Initiator(param_f, "ME_ssx_OF", 2,
                       new MG5_Leptophilic_UFO::qq_z_zp_DN_OF(), ME_ssx_OF))
         return false;
 
-    if (!ME_Initiator(param_f, "ME_ssx_SF", 1,
+    if (!ME_Initiator(param_f, "ME_ssx_SF", 2,
                       new MG5_Leptophilic_UFO::qq_z_zp_DN_SF(), ME_ssx_SF))
         return false;
 
-    if (!ME_Initiator(param_f, "ME_ccx_OF", 1,
+    if (!ME_Initiator(param_f, "ME_ccx_OF", 2,
                       new MG5_Leptophilic_UFO::qq_z_zp_UP_OF(), ME_ccx_OF))
         return false;
 
-    if (!ME_Initiator(param_f, "ME_ccx_SF", 1,
+    if (!ME_Initiator(param_f, "ME_ccx_SF", 2,
                       new MG5_Leptophilic_UFO::qq_z_zp_UP_SF(), ME_ccx_SF))
         return false;
 

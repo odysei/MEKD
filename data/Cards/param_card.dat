@@ -77,6 +77,17 @@ Block hposm
     6 5.990000e-04 # ymueff 
 
 ###################################
+## INFORMATION FOR ZPINPUTS Leptophilic_UFO
+###################################
+Block zpinputs 
+    1 0.000000e+00 # GZpeL 
+    2 0.000000e+00 # GZpeR 
+    3 0.000000e+00 # GZpmuL 
+    4 0.000000e+00 # GZpmuR 
+    5 0.000000e+00 # GZptaL 
+    6 0.000000e+00 # GZptaR 
+
+###################################
 ## INFORMATION FOR GRAVITY
 ###################################
 Block gravity 
@@ -237,7 +248,8 @@ Block mass
    15 1.776820e+00 # MTA 
    23 9.118760e+01 # MZ
    25 1.250000e+02 # MH, must match 9000006
-  300 1.250000e+01 # MZp, Spin1
+  300 1.250000e+02 # MZp, Spin1
+  999888 3.000000e+03 # ZpM, Leptophilic_UFO
   9000006 1.250000e+02 # MH 
   9000007 1.250000e+02 # MXG 
 ##  Not dependent paramater.
@@ -260,6 +272,7 @@ DECAY  23 2.495200e+00 # WZ
 DECAY  24 2.091000e+00 # WW
 DECAY  25 5.753088e-03 # WH, must match 9000006
 DECAY 300 5.753088e-03 # WZp
+DECAY 999888 1.000000e+00 # ZpW, Leptophilic_UFO
 DECAY 9000006 5.753088e-03 # WH 
 DECAY 9000007 5.753088e-03 # WXG 
 ##  Not dependent paramater.

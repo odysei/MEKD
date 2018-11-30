@@ -24,11 +24,11 @@ class Parameters_Leptophilic_UFO
         mdl_GZpmuR, mdl_GZpmuL, mdl_GZpeR, mdl_GZpeL, mdl_ymtau, mdl_ymm,
         mdl_yme, mdl_ymt, mdl_ymb, mdl_ymc, mdl_yms, mdl_ymup, mdl_ymdo, aS,
         mdl_Gf, aEWM1, mdl_ZpM, mdl_MH, mdl_MZ, mdl_MTA, mdl_MMU, mdl_Me,
-        mdl_MT, mdl_MB, mdl_MC, mdl_MS, mdl_MU, mdl_MD, mdl_cabi, mdl_sin__cabi,
-        mdl_MZ__exp__2, mdl_MZ__exp__4, mdl_sqrt__2, mdl_MH__exp__2, mdl_aEW,
-        mdl_MW, mdl_sqrt__aEW, mdl_ee, mdl_MW__exp__2, mdl_sw2, mdl_cw,
-        mdl_sqrt__sw2, mdl_sw;
-    //         mdl_g1, mdl_gw, mdl_vev, mdl_cos__cabi
+        mdl_MT, mdl_MB, mdl_MC, mdl_MS, mdl_MU, mdl_MD, mdl_MZ__exp__2,
+        mdl_MZ__exp__4, mdl_sqrt__2, mdl_MH__exp__2, mdl_aEW, mdl_MW,
+        mdl_sqrt__aEW, mdl_ee, mdl_MW__exp__2, mdl_sw2, mdl_cw, mdl_sqrt__sw2,
+        mdl_sw;
+    //         mdl_g1, mdl_gw, mdl_vev, mdl_cabi, mdl_sin__cabi, mdl_cos__cabi
     //         mdl_vev__exp__2, mdl_lam, mdl_yb, mdl_yc, mdl_ydo, mdl_ye,
     //         mdl_ym, mdl_ys, mdl_yt, mdl_ytau, mdl_yup, mdl_muH,
     //         mdl_ee__exp__2, mdl_sw__exp__2, mdl_cw__exp__2;

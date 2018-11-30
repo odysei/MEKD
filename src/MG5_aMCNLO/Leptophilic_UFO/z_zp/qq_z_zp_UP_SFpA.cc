@@ -1,6 +1,6 @@
 //==========================================================================
 // This file has been automatically generated for C++ Standalone by
-// MadGraph5_aMC@NLO v. 2.6.3.2, 2018-06-22
+// MadGraph5_aMC@NLO v. 2.6.4, 2018-11-09
 // By the MadGraph5_aMC@NLO Development Team
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
@@ -166,7 +166,7 @@ void qq_z_zp_UP_SFpA::sigmaKin()
         {1, 1, 1, 1, 1, -1, -1},      {1, 1, 1, 1, 1, -1, 1},
         {1, 1, 1, 1, 1, 1, -1},       {1, 1, 1, 1, 1, 1, 1}};
     // Denominators: spins, colors and identical particles
-    const int denominators[nprocesses] = {144};
+    const int denominators[nprocesses] = {144, 144};
 
     ntry = ntry + 1;
 
@@ -186,7 +186,16 @@ void qq_z_zp_UP_SFpA::sigmaKin()
             if (goodhel[ihel] || ntry < 2) {
                 calculate_wavefunctions(perm, helicities[ihel]);
                 t[0] = matrix_4_ccx_mummupmummupa_no_h();
-
+                // Mirror initial state momenta for mirror process
+                perm[0] = 1;
+                perm[1] = 0;
+                // Calculate wavefunctions
+                calculate_wavefunctions(perm, helicities[ihel]);
+                // Mirror back
+                perm[0] = 0;
+                perm[1] = 1;
+                // Calculate matrix elements
+                t[1] = matrix_4_ccx_mummupmummupa_no_h();
                 double tsum = 0;
                 for (int iproc = 0; iproc < nprocesses; iproc++) {
                     matrix_element[iproc] += t[iproc];
@@ -212,7 +221,16 @@ void qq_z_zp_UP_SFpA::sigmaKin()
             int ihel = igood[jhel];
             calculate_wavefunctions(perm, helicities[ihel]);
             t[0] = matrix_4_ccx_mummupmummupa_no_h();
-
+            // Mirror initial state momenta for mirror process
+            perm[0] = 1;
+            perm[1] = 0;
+            // Calculate wavefunctions
+            calculate_wavefunctions(perm, helicities[ihel]);
+            // Mirror back
+            perm[0] = 0;
+            perm[1] = 1;
+            // Calculate matrix elements
+            t[1] = matrix_4_ccx_mummupmummupa_no_h();
             for (int iproc = 0; iproc < nprocesses; iproc++) {
                 matrix_element[iproc] += t[iproc] * hwgt;
             }
@@ -229,7 +247,10 @@ void qq_z_zp_UP_SFpA::sigmaKin()
 double qq_z_zp_UP_SFpA::sigmaHat()
 {
     // Select between the different processes
-    if (id1 == 4 && id2 == -4) {
+    if (id1 == -4 && id2 == 4) {
+        // Add matrix elements for processes with beams (-4, 4)
+        return matrix_element[1];
+    } else if (id1 == 4 && id2 == -4) {
         // Add matrix elements for processes with beams (4, -4)
         return matrix_element[0];
     } else {
