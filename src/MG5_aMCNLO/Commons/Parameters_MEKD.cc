@@ -13,6 +13,8 @@
 
 #include "Parameters_MEKD.h"
 
+using namespace std;
+
 // Initialize static instance
 Parameters_MEKD *Parameters_MEKD::instance = nullptr;
 
@@ -209,8 +211,8 @@ void Parameters_MEKD::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_sqrt__2 = sqrt(2.);
     mdl_MH__exp__2 = pow(mdl_MH, 2.); // dependent
     mdl_aEW = 1. / aEWM1;
-    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. + sqrt(mdl_MZ__exp__4 / 4. -
-                                             (mdl_aEW * M_PI * mdl_MZ__exp__2) /
+    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. +
+                  sqrt(mdl_MZ__exp__4 / 4. - (mdl_aEW * M_PI * mdl_MZ__exp__2) /
                                                  (mdl_Gf * mdl_sqrt__2)));
     mdl_sqrt__aEW = sqrt(mdl_aEW);
     mdl_ee = 2. * mdl_sqrt__aEW * sqrt(M_PI);

@@ -8,6 +8,8 @@
 #include "qq_z_zp_UP_SFpA.h"
 #include "HelAmps_Leptophilic_UFO.h"
 
+using namespace std;
+
 namespace MG5_Leptophilic_UFO
 {
 

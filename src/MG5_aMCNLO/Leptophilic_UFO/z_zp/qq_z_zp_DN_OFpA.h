@@ -28,7 +28,7 @@ class qq_z_zp_DN_OFpA
     qq_z_zp_DN_OFpA() {}
 
     // Initialize process.
-    void initProc(string param_card_name);
+    void initProc(std::string param_card_name);
     void initProc();
 
     // Update process.
@@ -41,18 +41,18 @@ class qq_z_zp_DN_OFpA
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const
+    std::string name() const
     {
         return "s s~ > e- e+ mu- mu+ a (Leptophilic_UFO)";
     }
 
     int code() const { return 3; }
 
-    const vector<double> &getMasses() const { return mME; }
+    const std::vector<double> &getMasses() const { return mME; }
 
     // Get and set momenta for matrix element evaluation
-    vector<double *> getMomenta() { return p; }
-    void setMomenta(vector<double *> &momenta) { p = momenta; }
+    std::vector<double *> getMomenta() { return p; }
+    void setMomenta(std::vector<double *> &momenta) { p = momenta; }
     void setInitial(int inid1, int inid2)
     {
         id1 = inid1;
@@ -88,10 +88,10 @@ class qq_z_zp_DN_OFpA
     Parameters_Leptophilic_UFO *pars;
 
     // vector with external particle masses
-    vector<double> mME;
+    std::vector<double> mME;
 
     // vector with momenta (to be changed each event)
-    vector<double *> p;
+    std::vector<double *> p;
     // Initial particle ids
     int id1, id2;
 };

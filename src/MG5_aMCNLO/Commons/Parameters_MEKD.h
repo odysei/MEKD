@@ -12,11 +12,10 @@
 #define Parameters_MEKD_H
 
 #include <complex>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 #include "read_slha_MEKD.h"
-using namespace std;
 
 class Parameters_MEKD
 {

@@ -9,6 +9,8 @@
 #include <iomanip>
 #include <iostream>
 
+using namespace std;
+
 // Initialize static instance
 Parameters_Leptophilic_UFO *Parameters_Leptophilic_UFO::instance = nullptr;
 

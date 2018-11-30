@@ -18,7 +18,7 @@ namespace MG5_HEF_UFO_bkg
 //--------------------------------------------------------------------------
 // Initialize process.
 
-void qq_ZZ_DN_OF::initProc(string param_card_name)
+void qq_ZZ_DN_OF::initProc(std::string param_card_name)
 {
     // Instantiate the model class and set parameters that stay fixed during run
     pars = Parameters_MEKD::getInstance();
@@ -322,4 +322,4 @@ double qq_ZZ_DN_OF::matrix_ssx_emepmummup_no_hxg()
 
     return matrix;
 }
-}
+} // namespace MG5_HEF_UFO_bkg
