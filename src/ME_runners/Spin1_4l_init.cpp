@@ -28,8 +28,8 @@ namespace mekd
  * Spin-1 resonances
  */
 
-/// ME_runner_qq_Z_Zp_Spin1M_2f_4l
-bool ME_runner_qq_Z_Zp_Spin1M_2f_4l::initialize(const string &param_f)
+/// ME_runner_qq_Z_Zp_Spin1_2f_4l
+bool ME_runner_qq_Z_Zp_Spin1_2f_4l::initialize(const string &param_f)
 {
     if (!ME_Initiator(param_f, "ME_ssx_OF", 2,
                       new MG5_Leptophilic_UFO::qq_z_zp_DN_OF(), ME_ssx_OF))
@@ -50,9 +50,9 @@ bool ME_runner_qq_Z_Zp_Spin1M_2f_4l::initialize(const string &param_f)
     return true;
 }
 
-bool ME_runner_qq_Z_Zp_Spin1M_2f_4l::initialize() { return initialize(""); }
+bool ME_runner_qq_Z_Zp_Spin1_2f_4l::initialize() { return initialize(""); }
 
-void ME_runner_qq_Z_Zp_Spin1M_2f_4l::deinitialize()
+void ME_runner_qq_Z_Zp_Spin1_2f_4l::deinitialize()
 {
     delete ME_ssx_OF;
     delete ME_ssx_SF;

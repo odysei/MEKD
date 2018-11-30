@@ -27,10 +27,10 @@ namespace mekd
  * Spin-1 resonances
  */
 
-/// ME_runner_qq_Z_Zp_Spin1M_2f_4l
-const process_description ME_runner_qq_Z_Zp_Spin1M_2f_4l::my_type() { return me; }
+/// ME_runner_qq_Z_Zp_Spin1_2f_4l
+const process_description ME_runner_qq_Z_Zp_Spin1_2f_4l::my_type() { return me; }
 
-bool ME_runner_qq_Z_Zp_Spin1M_2f_4l::is_my_type(const process_description &in)
+bool ME_runner_qq_Z_Zp_Spin1_2f_4l::is_my_type(const process_description &in)
 {
     return compare_types(in, me);
 }

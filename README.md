@@ -73,6 +73,10 @@ vector<double> my_results;
 
 eval_MEs(my_input, my_results);
 
+If you vary couplings via the code, the parameter file values will be overriden 
+during a runtime. In other words, use one or the other method, but don't mix as 
+you will run into an unwanted behavior.
+
 
 #### Some details on evaluation
 

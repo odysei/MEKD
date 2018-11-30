@@ -532,7 +532,7 @@ class ME_runner_no_Spin1_2f_4lA : public ME_runner
  * Final states: 4 leptons (+photon)
  */
 
-class ME_runner_qq_Z_Zp_Spin1M_2f_4l : public ME_runner
+class ME_runner_qq_Z_Zp_Spin1_2f_4l : public ME_runner
 {
   public:
     const process_description me = {

@@ -83,8 +83,8 @@ double evaluate_qqx_Spin1_4l(MEKD &in_MEKD, Parameters *pa, cME_ssx_OF *ssx_OF,
     return ME2;
 }
 
-/// ME_runner_qq_Z_Zp_Spin1M_2f_4l
-double ME_runner_qq_Z_Zp_Spin1M_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
+/// ME_runner_qq_Z_Zp_Spin1_2f_4l
+double ME_runner_qq_Z_Zp_Spin1_2f_4l::evaluate(MEKD &in_MEKD, const input &in)
 {
     return evaluate_qqx_Spin1_4l(in_MEKD, in_MEKD.params_Leptophilic, ME_ssx_OF,
                                  ME_ssx_SF, ME_ccx_OF, ME_ccx_SF);
