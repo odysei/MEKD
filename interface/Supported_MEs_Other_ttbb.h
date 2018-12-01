@@ -55,7 +55,7 @@ class ME_runner_all_bkg_2f_ttbb_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval

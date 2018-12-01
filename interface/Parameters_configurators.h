@@ -28,15 +28,15 @@ void Configurator_ZZ_ccx(const data &da, Parameters_MEKD *update);
 void Configurator_ZZ_bbx(const data &da, Parameters_MEKD *update);
 
 /// A generic spin-0 resonance configurator for Parameters_MEKD
-void Configurator_Spin0(const complex<double> *c, const data &da,
+void Configurator_Spin0(const std::complex<double> *c, const data &da,
                         const parameters &param, const flags &flag,
                         Parameters_MEKD *update);
-inline void Configurator_Spin0_produ(const complex<double> *c,
+inline void Configurator_Spin0_produ(const std::complex<double> *c,
                                      const bool fixed_prod, const double lgg,
                                      Parameters_MEKD *update);
-inline void Configurator_Spin0_decay(const complex<double> *c, const double mZ,
-                                     const double Mi, const double hZZ,
-                                     Parameters_MEKD *update);
+inline void Configurator_Spin0_decay(const std::complex<double> *c,
+                                     const double mZ, const double Mi,
+                                     const double hZZ, Parameters_MEKD *update);
 
 /*
  * HiggsPO_UFO configuration block

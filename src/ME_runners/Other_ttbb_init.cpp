@@ -9,8 +9,10 @@
 #ifndef MEKD__ME_runners__Other_ttbb_init_cpp
 #define MEKD__ME_runners__Other_ttbb_init_cpp
 
-#include "Supported_MEs_Other_ttbb.h"
 #include "MEKD_Initiators.h"
+#include "Supported_MEs_Other_ttbb.h"
+
+using namespace std;
 
 namespace mekd
 {
@@ -71,7 +73,7 @@ void ME_runner_all_bkg_2f_ttbb_2::deinitialize()
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

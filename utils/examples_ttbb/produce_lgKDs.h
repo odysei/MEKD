@@ -10,19 +10,17 @@
  */
 #ifndef MEKD_example_produce_lgKDs_h
 #define MEKD_example_produce_lgKDs_h
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include "MEKD.h"
 #include "../examples_IO/examples_io.h"
-
-using namespace std;
+#include "MEKD.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <std::string>
+#include <vector>
 
 int Choice();
-vector<string> Pick_filenames(int);
-vector<mekd::process_description> Make_desc();
+std::vector<std::string> Pick_filenames(int);
+std::vector<mekd::process_description> Make_desc();
 void My_flags(mekd::flags &);
 
 #endif

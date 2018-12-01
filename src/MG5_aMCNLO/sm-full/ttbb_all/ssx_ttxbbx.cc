@@ -8,6 +8,8 @@
 #include "ssx_ttxbbx.h"
 #include "HelAmps_sm_full.h"
 
+using namespace std;
+
 namespace MG5_sm_full
 {
 
@@ -402,4 +404,4 @@ double ssx_ttxbbx::matrix_1_ssx_ttxbbx()
 
     return matrix;
 }
-}
+} // namespace MG5_sm_full

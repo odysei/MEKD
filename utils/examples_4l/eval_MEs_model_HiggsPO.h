@@ -11,24 +11,22 @@
  */
 #ifndef MEKD_example_eval_MEs_model_HiggsPO_h
 #define MEKD_example_eval_MEs_model_HiggsPO_h
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include "MEKD.h"
 #include "../examples_IO/examples_io.h"
-
-using namespace std;
+#include "MEKD.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <std::string>
+#include <vector>
 
 int Choice();
-vector<string> Pick_filenames(int);
-vector<mekd::process_description> Make_desc();
-vector<mekd::process_description> Make_desc_CC(); // custom couplings
+std::vector<std::string> Pick_filenames(int);
+std::vector<mekd::process_description> Make_desc();
+std::vector<mekd::process_description> Make_desc_CC(); // custom couplings
 MG5_HiggsPO_UFO::input_c CC1(const mekd::input &);
 MG5_HiggsPO_UFO::input_c CC2(const mekd::input &);
 void My_flags(mekd::flags &);
-void Main_loop(vector<ifstream *> &files, mekd::MEKD &calc_MEs,
+void Main_loop(std::vector<ifstream *> &files, mekd::MEKD &calc_MEs,
                mekd::MEKD &calc_MEs_CC);
 
 #endif

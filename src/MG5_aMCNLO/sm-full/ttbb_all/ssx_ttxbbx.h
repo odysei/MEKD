@@ -13,7 +13,6 @@
 
 #include "Parameters_sm_full.h"
 
-using namespace std;
 namespace MG5_sm_full
 {
 
@@ -29,7 +28,7 @@ class ssx_ttxbbx
     ssx_ttxbbx() {}
 
     // Initialize process.
-    void initProc(string param_card_name);
+    void initProc(std::string param_card_name);
     void initProc();
 
     // Update process.
@@ -42,15 +41,15 @@ class ssx_ttxbbx
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const { return "s s~ > t t~ b b~ (sm_full)"; }
+    std::string name() const { return "s s~ > t t~ b b~ (sm_full)"; }
 
     int code() const { return 1; }
 
-    const vector<double> &getMasses() const { return mME; }
+    const std::vector<double> &getMasses() const { return mME; }
 
     // Get and set momenta for matrix element evaluation
-    vector<double *> getMomenta() { return p; }
-    void setMomenta(vector<double *> &momenta) { p = momenta; }
+    std::vector<double *> getMomenta() { return p; }
+    void setMomenta(std::vector<double *> &momenta) { p = momenta; }
     void setInitial(int inid1, int inid2)
     {
         id1 = inid1;
@@ -86,13 +85,13 @@ class ssx_ttxbbx
     Parameters_sm_full *pars;
 
     // vector with external particle masses
-    vector<double> mME;
+    std::vector<double> mME;
 
     // vector with momenta (to be changed each event)
-    vector<double *> p;
+    std::vector<double *> p;
     // Initial particle ids
     int id1, id2;
 };
-}
+} // namespace MG5_sm_full
 
 #endif // MG5_Sigma_sm_full_ssx_ttxbbx_H

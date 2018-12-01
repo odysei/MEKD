@@ -12,6 +12,8 @@
 
 #include "MEKD.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -118,6 +120,6 @@ string MEKD::Find_local_file(const string &input_f)
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif

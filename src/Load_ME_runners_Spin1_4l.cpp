@@ -10,6 +10,8 @@
 #include "MEKD.h"
 #include "Supported_MEs_Spin1_4l.h"
 
+using namespace std;
+
 namespace mekd
 {
 

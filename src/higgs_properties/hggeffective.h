@@ -9,11 +9,9 @@
 #ifndef hggeffective_h
 #define hggeffective_h
 
-#include <cstdio>
 #include <cmath>
 #include <complex>
-
-using namespace std;
+#include <cstdio>
 
 /// Definition
 #define PI acos(-1.0)
@@ -26,6 +24,6 @@ inline double fiIm(const double tau);
 inline double HggFr(const double tau);
 inline double HggFi(const double tau);
 
-inline complex<double> HggF(const double tau);
+inline std::complex<double> HggF(const double tau);
 
 #endif

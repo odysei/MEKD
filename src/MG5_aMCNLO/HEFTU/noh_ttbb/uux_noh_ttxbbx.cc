@@ -8,6 +8,8 @@
 #include "uux_noh_ttxbbx.h"
 #include "HelAmps_heft_updated_full.h"
 
+using namespace std;
+
 namespace MG5_heft_updated_full
 {
 
@@ -407,4 +409,4 @@ double uux_noh_ttxbbx::matrix_1_uux_noh_ttxbbx()
 
     return matrix;
 }
-}
+} // namespace MG5_heft_updated_full

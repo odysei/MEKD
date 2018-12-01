@@ -49,7 +49,7 @@ class ME_runner_gg_Spin0Pm_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -77,7 +77,7 @@ class ME_runner_gg_Spin0Pm_ZZ_4l_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -105,7 +105,7 @@ class ME_runner_no_Spin0Pm_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -133,7 +133,7 @@ class ME_runner_no_Spin0Pm_ZZ_4l_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -161,7 +161,7 @@ class ME_runner_gg_Spin0Ph_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -188,7 +188,7 @@ class ME_runner_no_Spin0Ph_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -215,7 +215,7 @@ class ME_runner_gg_Spin0M_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -242,7 +242,7 @@ class ME_runner_no_Spin0M_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -269,7 +269,7 @@ class ME_runner_gg_Spin0_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -297,7 +297,7 @@ class ME_runner_gg_Spin0_ZZ_4l_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -325,7 +325,7 @@ class ME_runner_no_Spin0_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -353,7 +353,7 @@ class ME_runner_no_Spin0_ZZ_4l_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -385,7 +385,7 @@ class ME_runner_gg_Spin0Pm_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -412,7 +412,7 @@ class ME_runner_no_Spin0Pm_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -439,7 +439,7 @@ class ME_runner_gg_Spin0Ph_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -466,7 +466,7 @@ class ME_runner_no_Spin0Ph_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -493,7 +493,7 @@ class ME_runner_gg_Spin0M_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -520,7 +520,7 @@ class ME_runner_no_Spin0M_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -547,7 +547,7 @@ class ME_runner_gg_Spin0_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -574,7 +574,7 @@ class ME_runner_no_Spin0_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -611,7 +611,7 @@ class ME_runner_gg_Spin0Pm_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -638,7 +638,7 @@ class ME_runner_no_Spin0Pm_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -665,7 +665,7 @@ class ME_runner_gg_Spin0M_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -692,7 +692,7 @@ class ME_runner_no_Spin0M_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -719,7 +719,7 @@ class ME_runner_gg_Spin0_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -746,7 +746,7 @@ class ME_runner_no_Spin0_2f_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -777,7 +777,7 @@ class ME_runner_gg_Spin0Pm_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -804,7 +804,7 @@ class ME_runner_no_Spin0Pm_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -831,7 +831,7 @@ class ME_runner_gg_Spin0M_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -858,7 +858,7 @@ class ME_runner_no_Spin0M_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -885,7 +885,7 @@ class ME_runner_gg_Spin0_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -912,7 +912,7 @@ class ME_runner_no_Spin0_2f_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);

@@ -10,6 +10,8 @@
 #include "MEKD_CalcHEP_Extra_functions.h"
 #include "higgs_properties/hggeffective.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -2491,9 +2493,9 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
             const double ME_value1 = buffer[0] *
                                      pdfreader(1, da.PDFx1, da.m.sys) *
                                      pdfreader(-1, da.PDFx2, da.m.sys);
-            Signal_ME = (ME_value1 +
-                         buffer[1] * pdfreader(-1, da.PDFx1, da.m.sys) *
-                             pdfreader(1, da.PDFx2, da.m.sys));
+            Signal_ME =
+                (ME_value1 + buffer[1] * pdfreader(-1, da.PDFx1, da.m.sys) *
+                                 pdfreader(1, da.PDFx2, da.m.sys));
         } else
             Signal_ME = (buffer[0] + buffer[1]);
     }
@@ -2523,9 +2525,9 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
             const double ME_value1 = buffer[0] *
                                      pdfreader(3, da.PDFx1, da.m.sys) *
                                      pdfreader(-3, da.PDFx2, da.m.sys);
-            Signal_ME += (ME_value1 +
-                          buffer[1] * pdfreader(-3, da.PDFx1, da.m.sys) *
-                              pdfreader(3, da.PDFx2, da.m.sys));
+            Signal_ME +=
+                (ME_value1 + buffer[1] * pdfreader(-3, da.PDFx1, da.m.sys) *
+                                 pdfreader(3, da.PDFx2, da.m.sys));
         } else
             Signal_ME += (buffer[0] + buffer[1]);
     }
@@ -2555,9 +2557,9 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
             const double ME_value1 = buffer[0] *
                                      pdfreader(2, da.PDFx1, da.m.sys) *
                                      pdfreader(-2, da.PDFx2, da.m.sys);
-            Signal_ME += (ME_value1 +
-                          buffer[1] * pdfreader(-2, da.PDFx1, da.m.sys) *
-                              pdfreader(2, da.PDFx2, da.m.sys));
+            Signal_ME +=
+                (ME_value1 + buffer[1] * pdfreader(-2, da.PDFx1, da.m.sys) *
+                                 pdfreader(2, da.PDFx2, da.m.sys));
         } else
             Signal_ME += (buffer[0] + buffer[1]);
     }
@@ -2587,9 +2589,9 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
             const double ME_value1 = buffer[0] *
                                      pdfreader(4, da.PDFx1, da.m.sys) *
                                      pdfreader(-4, da.PDFx2, da.m.sys);
-            Signal_ME += (ME_value1 +
-                          buffer[1] * pdfreader(-4, da.PDFx1, da.m.sys) *
-                              pdfreader(4, da.PDFx2, da.m.sys));
+            Signal_ME +=
+                (ME_value1 + buffer[1] * pdfreader(-4, da.PDFx1, da.m.sys) *
+                                 pdfreader(4, da.PDFx2, da.m.sys));
         } else
             Signal_ME += (buffer[0] + buffer[1]);
     }
@@ -2602,7 +2604,7 @@ int MEKD::Run_MEs_Evaluator_Initial_State_qqbar(data &da, const bool photon,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 ////////////////////////////////

@@ -5,9 +5,11 @@
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
 
-#include <iostream>
-#include <iomanip>
 #include "Parameters_HiggsPO_UFO.h"
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
 
 // Initialize static instance
 Parameters_HiggsPO_UFO *Parameters_HiggsPO_UFO::instance = nullptr;
@@ -110,8 +112,8 @@ void Parameters_HiggsPO_UFO::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_sqrt__aEW = sqrt(mdl_aEW);
     mdl_ee = 2. * mdl_sqrt__aEW * sqrt(M_PI);
 
-    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. + sqrt(mdl_MZ__exp__4 / 4. -
-                                             (mdl_aEW * M_PI * mdl_MZ__exp__2) /
+    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. +
+                  sqrt(mdl_MZ__exp__4 / 4. - (mdl_aEW * M_PI * mdl_MZ__exp__2) /
                                                  (mdl_Gf * mdl_sqrt__2)));
     const double mdl_MW__exp__2 = pow(mdl_MW, 2.);
     const double mdl_sw2 = 1. - mdl_MW__exp__2 / mdl_MZ__exp__2;

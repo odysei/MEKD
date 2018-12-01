@@ -8,6 +8,8 @@
 #include "Spin0_OF.h"
 #include "HelAmps_HiggsPO_UFO.h"
 
+using namespace std;
+
 namespace MG5_HiggsPO_UFO
 {
 
@@ -236,4 +238,4 @@ double Spin0_OF::matrix_1_h_emepmummup()
 
     return matrix;
 }
-}
+} // namespace MG5_HiggsPO_UFO

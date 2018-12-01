@@ -11,13 +11,13 @@ namespace mekd
 
 // true: initialized successfully
 template <class cME>
-bool ME_Initiator(const string &param_f, const string &name,
+bool ME_Initiator(const std::string &param_f, const std::string &name,
                   const int nprocesses_, cME *i_ME, cME *&o_ME)
 {
     // o_ME consumes i_ME
     o_ME = i_ME;
     if (o_ME->nprocesses != nprocesses_) {
-        cerr << "Problem in " << name << " class detected.\n";
+        std::cerr << "Problem in " << name << " class detected.\n";
         delete o_ME;
         o_ME = nullptr;
 
@@ -33,7 +33,7 @@ bool ME_Initiator(const string &param_f, const string &name,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 //////////////////////////////////

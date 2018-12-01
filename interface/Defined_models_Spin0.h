@@ -24,13 +24,13 @@ const std::complex<double> definition_Spin0Ph[4] = {
     std::complex<double>(0, 0), std::complex<double>(0, 0)};
 
 // for decay_ZZ
-const complex<double> definition_Spin0M[4] = {
+const std::complex<double> definition_Spin0M[4] = {
     std::complex<double>(0, 0), std::complex<double>(0, 0),
     std::complex<double>(0, 0), std::complex<double>(1, 0)};
 
 // for decay_2f
 const std::complex<double> definition_Spin0M_2f[4] = {
-    std::complex<double>(0, 0), complex<double>(1, 0),
+    std::complex<double>(0, 0), std::complex<double>(1, 0),
     std::complex<double>(0, 0),  // placeholder
     std::complex<double>(0, 0)}; // placeholder
 } // namespace MG5_HEF_MEKD

@@ -13,7 +13,7 @@ template <class cME> double ME_Evaluator_IS_no(const data &da, cME *ME)
 {
     /// No initial state block
     if (ME != nullptr) {
-        vector<double *> p(da.p.size() - 1); // local "copy" for 1->N
+        std::vector<double *> p(da.p.size() - 1); // local "copy" for 1->N
         double p_X[4] = {0, 0, 0, 0};
         p[0] = p_X;
         for (unsigned int i = 2; i < da.p.size(); ++i)
@@ -79,9 +79,9 @@ double ME_Evaluator_IS_qqx(const bool use_PDFs, data &da, cME_qqx *ME_qqx,
             const double ME_value1 = buffer[0] *
                                      pdfreader(PDG_q, da.PDFx1, da.m.sys) *
                                      pdfreader(-PDG_q, da.PDFx2, da.m.sys);
-            return (ME_value1 +
-                    buffer[1] * pdfreader(-PDG_q, da.PDFx1, da.m.sys) *
-                        pdfreader(PDG_q, da.PDFx2, da.m.sys));
+            return (ME_value1 + buffer[1] *
+                                    pdfreader(-PDG_q, da.PDFx1, da.m.sys) *
+                                    pdfreader(PDG_q, da.PDFx2, da.m.sys));
         } else
             return (buffer[0] + buffer[1]);
     }
@@ -125,7 +125,7 @@ double ME_Evaluator_IS_bbx(const bool use_PDFs, data &da, cME_bbx *ME_bbx)
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 /////////////////////////////

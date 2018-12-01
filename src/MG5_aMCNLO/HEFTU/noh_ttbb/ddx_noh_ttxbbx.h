@@ -13,7 +13,6 @@
 
 #include "Parameters_heft_updated_full.h"
 
-using namespace std;
 namespace MG5_heft_updated_full
 {
 
@@ -29,7 +28,7 @@ class ddx_noh_ttxbbx
     ddx_noh_ttxbbx() {}
 
     // Initialize process.
-    void initProc(string param_card_name);
+    void initProc(std::string param_card_name);
     void initProc();
 
     // Update process.
@@ -42,15 +41,15 @@ class ddx_noh_ttxbbx
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const { return "d d~ > t t~ b b~ (heft_updated_full)"; }
+    std::string name() const { return "d d~ > t t~ b b~ (heft_updated_full)"; }
 
     int code() const { return 1; }
 
-    const vector<double> &getMasses() const { return mME; }
+    const std::vector<double> &getMasses() const { return mME; }
 
     // Get and set momenta for matrix element evaluation
-    vector<double *> getMomenta() { return p; }
-    void setMomenta(vector<double *> &momenta) { p = momenta; }
+    std::vector<double *> getMomenta() { return p; }
+    void setMomenta(std::vector<double *> &momenta) { p = momenta; }
     void setInitial(int inid1, int inid2)
     {
         id1 = inid1;
@@ -86,13 +85,13 @@ class ddx_noh_ttxbbx
     Parameters_HEFTU *pars;
 
     // vector with external particle masses
-    vector<double> mME;
+    std::vector<double> mME;
 
     // vector with momenta (to be changed each event)
-    vector<double *> p;
+    std::vector<double *> p;
     // Initial particle ids
     int id1, id2;
 };
-}
+} // namespace MG5_heft_updated_full
 
 #endif // MG5_Sigma_heft_updated_full_ddx_noh_ttxbbx_H

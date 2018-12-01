@@ -55,7 +55,7 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb_1 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -88,7 +88,7 @@ class ME_runner_all_bkg_Spin0Pm_2f_ttbb_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval
@@ -125,7 +125,7 @@ class ME_runner_all_Spin0Pm_2f_ttbb_2 : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     // eval

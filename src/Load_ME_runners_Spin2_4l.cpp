@@ -10,6 +10,8 @@
 #include "MEKD.h"
 #include "Supported_MEs_Spin2_4l.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -186,7 +188,7 @@ bool MEKD::Load_ME_runners_try_Spin2_4lA(const process_description &d,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 /*

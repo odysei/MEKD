@@ -10,6 +10,8 @@
 #include "MEKD.h"
 #include "Supported_MEs_Other_4l.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -65,7 +67,7 @@ bool MEKD::Load_ME_runners_try_Z_4lA(const process_description &d,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 /*

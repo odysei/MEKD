@@ -8,6 +8,8 @@
 #include "gg_ttxbbx.h"
 #include "HelAmps_heft_updated_full.h"
 
+using namespace std;
+
 namespace MG5_heft_updated_full
 {
 
@@ -625,4 +627,4 @@ double gg_ttxbbx::matrix_1_gg_ttxbbx()
 
     return matrix;
 }
-}
+} // namespace MG5_heft_updated_full

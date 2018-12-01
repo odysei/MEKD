@@ -5,9 +5,11 @@
 // Visit launchpad.net/madgraph5 and amcatnlo.web.cern.ch
 //==========================================================================
 
-#include <iostream>
-#include <iomanip>
 #include "Parameters_sm_full.h"
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
 
 // Initialize static instance
 Parameters_sm_full *Parameters_sm_full::instance = nullptr;
@@ -82,8 +84,8 @@ void Parameters_sm_full::setIndependentParameters(SLHAReader_MEKD &slha)
     mdl_conjg__CKM1x1 = conj(mdl_CKM1x1);
     mdl_conjg__CKM1x2 = conj(mdl_CKM1x2);
     mdl_aEW = 1. / aEWM1;
-    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. + sqrt(mdl_MZ__exp__4 / 4. -
-                                             (mdl_aEW * M_PI * mdl_MZ__exp__2) /
+    mdl_MW = sqrt(mdl_MZ__exp__2 / 2. +
+                  sqrt(mdl_MZ__exp__4 / 4. - (mdl_aEW * M_PI * mdl_MZ__exp__2) /
                                                  (mdl_Gf * mdl_sqrt__2)));
     mdl_sqrt__aEW = sqrt(mdl_aEW);
     mdl_ee = 2. * mdl_sqrt__aEW * sqrt(M_PI);

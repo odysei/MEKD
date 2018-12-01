@@ -7,8 +7,10 @@
 #ifndef MEKD__ME_runners__Spin0_ttbb_init_cpp
 #define MEKD__ME_runners__Spin0_ttbb_init_cpp
 
-#include "Supported_MEs_Spin0_ttbb.h"
 #include "MEKD_Initiators.h"
+#include "Supported_MEs_Spin0_ttbb.h"
+
+using namespace std;
 
 namespace mekd
 {
@@ -148,7 +150,7 @@ void ME_runner_all_Spin0Pm_2f_ttbb_2::deinitialize()
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

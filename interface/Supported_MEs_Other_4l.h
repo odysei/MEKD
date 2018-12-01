@@ -111,7 +111,7 @@ class ME_runner_qq_bkg_Z_ZZ_4l : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);
@@ -204,7 +204,7 @@ class ME_runner_qq_bkg_Z_ZZ_4lA : public ME_runner
 
     // init
     bool initialize();
-    bool initialize(const string &param_f);
+    bool initialize(const std::string &param_f);
     void deinitialize();
 
     double evaluate(MEKD &in_MEKD, const input &in);

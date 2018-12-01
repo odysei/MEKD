@@ -62,7 +62,7 @@ class ME_runner
 
     // init
     virtual bool initialize() { return false; }
-    virtual bool initialize(const string &param_f) { return false; }
+    virtual bool initialize(const std::string &param_f) { return false; }
 
     virtual void deinitialize() {}
 
@@ -77,7 +77,7 @@ class MEKD
      * Constructors, destructors
      */
     MEKD();
-    MEKD(const vector<process_description> &desc) : MEKD()
+    MEKD(const std::vector<process_description> &desc) : MEKD()
     {
         Load_ME_runners(desc);
     }
@@ -87,10 +87,10 @@ class MEKD
      * Main methods for ME evaluation
      */
     // standard couplings
-    void eval_MEs(const input &, vector<double> &);
+    void eval_MEs(const input &, std::vector<double> &);
     // for custom couplings and their mixing
-    void eval_MEs(const MG5_HEF_MEKD::input_c &, vector<double> &);
-    void eval_MEs(const MG5_HiggsPO_UFO::input_c &, vector<double> &);
+    void eval_MEs(const MG5_HEF_MEKD::input_c &, std::vector<double> &);
+    void eval_MEs(const MG5_HiggsPO_UFO::input_c &, std::vector<double> &);
 
     /*
      * MEKD settings
@@ -281,47 +281,48 @@ class MEKD
      * Temporary ME place. Should become a part of ME_runners
      */
   private:
-    vector<ME_runner *> ME_runners;
+    std::vector<ME_runner *> ME_runners;
 
-    void Load_ME_runners(const vector<process_description> &);
+    void Load_ME_runners(const std::vector<process_description> &);
     bool Load_ME_runners_try(const process_description &, ME_runner *,
-                             vector<ME_runner *> &);
+                             std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Misc_4l(const process_description &,
-                                     vector<ME_runner *> &);
+                                     std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Misc_4lA(const process_description &,
-                                      vector<ME_runner *> &);
+                                      std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Z_4l(const process_description &,
-                                  vector<ME_runner *> &);
+                                  std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Z_4lA(const process_description &,
-                                   vector<ME_runner *> &);
+                                   std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin0_4l(const process_description &,
-                                      vector<ME_runner *> &);
+                                      std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin0_4lA(const process_description &,
-                                       vector<ME_runner *> &);
+                                       std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin1_4l(const process_description &,
-                                      vector<ME_runner *> &);
+                                      std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin1_4lA(const process_description &,
-                                       vector<ME_runner *> &);
+                                       std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin2_4l(const process_description &,
-                                      vector<ME_runner *> &);
+                                      std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin2_4lA(const process_description &,
-                                       vector<ME_runner *> &);
+                                       std::vector<ME_runner *> &);
 
     bool Load_ME_runners_try_Other_ttbb(const process_description &,
-                                        vector<ME_runner *> &);
+                                        std::vector<ME_runner *> &);
     bool Load_ME_runners_try_Spin0_ttbb(const process_description &,
-                                        vector<ME_runner *> &);
+                                        std::vector<ME_runner *> &);
 
-    void Initialize_ME_runners(vector<ME_runner *> &);
-    void Initialize_ME_runners(const string &param_f, vector<ME_runner *> &);
+    void Initialize_ME_runners(std::vector<ME_runner *> &);
+    void Initialize_ME_runners(const std::string &param_f,
+                               std::vector<ME_runner *> &);
 
     /// Internal functions ///
-    string Find_local_file(const string &input_f);
+    std::string Find_local_file(const std::string &input_f);
 
     void Set_default_params();
     void Check_MEs();
     int Load_parameters(parameters &, data &);
-    void Load_parameters_MEs(const string &param_f);
+    void Load_parameters_MEs(const std::string &param_f);
     void Load_parameters_extract_params(const Parameters_MEKD *, data &);
     void Load_parameters_extract_params(const Parameters_HiggsPO_UFO *, data &);
     void Load_parameters_eval_params(const Parameters_MEKD *, const data &,
@@ -329,25 +330,25 @@ class MEKD
     // reloads parameter set and updates PDF file reader
     int Reload_params(parameters &, data &);
 
-    void Print_4momenta(const vector<double *> &);
-    void Print_4momenta_auto(const vector<double *> &);
+    void Print_4momenta(const std::vector<double *> &);
+    void Print_4momenta_auto(const std::vector<double *> &);
 
     // int Arrange_Internal_pls(process_description &);	// updates description
-    int Arrange_4momenta(vector<pair<int, double *>> &, vector<double *> &,
-                         final_state_types_ &);
+    int Arrange_4momenta(std::vector<std::pair<int, double *>> &,
+                         std::vector<double *> &, final_state_types_ &);
 
     void Run_make_p(data &);
     void Run_make_p_boost(const int, data &); // int = 0: CM; 1: pT0
     void Run_calculate(data &);
-    double Get_PDF_x1(const vector<double *> &p);
-    double Get_PDF_x2(const vector<double *> &p);
+    double Get_PDF_x1(const std::vector<double *> &p);
+    double Get_PDF_x2(const std::vector<double *> &p);
 
-    double Get_sys_m(const vector<double *> &p, const int p_range[2]);
+    double Get_sys_m(const std::vector<double *> &p, const int p_range[2]);
 
     void Approx_neg_z_parton(double *p, const double E);
     void Approx_pos_z_parton(double *p, const double E);
 
-    void Zero_first_two(vector<double *> &);
+    void Zero_first_two(std::vector<double *> &);
 
   public:
     /// Sets up particular choices. Tier 3
@@ -358,29 +359,29 @@ class MEKD
     // Generic mixed spin-0 state
     int Run_ME_Configurator_Spin0(const process_description &, data &,
                                   SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin0_produ(const complex<double> *c,
+    void Run_ME_Configurator_Spin0_produ(const std::complex<double> *c,
                                          const double lgg, data &da,
                                          SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin0_decay(const complex<double> *c,
+    void Run_ME_Configurator_Spin0_decay(const std::complex<double> *c,
                                          const double mZ, const double Mi,
                                          const double hZZ,
                                          SLHAReader_MEKD &par_MG);
     // Generic mixed spin-1 state
     int Run_ME_Configurator_Spin1(const process_description &, data &,
                                   SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin1_produ(const complex<double> *c,
+    void Run_ME_Configurator_Spin1_produ(const std::complex<double> *c,
                                          const double lgg, const double vev,
                                          data &da, SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin1_decay(const complex<double> *c,
+    void Run_ME_Configurator_Spin1_decay(const std::complex<double> *c,
                                          const double mZ, const double hZZ,
                                          SLHAReader_MEKD &par_MG);
     // Generic mixed spin-2 state
     int Run_ME_Configurator_Spin2(const process_description &, data &,
                                   SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin2_produ(const complex<double> *c,
+    void Run_ME_Configurator_Spin2_produ(const std::complex<double> *c,
                                          const double Mi, const double lgg,
                                          data &da, SLHAReader_MEKD &par_MG);
-    void Run_ME_Configurator_Spin2_decay(const complex<double> *c,
+    void Run_ME_Configurator_Spin2_decay(const std::complex<double> *c,
                                          const double mZ, const double Mi,
                                          const double hZZ,
                                          SLHAReader_MEKD &par_MG);
@@ -440,24 +441,26 @@ class MEKD
      */
   public:
     /// String flags and file locations: Version 2 and earlier
-    string Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
-                       // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
-                       // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
-                       // qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
-                       // Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb,
-                       // qqZ4l_Signal, qqZ4l_Background
-    vector<string> Test_Models; // same names as for the Test_Model
+    std::string
+        Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
+                    // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
+                    // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
+                    // qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
+                    // Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb,
+                    // qqZ4l_Signal, qqZ4l_Background
+    std::vector<std::string> Test_Models; // same names as for the Test_Model
 
     /// Calculation results
     double Background_ME; // may not be used if running RUN(string) is chosen
     double Signal_ME;     // is filled after running RUN_XXXX(...)
-    vector<double> Signal_MEs; // is filled if Test_Models are set after running
-                               // RUN_XXXX(...)
+    std::vector<double> Signal_MEs; // is filled if Test_Models are set after
+                                    // running RUN_XXXX(...)
 
     /// Run-related functions
     int Run(const input &); // main routine to evaluate matrix elements; updates
                             // "Calculation results"
-    int Run(const input &, string Input_Model); // Calculates a ME ONLY for a
+    int Run(const input &,
+            std::string Input_Model); // Calculates a ME ONLY for a
     // chosen model; ignores automatic background calculation. Updates Signal_ME
 
     /*
@@ -478,7 +481,7 @@ class MEKD
     /// \param PDFName							The name of the parton density
     /// function. Default is none.
     ///
-    MEKD(const double &collision_energy, const string &PDF_name);
+    MEKD(const double &collision_energy, const std::string &PDF_name);
 
     ///
     /// Compute and extract individual KD and MEs. Works after running int
@@ -498,8 +501,8 @@ class MEKD
     /// for process B (double).
     /// \return											See exit_codes
     ///
-    int computeKD(const string &processA, const string &processB, double &kd,
-                  double &me2processA, double &me2processB);
+    int computeKD(const std::string &processA, const std::string &processB,
+                  double &kd, double &me2processA, double &me2processB);
 
     ///
     /// Compute KDs and MEs for process A and process B out of the 4-momenta of
@@ -520,7 +523,7 @@ class MEKD
     /// for process B (double).
     /// \return											See exit_codes
     ///
-    int computeKD(const string &processA, const string &processB,
+    int computeKD(const std::string &processA, const std::string &processB,
                   const double lept1P[], const int lept1Id,
                   const double lept2P[], const int lept2Id,
                   const double lept3P[], const int lept3Id,
@@ -536,9 +539,9 @@ class MEKD
     /// REQUIRED).
     /// \param[in]  input_Ps							The input vector of
     /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<double*>, REQUIRED).
+    /// (std::vector<double*>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
     /// \param[out] kd									The computed KD value
     /// for discrimination of processes A and B (double).
     /// \param[out] me2processA							The computed |ME|^2
@@ -547,10 +550,10 @@ class MEKD
     /// for process B (double).
     /// \return											See exit_codes
     ///
-    int computeKD(const string &processA, const string &processB,
-                  const vector<double *> &input_Ps,
-                  const vector<int> &input_IDs, double &kd, double &me2processA,
-                  double &me2processB);
+    int computeKD(const std::string &processA, const std::string &processB,
+                  const std::vector<double *> &input_Ps,
+                  const std::vector<int> &input_IDs, double &kd,
+                  double &me2processA, double &me2processB);
 
     ///
     /// Compute ME for a processName out of the 4-momenta of the input particles
@@ -560,15 +563,16 @@ class MEKD
     /// process for which the ME is to be computed (string, REQUIRED).
     /// \param[in]  input_Ps							The input vector of
     /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<double*>, REQUIRED).
+    /// (std::vector<double*>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
     /// \param[out] me2process							The computed |ME|^2
     /// for process of interest (double).
     /// \return											See exit_codes
     ///
-    int computeME(const string &processName, const vector<double *> &input_Ps,
-                  const vector<int> &input_IDs, double &me2process);
+    int computeME(const std::string &processName,
+                  const std::vector<double *> &input_Ps,
+                  const std::vector<int> &input_IDs, double &me2process);
 
     ///
     /// Compute all default MEs first for the use with
@@ -593,13 +597,13 @@ class MEKD
     ///
     /// \param[in]  input_Ps							The input vector of
     /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<double*>, REQUIRED).
+    /// (std::vector<double*>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
     /// \return											See exit_codes
     ///
-    int computeMEs(const vector<double *> &input_Ps,
-                   const vector<int> &input_IDs);
+    int computeMEs(const std::vector<double *> &input_Ps,
+                   const std::vector<int> &input_IDs);
 
     ///
     /// Mixed-state ME mixer of (gg)Spin0Pm, (gg)Spin0Ph, (gg)Spin0Phexotic, and
@@ -616,10 +620,10 @@ class MEKD
     /// amplitude of the Spin0M state
     /// \return											See exit_codes
     ///
-    int Mix_Spin0(const complex<double> Spin0Pm_relamp,
-                  const complex<double> Spin0Ph_relamp,
-                  const complex<double> Spin0Phexo_relamp,
-                  const complex<double> Spin0M_relamp);
+    int Mix_Spin0(const std::complex<double> Spin0Pm_relamp,
+                  const std::complex<double> Spin0Ph_relamp,
+                  const std::complex<double> Spin0Phexo_relamp,
+                  const std::complex<double> Spin0M_relamp);
 
     ///
     /// Mixed-state ME mixer of production like qqSpin1M, qqSpin1P, exotic,
@@ -641,14 +645,14 @@ class MEKD
     /// amplitude for the Spin1P-like decay
     /// \return											See exit_codes
     ///
-    int Mix_Spin1(const complex<double> prod_Spin1M_relamp,
-                  const complex<double> prod_Spin1P_relamp,
-                  const complex<double> prod_Spin1Mexo_relamp,
-                  const complex<double> prod_Spin1Pexo_relamp,
-                  const complex<double> dec_Spin1M_relamp,
-                  const complex<double> dec_Spin1P_relamp,
-                  const complex<double> dec_Spin1_rhomu13_relamp,
-                  const complex<double> dec_Spin1_rhomu14_relamp);
+    int Mix_Spin1(const std::complex<double> prod_Spin1M_relamp,
+                  const std::complex<double> prod_Spin1P_relamp,
+                  const std::complex<double> prod_Spin1Mexo_relamp,
+                  const std::complex<double> prod_Spin1Pexo_relamp,
+                  const std::complex<double> dec_Spin1M_relamp,
+                  const std::complex<double> dec_Spin1P_relamp,
+                  const std::complex<double> dec_Spin1_rhomu13_relamp,
+                  const std::complex<double> dec_Spin1_rhomu14_relamp);
 
     ///
     /// Mixed-state ME mixer of Spin-2 states. Production couplings: k1g/rhoQ21,
@@ -661,40 +665,42 @@ class MEKD
     /// amplitudes for the Spin-2 state decay. An array of size 10
     /// \return											See exit_codes
     ///
-    int Mix_Spin2(const complex<double> *prod_Spin2_relamp,
-                  const complex<double> *dec_Spin2_relamp);
+    int Mix_Spin2(const std::complex<double> *prod_Spin2_relamp,
+                  const std::complex<double> *dec_Spin2_relamp);
 
     /// Mixed-state ME mixer. Variables
-    complex<double> m_Mixing_Coefficients_Spin0[4];
-    complex<double> m_Mixing_Coefficients_Spin1[8];
-    complex<double> m_Mixing_Coefficients_Spin2[20];
+    std::complex<double> m_Mixing_Coefficients_Spin0[4];
+    std::complex<double> m_Mixing_Coefficients_Spin1[8];
+    std::complex<double> m_Mixing_Coefficients_Spin2[20];
 
   private:
     /// Properties. Variables.
     // computeMEs(...) results
     double ME_ZZ, ME_Spin0PSMH, ME_Spin0Ph, ME_Spin0M;
     double ME_Spin1P, ME_Spin1M, ME_ggSpin2Pm, ME_qqSpin2Pm;
-    string m_PDFName;  // Name of the parton density functions to be used.
-                       // Supported: CTEQ6l;
-    string m_process;  // Name of the process (background, signal hypotheses,
-                       // etc.). Supported: Custom, SMHiggs, CPoddScalar,
-                       // CPevenScalar, Spin2particle, ZZ
-    string m_processA; // Name of the process A (background, signal hypotheses,
-                       // etc.). Supported: Custom, SMHiggs, CPoddScalar,
-                       // CPevenScalar, Spin2particle, ZZ
-    string m_processB; // Name of the process B (background, signal hypotheses,
-                       // etc.). Supported: Custom, SMHiggs, CPoddScalar,
-                       // CPevenScalar, Spin2particle, ZZ
+    std::string m_PDFName; // Name of the parton density functions to be used.
+                           // Supported: CTEQ6l;
+    std::string m_process; // Name of the process (background, signal
+                           // hypotheses, etc.). Supported: Custom, SMHiggs,
+                           // CPoddScalar, CPevenScalar, Spin2particle, ZZ
+    std::string m_processA; // Name of the process A (background, signal
+                            // hypotheses, etc.). Supported: Custom, SMHiggs,
+                            // CPoddScalar, CPevenScalar, Spin2particle, ZZ
+    std::string m_processB; // Name of the process B (background, signal
+                            // hypotheses, etc.). Supported: Custom, SMHiggs,
+                            // CPoddScalar, CPevenScalar, Spin2particle, ZZ
 
     /// Methods
-    int setProcessName(const string &process); // sanity check for input process
-                                               // name, translation to the the
-                                               // names supported by MEKD v2
-    int setProcessNames(const string &processA,
-                        const string &processB); // sanity check for input
-                                                 // process names, translation
-                                                 // to the the names supported
-                                                 // by MEKD v2
+    int setProcessName(
+        const std::string &process); // sanity check for input process
+                                     // name, translation to the the
+                                     // names supported by MEKD v2
+    int
+    setProcessNames(const std::string &processA,
+                    const std::string &processB); // sanity check for input
+                                                  // process names, translation
+                                                  // to the the names supported
+                                                  // by MEKD v2
     int processParameters(); // sanity check for internal paramters
 
 #if (defined MEKD_STANDALONE && defined MEKD_with_ROOT) ||                     \
@@ -766,7 +772,7 @@ class MEKD
     /// REQUIRED).
     /// \param[in]  input_Ps							The input vector of
     /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<TLorentzVector>, REQUIRED).
+    /// (std::vector<TLorentzVector>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
     /// (PDG) of particles N=1..5 (int, REQUIRED).
     /// \param[out] kd									The computed KD value
@@ -778,9 +784,9 @@ class MEKD
     /// \return											See exit_codes
     ///
     int computeKD(const TString &processA, const TString &processB,
-                  const vector<TLorentzVector> &input_Ps,
-                  const vector<int> &input_IDs, double &kd, double &me2processA,
-                  double &me2processB);
+                  const std::vector<TLorentzVector> &input_Ps,
+                  const std::vector<int> &input_IDs, double &kd,
+                  double &me2processA, double &me2processB);
 
     ///
     /// Compute ME for a processName out of the 4-momenta of the input particles
@@ -790,16 +796,16 @@ class MEKD
     /// process for which the ME is to be computed (TString, REQUIRED).
     /// \param[in]  input_Ps							The input vector of
     /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<TLorentzVector>, REQUIRED).
+    /// (std::vector<TLorentzVector>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
     /// \param[out] me2process							The computed |ME|^2
     /// for process of interest (double).
     /// \return											See exit_codes
     ///
     int computeME(const TString &processName,
-                  const vector<TLorentzVector> &input_Ps,
-                  const vector<int> &input_IDs, double &me2process);
+                  const std::vector<TLorentzVector> &input_Ps,
+                  const std::vector<int> &input_IDs, double &me2process);
 
     ///
     /// Compute all important/default MEs first for the use with
@@ -825,19 +831,19 @@ class MEKD
     ///
     /// \param[in]  input_Ps							The input vector of
     /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (vector<TLorentzVector>, REQUIRED).
+    /// (std::vector<TLorentzVector>, REQUIRED).
     /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (vector<int>, REQUIRED).
+    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
     /// \return											See exit_codes
     ///
-    int computeMEs(const vector<TLorentzVector> &input_Ps,
-                   const vector<int> &input_IDs);
+    int computeMEs(const std::vector<TLorentzVector> &input_Ps,
+                   const std::vector<int> &input_IDs);
 
   private:
     // For storing TLorentzVectors for internal use
     double lept1P_i[4], lept2P_i[4], lept3P_i[4], lept4P_i[4];
     // For storing vector of TLorentzVectors for internal use
-    vector<double *> input_Ps_i;
+    std::vector<double *> input_Ps_i;
 
 #endif
 };

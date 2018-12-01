@@ -8,6 +8,8 @@
 #include "gg_Spin0_SFpA.h"
 #include "HelAmps_HEF_MEKD.h"
 
+using namespace std;
+
 using namespace MG5_HEF_MEKD;
 
 //==========================================================================

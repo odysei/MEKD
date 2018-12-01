@@ -8,6 +8,8 @@
 #include "qq_ZZ_DN_OF.h"
 #include "HelAmps_HEF_UFO_bkg.h"
 
+using namespace std;
+
 namespace MG5_HEF_UFO_bkg
 {
 

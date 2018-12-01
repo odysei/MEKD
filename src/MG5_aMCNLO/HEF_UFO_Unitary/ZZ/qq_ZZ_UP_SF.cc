@@ -8,6 +8,8 @@
 #include "qq_ZZ_UP_SF.h"
 #include "HelAmps_HEF_UFO_bkg.h"
 
+using namespace std;
+
 namespace MG5_HEF_UFO_bkg
 {
 
@@ -362,4 +364,4 @@ double qq_ZZ_UP_SF::matrix_ccx_mummupmummup_no_hxg()
 
     return matrix;
 }
-}
+} // namespace MG5_HEF_UFO_bkg

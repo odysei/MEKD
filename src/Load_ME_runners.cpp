@@ -9,6 +9,8 @@
 
 #include "MEKD.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -100,7 +102,7 @@ void MEKD::Initialize_ME_runners(const string &param_f,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 /*

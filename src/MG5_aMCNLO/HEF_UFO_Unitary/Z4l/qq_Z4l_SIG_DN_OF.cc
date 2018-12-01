@@ -8,6 +8,8 @@
 #include "qq_Z4l_SIG_DN_OF.h"
 #include "HelAmps_HEF_UFO_bkg.h"
 
+using namespace std;
+
 using namespace MG5_HEF_UFO_bkg;
 
 //==========================================================================

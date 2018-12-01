@@ -8,6 +8,8 @@
 #include "qq_Z4l_BKG_UP_SFpA.h"
 #include "HelAmps_HZZ_Unitary_bkgpA.h"
 
+using namespace std;
+
 using namespace MG5_HZZ_Unitary_bkgpA;
 
 //==========================================================================

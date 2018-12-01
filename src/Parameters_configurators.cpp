@@ -13,6 +13,8 @@
 #include "MEKD_CalcHEP_Extra_functions.h"
 #include "higgs_properties/hggeffective.h"
 
+using namespace std;
+
 namespace mekd
 {
 

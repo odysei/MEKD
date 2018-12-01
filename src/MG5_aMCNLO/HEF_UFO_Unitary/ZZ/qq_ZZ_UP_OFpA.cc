@@ -8,6 +8,8 @@
 #include "qq_ZZ_UP_OFpA.h"
 #include "HelAmps_HZZ_Unitary_bkgpA.h"
 
+using namespace std;
+
 namespace MG5_HZZ_Unitary_bkgpA
 {
 
@@ -657,4 +659,4 @@ double qq_ZZ_UP_OFpA::matrix_ccx_emepmummupa_no_hzpxg()
 
     return matrix;
 }
-}
+} // namespace MG5_HZZ_Unitary_bkgpA

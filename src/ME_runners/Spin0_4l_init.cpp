@@ -7,8 +7,10 @@
 #ifndef MEKD__ME_runners__Spin0_4l_init_cpp
 #define MEKD__ME_runners__Spin0_4l_init_cpp
 
-#include "Supported_MEs_Spin0_4l.h"
 #include "MEKD_Initiators.h"
+#include "Supported_MEs_Spin0_4l.h"
+
+using namespace std;
 
 namespace mekd
 {
@@ -698,7 +700,7 @@ void ME_runner_no_Spin0_2f_4lA::deinitialize()
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

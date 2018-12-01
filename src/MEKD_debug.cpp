@@ -7,6 +7,8 @@
 
 #include "MEKD.h"
 
+using namespace std;
+
 namespace mekd
 {
 
@@ -53,7 +55,7 @@ void MEKD::Print_4momenta_auto(const vector<double *> &p)
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 ///////////////////////////////

@@ -13,7 +13,6 @@
 
 #include "Parameters_HiggsPO_UFO.h"
 
-using namespace std;
 namespace MG5_HiggsPO_UFO
 {
 
@@ -29,7 +28,7 @@ class Spin0_OF
     Spin0_OF() {}
 
     // Initialize process.
-    void initProc(string param_card_name);
+    void initProc(std::string param_card_name);
     void initProc();
 
     // Update process.
@@ -42,15 +41,15 @@ class Spin0_OF
     double sigmaHat();
 
     // Info on the subprocess.
-    string name() const { return "h > e- e+ mu- mu+ (HiggsPO_UFO)"; }
+    std::string name() const { return "h > e- e+ mu- mu+ (HiggsPO_UFO)"; }
 
     int code() const { return 1; }
 
-    const vector<double> &getMasses() const { return mME; }
+    const std::vector<double> &getMasses() const { return mME; }
 
     // Get and set momenta for matrix element evaluation
-    vector<double *> getMomenta() { return p; }
-    void setMomenta(vector<double *> &momenta) { p = momenta; }
+    std::vector<double *> getMomenta() { return p; }
+    void setMomenta(std::vector<double *> &momenta) { p = momenta; }
     void setInitial(int inid1, int inid2)
     {
         id1 = inid1;
@@ -86,13 +85,13 @@ class Spin0_OF
     Parameters_HiggsPO_UFO *pars;
 
     // vector with external particle masses
-    vector<double> mME;
+    std::vector<double> mME;
 
     // vector with momenta (to be changed each event)
-    vector<double *> p;
+    std::vector<double *> p;
     // Initial particle ids
     int id1, id2;
 };
-}
+} // namespace MG5_HiggsPO_UFO
 
 #endif // MG5_Sigma_HiggsPO_UFO_h_emepmummup_H

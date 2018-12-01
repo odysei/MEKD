@@ -11,7 +11,6 @@
 #include <complex>
 
 #include "MG5_aMCNLO/Commons/read_slha_MEKD.h"
-using namespace std;
 
 class Parameters_HiggsPO_UFO
 {

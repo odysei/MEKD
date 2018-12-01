@@ -7,6 +7,8 @@
 
 #include "MEKD.h"
 
+using namespace std;
+
 namespace mekd
 {
 // helper function, can be exported
@@ -158,7 +160,7 @@ int MEKD::Arrange_4momenta(vector<pair<int, double *>> &id_p,
 }
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 
