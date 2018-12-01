@@ -7,7 +7,7 @@
 #ifndef MEKD__ME_runners__Spin1_4l_cpp
 #define MEKD__ME_runners__Spin1_4l_cpp
 
-#include "Supported_MEs_Spin1_4l.h"
+#include "MEKD/Supported_MEs_Spin1_4l.h"
 
 namespace mekd
 {
@@ -385,7 +385,7 @@ double ME_runner_no_Spin1_2f_4lA::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

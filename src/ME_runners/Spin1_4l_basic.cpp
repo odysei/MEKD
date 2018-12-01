@@ -7,7 +7,7 @@
 #ifndef MEKD__ME_runners__Spin1_4l_basic_cpp
 #define MEKD__ME_runners__Spin1_4l_basic_cpp
 
-#include "Supported_MEs_Spin1_4l.h"
+#include "MEKD/Supported_MEs_Spin1_4l.h"
 
 namespace mekd
 {
@@ -28,7 +28,10 @@ namespace mekd
  */
 
 /// ME_runner_qq_Z_Zp_Spin1_2f_4l
-const process_description ME_runner_qq_Z_Zp_Spin1_2f_4l::my_type() { return me; }
+const process_description ME_runner_qq_Z_Zp_Spin1_2f_4l::my_type()
+{
+    return me;
+}
 
 bool ME_runner_qq_Z_Zp_Spin1_2f_4l::is_my_type(const process_description &in)
 {
@@ -40,7 +43,7 @@ bool ME_runner_qq_Z_Zp_Spin1_2f_4l::is_my_type(const process_description &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

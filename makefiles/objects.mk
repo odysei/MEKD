@@ -100,7 +100,13 @@ $(INCDIR2_2)/ZZ/qq_ZZ_DN_SFpA.o $(INCDIR2_2)/ZZ/qq_ZZ_UP_SFpA.o
 ########################
 
 objects4_C=\
-$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1.o $(INCDIR2_1_src)/HelAmps_HEF_MEKD.o
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1_p1.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1_p2.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1_p3.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD2_1_p4.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD_p1.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD_p2.o \
+$(INCDIR2_1_src)/HelAmps_HEF_MEKD_p3.o
 
 
 

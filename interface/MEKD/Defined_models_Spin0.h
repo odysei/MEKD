@@ -5,8 +5,8 @@
  *
  *
  */
-#ifndef Defined_models_Spin0_h
-#define Defined_models_Spin0_h
+#ifndef MEKD__Defined_models_Spin0_h
+#define MEKD__Defined_models_Spin0_h
 
 #include <complex>
 

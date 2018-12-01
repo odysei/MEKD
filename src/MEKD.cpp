@@ -10,6 +10,9 @@
 #include "MEKD.h"
 /// MEKD tools
 #include "Extra_code/MEKD_Boosts.h"
+extern "C" {
+#include "Extra_code/MEKD_CalcHEP_PDF.h"
+}
 
 using namespace std;
 

@@ -6,6 +6,7 @@
 #define MEKD_sorter_cpp
 
 #include "MEKD.h"
+#include <algorithm> // for sorting
 
 using namespace std;
 

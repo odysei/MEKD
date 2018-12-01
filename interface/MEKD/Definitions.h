@@ -4,10 +4,11 @@
  *  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
  *  Info:        MEKD definitions are provided here.
  *************************************************************************/
-#ifndef MEKD_Definitions_h
-#define MEKD_Definitions_h
+#ifndef MEKD__Definitions_h
+#define MEKD__Definitions_h
 
-#include "MEKD.h"
+#include <complex>
+#include <vector>
 
 namespace mekd
 {

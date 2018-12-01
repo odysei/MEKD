@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Supported_MEs_Spin1_4l_h
-#define MEKD_Supported_MEs_Spin1_4l_h
+#ifndef MEKD__Supported_MEs_Spin1_4l_h
+#define MEKD__Supported_MEs_Spin1_4l_h
 
 #include "MEKD.h"
 #include "MG5_aMCNLO/Leptophilic_UFO/z_zp/MEKD_MEs.h"

@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef Parameters_configurators_h
-#define Parameters_configurators_h
+#ifndef MEKD__Parameters_configurators_h
+#define MEKD__Parameters_configurators_h
 
 #include "MEKD.h"
 

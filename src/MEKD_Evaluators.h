@@ -4,7 +4,11 @@
 #ifndef MEKD_Evaluators_h
 #define MEKD_Evaluators_h
 
-#include "MEKD.h"
+#include "MEKD/Definitions.h"
+/// MEKD tools
+extern "C" {
+#include "Extra_code/MEKD_CalcHEP_PDF.h"
+}
 
 namespace mekd
 {

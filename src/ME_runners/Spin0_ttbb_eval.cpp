@@ -7,8 +7,8 @@
 #ifndef MEKD__ME_runners__Spin0_ttbb_eval_cpp
 #define MEKD__ME_runners__Spin0_ttbb_eval_cpp
 
-#include "Supported_MEs_Spin0_ttbb.h"
-#include "Parameters_configurators.h"
+#include "MEKD/Parameters_configurators.h"
+#include "MEKD/Supported_MEs_Spin0_ttbb.h"
 #include "MEKD_Evaluators.h"
 
 namespace mekd
@@ -82,7 +82,7 @@ double ME_runner_all_Spin0Pm_2f_ttbb_2::evaluate(MEKD &in_MEKD, const input &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

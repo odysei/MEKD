@@ -7,8 +7,8 @@
 #ifndef MEKD__ME_runners__Spin1_4l_init_cpp
 #define MEKD__ME_runners__Spin1_4l_init_cpp
 
+#include "MEKD/Supported_MEs_Spin1_4l.h"
 #include "MEKD_Initiators.h"
-#include "Supported_MEs_Spin1_4l.h"
 
 using namespace std;
 

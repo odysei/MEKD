@@ -9,6 +9,9 @@
 /// MEKD tools
 #include "MEKD_CalcHEP_Extra_functions.h"
 #include "higgs_properties/hggeffective.h"
+extern "C" {
+#include "Extra_code/MEKD_CalcHEP_PDF.h"
+}
 
 using namespace std;
 

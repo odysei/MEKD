@@ -7,7 +7,7 @@
 #ifndef Parameters_configurators_cpp
 #define Parameters_configurators_cpp
 
-#include "Parameters_configurators.h"
+#include "MEKD/Parameters_configurators.h"
 #include "MEKD.h"
 /// MEKD tools
 #include "MEKD_CalcHEP_Extra_functions.h"

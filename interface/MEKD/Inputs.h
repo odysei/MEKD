@@ -4,8 +4,8 @@
  *  Contact:     odysei@cern.ch, mekd@phys.ufl.edu
  *  Info:        MEKD standard containers/structs are defined here.
  *************************************************************************/
-#ifndef MEKD_Inputs_h
-#define MEKD_Inputs_h
+#ifndef MEKD__Inputs_h
+#define MEKD__Inputs_h
 
 #include "Definitions.h"
 #include "Includes.h"

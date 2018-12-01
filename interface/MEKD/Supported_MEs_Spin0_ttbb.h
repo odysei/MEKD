@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef MEKD_Supported_MEs_Spin0_ttbb_h
-#define MEKD_Supported_MEs_Spin0_ttbb_h
+#ifndef MEKD__Supported_MEs_Spin0_ttbb_h
+#define MEKD__Supported_MEs_Spin0_ttbb_h
 
 #include "MEKD.h"
 #include "MG5_aMCNLO/HEFTU/h_ttbb/MEKD_MEs.h"

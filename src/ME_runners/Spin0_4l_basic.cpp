@@ -7,7 +7,7 @@
 #ifndef MEKD__ME_runners__Spin0_4l_basic_cpp
 #define MEKD__ME_runners__Spin0_4l_basic_cpp
 
-#include "Supported_MEs_Spin0_4l.h"
+#include "MEKD/Supported_MEs_Spin0_4l.h"
 
 namespace mekd
 {
@@ -305,7 +305,7 @@ bool ME_runner_no_Spin0_2f_4lA::is_my_type(const process_description &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

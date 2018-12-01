@@ -11,6 +11,7 @@
 #define MEKD_Defaults_cpp
 
 #include "MEKD.h"
+#include <fstream> // for checking file location
 
 using namespace std;
 

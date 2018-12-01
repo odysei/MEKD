@@ -7,7 +7,7 @@
 #ifndef MEKD__ME_runners__Spin0_ttbb_basic_cpp
 #define MEKD__ME_runners__Spin0_ttbb_basic_cpp
 
-#include "Supported_MEs_Spin0_ttbb.h"
+#include "MEKD/Supported_MEs_Spin0_ttbb.h"
 
 namespace mekd
 {
@@ -66,7 +66,7 @@ bool ME_runner_all_Spin0Pm_2f_ttbb_2::is_my_type(const process_description &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

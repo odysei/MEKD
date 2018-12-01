@@ -9,7 +9,7 @@
 #ifndef MEKD__ME_runners__Other_ttbb_basic_cpp
 #define MEKD__ME_runners__Other_ttbb_basic_cpp
 
-#include "Supported_MEs_Other_ttbb.h"
+#include "MEKD/Supported_MEs_Other_ttbb.h"
 
 namespace mekd
 {
@@ -41,7 +41,7 @@ bool ME_runner_all_bkg_2f_ttbb_2::is_my_type(const process_description &in)
  */
 
 /// end of namespace
-}
+} // namespace mekd
 
 #endif
 

@@ -7,7 +7,7 @@
 #define MEKD_h
 
 // MEKD_MG merge
-#include "Includes.h"
+#include "MEKD/Includes.h"
 
 /*
  *
@@ -333,7 +333,8 @@ class MEKD
     void Print_4momenta(const std::vector<double *> &);
     void Print_4momenta_auto(const std::vector<double *> &);
 
-    // int Arrange_Internal_pls(process_description &);	// updates description
+    // int Arrange_Internal_pls(process_description &);    // updates
+    // description
     int Arrange_4momenta(std::vector<std::pair<int, double *>> &,
                          std::vector<double *> &, final_state_types_ &);
 
@@ -441,13 +442,13 @@ class MEKD
      */
   public:
     /// String flags and file locations: Version 2 and earlier
-    std::string
-        Test_Model; // Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm,
-                    // ggSpin0M, ggSpin0Ph, qqSpin1P, qqSpin1M, ggSpin2Pm,
-                    // ggSpin2Ph, ggSpin2Mh, ggSpin2Pb, qqSpin2Pm, qqSpin2Ph,
-                    // qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
-                    // Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb,
-                    // qqZ4l_Signal, qqZ4l_Background
+    std::string Test_Model;
+    /* Models: ZZ, DY, Custom, CPevenScalar, ggSpin0Pm, ggSpin0M, ggSpin0Ph,
+     * qqSpin1P, qqSpin1M, ggSpin2Pm, ggSpin2Ph, ggSpin2Mh, ggSpin2Pb,
+     * qqSpin2Pm, qqSpin2Ph, qqSpin2Mh, qqSpin2Pb, Spin0Pm, Spin0M, Spin0Ph,
+     * Spin1P, Spin1M, Spin2Pm, Spin2Ph, Spin2Mh, Spin2Pb, qqZ4l_Signal,
+     * qqZ4l_Background
+     */
     std::vector<std::string> Test_Models; // same names as for the Test_Model
 
     /// Calculation results
@@ -477,9 +478,9 @@ class MEKD
     ///
     /// Constructor.
     ///
-    /// \param collision_energy					The sqrt(s) value in TeV.
-    /// \param PDFName							The name of the parton density
-    /// function. Default is none.
+    /// \param collision_energy The sqrt(s) value in TeV.
+    /// \param PDFName          The name of the parton density function. Default
+    /// is none.
     ///
     MEKD(const double &collision_energy, const std::string &PDF_name);
 
@@ -490,16 +491,16 @@ class MEKD
     /// Supported process names: "ZZ", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph",
     /// "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "qqSpin2Pm".
     ///
-    /// \param[in]  processA, processB					The names of the
+    /// \param[in]  processA, processB                    The names of the
     /// processes X = A, B for which the KDs and MEs are computed (string,
     /// REQUIRED).
-    /// \param[out] kd									The computed KD value
+    /// \param[out] kd                                    The computed KD value
     /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
+    /// \param[out] me2processA                            The computed |ME|^2
     /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
+    /// \param[out] me2processB                            The computed |ME|^2
     /// for process B (double).
-    /// \return											See exit_codes
+    /// \return                                            See exit_codes
     ///
     int computeKD(const std::string &processA, const std::string &processB,
                   double &kd, double &me2processA, double &me2processB);
@@ -508,20 +509,19 @@ class MEKD
     /// Compute KDs and MEs for process A and process B out of the 4-momenta of
     /// 4 leptons (lepton ordering does not matter).
     ///
-    /// \param[in]  processA, processB					The names of the
-    /// processes X = A, B for which the KDs and MEs are computed (string,
-    /// REQUIRED).
-    /// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with
+    /// \param[in]  processA, processB              The names of the processes
+    /// X = A, B for which the KDs and MEs are computed (string, REQUIRED).
+    /// \param[in]  lept1P, lept2P, lept3P, lept4P  The input arrays with
     /// 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
-    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of
+    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id    The input IDs (PDG) of
     /// leptons N=1..4 (int, REQUIRED).
-    /// \param[out] kd									The computed KD value
+    /// \param[out] kd                                    The computed KD value
     /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
+    /// \param[out] me2processA                            The computed |ME|^2
     /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
+    /// \param[out] me2processB                            The computed |ME|^2
     /// for process B (double).
-    /// \return											See exit_codes
+    /// \return                                            See exit_codes
     ///
     int computeKD(const std::string &processA, const std::string &processB,
                   const double lept1P[], const int lept1Id,
@@ -534,21 +534,21 @@ class MEKD
     /// Compute KDs and MEs for process A and process B out of the 4-momenta of
     /// the input particles (ordering does not matter).
     ///
-    /// \param[in]  processA, processB					The names of the
+    /// \param[in]  processA, processB  The names of the
     /// processes X = A, B for which the KDs and MEs are computed (string,
     /// REQUIRED).
-    /// \param[in]  input_Ps							The input vector of
-    /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (std::vector<double*>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
-    /// \param[out] kd									The computed KD value
-    /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
-    /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
-    /// for process B (double).
-    /// \return											See exit_codes
+    /// \param[in]  input_Ps            The input vector of arrays with
+    /// 4-momentum (E,px,py,pz) values of particles N=1..5 (vector<double*>,
+    /// REQUIRED).
+    /// \param[in]  input_IDs           The input vector of IDs (PDG) of
+    /// particles N=1..5 (std::vector<int>, REQUIRED).
+    /// \param[out] kd                  The computed KD value for discrimination
+    /// of processes A and B (double).
+    /// \param[out] me2processA         The computed |ME|^2 for process A
+    /// (double).
+    /// \param[out] me2processB         The computed |ME|^2 for process B
+    /// (double).
+    /// \return                         See exit_codes
     ///
     int computeKD(const std::string &processA, const std::string &processB,
                   const std::vector<double *> &input_Ps,
@@ -559,16 +559,16 @@ class MEKD
     /// Compute ME for a processName out of the 4-momenta of the input particles
     /// (ordering does not matter).
     ///
-    /// \param[in]  processName							The Name of the
+    /// \param[in]  processName                            The Name of the
     /// process for which the ME is to be computed (string, REQUIRED).
-    /// \param[in]  input_Ps							The input vector of
+    /// \param[in]  input_Ps                            The input vector of
     /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
     /// (std::vector<double*>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
+    /// \param[in]  input_IDs                            The input vector of IDs
     /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
-    /// \param[out] me2process							The computed |ME|^2
+    /// \param[out] me2process                            The computed |ME|^2
     /// for process of interest (double).
-    /// \return											See exit_codes
+    /// \return                                            See exit_codes
     ///
     int computeME(const std::string &processName,
                   const std::vector<double *> &input_Ps,
@@ -579,11 +579,11 @@ class MEKD
     /// computeKD(string, string, double&, double&, double&). Option Custom is
     /// outside this scope.
     ///
-    /// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with
+    /// \param[in]  lept1P, lept2P, lept3P, lept4P      The input arrays with
     /// 4-momentum (E,px,py,pz) values of leptons N=1..4 (double*, REQUIRED).
-    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of
+    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id  The input IDs (PDG) of
     /// leptons N=1..4 (int, REQUIRED).
-    /// \return											See exit_codes
+    /// \return                                         See exit_codes
     ///
     int computeMEs(const double lept1P[], const int lept1Id,
                    const double lept2P[], const int lept2Id,
@@ -595,12 +595,11 @@ class MEKD
     /// computeKD(string, string, double&, double&, double&). Option Custom is
     /// outside this scope.
     ///
-    /// \param[in]  input_Ps							The input vector of
-    /// arrays with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (std::vector<double*>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
-    /// \return											See exit_codes
+    /// \param[in]  input_Ps    The input vector of arrays with 4-momentum
+    /// (E,px,py,pz) values of particles N=1..5 (vector<double*>, REQUIRED).
+    /// \param[in]  input_IDs   The input vector of IDs (PDG) of particles
+    /// N=1..5 (std::vector<int>, REQUIRED).
+    /// \return                 See exit_codes
     ///
     int computeMEs(const std::vector<double *> &input_Ps,
                    const std::vector<int> &input_IDs);
@@ -610,15 +609,15 @@ class MEKD
     /// (gg)Spin0M states, corresponding couplings kappa_1/rhomu01,
     /// kappa_2/rhomu02, kappa_3/rhomu03, kappa_4/rhomu04.
     ///
-    /// \param[in]	Spin0Pm_relamp						The relative complex
-    /// amplitude of the Spin0Pm state
-    /// \param[in]	Spin0Ph_relamp						The relative complex
-    /// amplitude of the Spin0Ph state
-    /// \param[in]	Spin0Phexo_relamp					The relative complex
-    /// amplitude of the Spin0PhExotic state
-    /// \param[in]	Spin0M_relamp						The relative complex
-    /// amplitude of the Spin0M state
-    /// \return											See exit_codes
+    /// \param[in]    Spin0Pm_relamp        The relative complex amplitude of
+    /// the Spin0Pm state
+    /// \param[in]    Spin0Ph_relamp        The relative complex amplitude of
+    /// the Spin0Ph state
+    /// \param[in]    Spin0Phexo_relamp     The relative complex amplitude of
+    /// the Spin0PhExotic state
+    /// \param[in]    Spin0M_relamp         The relative complex amplitude of
+    /// the Spin0M state
+    /// \return                             See exit_codes
     ///
     int Mix_Spin0(const std::complex<double> Spin0Pm_relamp,
                   const std::complex<double> Spin0Ph_relamp,
@@ -631,19 +630,19 @@ class MEKD
     /// couplings rhoQ11, rhoQ12, rhoQ13, rhoQ14, b1z/rhomu11, b2z/rhomu12,
     /// rhomu13, rhomu14.
     ///
-    /// \param[in]	prod_Spin1M_relamp					The relative complex
+    /// \param[in]    prod_Spin1M_relamp                    The relative complex
     /// amplitude for the Spin1M-like production
-    /// \param[in]	prod_Spin1P_relamp					The relative complex
+    /// \param[in]    prod_Spin1P_relamp                    The relative complex
     /// amplitude for the Spin1P-like production
-    /// \param[in]	prod_Spin1Mexo_relamp				The relative complex
+    /// \param[in]    prod_Spin1Mexo_relamp                The relative complex
     /// amplitude for the Spin1Mexotic-like production
-    /// \param[in]	prod_Spin1Pexo_relamp				The relative complex
+    /// \param[in]    prod_Spin1Pexo_relamp                The relative complex
     /// amplitude for the Spin1Pexotic-like production
-    /// \param[in]	dec_Spin1M_relamp					The relative complex
+    /// \param[in]    dec_Spin1M_relamp                    The relative complex
     /// amplitude for the Spin1M-like decay
-    /// \param[in]	dec_Spin1P_relamp					The relative complex
+    /// \param[in]    dec_Spin1P_relamp                    The relative complex
     /// amplitude for the Spin1P-like decay
-    /// \return											See exit_codes
+    /// \return                                            See exit_codes
     ///
     int Mix_Spin1(const std::complex<double> prod_Spin1M_relamp,
                   const std::complex<double> prod_Spin1P_relamp,
@@ -659,11 +658,11 @@ class MEKD
     /// ..., k4g/rhoQ24, ..., k10g, decay couplings: k1z/rhomu21, k4z/rhomu24,
     /// ..., k10z.
     ///
-    /// \param[in]	*prod_Spin2_relamp					The relative complex
+    /// \param[in]    *prod_Spin2_relamp                    The relative complex
     /// amplitudes for the Spin-2 state production. An array of size 10
-    /// \param[in]	*dec_Spin2_relamp					The relative complex
+    /// \param[in]    *dec_Spin2_relamp                    The relative complex
     /// amplitudes for the Spin-2 state decay. An array of size 10
-    /// \return											See exit_codes
+    /// \return                                            See exit_codes
     ///
     int Mix_Spin2(const std::complex<double> *prod_Spin2_relamp,
                   const std::complex<double> *dec_Spin2_relamp);
@@ -678,11 +677,11 @@ class MEKD
     // computeMEs(...) results
     double ME_ZZ, ME_Spin0PSMH, ME_Spin0Ph, ME_Spin0M;
     double ME_Spin1P, ME_Spin1M, ME_ggSpin2Pm, ME_qqSpin2Pm;
-    std::string m_PDFName; // Name of the parton density functions to be used.
-                           // Supported: CTEQ6l;
-    std::string m_process; // Name of the process (background, signal
-                           // hypotheses, etc.). Supported: Custom, SMHiggs,
-                           // CPoddScalar, CPevenScalar, Spin2particle, ZZ
+    std::string m_PDFName;  // Name of the parton density functions to be used.
+                            // Supported: CTEQ6l;
+    std::string m_process;  // Name of the process (background, signal
+                            // hypotheses, etc.). Supported: Custom, SMHiggs,
+                            // CPoddScalar, CPevenScalar, Spin2particle, ZZ
     std::string m_processA; // Name of the process A (background, signal
                             // hypotheses, etc.). Supported: Custom, SMHiggs,
                             // CPoddScalar, CPevenScalar, Spin2particle, ZZ
@@ -718,16 +717,15 @@ class MEKD
     /// Supported process names: "ZZ", "ggSpin0Pm", "ggSpin0M", "ggSpin0Ph",
     /// "qqSpin1P", "qqSpin1M", "ggSpin2Pm", "qqSpin2Pm".
     ///
-    /// \param[in]  processA, processB					The names of the
-    /// processes X = A, B for which the KDs and MEs are computed (TString,
-    /// REQUIRED).
-    /// \param[out] kd									The computed KD value
-    /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
-    /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
-    /// for process B (double).
-    /// \return											See exit_codes
+    /// \param[in]  processA, processB  The names of the processes X = A, B for
+    /// which the KDs and MEs are computed (TString, REQUIRED).
+    /// \param[out] kd                  The computed KD value for discrimination
+    /// of processes A and B (double).
+    /// \param[out] me2processA         The computed |ME|^2 for process A
+    /// (double).
+    /// \param[out] me2processB         The computed |ME|^2 for process B
+    /// (double).
+    /// \return                         See exit_codes
     ///
     int computeKD(const TString &processA, const TString &processB, double &kd,
                   double &me2processA, double &me2processB);
@@ -738,21 +736,21 @@ class MEKD
     /// The overloaded method that supports input parameters of ROOT types
     /// TString and TLorentzVector.
     ///
-    /// \param[in]  processA, processB					The names of the
+    /// \param[in]  processA, processB              The names of the
     /// processes X = A, B for which the KDs and MEs are computed (TString,
     /// REQUIRED).
-    /// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with
+    /// \param[in]  lept1P, lept2P, lept3P, lept4P  The input arrays with
     /// 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector,
     /// REQUIRED).
-    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of
+    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id  The input IDs (PDG) of
     /// leptons N=1..4 (int, REQUIRED).
-    /// \param[out] kd									The computed KD value
+    /// \param[out] kd                              The computed KD value
     /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
+    /// \param[out] me2processA                     The computed |ME|^2
     /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
+    /// \param[out] me2processB                     The computed |ME|^2
     /// for process B (double).
-    /// \return											See exit_codes
+    /// \return                                     See exit_codes
     ///
     int computeKD(const TString &processA, const TString &processB,
                   const TLorentzVector &lept1P, const int lept1Id,
@@ -767,21 +765,18 @@ class MEKD
     /// The overloaded method that supports input parameters of ROOT types
     /// TString and TLorentzVector.
     ///
-    /// \param[in]  processA, processB					The names of the
-    /// processes X = A, B for which the KDs and MEs are computed (Tstring,
-    /// REQUIRED).
-    /// \param[in]  input_Ps							The input vector of
-    /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
-    /// (std::vector<TLorentzVector>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (int, REQUIRED).
-    /// \param[out] kd									The computed KD value
-    /// for discrimination of processes A and B (double).
-    /// \param[out] me2processA							The computed |ME|^2
-    /// for process A (double).
-    /// \param[out] me2processB							The computed |ME|^2
-    /// for process B (double).
-    /// \return											See exit_codes
+    /// \param[in]  processA, processB  The names of the processes X = A, B for
+    /// which the KDs and MEs are computed (Tstring, REQUIRED).
+    /// \param[in]  input_Ps        The input vector of TLorentzVectors with
+    /// 4-momentum (E,px,py,pz) values of particles N=1..5
+    /// (vector<TLorentzVector>, REQUIRED).
+    /// \param[in]  input_IDs       The input vector of IDs (PDG) of particles
+    /// N=1..5 (int, REQUIRED).
+    /// \param[out] kd              The computed KD value or discrimination of
+    /// processes A and B (double).
+    /// \param[out] me2processA     The computed |ME|^2 for process A (double).
+    /// \param[out] me2processB     The computed |ME|^2 for process B (double).
+    /// \return                     See exit_codes
     ///
     int computeKD(const TString &processA, const TString &processB,
                   const std::vector<TLorentzVector> &input_Ps,
@@ -792,16 +787,16 @@ class MEKD
     /// Compute ME for a processName out of the 4-momenta of the input particles
     /// (ordering does not matter).
     ///
-    /// \param[in]  processName							The name of the
-    /// process for which the ME is to be computed (TString, REQUIRED).
-    /// \param[in]  input_Ps							The input vector of
-    /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
+    /// \param[in]  processName     The name of the process for which the ME is
+    /// to be computed (TString, REQUIRED).
+    /// \param[in]  input_Ps        The input vector of TLorentzVectors with
+    /// 4-momentum (E,px,py,pz) values of particles N=1..5
     /// (std::vector<TLorentzVector>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
-    /// \param[out] me2process							The computed |ME|^2
-    /// for process of interest (double).
-    /// \return											See exit_codes
+    /// \param[in]  input_IDs       The input vector of IDs PDG) of particles
+    /// N=1..5 (std::vector<int>, REQUIRED).
+    /// \param[out] me2process      The computed |ME|^2 for process of interest
+    /// (double).
+    /// \return                     See exit_codes
     ///
     int computeME(const TString &processName,
                   const std::vector<TLorentzVector> &input_Ps,
@@ -812,12 +807,12 @@ class MEKD
     /// computeKD(TString, TString, double&, double&, double&). Option Custom is
     /// outside this scope.
     ///
-    /// \param[in]  lept1P, lept2P, lept3P, lept4P		The input arrays with
+    /// \param[in]  lept1P, lept2P, lept3P, lept4P      The input arrays with
     /// 4-momentum (E,px,py,pz) values of leptons N=1..4 (TLorentzVector,
     /// REQUIRED).
-    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id	The input IDs (PDG) of
+    /// \param[in]  lept1Id, lept2Id, lept3Id, lept4Id  The input IDs (PDG) of
     /// leptons N=1..4 (int, REQUIRED).
-    /// \return											See exit_codes
+    /// \return                                         See exit_codes
     ///
     int computeMEs(const TLorentzVector &lept1P, const int lept1Id,
                    const TLorentzVector &lept2P, const int lept2Id,
@@ -829,12 +824,12 @@ class MEKD
     /// computeKD(string/TString, string/TString, double&, double&, double&).
     /// Option Custom is outside this scope.
     ///
-    /// \param[in]  input_Ps							The input vector of
-    /// TLorentzVectors with 4-momentum (E,px,py,pz) values of particles N=1..5
+    /// \param[in]  input_Ps        The input vector of TLorentzVectors with
+    /// 4-momentum (E,px,py,pz) values of particles N=1..5
     /// (std::vector<TLorentzVector>, REQUIRED).
-    /// \param[in]  input_IDs							The input vector of IDs
-    /// (PDG) of particles N=1..5 (std::vector<int>, REQUIRED).
-    /// \return											See exit_codes
+    /// \param[in]  input_IDs       The input vector of IDs (PDG) of particles
+    /// N=1..5 (std::vector<int>, REQUIRED).
+    /// \return                     See exit_codes
     ///
     int computeMEs(const std::vector<TLorentzVector> &input_Ps,
                    const std::vector<int> &input_IDs);

@@ -7,9 +7,12 @@
 #ifndef MEKD__ME_runners__Spin0_4l_eval_cpp
 #define MEKD__ME_runners__Spin0_4l_eval_cpp
 
+#include "MEKD/Parameters_configurators.h"
+#include "MEKD/Supported_MEs_Spin0_4l.h"
 #include "MEKD_Evaluators.h"
-#include "Parameters_configurators.h"
-#include "Supported_MEs_Spin0_4l.h"
+
+/// Predefined mixings, i.e., models
+#include "MEKD/Defined_models_Spin0.h"
 
 using namespace std;
 

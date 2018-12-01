@@ -1,14 +1,8 @@
-#ifndef MEKD_Includes_h
-#define MEKD_Includes_h
+#ifndef MEKD__Includes_h
+#define MEKD__Includes_h
 
 /// C++ libraries
-#include <algorithm> // for sorting
-#include <cmath>
 #include <complex>
-#include <cstdlib> // needed?
-#include <fstream> // for checking file location
-#include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -35,7 +29,6 @@
 
 /// MEKD tools
 extern "C" {
-#include "Extra_code/MEKD_CalcHEP_PDF.h"
 #include "PDF_tables/pdt.h"
 }
 
@@ -55,8 +48,5 @@ extern "C" {
 
 /// RAW MG5_aMC ME. For testing purposes only.
 // #include "MG5_aMCNLO/RAW/CPPProcess.h"   // ME_RAW
-
-/// Predefined mixings, i.e., models
-#include "Defined_models_Spin0.h"
 
 #endif
