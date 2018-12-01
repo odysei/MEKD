@@ -29,11 +29,11 @@ endif
 ### All targets ###
 ###################
 
-test=MEKD_Test
-test2=MEKD_Test_v3
-test3=MEKD_Test_HiggsPO
+test=$(BIN_DIRL)/MEKD_Test
+test2=$(BIN_DIRL)/MEKD_Test_v3
+# test3=$(BIN_DIRL)/MEKD_Test_HiggsPO
 
-all: $(test) $(test2) $(test3)
+all: $(test) $(test2) #$(test3)
 
 
 
@@ -41,6 +41,10 @@ all: $(test) $(test2) $(test3)
 ######################
 ### Building block ###
 ######################
+
+# objects = main.o check_models.o functionality.o
+objects2 = main_v3.o check_models_v3.o functionality_v3.o
+# objects3 = main.o check_models.o functionality.o
 
 ifeq ($(MEKD_COMPILE_WITH_ROOT), Yes)
 
@@ -55,18 +59,21 @@ $(test):
 endif
 
 
-$(test2):
-	$(CXX) $(CXXFLAGS) $(test2).cpp -o $(BIN_DIRL)/$(test2) -L. \
-$(LIBFLAGS) -l MEKD
+$(test2): $(objects2)
+	$(CXX) $(CXXFLAGS) -o $(test2) $(objects2) -L. $(LIBFLAGS) -l MEKD
 
 
 $(test3):
-	$(CXX) $(CXXFLAGS) $(test3).cpp -o $(BIN_DIRL)/$(test3) -L. \
-$(LIBFLAGS) -l MEKD
+	$(CXX) $(CXXFLAGS) -o $(test3) $(objects3) -L. $(LIBFLAGS) -l MEKD
 
 
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN_DIRL)/$(test)
+	rm -f $(objects)
+	rm -f $(test)
+	rm -f $(objects2)
+	rm -f $(test2)
+	rm -f $(objects3)
+	rm -f $(test3)

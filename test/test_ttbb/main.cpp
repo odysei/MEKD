@@ -7,12 +7,16 @@
  *way
  *
  */
-#ifndef MEKD_Test_ttbb_cpp
-#define MEKD_Test_ttbb_cpp
+#ifndef MEKD__test_ttbb__main_cpp
+#define MEKD__test_ttbb__main_cpp
 
-#include "MEKD_Test_ttbb.h"
-#include "MEKD_Test_ttbb_Functionality.cpp"
-#include "MEKD_Test_ttbb_Check_Models.cpp"
+#include "check_models.h"
+#include "functionality.h"
+#include "test.h"
+#include "MEKD/Inputs.h"
+
+using namespace std;
+using namespace mekd;
 
 input Initialize_tester(input &);
 void test_block1(input &);

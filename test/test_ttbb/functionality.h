@@ -1,5 +1,5 @@
-#ifndef MEKD__test_zp_4l__functionality_h
-#define MEKD__test__p_4l__functionality_h
+#ifndef MEKD__test_ttbb__functionality_h
+#define MEKD__test_ttbb__functionality_h
 
 /// ME calculator
 #include "MEKD.h"

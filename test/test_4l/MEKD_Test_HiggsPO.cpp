@@ -15,6 +15,8 @@
 #include "MEKD_Test_Compatibility.cpp"
 // #include "MEKD_Test_Check_Models_HiggsPO.cpp"
 
+using namespace std;
+
 input Initialize_tester(input &);
 void test_block1(input &);
 // void test_block6(input &);

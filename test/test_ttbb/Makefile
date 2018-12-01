@@ -29,7 +29,7 @@ endif
 ### All targets ###
 ###################
 
-test=MEKD_Test_ttbb
+test=$(BIN_DIRL)/MEKD_Test_ttbb
 
 all: $(test)
 
@@ -40,13 +40,15 @@ all: $(test)
 ### Building block ###
 ######################
 
-$(test):
-	$(CXX) $(CXXFLAGS) $(test).cpp -o $(BIN_DIRL)/$(test) -L. $(LIBFLAGS) \
--l MEKD
+objects = main.o check_models.o functionality.o
+
+$(test): $(objects)
+	$(CXX) $(CXXFLAGS) -o $(test) $(objects) -L. $(LIBFLAGS) -l MEKD
 
 
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN_DIRL)/$(test)
+	rm -f $(objects)
+	rm -f $(test)

@@ -1,11 +1,13 @@
-#ifndef MEKD_TEST_CHECK_MODELS_V3_CPP
-#define MEKD_TEST_CHECK_MODELS_V3_CPP
+#ifndef MEKD__test_ttbb__check_models_cpp
+#define MEKD__test_ttbb__check_models_cpp
 
-#include "MEKD_Test_ttbb.h"
+#include "check_models.h"
+#include "test.h"
+#include "MEKD.h"
 #include <iomanip>
 
-vector<process_description> MEKD_Test_ttbb_Check_Models_Test1_make_list();
-vector<string> MEKD_Test_ttbb_Check_Models_Test1_make_list_str(); // v2 legacy
+using namespace std;
+using namespace mekd;
 
 //////////////////////////////////
 /// TEST Block "Models checking"

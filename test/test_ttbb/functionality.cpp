@@ -1,7 +1,12 @@
-#ifndef MEKD_Test_ttbb_Functionality_cpp
-#define MEKD_Test_ttbb_Functionality_cpp
+#ifndef MEKD__test_ttbb__functionality_cpp
+#define MEKD__test_ttbb__functionality_cpp
 
-#include "MEKD_Test_ttbb.h"
+#include "functionality.h"
+#include "test.h"
+#include "MEKD.h"
+
+using namespace std;
+using namespace mekd;
 
 /*
  *

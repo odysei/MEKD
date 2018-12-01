@@ -7,14 +7,15 @@
  *way
  *
  */
-#ifndef MEKD__test__zp_4l__main_cpp
-#define MEKD__test__zp_4l__main_cpp
+#ifndef MEKD__test_zp_4l__main_cpp
+#define MEKD__test_zp_4l__main_cpp
 
-#include "MEKD.h"
 #include "check_models.h"
 #include "functionality.h"
 #include "test.h"
+#include "MEKD/Inputs.h"
 
+using namespace std;
 using namespace mekd;
 
 input Initialize_tester(input &);

@@ -1,10 +1,11 @@
-#ifndef MEKD__test__zp_4l__check_models_cpp
-#define MEKD__test__zp_4l__check_models_cpp
+#ifndef MEKD__test_zp_4l__check_models_cpp
+#define MEKD__test_zp_4l__check_models_cpp
 
 #include "test.h"
 #include "check_models.h"
 #include <iomanip>
 
+using namespace std;
 using namespace mekd;
 
 //////////////////////////////////

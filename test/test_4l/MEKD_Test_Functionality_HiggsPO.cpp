@@ -3,6 +3,8 @@
 
 #include "MEKD_Test_HiggsPO.h"
 
+using namespace std;
+
 /*
  *
  * TEST Block "on the fly".

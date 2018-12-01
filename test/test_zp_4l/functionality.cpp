@@ -1,9 +1,11 @@
-#ifndef MEKD__test__zp_4l__functionality_cpp
-#define MEKD__test__zp_4l__functionality_cpp
+#ifndef MEKD__test_zp_4l__functionality_cpp
+#define MEKD__test_zp_4l__functionality_cpp
 
 #include "functionality.h"
 #include "test.h"
+#include "MEKD.h"
 
+using namespace std;
 using namespace mekd;
 
 /*

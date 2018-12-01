@@ -1,5 +1,5 @@
-#ifndef MEKD__test_zp_4l__check_models_h
-#define MEKD__test_zp_4l__check_models_h
+#ifndef MEKD__test_ttbb__check_models_h
+#define MEKD__test_ttbb__check_models_h
 
 #include "MEKD.h"
 
