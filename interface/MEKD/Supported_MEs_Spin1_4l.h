@@ -538,7 +538,7 @@ class ME_runner_qq_Z_Zp_Spin1_2f_4l : public ME_runner
     const process_description me = {
         model_Leptophilic_Zp, // model
         proc_cascade,         // process
-        reson_Spin1M,         // resonance
+        reson_Spin1,          // resonance
         prod_qq,              // production
         decay_2f,             // decay
         final_4l              // final_state
