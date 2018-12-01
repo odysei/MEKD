@@ -7,15 +7,17 @@
  *way
  *
  */
-#ifndef MEKD_TEST_HiggsPO_CPP
-#define MEKD_TEST_HiggsPO_CPP
+#ifndef MEKD__test_4l__main_HiggsPO_cpp
+#define MEKD__test_4l__main_HiggsPO_cpp
 
-#include "MEKD_Test_HiggsPO.h"
-#include "MEKD_Test_Functionality_HiggsPO.cpp"
-#include "MEKD_Test_Compatibility.cpp"
-// #include "MEKD_Test_Check_Models_HiggsPO.cpp"
+#include "test_HiggsPO.h"
+#include "compatibility_HiggsPO.h"
+#include "functionality_HiggsPO.h"
+// #include "check_models_HiggsPO.h"
+#include "MEKD/Inputs.h"
 
 using namespace std;
+using namespace mekd;
 
 input Initialize_tester(input &);
 void test_block1(input &);

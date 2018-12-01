@@ -1,9 +1,11 @@
-#ifndef MEKD_TEST_FUNCTIONALITY_HiggsPO_CPP
-#define MEKD_TEST_FUNCTIONALITY_HiggsPO_CPP
+#ifndef MEKD__test_4l__functionality_HiggsPO_cpp
+#define MEKD__test_4l__functionality_HiggsPO_cpp
 
-#include "MEKD_Test_HiggsPO.h"
+#include "functionality_HiggsPO.h"
+#include "test_HiggsPO.h"
 
 using namespace std;
+using namespace mekd;
 
 /*
  *

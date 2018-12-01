@@ -1,8 +1,11 @@
-#ifndef MEKD_TEST_CHECK_MODELS_HiggsPO_CPP
-#define MEKD_TEST_CHECK_MODELS_HiggsPO_CPP
+#ifndef MEKD__test_4l__check_models_HiggsPO_cpp
+#define MEKD__test_4l__check_models_HiggsPO_cpp
 
-#include "MEKD_Test_v3.h"
+#include "test_HiggsPO.h"
 #include <iomanip>
+
+using namespace std;
+using namespace mekd;
 
 vector<process_description> MEKD_Test_Check_Models_Test1_make_list();
 // vector<process_description> MEKD_Test_Check_Models_Test1_make_listA();

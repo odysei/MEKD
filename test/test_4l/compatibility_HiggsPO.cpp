@@ -1,9 +1,12 @@
-#ifndef MEKD_Test_Compatibility_cpp
-#define MEKD_Test_Compatibility_cpp
+#ifndef MEKD__test_4l__compatibility_HiggsPO_cpp
+#define MEKD__test_4l__compatibility_HiggsPO_cpp
 
-#include "MEKD_Test_HiggsPO.h"
+#include "test_HiggsPO.h"
+#include "test_HiggsPO.h"
+#include "MEKD.h"
 
 using namespace std;
+using namespace mekd;
 
 /*
  *
